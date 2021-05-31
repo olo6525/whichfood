@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="0.6"
+        android:src="@drawable/cooker2"
+        android:scaleType="fitXY"/>
+
+    <ImageButton
+        android:id="@+id/btnmeal"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="0.5"
+        android:src="@drawable/pickfood"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:scaleType="fitXY"/>
+
+    <ImageButton
+        android:id="@+id/btndrink"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="0.5"
+        android:src="@drawable/pickfood2"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:scaleType="fitXY"/>
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="0.6"
+        android:src="@drawable/cooker1"
+        android:scaleType="fitXY"/>
+</LinearLayout>

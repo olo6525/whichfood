@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="350dp"
+    android:layout_height="200dp">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:text="새로운 버전이 있습니다. ^^"
+        android:gravity="center"
+        android:textSize = "20sp"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:textColor="#000"
+        android:background="#fff"
+         />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:text="업데이트를 하시겠습니까?"
+        android:gravity="center"
+        android:textSize = "20sp"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="2"
+        android:textColor="#000"
+        android:background="#fff"
+         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1.5"
+        android:orientation="horizontal"
+        android:background="#fff">
+
+        <Button
+            android:id="@+id/button_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:text="업데이트" />
+
+        <Button
+            android:id="@+id/button_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:text="나중에" />
+    </LinearLayout>
+</LinearLayout>

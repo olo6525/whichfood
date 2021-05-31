@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-8231620186256321/7210705835">
+    </com.google.android.gms.ads.AdView>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="0.7"
+
+        android:src="@drawable/freshlogo"
+        android:scaleType="fitXY"/>
+
+    <ImageView
+        android:id="@+id/foodimageone"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="2"
+        android:scaleType="fitXY"
+        android:src="@drawable/splashlogo" />
+
+    <ImageButton
+        android:id="@+id/detail"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="0.6"
+        android:scaleType="fitXY"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:src="@drawable/detaillogo1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="0.5"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/imbtn_thank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:src="@drawable/gohomelogo" />
+
+        <ImageButton
+            android:id="@+id/imbtn_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:src="@drawable/endlogo" />
+    </LinearLayout>
+
+</LinearLayout>
