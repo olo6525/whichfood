@@ -11,6 +11,7 @@ public class FlagClass extends Application {
     private static String one_kind;
     private static int one_food1;
     private static int one_food2;
+    private static int findstore;
 
     @Override
     public void onCreate() {
@@ -22,6 +23,7 @@ public class FlagClass extends Application {
         one_kind="";
         one_food1 = 0;
         one_food2 = 0;
+        findstore = 0;
     }
 
     @Override
@@ -35,6 +37,7 @@ public class FlagClass extends Application {
         one_kind="";
         one_food1 = 0;
         one_food2 = 0;
+        findstore = 0;
     }
 
     public void setWhere(int flag){this.where = flag;}
@@ -44,6 +47,7 @@ public class FlagClass extends Application {
     public void setOne_kind(String flag) {this.one_kind = flag;}
     public void setOne_food1(int flag) {this.one_food1 = flag;}
     public void setOne_food2(int flag) {this.one_food2 =flag;}
+    public void setFindstore(int flag) {this.findstore=flag;}
 
     public int getWhere() {return where;}
     public int getKind() {return kind;}
@@ -52,5 +56,6 @@ public class FlagClass extends Application {
     public String getOne_kind() {return one_kind;}
     public int getOne_food1() { return one_food1;}
     public int getOne_food2() {return one_food2;}
+    public int getFindstore(){return findstore;}
 
 }
