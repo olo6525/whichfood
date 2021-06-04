@@ -357,6 +357,7 @@ public class TwoFood extends Activity {
             Btndetail1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    flag.setFindstore(1);
                     if (kind == 1) {
                         startActivity(intentmap);
                     } else if (kind == 2) {
@@ -367,6 +368,7 @@ public class TwoFood extends Activity {
             Btndetail2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    flag.setFindstore(2);
                     if (kind == 1) {
                         startActivity(intentmap);
                     } else if (kind == 2) {
