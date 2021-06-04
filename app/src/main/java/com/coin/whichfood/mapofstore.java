@@ -74,7 +74,8 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
     private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1;
     protected LocationManager locationManager;
     private ExecutorService executorService = Executors.newFixedThreadPool(1);
-    private JSONArray jsonArray;
+
+
 
 
     public boolean hasPermissions(Context context, String... permissions) {
@@ -97,6 +98,7 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
         setContentView(R.layout.activity_mapofstore);
         Toolbar myChildToolbar =
                 (Toolbar) findViewById(R.id.toolbar);
+
 
 
 
@@ -242,84 +244,93 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
             int food1 = flag.getOne_food1();
             int food2 = flag.getOne_food2();
             this.naverMap = naverMap;
-            MarkerOptions markerOptions = new MarkerOptions();
+            ArrayList<Marker> markers = new ArrayList<Marker>();
             Geocoder geocoder = new Geocoder(this);
-            List<List<Address>> addlist = new ArrayList<>();
             double addlatitude =0;
             double addlongitude =0;
-            String postParameters = "food=" + food1 + "&address=" ;
             Log.d("addlist","맵 시작");
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    URL url = new URL("https://uristory.com/whichfoodstorelist.php");
-                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
-
-                    httpURLConnection.setReadTimeout(5000);
-                    httpURLConnection.setConnectTimeout(5000);
-                    httpURLConnection.setRequestMethod("POST");
-                    httpURLConnection.connect();
-
-
-                    OutputStream outputStream = httpURLConnection.getOutputStream();
-                    outputStream.write(postParameters.getBytes("UTF-8"));
-                    outputStream.flush();
-                    outputStream.close();
-
-
-                    int responseStatusCode = httpURLConnection.getResponseCode();
-                    Log.d(TAG, "POST response code - " + responseStatusCode);
-
-                    InputStream inputStream;
-                    if(responseStatusCode == HttpURLConnection.HTTP_OK) {
-                        inputStream = httpURLConnection.getInputStream();
-                    }
-                    else{
-                        inputStream = httpURLConnection.getErrorStream();
-                    }
-
-
-                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
-                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-                    StringBuilder sb = new StringBuilder();
-                    String line = null;
-
-                    while((line = bufferedReader.readLine()) != null){
-                        sb.append(line);
-                    }
-
-
-                    bufferedReader.close();
-
-                    Log.d("TAG","ㅇㅇ"+sb.toString()+"test");
-
-
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
                     try {
+                        String postParameters = new String();
+                        if(flag.getFindstore() == 1){
+                            postParameters = "purpose=findstore&food=" + food1 + "&latitude="+latitude+"&longitude="+longitude;
+                        }else if(flag.getFindstore()==2){
+                            postParameters = "purpose=findstore&food=" + food2 + "&latitude="+latitude+"&longitude="+longitude;
+                        }
+                        URL url = new URL("https://uristory.com/whichfoodstorelist.php");
+                        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
-                        for(int i =0; i < 4; i++) {
-                            List<Address> realaddress = null;
-                            realaddress = geocoder.getFromLocation(latitude,longitude,5);
-                            addlist.add(realaddress);
-                            Log.d("TAG","ㅇㅇ"+addlist.get(0).get(0).getAddressLine(0));
 
+                        httpURLConnection.setReadTimeout(5000);
+                        httpURLConnection.setConnectTimeout(5000);
+                        httpURLConnection.setRequestMethod("POST");
+                        httpURLConnection.connect();
+
+
+                        OutputStream outputStream = httpURLConnection.getOutputStream();
+                        outputStream.write(postParameters.getBytes("UTF-8"));
+                        outputStream.flush();
+                        outputStream.close();
+
+
+                        int responseStatusCode = httpURLConnection.getResponseCode();
+                        Log.d(TAG, "POST response code - " + responseStatusCode);
+
+                        InputStream inputStream;
+                        if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                            inputStream = httpURLConnection.getInputStream();
+                        }
+                        else{
+                            inputStream = httpURLConnection.getErrorStream();
                         }
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        Log.d("addlist","ㅇㅇ입출력 오류 - 서버에서 주소변환시 에러발생");
+
+                        InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                        StringBuilder sb = new StringBuilder();
+                        String line = null;
+
+                        while((line = bufferedReader.readLine()) != null){
+                            sb.append(line);
+                        }
+
+
+                        bufferedReader.close();
+
+                        Log.d("TAG","ㅇㅇ"+sb.toString()+"test");
+                        JSONObject jsonObject = new JSONObject(sb.toString());
+                        JSONArray jsonArray = jsonObject.getJSONArray("storedb");
+
+                        try {
+
+                            for(int i =0; i < jsonArray.length(); i++) {
+                                JSONObject storejson = jsonArray.getJSONObject(i);
+                                String storelatitudestring = storejson.getString("latitude");
+                                String storelongitudestring = storejson.getString("longitude");
+                                double storelatitudedouble = Double.parseDouble(storelatitudestring);
+                                double storelongitudedouble = Double.parseDouble(storelongitudestring);
+                                Marker marker = new Marker();
+                                marker.setPosition(new LatLng(storelatitudedouble,storelongitudedouble));
+                                markers.add(marker);
+                                markers.get(i).setMap(naverMap);
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Log.d("addlist","ㅇㅇ입출력 오류 - 서버에서 주소변환시 에러발생");
+                        }
+
+                    } catch (Exception e) {
+
+                        Log.d(TAG, "ㅇㅇInsertData: Error ", e);
                     }
-
-                } catch (Exception e) {
-
-                    Log.d(TAG, "ㅇㅇInsertData: Error ", e);
                 }
-            }
-        };
-        executorService.execute(runnable);
-        executorService.shutdown();
+            };
+            executorService.execute(runnable);
+            executorService.shutdown();
 
 
             UiSettings uiSettings = naverMap.getUiSettings();
