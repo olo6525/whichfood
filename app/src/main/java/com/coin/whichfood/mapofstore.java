@@ -74,6 +74,7 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
     private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1;
     protected LocationManager locationManager;
     private ExecutorService executorService = Executors.newFixedThreadPool(1);
+    private JSONObject jsonObject;
 
 
 
@@ -248,16 +249,16 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
             Geocoder geocoder = new Geocoder(this);
             double addlatitude =0;
             double addlongitude =0;
-            Log.d("addlist","맵 시작");
+            Log.d(TAG,"ㅇㅇ경도"+latitude+"위도"+longitude);
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
                     try {
                         String postParameters = new String();
                         if(flag.getFindstore() == 1){
-                            postParameters = "purpose=findstore&food=" + food1 + "&latitude="+latitude+"&longitude="+longitude;
+                            postParameters = "purpose=findstore&food=food" + food1 + "&latitude="+latitude+"&longitude="+longitude;
                         }else if(flag.getFindstore()==2){
-                            postParameters = "purpose=findstore&food=" + food2 + "&latitude="+latitude+"&longitude="+longitude;
+                            postParameters = "purpose=findstore&food=food" + food2 + "&latitude="+latitude+"&longitude="+longitude;
                         }
                         URL url = new URL("https://uristory.com/whichfoodstorelist.php");
                         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -300,8 +301,8 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
 
                         bufferedReader.close();
 
-                        Log.d("TAG","ㅇㅇ"+sb.toString()+"test");
-                        JSONObject jsonObject = new JSONObject(sb.toString());
+                        Log.d("TAG","ㅇㅇ"+sb.toString());
+                        jsonObject = new JSONObject(sb.toString());
                         JSONArray jsonArray = jsonObject.getJSONArray("storedb");
 
                         try {
@@ -337,9 +338,9 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
             uiSettings.setLocationButtonEnabled(true);
             uiSettings.setZoomControlEnabled(true);
             naverMap.setLocationSource(locationSource);
-            naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
-            CameraPosition cameraPosition = new CameraPosition(new LatLng(latitude, longitude), 16,0, 0);
-            naverMap.setCameraPosition(cameraPosition);
+//            naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
+//            CameraPosition cameraPosition = new CameraPosition(new LatLng(latitude, longitude), 16,0, 0);
+//            naverMap.setCameraPosition(cameraPosition);
 
 
         });
