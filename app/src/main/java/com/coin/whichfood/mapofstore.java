@@ -11,6 +11,8 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -32,7 +34,9 @@ import com.naver.maps.map.MapView;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.UiSettings;
+import com.naver.maps.map.overlay.LocationOverlay;
 import com.naver.maps.map.overlay.Marker;
+import com.naver.maps.map.overlay.OverlayImage;
 import com.naver.maps.map.util.FusedLocationSource;
 import com.naver.maps.map.widget.ZoomControlView;
 
@@ -74,8 +78,7 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
     private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1;
     protected LocationManager locationManager;
     private ExecutorService executorService = Executors.newFixedThreadPool(1);
-    private JSONObject jsonObject;
-
+    private JSONArray jsonArray;
 
 
 
@@ -245,7 +248,9 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
             int food1 = flag.getOne_food1();
             int food2 = flag.getOne_food2();
             this.naverMap = naverMap;
-            ArrayList<Marker> markers = new ArrayList<Marker>();
+            List<Marker> markers = new ArrayList<>();
+            LocationOverlay locationOverlay = naverMap.getLocationOverlay();
+            Handler handler = new Handler(Looper.getMainLooper());
             Geocoder geocoder = new Geocoder(this);
             double addlatitude =0;
             double addlongitude =0;
@@ -302,31 +307,39 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                         bufferedReader.close();
 
                         Log.d("TAG","ㅇㅇ"+sb.toString());
-                        jsonObject = new JSONObject(sb.toString());
-                        JSONArray jsonArray = jsonObject.getJSONArray("storedb");
-
-                        try {
-
-                            for(int i =0; i < jsonArray.length(); i++) {
-                                JSONObject storejson = jsonArray.getJSONObject(i);
-                                String storelatitudestring = storejson.getString("latitude");
-                                String storelongitudestring = storejson.getString("longitude");
-                                double storelatitudedouble = Double.parseDouble(storelatitudestring);
-                                double storelongitudedouble = Double.parseDouble(storelongitudestring);
-                                Marker marker = new Marker();
-                                marker.setPosition(new LatLng(storelatitudedouble,storelongitudedouble));
-                                markers.add(marker);
-                                markers.get(i).setMap(naverMap);
-                            }
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            Log.d("addlist","ㅇㅇ입출력 오류 - 서버에서 주소변환시 에러발생");
-                        }
+                        jsonArray = new JSONArray(sb.toString());
 
                     } catch (Exception e) {
 
                         Log.d(TAG, "ㅇㅇInsertData: Error ", e);
+                    }
+
+                    try {
+
+                        for(int i =0; i < jsonArray.length(); i++) {
+                            JSONObject storejson = jsonArray.getJSONObject(i);
+                            String storelatitudestring = storejson.getString("latitude");
+                            String storelongitudestring = storejson.getString("longitude");
+                            double storelatitudedouble = Double.parseDouble(storelatitudestring);
+                            double storelongitudedouble = Double.parseDouble(storelongitudestring);
+                            Log.d(TAG,"ㅇㅇ : "+storelatitudestring+","+storelongitudestring);
+                            Marker marker = new Marker();
+                            marker.setPosition(new LatLng(storelatitudedouble,storelongitudedouble));
+                            marker.setIcon(OverlayImage.fromResource(R.drawable.ic_launcher_foreground));
+                            marker.setCaptionText(storejson.getString("storename"));
+                            markers.add(marker);
+
+                            handler.post(() -> {
+                                // 메인 스레드
+                                for (Marker marker1 : markers) {
+                                    marker1.setMap(naverMap);
+                                }
+                            });
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Log.d("addlist","ㅇㅇ입출력 오류 - 서버에서 주소변환시 에러발생");
                     }
                 }
             };
