@@ -12,6 +12,12 @@ public class FlagClass extends Application {
     private static int one_food1;
     private static int one_food2;
     private static int findstore;
+    private static int thenumberoffoodhomemeal;
+    private static int thenumberoffoodhomedrink;
+    private static int thenumberoffoodoutmeal;
+    private static int thenumberoffoodoutdrink;
+    private static int thenumberoffooddelivermeal;
+    private static int thenumberoffooddeliverdrink;
 
     @Override
     public void onCreate() {
@@ -24,6 +30,12 @@ public class FlagClass extends Application {
         one_food1 = 0;
         one_food2 = 0;
         findstore = 0;
+        thenumberoffoodhomemeal=0;
+        thenumberoffoodhomedrink=0;
+        thenumberoffoodoutmeal=0;
+        thenumberoffoodoutdrink=0;
+        thenumberoffooddelivermeal=0;
+        thenumberoffooddeliverdrink=0;
     }
 
     @Override
@@ -38,6 +50,12 @@ public class FlagClass extends Application {
         one_food1 = 0;
         one_food2 = 0;
         findstore = 0;
+        thenumberoffoodhomemeal=0;
+        thenumberoffoodhomedrink=0;
+        thenumberoffoodoutmeal=0;
+        thenumberoffoodoutdrink=0;
+        thenumberoffooddelivermeal=0;
+        thenumberoffooddeliverdrink=0;
     }
 
     public void setWhere(int flag){this.where = flag;}
@@ -48,6 +66,12 @@ public class FlagClass extends Application {
     public void setOne_food1(int flag) {this.one_food1 = flag;}
     public void setOne_food2(int flag) {this.one_food2 =flag;}
     public void setFindstore(int flag) {this.findstore=flag;}
+    public void setThenumberoffoodhomemeal(int flag) {this.thenumberoffoodhomemeal = flag;}
+    public void setThenumberoffoodhomedrink(int flag) {this.thenumberoffoodhomedrink = flag;}
+    public void setThenumberoffoodoutmeal(int flag) {this.thenumberoffoodoutmeal = flag;}
+    public void setThenumberoffoodoutdrink(int flag) {this.thenumberoffoodoutdrink = flag;}
+    public void setThenumberoffooddelivermeal(int flag) {this.thenumberoffooddelivermeal = flag;}
+    public void setThenumberoffooddeliverdrink(int flag) {this.thenumberoffooddeliverdrink = flag;}
 
     public int getWhere() {return where;}
     public int getKind() {return kind;}
@@ -57,5 +81,11 @@ public class FlagClass extends Application {
     public int getOne_food1() { return one_food1;}
     public int getOne_food2() {return one_food2;}
     public int getFindstore(){return findstore;}
+    public int getThenumberoffoodhomemeal(){return thenumberoffoodhomemeal;}
+    public int getThenumberoffoodhomedrink(){return thenumberoffoodhomedrink;}
+    public int getThenumberoffoodoutmeal(){return thenumberoffoodoutmeal;}
+    public int getThenumberoffoodoutdrink(){return thenumberoffoodoutdrink;}
+    public int getThenumberoffooddelivermeal(){return thenumberoffooddelivermeal;}
+    public int getThenumberoffooddeliverdrink(){return thenumberoffooddeliverdrink;}
 
 }

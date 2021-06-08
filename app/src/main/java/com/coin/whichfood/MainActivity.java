@@ -27,6 +27,8 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.AdRequest;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -43,7 +45,7 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 public class MainActivity extends AppCompatActivity {
     private AdView mAdView; //광고 변수 선언
     VersionCheck versionCheck;
-    private static String FoodIP = "https://www.uristory.com/whichfood.php"; //음식 이미지 서버
+    private static String FoodIP = "https://www.uristory.com/whichfood1.php"; //음식 이미지 서버
     private InterstitialAd mInterstitialAd;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
     private static final String[] REQUESTED_PERMISSION = {ACCESS_COARSE_LOCATION,ACCESS_FINE_LOCATION};
@@ -143,10 +145,21 @@ public class MainActivity extends AppCompatActivity {
         sexAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         city.setAdapter(sexAdapter);
         Intent update_pop = new Intent(this, PopUp.class);
-        String version;
+        String serverdata;
         try {
-            version = new VersionCheck().execute(FoodIP).get();
-            Log.d("TAG", "The interstitial wasn't loaded yet1."+ version);
+            serverdata = new VersionCheck().execute(FoodIP).get();
+            Log.d("TAG", "serverdata" + serverdata);
+            JSONObject jsonObject = new JSONObject(serverdata);
+            String version = jsonObject.getString("version");
+            JSONArray jsonArray = jsonObject.getJSONArray("thenumberoffood");
+            JSONObject thenumberoffood = jsonArray.getJSONObject(0);
+            flag.setThenumberoffoodhomemeal(Integer.parseInt(thenumberoffood.getString("homemeal")));
+            flag.setThenumberoffoodhomedrink(Integer.parseInt(thenumberoffood.getString("homedrink")));
+            flag.setThenumberoffoodoutmeal(Integer.parseInt(thenumberoffood.getString("outmeal")));
+            flag.setThenumberoffoodoutdrink(Integer.parseInt(thenumberoffood.getString("outdrink")));
+            flag.setThenumberoffooddelivermeal(Integer.parseInt(thenumberoffood.getString("delivermeal")));
+            flag.setThenumberoffooddeliverdrink(Integer.parseInt(thenumberoffood.getString("deliverdrink")));
+            Log.d("TAG", "serverdata" + version+","+flag.getThenumberoffoodhomemeal()+ flag.getThenumberoffoodoutdrink());
             if(!version.equals("1"))
             {
                 Log.d("TAG", "The interstitial wasn't loaded yet2."+ version);
@@ -156,8 +169,9 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-
 
 
         ImageButton btn_cook = (ImageButton)findViewById(R.id.btncook);
