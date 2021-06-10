@@ -29,6 +29,8 @@ import com.google.gson.JsonArray;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 
+import org.json.JSONException;
+
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -111,326 +113,162 @@ public class TwoFood extends Activity {
         int kind = flag.getKind();
         String s_kind = new String();
         Random random = new Random();
-        int i_rand1 = random.nextInt(30)+1;
-        int i_rand2 = random.nextInt(30)+1;
 
-        if(where == 1) { s_where = "homefood";
-            flag.setOne_where(s_where);
-            Btndetail1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (kind == 1) {
-                        if (i_rand1 == 1) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222122568573"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 2) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222122622800"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 3) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222123585343"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 4) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139902023"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 5) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139903941"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 6) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139906357"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 7) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222128364229"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 8) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139910399"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 9) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222129549767"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 10) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139918242"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 11) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139921034"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 12) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139928448"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 13) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139925551"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 14) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222127255137"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 15) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222127271305"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 16) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139933231"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 17) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222126227093"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 18) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139945375"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 19) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139948699"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 20) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222126249726"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 21) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139967058"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 22) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139970030"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 23) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139975492"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 24) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139979888"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 25) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139994723"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 26) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139999744"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 27) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222140007479"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 28) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222140025103"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 29) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222140031197"));
-                            startActivity(intentEnternet);
-                        } else if (i_rand1 == 30) {
-                            intentEnternet.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222140034420"));
-                            startActivity(intentEnternet);
-                        }
-                    } else if (kind == 2) {
-                        if (i_rand1 == 1) {
-                        } else if (i_rand1 == 2) {
-                        } else if (i_rand1 == 3) {
-                        } else if (i_rand1 == 4) {
-                        } else if (i_rand1 == 5) {
-                        } else if (i_rand1 == 6) {
-                        } else if (i_rand1 == 7) {
-                        } else if (i_rand1 == 8) {
-                        } else if (i_rand1 == 9) {
-                        } else if (i_rand1 == 10) {
-                        } else if (i_rand1 == 11) {
-                        } else if (i_rand1 == 12) {
-                        } else if (i_rand1 == 13) {
-                        } else if (i_rand1 == 14) {
-                        } else if (i_rand1 == 15) {
-                        } else if (i_rand1 == 16) {
-                        } else if (i_rand1 == 17) {
-                        } else if (i_rand1 == 18) {
-                        } else if (i_rand1 == 19) {
-                        } else if (i_rand1 == 20) {
-                        } else if (i_rand1 == 21) {
-                        } else if (i_rand1 == 22) {
-                        } else if (i_rand1 == 23) {
-                        } else if (i_rand1 == 24) {
-                        } else if (i_rand1 == 25) {
-                        } else if (i_rand1 == 26) {
-                        } else if (i_rand1 == 27) {
-                        } else if (i_rand1 == 28) {
-                        } else if (i_rand1 == 29) {
-                        } else if (i_rand1 == 30) {
-                        }
-                    }
-                }
-            });
-            Btndetail2.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                        if (kind == 1) {
-                            if (i_rand2 == 1) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222122568573"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 2) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222122622800"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 3) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222123585343"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 4) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139902023"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 5) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139903941"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 6) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139906357"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 7) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222128364229"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 8) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139910399"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 9) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222129549767"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 10) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139918242"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 11) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139921034"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 12) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139928448"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 13) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139925551"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 14) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222127255137"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 15) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222127271305"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 16) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139933231"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 17) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222126227093"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 18) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139945375"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 19) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139948699"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 20) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222126249726"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 21) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139967058"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 22) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139970030"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 23) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139975492"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 24) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139979888"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 25) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139994723"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 26) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222139999744"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 27) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222140007479"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 28) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222140025103"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 29) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222140031197"));
-                                startActivity(intentEnternet2);
-                            } else if (i_rand2 == 30) {
-                                intentEnternet2.setData(Uri.parse("https://m.blog.naver.com/oh___ya/222140034420"));
-                                startActivity(intentEnternet2);
-                            }
-                        }else if(kind==2) {
-
-                        }
-
-                    }
-            });
-        }
-        else if (where == 2) {
-            s_where = "outfood";
-            flag.setOne_where(s_where);
-            Btndetail1.setImageResource(R.drawable.whichfoodfindcafeteria1);
-            Btndetail2.setImageResource(R.drawable.whichfoodfindcafeteria2);
-            Intent intentmap = new Intent(this,mapofstore.class);
-            Btndetail1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    flag.setFindstore(1);
-                    if (kind == 1) {
-                        startActivity(intentmap);
-                    } else if (kind == 2) {
-                        startActivity(intentmap);
-                    }
-                }
-            });
-            Btndetail2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    flag.setFindstore(2);
-                    if (kind == 1) {
-                        startActivity(intentmap);
-                    } else if (kind == 2) {
-                        startActivity(intentmap);
-                    }
-                }
-            });
-        }
-        else if(where == 3) {s_where = "deliverfood";
-            flag.setOne_where(s_where);
-            Btndetail1.setImageResource(R.drawable.whichfooddelivery1);
-            Btndetail2.setImageResource(R.drawable.whichfooddelivery2);
-            Btndetail1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (kind == 1) {
-
-                    } else if (kind == 2) {
-
-                    }
-                }
-            });
-            Btndetail2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (kind == 1) {
-
-                    } else if (kind == 2) {
-
-                    }
-                }
-            });
-        } else {s_where = "error";}
+        int i_rand1;
+        int i_rand2;
         if(kind ==1){s_kind = "meal";
             flag.setOne_kind(s_kind);}
         else if (kind ==2){s_kind ="drink";
             flag.setOne_kind(s_kind);}
         else {s_kind = "error";}
-        String s_rand1 = Integer.toString(i_rand1);
-        flag.setOne_food1(i_rand1);
-        String s_rand2 = Integer.toString(i_rand2);
-        flag.setOne_food2(i_rand2);
-
 
         if(where == 3)
         {
-            s_rand1 = Integer.toString(i_rand1%16);
-            flag.setOne_food1(i_rand1%16);
-            s_rand2 = Integer.toString(i_rand2%16);
-            flag.setOne_food2(i_rand2%16);
+
+            String s_rand1 = new String();
+            String s_rand2 = new String();
+            Btndetail1.setImageResource(R.drawable.whichfooddelivery1);
+            Btndetail2.setImageResource(R.drawable.whichfooddelivery2);
+            s_where="deliverfood";
+            flag.setOne_where(s_where);
+            if(kind == 1) {
+                i_rand1 = random.nextInt(flag.getThenumberoffooddelivermeal()) + 1;
+                i_rand2 = random.nextInt(flag.getThenumberoffooddelivermeal()) + 1;
+            }else if(kind == 2){
+                i_rand1 = random.nextInt(flag.getThenumberoffooddeliverdrink()) + 1;
+                i_rand2 = random.nextInt(flag.getThenumberoffooddeliverdrink()) + 1;
+            }else{
+                i_rand1 = 0;
+                i_rand2 = 0;
+            }
+            s_rand1 = Integer.toString(i_rand1);
+            flag.setOne_food1(i_rand1);
+            s_rand2 = Integer.toString(i_rand2);
+            flag.setOne_food2(i_rand2);
             getfoodimage1.execute(s_where, s_kind, s_rand1);
             getfoodimage2.execute(s_where, s_kind, s_rand2);
         }
-        else if (where ==1 || where == 2)
-        {
-            getfoodimage1.execute(s_where, s_kind, s_rand1);
-            getfoodimage2.execute(s_where, s_kind, s_rand2);
-        }
-        else
+        else if (where ==1)
         {
 
+            String s_rand1 = new String();
+            String s_rand2 = new String();
+            s_where = "homefood";
+            flag.setOne_where(s_where);
+            if(kind==1) {
+                i_rand1 = random.nextInt(flag.getThenumberoffoodhomemeal()) + 1;
+                i_rand2 = random.nextInt(flag.getThenumberoffoodhomemeal()) + 1;
+                Btndetail1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String url = new String();
+                        try {
+                           url = flag.getHowcookpage().getJSONObject(0).getString(String.valueOf(i_rand1));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        intentEnternet.setData(Uri.parse(url));
+                        startActivity(intentEnternet);
+                    }
+                });
+                Btndetail2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String url = new String();
+                        try {
+                            url = flag.getHowcookpage().getJSONObject(0).getString(String.valueOf(i_rand2));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        intentEnternet.setData(Uri.parse(url));
+                        startActivity(intentEnternet);
+                    }
+                });
+
+
+            }else if(kind ==2){
+                i_rand1 = random.nextInt(flag.getThenumberoffoodhomedrink()) + 1;
+                i_rand2 = random.nextInt(flag.getThenumberoffoodhomedrink()) + 1;
+
+
+            }else{
+                i_rand1 = 0;
+                i_rand2 = 0;
+            }
+
+            s_rand1 = Integer.toString(i_rand1);
+            flag.setOne_food1(i_rand1);
+            s_rand2 = Integer.toString(i_rand2);
+            flag.setOne_food2(i_rand2);
+            getfoodimage1.execute(s_where, s_kind, s_rand1);
+            getfoodimage2.execute(s_where, s_kind, s_rand2);
+
         }
+        else if (where == 2) {
+
+            String s_rand1 = new String();
+            String s_rand2 = new String();
+            Btndetail1.setImageResource(R.drawable.whichfoodfindcafeteria1);
+            Btndetail2.setImageResource(R.drawable.whichfoodfindcafeteria2);
+            Intent intentmap = new Intent(this, mapofstore.class);
+
+            s_where = "outfood";
+            flag.setOne_where(s_where);
+            if (kind == 1) {
+                i_rand1 = random.nextInt(flag.getThenumberoffoodoutmeal()) + 1;
+                i_rand2 = random.nextInt(flag.getThenumberoffoodoutmeal()) + 1;
+
+                Btndetail1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        flag.setFindstore(i_rand1);
+                        startActivity(intentmap);
+                    }
+                });
+                Btndetail2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        flag.setFindstore(i_rand2);
+                        startActivity(intentmap);
+                    }
+                });
+
+
+            } else if (kind == 2) {
+                i_rand1 = random.nextInt(flag.getThenumberoffoodoutdrink()) + 1;
+                i_rand2 = random.nextInt(flag.getThenumberoffoodoutdrink()) + 1;
+
+                Btndetail1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        flag.setFindstore(i_rand1);
+                        startActivity(intentmap);
+                    }
+                });
+                Btndetail2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        flag.setFindstore(i_rand2);
+                        startActivity(intentmap);
+                    }
+                });
+            } else {
+                i_rand1 = 0;
+                i_rand2 = 0;
+            }
+            s_rand1 = Integer.toString(i_rand1);
+            flag.setOne_food1(i_rand1);
+            s_rand2 = Integer.toString(i_rand2);
+            flag.setOne_food2(i_rand2);
+            getfoodimage1.execute(s_where, s_kind, s_rand1);
+            getfoodimage2.execute(s_where, s_kind, s_rand2);
+
+        }
+
+
+
+
+
 
         //음식 이미지 불러오기 끝 --------------------------------------------------------------------------------------
 

@@ -260,10 +260,18 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                 public void run() {
                     try {
                         String postParameters = new String();
-                        if(flag.getFindstore() == 1){
-                            postParameters = "purpose=findstore&food=food" + food1 + "&latitude="+latitude+"&longitude="+longitude;
-                        }else if(flag.getFindstore()==2){
-                            postParameters = "purpose=findstore&food=food" + food2 + "&latitude="+latitude+"&longitude="+longitude;
+                        if(flag.getKind() == 1) {
+                            if (flag.getFindstore() == 1) {
+                                postParameters = "purpose=findstore&kind=meal&food=food" + food1 + "&latitude=" + latitude + "&longitude=" + longitude;
+                            } else if (flag.getFindstore() == 2) {
+                                postParameters = "purpose=findstore&kind=meal&food=food" + food2 + "&latitude=" + latitude + "&longitude=" + longitude;
+                            }
+                        }else if(flag.getKind() ==2){
+                            if (flag.getFindstore() == 1) {
+                                postParameters = "purpose=findstore&kind=drink&food=food" + food1 + "&latitude=" + latitude + "&longitude=" + longitude;
+                            } else if (flag.getFindstore() == 2) {
+                                postParameters = "purpose=findstore&kind=drink&food=food" + food2 + "&latitude=" + latitude + "&longitude=" + longitude;
+                            }
                         }
                         URL url = new URL("https://uristory.com/whichfoodstorelist.php");
                         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();

@@ -159,7 +159,8 @@ public class MainActivity extends AppCompatActivity {
             flag.setThenumberoffoodoutdrink(Integer.parseInt(thenumberoffood.getString("outdrink")));
             flag.setThenumberoffooddelivermeal(Integer.parseInt(thenumberoffood.getString("delivermeal")));
             flag.setThenumberoffooddeliverdrink(Integer.parseInt(thenumberoffood.getString("deliverdrink")));
-            Log.d("TAG", "serverdata" + version+","+flag.getThenumberoffoodhomemeal()+ flag.getThenumberoffoodoutdrink());
+            flag.setHowcookpage(jsonObject.getJSONArray("howcook"));
+            Log.d("TAG", "serverdata" + version+","+flag.getThenumberoffoodhomemeal()+ flag.getThenumberoffoodoutdrink()+ flag.getHowcookpage().getJSONObject(0).getString("1"));
             if(!version.equals("1"))
             {
                 Log.d("TAG", "The interstitial wasn't loaded yet2."+ version);

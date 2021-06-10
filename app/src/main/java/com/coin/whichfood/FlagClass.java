@@ -2,6 +2,9 @@ package com.coin.whichfood;
 
 import android.app.Application;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class FlagClass extends Application {
 
     private static int where;
@@ -18,6 +21,7 @@ public class FlagClass extends Application {
     private static int thenumberoffoodoutdrink;
     private static int thenumberoffooddelivermeal;
     private static int thenumberoffooddeliverdrink;
+    private JSONArray howcookpage;
 
     @Override
     public void onCreate() {
@@ -36,6 +40,7 @@ public class FlagClass extends Application {
         thenumberoffoodoutdrink=0;
         thenumberoffooddelivermeal=0;
         thenumberoffooddeliverdrink=0;
+        howcookpage = new JSONArray();
     }
 
     @Override
@@ -56,6 +61,7 @@ public class FlagClass extends Application {
         thenumberoffoodoutdrink=0;
         thenumberoffooddelivermeal=0;
         thenumberoffooddeliverdrink=0;
+        howcookpage = new JSONArray();
     }
 
     public void setWhere(int flag){this.where = flag;}
@@ -72,6 +78,7 @@ public class FlagClass extends Application {
     public void setThenumberoffoodoutdrink(int flag) {this.thenumberoffoodoutdrink = flag;}
     public void setThenumberoffooddelivermeal(int flag) {this.thenumberoffooddelivermeal = flag;}
     public void setThenumberoffooddeliverdrink(int flag) {this.thenumberoffooddeliverdrink = flag;}
+    public void setHowcookpage(JSONArray flag) {this.howcookpage = flag;}
 
     public int getWhere() {return where;}
     public int getKind() {return kind;}
@@ -87,5 +94,6 @@ public class FlagClass extends Application {
     public int getThenumberoffoodoutdrink(){return thenumberoffoodoutdrink;}
     public int getThenumberoffooddelivermeal(){return thenumberoffooddelivermeal;}
     public int getThenumberoffooddeliverdrink(){return thenumberoffooddeliverdrink;}
+    public JSONArray getHowcookpage(){ return howcookpage;}
 
 }
