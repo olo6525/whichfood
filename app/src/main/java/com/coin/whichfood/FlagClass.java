@@ -1,6 +1,10 @@
 package com.coin.whichfood;
 
 import android.app.Application;
+import android.content.Context;
+
+
+import com.kakao.sdk.common.KakaoSdk;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -41,6 +45,8 @@ public class FlagClass extends Application {
         thenumberoffooddelivermeal=0;
         thenumberoffooddeliverdrink=0;
         howcookpage = new JSONArray();
+
+        KakaoSdk.init(this, "675ccfa4872a4eb6e1be8a61059dc307");
     }
 
     @Override

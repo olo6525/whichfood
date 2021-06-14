@@ -16,6 +16,7 @@
         android:theme="@style/AppTheme"
         android:name=".FlagClass"
         android:usesCleartextTraffic="true">
+
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="mqr8h947mq" />
@@ -23,6 +24,9 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-8231620186256321~9673217647"
             />
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="675ccfa4872a4eb6e1be8a61059dc307" /> <!-- 네이티브 앱 키 설정 -->
         <activity android:name=".SplashActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name=".MainActivity">
@@ -38,8 +42,21 @@
         <activity android:name=".OneFood"/>
         <activity android:name=".FinishActivity"/>
         <activity android:name=".mapofstore"/>
+        <activity android:name=".kakaologin"/>
 
+        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth" -->
+                <data android:host="oauth"
+                    android:scheme="kakao675ccfa4872a4eb6e1be8a61059dc307" />
+            </intent-filter>
+        </activity>
 
     </application>
+
 
 </manifest>
