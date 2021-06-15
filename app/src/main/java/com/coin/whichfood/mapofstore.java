@@ -254,7 +254,7 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
             Geocoder geocoder = new Geocoder(this);
             double addlatitude =0;
             double addlongitude =0;
-            Log.d(TAG,"ㅇㅇ경도"+latitude+"위도"+longitude);
+            Log.d(TAG,"ㅇㅇ위도"+latitude+"경도"+longitude);
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
@@ -263,14 +263,18 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                         if(flag.getKind() == 1) {
                             if (flag.getFindstore() == 1) {
                                 postParameters = "purpose=findstore&kind=meal&food=food" + food1 + "&latitude=" + latitude + "&longitude=" + longitude;
+                                Log.d(TAG, "ㅇㅇ"+postParameters);
                             } else if (flag.getFindstore() == 2) {
                                 postParameters = "purpose=findstore&kind=meal&food=food" + food2 + "&latitude=" + latitude + "&longitude=" + longitude;
+                                Log.d(TAG, "ㅇㅇ"+postParameters);
                             }
                         }else if(flag.getKind() ==2){
                             if (flag.getFindstore() == 1) {
                                 postParameters = "purpose=findstore&kind=drink&food=food" + food1 + "&latitude=" + latitude + "&longitude=" + longitude;
+                                Log.d(TAG, "ㅇㅇ"+postParameters);
                             } else if (flag.getFindstore() == 2) {
                                 postParameters = "purpose=findstore&kind=drink&food=food" + food2 + "&latitude=" + latitude + "&longitude=" + longitude;
+                                Log.d(TAG, "ㅇㅇ"+postParameters);
                             }
                         }
                         URL url = new URL("https://uristory.com/whichfoodstorelist.php");
@@ -330,20 +334,23 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                             String storelongitudestring = storejson.getString("longitude");
                             double storelatitudedouble = Double.parseDouble(storelatitudestring);
                             double storelongitudedouble = Double.parseDouble(storelongitudestring);
-                            Log.d(TAG,"ㅇㅇ : "+storelatitudestring+","+storelongitudestring);
+                            Log.d(TAG, "ㅇㅇ : " + storelatitudestring + "," + storelongitudestring);
                             Marker marker = new Marker();
-                            marker.setPosition(new LatLng(storelatitudedouble,storelongitudedouble));
-                            marker.setIcon(OverlayImage.fromResource(R.drawable.ic_launcher_foreground));
+                            marker.setPosition(new LatLng(storelatitudedouble, storelongitudedouble));
+                            marker.setIcon(OverlayImage.fromResource(R.drawable.findstoreicon));
                             marker.setCaptionText(storejson.getString("storename"));
+                            marker.setFlat(true);
                             markers.add(marker);
+                        }
 
                             handler.post(() -> {
                                 // 메인 스레드
                                 for (Marker marker1 : markers) {
                                     marker1.setMap(naverMap);
+                                    Log.d(TAG,"ㅇㅇ마커몇번");
                                 }
                             });
-                        }
+
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -359,9 +366,9 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
             uiSettings.setLocationButtonEnabled(true);
             uiSettings.setZoomControlEnabled(true);
             naverMap.setLocationSource(locationSource);
-//            naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
-//            CameraPosition cameraPosition = new CameraPosition(new LatLng(latitude, longitude), 16,0, 0);
-//            naverMap.setCameraPosition(cameraPosition);
+            naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
+            CameraPosition cameraPosition = new CameraPosition(new LatLng(latitude, longitude), 16,0, 0);
+            naverMap.setCameraPosition(cameraPosition);
 
 
         });

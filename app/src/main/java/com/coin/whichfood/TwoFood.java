@@ -221,14 +221,14 @@ public class TwoFood extends Activity {
                 Btndetail1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        flag.setFindstore(i_rand1);
+                        flag.setFindstore(1);
                         startActivity(intentmap);
                     }
                 });
                 Btndetail2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        flag.setFindstore(i_rand2);
+                        flag.setFindstore(2);
                         startActivity(intentmap);
                     }
                 });

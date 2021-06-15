@@ -45,7 +45,7 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 public class MainActivity extends AppCompatActivity {
     private AdView mAdView; //광고 변수 선언
     VersionCheck versionCheck;
-    private static String FoodIP = "https://www.uristory.com/whichfood1.php"; //음식 이미지 서버
+    private static String FoodIP = "https://www.uristory.com/whichfood.php"; //음식 이미지 서버
     private InterstitialAd mInterstitialAd;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
     private static final String[] REQUESTED_PERMISSION = {ACCESS_COARSE_LOCATION,ACCESS_FINE_LOCATION};
