@@ -30,7 +30,7 @@
         android:layout_weight="1.5"
         android:orientation="horizontal">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/result_image1"
             android:layout_width="0px"
             android:layout_height="match_parent"
@@ -45,7 +45,7 @@
             android:layout_weight="0.2"
             android:background="@color/colorWhite" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/result_image2"
             android:layout_width="0px"
             android:layout_height="match_parent"
@@ -58,51 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="0.5"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/detail1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="fitXY"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:src="@drawable/detaillogo1" />
-
-        <ImageButton
-            android:id="@+id/detail2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="fitXY"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:src="@drawable/detaillogo2" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_weight="0.3"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/btnno"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/findanotherlogo"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:scaleType="fitXY"/>
-
-        <ImageButton
-            android:id="@+id/btnpleaseselect"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/checklogo"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:scaleType="fitXY"/>
-    </LinearLayout>
+        android:orientation="horizontal"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -118,6 +74,24 @@
             android:scaleType="fitXY"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:src="@drawable/gohomelogo" />
+
+        <ImageButton
+            android:id="@+id/btnno"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:src="@drawable/findanotherlogo" />
+
+        <ImageButton
+            android:id="@+id/btnpleaseselect"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:src="@drawable/checklogo" />
 
         <ImageButton
             android:id="@+id/btnend"

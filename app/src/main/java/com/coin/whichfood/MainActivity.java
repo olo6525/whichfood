@@ -140,10 +140,8 @@ public class MainActivity extends AppCompatActivity {
         final FlagClass flag = (FlagClass)getApplication();
         flag.Init();
         versionCheck = new VersionCheck();
-        final Spinner city = (Spinner)findViewById(R.id.city);
         ArrayAdapter sexAdapter = ArrayAdapter.createFromResource(this, R.array.city_weather, android.R.layout.simple_spinner_item);
         sexAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        city.setAdapter(sexAdapter);
         Intent update_pop = new Intent(this, PopUp.class);
         String serverdata;
         try {
@@ -160,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
             flag.setThenumberoffooddelivermeal(Integer.parseInt(thenumberoffood.getString("delivermeal")));
             flag.setThenumberoffooddeliverdrink(Integer.parseInt(thenumberoffood.getString("deliverdrink")));
             flag.setHowcookpage(jsonObject.getJSONArray("howcook"));
+            flag.setHowcookpagedrink(jsonObject.getJSONArray("howcookdrink"));
             Log.d("TAG", "serverdata" + version+","+flag.getThenumberoffoodhomemeal()+ flag.getThenumberoffoodoutdrink()+ flag.getHowcookpage().getJSONObject(0).getString("1"));
             if(!version.equals("1"))
             {

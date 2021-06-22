@@ -25,22 +25,13 @@
         android:src="@drawable/freshlogo"
         android:scaleType="fitXY"/>
 
-    <ImageView
+    <ImageButton
         android:id="@+id/foodimageone"
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="2"
         android:scaleType="fitXY"
         android:src="@drawable/splashlogo" />
-
-    <ImageButton
-        android:id="@+id/detail"
-        android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_weight="0.6"
-        android:scaleType="fitXY"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:src="@drawable/detaillogo1" />
 
     <LinearLayout
         android:layout_width="match_parent"

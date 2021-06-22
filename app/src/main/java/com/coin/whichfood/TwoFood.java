@@ -46,8 +46,8 @@ public class TwoFood extends Activity {
     private final static String appKey = "d70e3fa5fbe6085e8027f285706fefcf";
     private InterstitialAd mInterstitialAd;
     private AdView mAdView;
-    ImageView food_image1;
-    ImageView food_image2;
+    ImageButton food_image1;
+    ImageButton food_image2;
     Bitmap bitimage1; //음식 이미지 비트멥으로 받아올 변수
     Bitmap bitimage2; //음식 이미지 비트멥으로 받아올 변수
     GetFoodImage1 getfoodimage1; //음식 이미지 클래스
@@ -81,8 +81,6 @@ public class TwoFood extends Activity {
         ImageButton Btnpleaseselect = (ImageButton)findViewById(R.id.btnpleaseselect);
         ImageButton Btnthank = (ImageButton)findViewById(R.id.btnthank);
         ImageButton Btnend = (ImageButton)findViewById(R.id.btnend);
-        ImageButton Btndetail1 = (ImageButton)findViewById(R.id.detail1);
-        ImageButton Btndetail2 = (ImageButton)findViewById(R.id.detail2);
         Intent intentBtnno = new Intent(this,TwoFood.class);
         Intent intentBtnpleaseselect = new Intent(this,OneFood.class);
         Intent intentBtnthank = new Intent(this,MainActivity.class);
@@ -124,11 +122,10 @@ public class TwoFood extends Activity {
 
         if(where == 3)
         {
-
+            food_image1=(ImageButton)findViewById(R.id.result_image1);
+            food_image2=(ImageButton)findViewById(R.id.result_image2);
             String s_rand1 = new String();
             String s_rand2 = new String();
-            Btndetail1.setImageResource(R.drawable.whichfooddelivery1);
-            Btndetail2.setImageResource(R.drawable.whichfooddelivery2);
             s_where="deliverfood";
             flag.setOne_where(s_where);
             if(kind == 1) {
@@ -150,7 +147,8 @@ public class TwoFood extends Activity {
         }
         else if (where ==1)
         {
-
+            food_image1=(ImageButton)findViewById(R.id.result_image1);
+            food_image2=(ImageButton)findViewById(R.id.result_image2);
             String s_rand1 = new String();
             String s_rand2 = new String();
             s_where = "homefood";
@@ -158,7 +156,7 @@ public class TwoFood extends Activity {
             if(kind==1) {
                 i_rand1 = random.nextInt(flag.getThenumberoffoodhomemeal()) + 1;
                 i_rand2 = random.nextInt(flag.getThenumberoffoodhomemeal()) + 1;
-                Btndetail1.setOnClickListener(new View.OnClickListener() {
+                food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String url = new String();
@@ -171,7 +169,7 @@ public class TwoFood extends Activity {
                         startActivity(intentEnternet);
                     }
                 });
-                Btndetail2.setOnClickListener(new View.OnClickListener() {
+                food_image2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String url = new String();
@@ -189,6 +187,32 @@ public class TwoFood extends Activity {
             }else if(kind ==2){
                 i_rand1 = random.nextInt(flag.getThenumberoffoodhomedrink()) + 1;
                 i_rand2 = random.nextInt(flag.getThenumberoffoodhomedrink()) + 1;
+                food_image1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String url = new String();
+                        try {
+                            url = flag.getHowcookpagedrink().getJSONObject(0).getString(String.valueOf(i_rand1));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        intentEnternet.setData(Uri.parse(url));
+                        startActivity(intentEnternet);
+                    }
+                });
+                food_image2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String url = new String();
+                        try {
+                            url = flag.getHowcookpagedrink().getJSONObject(0).getString(String.valueOf(i_rand2));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        intentEnternet.setData(Uri.parse(url));
+                        startActivity(intentEnternet);
+                    }
+                });
 
 
             }else{
@@ -206,10 +230,10 @@ public class TwoFood extends Activity {
         }
         else if (where == 2) {
 
+            food_image1=(ImageButton)findViewById(R.id.result_image1);
+            food_image2=(ImageButton)findViewById(R.id.result_image2);
             String s_rand1 = new String();
             String s_rand2 = new String();
-            Btndetail1.setImageResource(R.drawable.whichfoodfindcafeteria1);
-            Btndetail2.setImageResource(R.drawable.whichfoodfindcafeteria2);
             Intent intentmap = new Intent(this, mapofstore.class);
 
             s_where = "outfood";
@@ -218,14 +242,14 @@ public class TwoFood extends Activity {
                 i_rand1 = random.nextInt(flag.getThenumberoffoodoutmeal()) + 1;
                 i_rand2 = random.nextInt(flag.getThenumberoffoodoutmeal()) + 1;
 
-                Btndetail1.setOnClickListener(new View.OnClickListener() {
+                food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         flag.setFindstore(1);
                         startActivity(intentmap);
                     }
                 });
-                Btndetail2.setOnClickListener(new View.OnClickListener() {
+                food_image2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         flag.setFindstore(2);
@@ -238,17 +262,17 @@ public class TwoFood extends Activity {
                 i_rand1 = random.nextInt(flag.getThenumberoffoodoutdrink()) + 1;
                 i_rand2 = random.nextInt(flag.getThenumberoffoodoutdrink()) + 1;
 
-                Btndetail1.setOnClickListener(new View.OnClickListener() {
+                food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        flag.setFindstore(i_rand1);
+                        flag.setFindstore(1);
                         startActivity(intentmap);
                     }
                 });
-                Btndetail2.setOnClickListener(new View.OnClickListener() {
+                food_image2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        flag.setFindstore(i_rand2);
+                        flag.setFindstore(2);
                         startActivity(intentmap);
                     }
                 });
@@ -352,7 +376,6 @@ public class TwoFood extends Activity {
         }
 
         protected void onPostExecute(Bitmap img){
-            food_image1=(ImageView)findViewById(R.id.result_image1);
             food_image1.setImageBitmap(bitimage1);
         }
     }
@@ -387,7 +410,6 @@ public class TwoFood extends Activity {
         }
 
         protected void onPostExecute(Bitmap img){
-            food_image2=(ImageView)findViewById(R.id.result_image2);
             food_image2.setImageBitmap(bitimage2);
         }
     }

@@ -26,6 +26,7 @@ public class FlagClass extends Application {
     private static int thenumberoffooddelivermeal;
     private static int thenumberoffooddeliverdrink;
     private JSONArray howcookpage;
+    private JSONArray howcookpagedrink;
 
     @Override
     public void onCreate() {
@@ -45,6 +46,7 @@ public class FlagClass extends Application {
         thenumberoffooddelivermeal=0;
         thenumberoffooddeliverdrink=0;
         howcookpage = new JSONArray();
+        howcookpagedrink = new JSONArray();
 
         KakaoSdk.init(this, "675ccfa4872a4eb6e1be8a61059dc307");
     }
@@ -68,6 +70,7 @@ public class FlagClass extends Application {
         thenumberoffooddelivermeal=0;
         thenumberoffooddeliverdrink=0;
         howcookpage = new JSONArray();
+        howcookpagedrink = new JSONArray();
     }
 
     public void setWhere(int flag){this.where = flag;}
@@ -85,6 +88,7 @@ public class FlagClass extends Application {
     public void setThenumberoffooddelivermeal(int flag) {this.thenumberoffooddelivermeal = flag;}
     public void setThenumberoffooddeliverdrink(int flag) {this.thenumberoffooddeliverdrink = flag;}
     public void setHowcookpage(JSONArray flag) {this.howcookpage = flag;}
+    public void setHowcookpagedrink(JSONArray flag) {this.howcookpagedrink = flag;}
 
     public int getWhere() {return where;}
     public int getKind() {return kind;}
@@ -101,5 +105,6 @@ public class FlagClass extends Application {
     public int getThenumberoffooddelivermeal(){return thenumberoffooddelivermeal;}
     public int getThenumberoffooddeliverdrink(){return thenumberoffooddeliverdrink;}
     public JSONArray getHowcookpage(){ return howcookpage;}
+    public JSONArray getHowcookpagedrink(){ return howcookpagedrink;}
 
 }

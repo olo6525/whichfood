@@ -29,13 +29,17 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
 
+import org.json.JSONException;
+
 
 public class OneFood extends Activity {
 
     Bitmap bitmap_one;
-    ImageView food_image_one;
+    ImageButton food_image_one;
     private AdView mAdView;
     private InterstitialAd mInterstitialAd;
+    private int mapint =0;
+    private int onefood=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +53,8 @@ public class OneFood extends Activity {
         Intent intentEnternet = new Intent(Intent.ACTION_VIEW);
         ImageButton imbtn_thank = (ImageButton)findViewById(R.id.imbtn_thank);
         ImageButton imbtn_end = (ImageButton)findViewById(R.id.imbtn_end);
-        ImageButton imbtn_detail = (ImageButton)findViewById(R.id.detail);
-        int onefood;
+
+
 
 
 
@@ -64,25 +68,95 @@ public class OneFood extends Activity {
 //음식 한개 보여지기 -----------------------------------------------------------------------------------------------
         final FlagClass flag = (FlagClass)getApplication();
         int where = flag.getWhere();
-        if(where == 1) {  }
-        else if (where == 2) {
-            imbtn_detail.setImageResource(R.drawable.whichfoodfindcafeteria1);
-            }
-        else if(where == 3) {
-            imbtn_detail.setImageResource(R.drawable.whichfooddelivery1);
-           }
-        else {}
+        int kind = flag.getKind();
+        Log.d(TAG, "data"+flag.getKind()+","+where);
         GetFoodImageOne getFoodImageOne=new GetFoodImageOne();
         if(flag.getOne_food1() > flag.getOne_food2())
         {
             getFoodImageOne.execute(flag.getOne_where(),flag.getOne_kind(),Integer.toString(flag.getOne_food1()));
             onefood=flag.getOne_food1();
+            mapint = 1;
+            Log.d(TAG, "data"+onefood+" ,"+mapint);
         }
         else
         {
-            getFoodImageOne.execute(flag.getOne_where(),flag.getOne_kind(),Integer.toString(flag.getOne_food1()));
+            getFoodImageOne.execute(flag.getOne_where(),flag.getOne_kind(),Integer.toString(flag.getOne_food2()));
             onefood=flag.getOne_food2();
+            mapint=2;
+            Log.d(TAG, "data"+onefood+" ,"+mapint);
         }
+
+        if(where == 1) {
+            Log.d(TAG, "data"+onefood+" ,"+mapint+","+kind);
+            food_image_one=(ImageButton) findViewById(R.id.foodimageone);
+            if(kind==1) {
+                food_image_one.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String url = new String();
+                        try {
+                            url = flag.getHowcookpage().getJSONObject(0).getString(String.valueOf(onefood));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        intentEnternet.setData(Uri.parse(url));
+                        startActivity(intentEnternet);
+                    }
+                });
+
+            }else if(kind ==2){
+                food_image_one.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String url = new String();
+                        try {
+                            url = flag.getHowcookpagedrink().getJSONObject(0).getString(String.valueOf(onefood));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        intentEnternet.setData(Uri.parse(url));
+                        startActivity(intentEnternet);
+                    }
+                });
+
+
+            }else{
+                Log.d(TAG, "data"+onefood+" ,"+mapint);
+            }
+        }else if (where == 2) {
+            food_image_one=(ImageButton) findViewById(R.id.foodimageone);
+            Intent intentmap = new Intent(this, mapofstore.class);
+            if (kind == 1) {
+
+
+                food_image_one.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        flag.setFindstore(mapint);
+                        startActivity(intentmap);
+                    }
+                });
+
+
+
+            } else if (kind == 2) {
+
+
+                food_image_one.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        flag.setFindstore(mapint);
+                        startActivity(intentmap);
+                    }
+                });
+
+            } else {
+
+            }
+        }else if(where == 3) {
+            food_image_one=(ImageButton) findViewById(R.id.foodimageone);
+
+        } else {}
 //음식한개 보여지기 끝-------------------------------------------------------------------------------------------------
         imbtn_thank.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -101,14 +175,7 @@ public class OneFood extends Activity {
                 ActivityCompat.finishAffinity(OneFood.this);
             }
         });
-        imbtn_detail.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
 
-
-
-            }
-        });
 
     }
 
@@ -116,9 +183,6 @@ public class OneFood extends Activity {
 
 //음식 이미지 가져오기 테스크-----------------------------------------------------------------------------------
     private class GetFoodImageOne extends AsyncTask<String , Integer, Bitmap> {
-
-
-
 
         @Override
         protected Bitmap doInBackground(String... strings) {
@@ -145,7 +209,6 @@ public class OneFood extends Activity {
         }
 
         protected void onPostExecute(Bitmap img){
-            food_image_one=(ImageView)findViewById(R.id.foodimageone);
             food_image_one.setImageBitmap(bitmap_one);
         }
     }
