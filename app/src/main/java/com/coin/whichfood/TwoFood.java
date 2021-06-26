@@ -4,15 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.PopupMenu;
 
 import androidx.core.app.ActivityCompat;
 
@@ -20,7 +20,6 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-import com.google.gson.JsonArray;
 
 //import retrofit2.Call;
 //import retrofit2.Callback;
@@ -31,10 +30,8 @@ import com.google.android.gms.ads.InterstitialAd;
 
 import org.json.JSONException;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Random;
@@ -81,6 +78,12 @@ public class TwoFood extends Activity {
         ImageButton Btnpleaseselect = (ImageButton)findViewById(R.id.btnpleaseselect);
         ImageButton Btnthank = (ImageButton)findViewById(R.id.btnthank);
         ImageButton Btnend = (ImageButton)findViewById(R.id.btnend);
+        ImageButton left_menu1 = (ImageButton)findViewById(R.id.left_menu1);
+        ImageButton left_menu2 = (ImageButton)findViewById(R.id.left_menu2);
+        ImageButton left_menu3 = (ImageButton)findViewById(R.id.left_menu3);
+        ImageButton right_menu1 = (ImageButton)findViewById(R.id.right_menu1);
+        ImageButton right_menu2 = (ImageButton)findViewById(R.id.right_menu2);
+        ImageButton right_menu3 = (ImageButton)findViewById(R.id.right_menu3);
         Intent intentBtnno = new Intent(this,TwoFood.class);
         Intent intentBtnpleaseselect = new Intent(this,OneFood.class);
         Intent intentBtnthank = new Intent(this,MainActivity.class);
@@ -120,32 +123,8 @@ public class TwoFood extends Activity {
             flag.setOne_kind(s_kind);}
         else {s_kind = "error";}
 
-        if(where == 3)
-        {
-            food_image1=(ImageButton)findViewById(R.id.result_image1);
-            food_image2=(ImageButton)findViewById(R.id.result_image2);
-            String s_rand1 = new String();
-            String s_rand2 = new String();
-            s_where="deliverfood";
-            flag.setOne_where(s_where);
-            if(kind == 1) {
-                i_rand1 = random.nextInt(flag.getThenumberoffooddelivermeal()) + 1;
-                i_rand2 = random.nextInt(flag.getThenumberoffooddelivermeal()) + 1;
-            }else if(kind == 2){
-                i_rand1 = random.nextInt(flag.getThenumberoffooddeliverdrink()) + 1;
-                i_rand2 = random.nextInt(flag.getThenumberoffooddeliverdrink()) + 1;
-            }else{
-                i_rand1 = 0;
-                i_rand2 = 0;
-            }
-            s_rand1 = Integer.toString(i_rand1);
-            flag.setOne_food1(i_rand1);
-            s_rand2 = Integer.toString(i_rand2);
-            flag.setOne_food2(i_rand2);
-            getfoodimage1.execute(s_where, s_kind, s_rand1);
-            getfoodimage2.execute(s_where, s_kind, s_rand2);
-        }
-        else if (where ==1)
+
+        if (where ==1)
         {
             food_image1=(ImageButton)findViewById(R.id.result_image1);
             food_image2=(ImageButton)findViewById(R.id.result_image2);
@@ -159,27 +138,57 @@ public class TwoFood extends Activity {
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String url = new String();
-                        try {
-                           url = flag.getHowcookpage().getJSONObject(0).getString(String.valueOf(i_rand1));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        if(left_menu1.getVisibility() == View.VISIBLE){
+                            left_menu1.setVisibility(View.INVISIBLE);
+                            left_menu2.setVisibility(View.INVISIBLE);
+                            left_menu3.setVisibility(View.INVISIBLE);
+                        }else{
+                            left_menu1.setVisibility(View.VISIBLE);
+                            left_menu2.setVisibility(View.VISIBLE);
+                            left_menu2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    String url = new String();
+                                    try {
+                                        url = flag.getHowcookpage().getJSONObject(0).getString(String.valueOf(i_rand1));
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    intentEnternet.setData(Uri.parse(url));
+                                    startActivity(intentEnternet);
+                                }
+                            });
+                            left_menu3.setVisibility(View.VISIBLE);
                         }
-                        intentEnternet.setData(Uri.parse(url));
-                        startActivity(intentEnternet);
+
                     }
                 });
                 food_image2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String url = new String();
-                        try {
-                            url = flag.getHowcookpage().getJSONObject(0).getString(String.valueOf(i_rand2));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        if(right_menu1.getVisibility() == View.VISIBLE){
+                            right_menu1.setVisibility(View.INVISIBLE);
+                            right_menu2.setVisibility(View.INVISIBLE);
+                            right_menu3.setVisibility(View.INVISIBLE);
+                        }else{
+                            right_menu1.setVisibility(View.VISIBLE);
+                            right_menu2.setVisibility(View.VISIBLE);
+                            right_menu2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    String url = new String();
+                                    try {
+                                        url = flag.getHowcookpage().getJSONObject(0).getString(String.valueOf(i_rand2));
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    intentEnternet.setData(Uri.parse(url));
+                                    startActivity(intentEnternet);
+                                }
+                            });
+                            right_menu3.setVisibility(View.VISIBLE);
                         }
-                        intentEnternet.setData(Uri.parse(url));
-                        startActivity(intentEnternet);
+
                     }
                 });
 
@@ -190,27 +199,57 @@ public class TwoFood extends Activity {
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String url = new String();
-                        try {
-                            url = flag.getHowcookpagedrink().getJSONObject(0).getString(String.valueOf(i_rand1));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        if(left_menu1.getVisibility() == View.VISIBLE){
+                            left_menu1.setVisibility(View.INVISIBLE);
+                            left_menu2.setVisibility(View.INVISIBLE);
+                            left_menu3.setVisibility(View.INVISIBLE);
+                        }else{
+                            left_menu1.setVisibility(View.VISIBLE);
+                            left_menu2.setVisibility(View.VISIBLE);
+                            left_menu2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    String url = new String();
+                                    try {
+                                        url = flag.getHowcookpagedrink().getJSONObject(0).getString(String.valueOf(i_rand1));
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    intentEnternet.setData(Uri.parse(url));
+                                    startActivity(intentEnternet);
+                                }
+                            });
+                            left_menu3.setVisibility(View.VISIBLE);
                         }
-                        intentEnternet.setData(Uri.parse(url));
-                        startActivity(intentEnternet);
+
                     }
                 });
                 food_image2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String url = new String();
-                        try {
-                            url = flag.getHowcookpagedrink().getJSONObject(0).getString(String.valueOf(i_rand2));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        if(right_menu1.getVisibility() == View.VISIBLE){
+                            right_menu1.setVisibility(View.INVISIBLE);
+                            right_menu2.setVisibility(View.INVISIBLE);
+                            right_menu3.setVisibility(View.INVISIBLE);
+                        }else{
+                            right_menu1.setVisibility(View.VISIBLE);
+                            right_menu2.setVisibility(View.VISIBLE);
+                            right_menu2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    String url = new String();
+                                    try {
+                                        url = flag.getHowcookpagedrink().getJSONObject(0).getString(String.valueOf(i_rand2));
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    intentEnternet.setData(Uri.parse(url));
+                                    startActivity(intentEnternet);
+                                }
+                            });
+                            right_menu3.setVisibility(View.VISIBLE);
                         }
-                        intentEnternet.setData(Uri.parse(url));
-                        startActivity(intentEnternet);
+
                     }
                 });
 
@@ -245,15 +284,45 @@ public class TwoFood extends Activity {
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        flag.setFindstore(1);
-                        startActivity(intentmap);
+                        if(left_menu1.getVisibility() == View.VISIBLE){
+                            left_menu1.setVisibility(View.INVISIBLE);
+                            left_menu2.setVisibility(View.INVISIBLE);
+                            left_menu3.setVisibility(View.INVISIBLE);
+                        }else{
+                            left_menu1.setVisibility(View.VISIBLE);
+                            left_menu2.setVisibility(View.VISIBLE);
+                            left_menu2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    flag.setFindstore(1);
+                                    startActivity(intentmap);
+                                }
+                            });
+                            left_menu3.setVisibility(View.VISIBLE);
+                        }
+
                     }
                 });
                 food_image2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        flag.setFindstore(2);
-                        startActivity(intentmap);
+                        if(right_menu1.getVisibility() == View.VISIBLE){
+                            right_menu1.setVisibility(View.INVISIBLE);
+                            right_menu2.setVisibility(View.INVISIBLE);
+                            right_menu3.setVisibility(View.INVISIBLE);
+                        }else{
+                            right_menu1.setVisibility(View.VISIBLE);
+                            right_menu2.setVisibility(View.VISIBLE);
+                            right_menu2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    flag.setFindstore(2);
+                                    startActivity(intentmap);
+                                }
+                            });
+                            right_menu3.setVisibility(View.VISIBLE);
+                        }
+
                     }
                 });
 
@@ -265,15 +334,43 @@ public class TwoFood extends Activity {
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        flag.setFindstore(1);
-                        startActivity(intentmap);
+                        if(left_menu1.getVisibility() == View.VISIBLE){
+                            left_menu1.setVisibility(View.INVISIBLE);
+                            left_menu2.setVisibility(View.INVISIBLE);
+                            left_menu3.setVisibility(View.INVISIBLE);
+                        }else{
+                            left_menu1.setVisibility(View.VISIBLE);
+                            left_menu2.setVisibility(View.VISIBLE);
+                            left_menu2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    flag.setFindstore(1);
+                                    startActivity(intentmap);
+                                }
+                            });
+                            left_menu3.setVisibility(View.VISIBLE);
+                        }
+
                     }
                 });
                 food_image2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        flag.setFindstore(2);
-                        startActivity(intentmap);
+                        if(right_menu1.getVisibility() == View.VISIBLE){
+                            right_menu1.setVisibility(View.INVISIBLE);
+                            right_menu2.setVisibility(View.INVISIBLE);
+                            right_menu3.setVisibility(View.INVISIBLE);
+                        }else{
+                            right_menu1.setVisibility(View.VISIBLE);
+                            right_menu2.setVisibility(View.VISIBLE);
+                            right_menu2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    flag.setFindstore(2);
+                                    startActivity(intentmap);                                }
+                            });
+                            right_menu3.setVisibility(View.VISIBLE);
+                        }
                     }
                 });
             } else {
@@ -288,6 +385,89 @@ public class TwoFood extends Activity {
             getfoodimage2.execute(s_where, s_kind, s_rand2);
 
         }
+        else if(where == 3)
+        {
+            food_image1=(ImageButton)findViewById(R.id.result_image1);
+            food_image2=(ImageButton)findViewById(R.id.result_image2);
+            String s_rand1 = new String();
+            String s_rand2 = new String();
+            s_where="deliverfood";
+            flag.setOne_where(s_where);
+            if(kind == 1) {
+                i_rand1 = random.nextInt(flag.getThenumberoffooddelivermeal()) + 1;
+                i_rand2 = random.nextInt(flag.getThenumberoffooddelivermeal()) + 1;
+
+                food_image1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(left_menu1.getVisibility() == View.VISIBLE){
+                            left_menu1.setVisibility(View.INVISIBLE);
+                            left_menu2.setVisibility(View.INVISIBLE);
+                            left_menu3.setVisibility(View.INVISIBLE);
+                        }else{
+                            left_menu1.setVisibility(View.VISIBLE);
+                            left_menu2.setVisibility(View.VISIBLE);
+                            left_menu3.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+                food_image2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(right_menu1.getVisibility() == View.VISIBLE){
+                            right_menu1.setVisibility(View.INVISIBLE);
+                            right_menu2.setVisibility(View.INVISIBLE);
+                            right_menu3.setVisibility(View.INVISIBLE);
+                        }else{
+                            right_menu1.setVisibility(View.VISIBLE);
+                            right_menu2.setVisibility(View.VISIBLE);
+                            right_menu3.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+            }else if(kind == 2){
+                i_rand1 = random.nextInt(flag.getThenumberoffooddeliverdrink()) + 1;
+                i_rand2 = random.nextInt(flag.getThenumberoffooddeliverdrink()) + 1;
+
+                food_image1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(left_menu1.getVisibility() == View.VISIBLE){
+                            left_menu1.setVisibility(View.INVISIBLE);
+                            left_menu2.setVisibility(View.INVISIBLE);
+                            left_menu3.setVisibility(View.INVISIBLE);
+                        }else{
+                            left_menu1.setVisibility(View.VISIBLE);
+                            left_menu2.setVisibility(View.VISIBLE);
+                            left_menu3.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+                food_image2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(right_menu1.getVisibility() == View.VISIBLE){
+                            right_menu1.setVisibility(View.INVISIBLE);
+                            right_menu2.setVisibility(View.INVISIBLE);
+                            right_menu3.setVisibility(View.INVISIBLE);
+                        }else{
+                            right_menu1.setVisibility(View.VISIBLE);
+                            right_menu2.setVisibility(View.VISIBLE);
+                            right_menu3.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+            }else{
+                i_rand1 = 0;
+                i_rand2 = 0;
+            }
+            s_rand1 = Integer.toString(i_rand1);
+            flag.setOne_food1(i_rand1);
+            s_rand2 = Integer.toString(i_rand2);
+            flag.setOne_food2(i_rand2);
+            getfoodimage1.execute(s_where, s_kind, s_rand1);
+            getfoodimage2.execute(s_where, s_kind, s_rand2);
+        }
 
 
 
@@ -299,6 +479,7 @@ public class TwoFood extends Activity {
         Btnno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
+                finish();
                 startActivity(intentBtnno);
 
 

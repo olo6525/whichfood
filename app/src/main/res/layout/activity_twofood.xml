@@ -58,7 +58,68 @@
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="0.5"
-        android:orientation="horizontal"/>
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/left_menu1"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:src="@drawable/applelogo"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:id="@+id/left_menu2"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:src="@drawable/applelogo"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:id="@+id/left_menu3"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:src="@drawable/applelogo"
+            android:visibility="invisible"/>
+        <ImageButton
+            android:id="@+id/right_menu3"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:src="@drawable/applelogo"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:id="@+id/right_menu2"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:src="@drawable/applelogo"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:id="@+id/right_menu1"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            android:src="@drawable/applelogo"
+            android:visibility="invisible"/>
+        </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"

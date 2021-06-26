@@ -22,7 +22,7 @@
         android:layout_height="0px"
         android:layout_weight="0.7"
 
-        android:src="@drawable/freshlogo"
+        android:src="@drawable/splashlogo"
         android:scaleType="fitXY"/>
 
     <ImageButton
@@ -32,6 +32,12 @@
         android:layout_weight="2"
         android:scaleType="fitXY"
         android:src="@drawable/splashlogo" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="0.7"
+        android:orientation="vertical"></LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,6 +53,11 @@
             android:scaleType="fitXY"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:src="@drawable/gohomelogo" />
+
+        <Space
+            android:layout_width="500px"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1" />
 
         <ImageButton
             android:id="@+id/imbtn_end"
