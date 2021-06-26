@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            android:src="@drawable/applelogo"
+            android:src="@drawable/nutirent"
             android:visibility="invisible"/>
 
         <ImageButton
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            android:src="@drawable/applelogo"
+            android:src="@drawable/pickdish"
             android:visibility="invisible"/>
         <ImageButton
             android:id="@+id/right_menu3"
@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            android:src="@drawable/applelogo"
+            android:src="@drawable/pickdish"
             android:visibility="invisible"/>
 
         <ImageButton
@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            android:src="@drawable/applelogo"
+            android:src="@drawable/nutirent"
             android:visibility="invisible"/>
         </LinearLayout>
 

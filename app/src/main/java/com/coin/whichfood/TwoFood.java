@@ -145,6 +145,7 @@ public class TwoFood extends Activity {
                         }else{
                             left_menu1.setVisibility(View.VISIBLE);
                             left_menu2.setVisibility(View.VISIBLE);
+                            left_menu2.setImageResource(R.drawable.recipe);
                             left_menu2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -173,6 +174,7 @@ public class TwoFood extends Activity {
                         }else{
                             right_menu1.setVisibility(View.VISIBLE);
                             right_menu2.setVisibility(View.VISIBLE);
+                            right_menu2.setImageResource(R.drawable.recipe);
                             right_menu2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -206,6 +208,7 @@ public class TwoFood extends Activity {
                         }else{
                             left_menu1.setVisibility(View.VISIBLE);
                             left_menu2.setVisibility(View.VISIBLE);
+                            left_menu2.setImageResource(R.drawable.recipe);
                             left_menu2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -234,6 +237,7 @@ public class TwoFood extends Activity {
                         }else{
                             right_menu1.setVisibility(View.VISIBLE);
                             right_menu2.setVisibility(View.VISIBLE);
+                            right_menu2.setImageResource(R.drawable.recipe);
                             right_menu2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -291,6 +295,7 @@ public class TwoFood extends Activity {
                         }else{
                             left_menu1.setVisibility(View.VISIBLE);
                             left_menu2.setVisibility(View.VISIBLE);
+                            left_menu2.setImageResource(R.drawable.storelocation);
                             left_menu2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -313,6 +318,7 @@ public class TwoFood extends Activity {
                         }else{
                             right_menu1.setVisibility(View.VISIBLE);
                             right_menu2.setVisibility(View.VISIBLE);
+                            right_menu2.setImageResource(R.drawable.storelocation);
                             right_menu2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -341,6 +347,7 @@ public class TwoFood extends Activity {
                         }else{
                             left_menu1.setVisibility(View.VISIBLE);
                             left_menu2.setVisibility(View.VISIBLE);
+                            left_menu2.setImageResource(R.drawable.storelocation);
                             left_menu2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -363,6 +370,7 @@ public class TwoFood extends Activity {
                         }else{
                             right_menu1.setVisibility(View.VISIBLE);
                             right_menu2.setVisibility(View.VISIBLE);
+                            right_menu2.setImageResource(R.drawable.storelocation);
                             right_menu2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -407,6 +415,7 @@ public class TwoFood extends Activity {
                         }else{
                             left_menu1.setVisibility(View.VISIBLE);
                             left_menu2.setVisibility(View.VISIBLE);
+                            left_menu2.setImageResource(R.drawable.delivery);
                             left_menu3.setVisibility(View.VISIBLE);
                         }
                     }
@@ -421,6 +430,7 @@ public class TwoFood extends Activity {
                         }else{
                             right_menu1.setVisibility(View.VISIBLE);
                             right_menu2.setVisibility(View.VISIBLE);
+                            right_menu2.setImageResource(R.drawable.delivery);
                             right_menu3.setVisibility(View.VISIBLE);
                         }
                     }
@@ -439,6 +449,7 @@ public class TwoFood extends Activity {
                         }else{
                             left_menu1.setVisibility(View.VISIBLE);
                             left_menu2.setVisibility(View.VISIBLE);
+                            left_menu2.setImageResource(R.drawable.delivery);
                             left_menu3.setVisibility(View.VISIBLE);
                         }
                     }
@@ -453,6 +464,7 @@ public class TwoFood extends Activity {
                         }else{
                             right_menu1.setVisibility(View.VISIBLE);
                             right_menu2.setVisibility(View.VISIBLE);
+                            right_menu2.setImageResource(R.drawable.delivery);
                             right_menu3.setVisibility(View.VISIBLE);
                         }
                     }
