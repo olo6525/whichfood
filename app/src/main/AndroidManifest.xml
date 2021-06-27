@@ -43,6 +43,7 @@
         <activity android:name=".FinishActivity"/>
         <activity android:name=".mapofstore"/>
         <activity android:name=".kakaologin"/>
+        <activity android:name=".foodnutrientclass"/>
 
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>

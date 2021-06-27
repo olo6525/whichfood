@@ -89,6 +89,7 @@ public class TwoFood extends Activity {
         Intent intentBtnthank = new Intent(this,MainActivity.class);
         Intent intentEnternet = new Intent(Intent.ACTION_VIEW);
         Intent intentEnternet2 = new Intent(Intent.ACTION_VIEW);
+        Intent shownutrient = new Intent(this,foodnutrientclass.class);
         getfoodimage1 = new GetFoodImage1();// 음식 이미지 클레스
         getfoodimage2 = new GetFoodImage2();//음식 이미지 클레스
 //날씨 API불러오기---------------------------------------------------------------------------------------------------
@@ -138,12 +139,19 @@ public class TwoFood extends Activity {
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        flag.setWhat(1);
                         if(left_menu1.getVisibility() == View.VISIBLE){
                             left_menu1.setVisibility(View.INVISIBLE);
                             left_menu2.setVisibility(View.INVISIBLE);
                             left_menu3.setVisibility(View.INVISIBLE);
                         }else{
                             left_menu1.setVisibility(View.VISIBLE);
+                            left_menu1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(shownutrient);
+                                }
+                            });
                             left_menu2.setVisibility(View.VISIBLE);
                             left_menu2.setImageResource(R.drawable.recipe);
                             left_menu2.setOnClickListener(new View.OnClickListener() {
@@ -167,12 +175,19 @@ public class TwoFood extends Activity {
                 food_image2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        flag.setWhat(2);
                         if(right_menu1.getVisibility() == View.VISIBLE){
                             right_menu1.setVisibility(View.INVISIBLE);
                             right_menu2.setVisibility(View.INVISIBLE);
                             right_menu3.setVisibility(View.INVISIBLE);
                         }else{
                             right_menu1.setVisibility(View.VISIBLE);
+                            right_menu1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(shownutrient);
+                                }
+                            });
                             right_menu2.setVisibility(View.VISIBLE);
                             right_menu2.setImageResource(R.drawable.recipe);
                             right_menu2.setOnClickListener(new View.OnClickListener() {
@@ -201,12 +216,19 @@ public class TwoFood extends Activity {
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        flag.setWhat(1);
                         if(left_menu1.getVisibility() == View.VISIBLE){
                             left_menu1.setVisibility(View.INVISIBLE);
                             left_menu2.setVisibility(View.INVISIBLE);
                             left_menu3.setVisibility(View.INVISIBLE);
                         }else{
                             left_menu1.setVisibility(View.VISIBLE);
+                            left_menu1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(shownutrient);
+                                }
+                            });
                             left_menu2.setVisibility(View.VISIBLE);
                             left_menu2.setImageResource(R.drawable.recipe);
                             left_menu2.setOnClickListener(new View.OnClickListener() {
@@ -230,12 +252,19 @@ public class TwoFood extends Activity {
                 food_image2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        flag.setWhat(2);
                         if(right_menu1.getVisibility() == View.VISIBLE){
                             right_menu1.setVisibility(View.INVISIBLE);
                             right_menu2.setVisibility(View.INVISIBLE);
                             right_menu3.setVisibility(View.INVISIBLE);
                         }else{
                             right_menu1.setVisibility(View.VISIBLE);
+                            right_menu1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(shownutrient);
+                                }
+                            });
                             right_menu2.setVisibility(View.VISIBLE);
                             right_menu2.setImageResource(R.drawable.recipe);
                             right_menu2.setOnClickListener(new View.OnClickListener() {
@@ -288,12 +317,19 @@ public class TwoFood extends Activity {
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        flag.setWhat(1);
                         if(left_menu1.getVisibility() == View.VISIBLE){
                             left_menu1.setVisibility(View.INVISIBLE);
                             left_menu2.setVisibility(View.INVISIBLE);
                             left_menu3.setVisibility(View.INVISIBLE);
                         }else{
                             left_menu1.setVisibility(View.VISIBLE);
+                            left_menu1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(shownutrient);
+                                }
+                            });
                             left_menu2.setVisibility(View.VISIBLE);
                             left_menu2.setImageResource(R.drawable.storelocation);
                             left_menu2.setOnClickListener(new View.OnClickListener() {
@@ -311,12 +347,19 @@ public class TwoFood extends Activity {
                 food_image2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        flag.setWhat(2);
                         if(right_menu1.getVisibility() == View.VISIBLE){
                             right_menu1.setVisibility(View.INVISIBLE);
                             right_menu2.setVisibility(View.INVISIBLE);
                             right_menu3.setVisibility(View.INVISIBLE);
                         }else{
                             right_menu1.setVisibility(View.VISIBLE);
+                            right_menu1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(shownutrient);
+                                }
+                            });
                             right_menu2.setVisibility(View.VISIBLE);
                             right_menu2.setImageResource(R.drawable.storelocation);
                             right_menu2.setOnClickListener(new View.OnClickListener() {
@@ -340,12 +383,19 @@ public class TwoFood extends Activity {
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        flag.setWhat(1);
                         if(left_menu1.getVisibility() == View.VISIBLE){
                             left_menu1.setVisibility(View.INVISIBLE);
                             left_menu2.setVisibility(View.INVISIBLE);
                             left_menu3.setVisibility(View.INVISIBLE);
                         }else{
                             left_menu1.setVisibility(View.VISIBLE);
+                            left_menu1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(shownutrient);
+                                }
+                            });
                             left_menu2.setVisibility(View.VISIBLE);
                             left_menu2.setImageResource(R.drawable.storelocation);
                             left_menu2.setOnClickListener(new View.OnClickListener() {
@@ -363,12 +413,19 @@ public class TwoFood extends Activity {
                 food_image2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        flag.setWhat(2);
                         if(right_menu1.getVisibility() == View.VISIBLE){
                             right_menu1.setVisibility(View.INVISIBLE);
                             right_menu2.setVisibility(View.INVISIBLE);
                             right_menu3.setVisibility(View.INVISIBLE);
                         }else{
                             right_menu1.setVisibility(View.VISIBLE);
+                            right_menu1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(shownutrient);
+                                }
+                            });
                             right_menu2.setVisibility(View.VISIBLE);
                             right_menu2.setImageResource(R.drawable.storelocation);
                             right_menu2.setOnClickListener(new View.OnClickListener() {
@@ -408,12 +465,19 @@ public class TwoFood extends Activity {
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        flag.setWhat(1);
                         if(left_menu1.getVisibility() == View.VISIBLE){
                             left_menu1.setVisibility(View.INVISIBLE);
                             left_menu2.setVisibility(View.INVISIBLE);
                             left_menu3.setVisibility(View.INVISIBLE);
                         }else{
                             left_menu1.setVisibility(View.VISIBLE);
+                            left_menu1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(shownutrient);
+                                }
+                            });
                             left_menu2.setVisibility(View.VISIBLE);
                             left_menu2.setImageResource(R.drawable.delivery);
                             left_menu3.setVisibility(View.VISIBLE);
@@ -423,12 +487,19 @@ public class TwoFood extends Activity {
                 food_image2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        flag.setWhat(2);
                         if(right_menu1.getVisibility() == View.VISIBLE){
                             right_menu1.setVisibility(View.INVISIBLE);
                             right_menu2.setVisibility(View.INVISIBLE);
                             right_menu3.setVisibility(View.INVISIBLE);
                         }else{
                             right_menu1.setVisibility(View.VISIBLE);
+                            right_menu1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(shownutrient);
+                                }
+                            });
                             right_menu2.setVisibility(View.VISIBLE);
                             right_menu2.setImageResource(R.drawable.delivery);
                             right_menu3.setVisibility(View.VISIBLE);
@@ -442,12 +513,19 @@ public class TwoFood extends Activity {
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        flag.setWhat(1);
                         if(left_menu1.getVisibility() == View.VISIBLE){
                             left_menu1.setVisibility(View.INVISIBLE);
                             left_menu2.setVisibility(View.INVISIBLE);
                             left_menu3.setVisibility(View.INVISIBLE);
                         }else{
                             left_menu1.setVisibility(View.VISIBLE);
+                            left_menu1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(shownutrient);
+                                }
+                            });
                             left_menu2.setVisibility(View.VISIBLE);
                             left_menu2.setImageResource(R.drawable.delivery);
                             left_menu3.setVisibility(View.VISIBLE);
@@ -457,12 +535,19 @@ public class TwoFood extends Activity {
                 food_image2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        flag.setWhat(2);
                         if(right_menu1.getVisibility() == View.VISIBLE){
                             right_menu1.setVisibility(View.INVISIBLE);
                             right_menu2.setVisibility(View.INVISIBLE);
                             right_menu3.setVisibility(View.INVISIBLE);
                         }else{
                             right_menu1.setVisibility(View.VISIBLE);
+                            right_menu1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(shownutrient);
+                                }
+                            });
                             right_menu2.setVisibility(View.VISIBLE);
                             right_menu2.setImageResource(R.drawable.delivery);
                             right_menu3.setVisibility(View.VISIBLE);
