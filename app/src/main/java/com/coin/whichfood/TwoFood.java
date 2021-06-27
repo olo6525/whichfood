@@ -8,10 +8,12 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 
 import androidx.core.app.ActivityCompat;
@@ -74,6 +76,7 @@ public class TwoFood extends Activity {
         mInterstitialAd.setAdUnitId("ca-app-pub-8231620186256321/1155279399");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 //광고끝-------------------------------------------------------------------------------------------------
+        LinearLayout alllayout = (LinearLayout)findViewById(R.id.alllayout);
         ImageButton Btnno = (ImageButton)findViewById(R.id.btnno);
         ImageButton Btnpleaseselect = (ImageButton)findViewById(R.id.btnpleaseselect);
         ImageButton Btnthank = (ImageButton)findViewById(R.id.btnthank);
@@ -107,6 +110,21 @@ public class TwoFood extends Activity {
 //            }
 //        });
 //날씨 API불러오기 끝!!-------------------------------------------------------------------------------------------
+        alllayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(left_menu1.getVisibility() == View.VISIBLE){
+                    left_menu1.setVisibility(View.INVISIBLE);
+                    left_menu2.setVisibility(View.INVISIBLE);
+                    left_menu3.setVisibility(View.INVISIBLE);
+                }
+                if(right_menu1.getVisibility() == View.VISIBLE){
+                    right_menu1.setVisibility(View.INVISIBLE);
+                    right_menu2.setVisibility(View.INVISIBLE);
+                    right_menu3.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
 
         //음식 이미지 불러오기----------------------------------------------------------------------------------------
         final FlagClass flag = (FlagClass)getApplication();
@@ -139,6 +157,9 @@ public class TwoFood extends Activity {
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        right_menu1.setVisibility(View.INVISIBLE);
+                        right_menu2.setVisibility(View.INVISIBLE);
+                        right_menu3.setVisibility(View.INVISIBLE);
                         flag.setWhat(1);
                         if(left_menu1.getVisibility() == View.VISIBLE){
                             left_menu1.setVisibility(View.INVISIBLE);
@@ -175,6 +196,9 @@ public class TwoFood extends Activity {
                 food_image2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        left_menu1.setVisibility(View.INVISIBLE);
+                        left_menu2.setVisibility(View.INVISIBLE);
+                        left_menu3.setVisibility(View.INVISIBLE);
                         flag.setWhat(2);
                         if(right_menu1.getVisibility() == View.VISIBLE){
                             right_menu1.setVisibility(View.INVISIBLE);
@@ -216,6 +240,9 @@ public class TwoFood extends Activity {
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        right_menu1.setVisibility(View.INVISIBLE);
+                        right_menu2.setVisibility(View.INVISIBLE);
+                        right_menu3.setVisibility(View.INVISIBLE);
                         flag.setWhat(1);
                         if(left_menu1.getVisibility() == View.VISIBLE){
                             left_menu1.setVisibility(View.INVISIBLE);
@@ -252,6 +279,9 @@ public class TwoFood extends Activity {
                 food_image2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        left_menu1.setVisibility(View.INVISIBLE);
+                        left_menu2.setVisibility(View.INVISIBLE);
+                        left_menu3.setVisibility(View.INVISIBLE);
                         flag.setWhat(2);
                         if(right_menu1.getVisibility() == View.VISIBLE){
                             right_menu1.setVisibility(View.INVISIBLE);
@@ -317,6 +347,9 @@ public class TwoFood extends Activity {
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        right_menu1.setVisibility(View.INVISIBLE);
+                        right_menu2.setVisibility(View.INVISIBLE);
+                        right_menu3.setVisibility(View.INVISIBLE);
                         flag.setWhat(1);
                         if(left_menu1.getVisibility() == View.VISIBLE){
                             left_menu1.setVisibility(View.INVISIBLE);
@@ -347,6 +380,9 @@ public class TwoFood extends Activity {
                 food_image2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        left_menu1.setVisibility(View.INVISIBLE);
+                        left_menu2.setVisibility(View.INVISIBLE);
+                        left_menu3.setVisibility(View.INVISIBLE);
                         flag.setWhat(2);
                         if(right_menu1.getVisibility() == View.VISIBLE){
                             right_menu1.setVisibility(View.INVISIBLE);
@@ -383,6 +419,9 @@ public class TwoFood extends Activity {
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        right_menu1.setVisibility(View.INVISIBLE);
+                        right_menu2.setVisibility(View.INVISIBLE);
+                        right_menu3.setVisibility(View.INVISIBLE);
                         flag.setWhat(1);
                         if(left_menu1.getVisibility() == View.VISIBLE){
                             left_menu1.setVisibility(View.INVISIBLE);
@@ -413,6 +452,9 @@ public class TwoFood extends Activity {
                 food_image2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        left_menu1.setVisibility(View.INVISIBLE);
+                        left_menu2.setVisibility(View.INVISIBLE);
+                        left_menu3.setVisibility(View.INVISIBLE);
                         flag.setWhat(2);
                         if(right_menu1.getVisibility() == View.VISIBLE){
                             right_menu1.setVisibility(View.INVISIBLE);
@@ -465,6 +507,9 @@ public class TwoFood extends Activity {
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        right_menu1.setVisibility(View.INVISIBLE);
+                        right_menu2.setVisibility(View.INVISIBLE);
+                        right_menu3.setVisibility(View.INVISIBLE);
                         flag.setWhat(1);
                         if(left_menu1.getVisibility() == View.VISIBLE){
                             left_menu1.setVisibility(View.INVISIBLE);
@@ -487,6 +532,9 @@ public class TwoFood extends Activity {
                 food_image2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        left_menu1.setVisibility(View.INVISIBLE);
+                        left_menu2.setVisibility(View.INVISIBLE);
+                        left_menu3.setVisibility(View.INVISIBLE);
                         flag.setWhat(2);
                         if(right_menu1.getVisibility() == View.VISIBLE){
                             right_menu1.setVisibility(View.INVISIBLE);
@@ -513,6 +561,9 @@ public class TwoFood extends Activity {
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        right_menu1.setVisibility(View.INVISIBLE);
+                        right_menu2.setVisibility(View.INVISIBLE);
+                        right_menu3.setVisibility(View.INVISIBLE);
                         flag.setWhat(1);
                         if(left_menu1.getVisibility() == View.VISIBLE){
                             left_menu1.setVisibility(View.INVISIBLE);
@@ -535,6 +586,9 @@ public class TwoFood extends Activity {
                 food_image2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        left_menu1.setVisibility(View.INVISIBLE);
+                        left_menu2.setVisibility(View.INVISIBLE);
+                        left_menu3.setVisibility(View.INVISIBLE);
                         flag.setWhat(2);
                         if(right_menu1.getVisibility() == View.VISIBLE){
                             right_menu1.setVisibility(View.INVISIBLE);
