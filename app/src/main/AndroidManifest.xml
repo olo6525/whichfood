@@ -28,21 +28,23 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="675ccfa4872a4eb6e1be8a61059dc307" /> <!-- 네이티브 앱 키 설정 -->
         <activity android:name=".SplashActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
+        <activity android:name=".MainActivity"/>
         <activity android:name=".PopUp" android:theme="@android:style/Theme.Dialog"/>
         <activity android:name=".WhatKindFood"/>
         <activity android:name=".TwoFood"/>
         <activity android:name=".OneFood"/>
         <activity android:name=".FinishActivity"/>
         <activity android:name=".mapofstore"/>
-        <activity android:name=".kakaologin"/>
+        <activity android:name=".kakaologin"
+            android:theme="@android:style/Theme.Dialog"/>
         <activity android:name=".foodnutrientclass"/>
 
 

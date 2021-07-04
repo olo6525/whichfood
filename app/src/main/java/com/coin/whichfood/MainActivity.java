@@ -5,6 +5,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -60,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+    public static Activity activity;
+
 
 
 
@@ -67,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        activity = MainActivity.this;
 
 //권한 신청 --------------------------------------------------
         if (ContextCompat.checkSelfPermission(
@@ -118,18 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        //로그인============================================================================================
-        ImageButton loginbutton = (ImageButton)findViewById(R.id.login);
-        ImageButton join = (ImageButton)findViewById(R.id.join);
-        ImageButton myinfo = (ImageButton)findViewById(R.id.myinfo);
-        Intent loginlayout = new Intent(this,kakaologin.class);
 
-        loginbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(loginlayout);
-            }
-        });
 //광고-----------------------------------------------------------------------------------------------------
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -148,11 +141,40 @@ public class MainActivity extends AppCompatActivity {
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         //광고 끝---------------------------------------------------------------------------------------
 //광고끝 -----------------------------------------------------------------------------------------------------
-        Intent intent_splash = new Intent(this, SplashActivity.class);
-        final Intent intent_whatkindfood = new Intent(this, WhatKindFood.class);
-        startActivity(intent_splash);
+        //로그인============================================================================================
         final FlagClass flag = (FlagClass)getApplication();
-        flag.Init();
+        ImageButton loginbutton = (ImageButton)findViewById(R.id.login);
+        ImageButton myinfo = (ImageButton)findViewById(R.id.myinfo);
+        ImageButton logout = (ImageButton)findViewById(R.id.logout);
+        Intent loginlayout = new Intent(this,kakaologin.class);
+        if(flag.getLoginflag() == 0) {
+            myinfo.setVisibility(View.GONE);
+            logout.setVisibility(View.GONE);
+            loginbutton.setVisibility(View.VISIBLE);
+            loginbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(loginlayout);
+                }
+            });
+        }else if (flag.getLoginflag() == 1){
+            loginbutton.setVisibility(View.GONE);
+            myinfo.setVisibility(View.VISIBLE);
+            logout.setVisibility(View.VISIBLE);
+            myinfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            logout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(loginlayout);
+                }
+            });
+        }
+        final Intent intent_whatkindfood = new Intent(this, WhatKindFood.class);
         versionCheck = new VersionCheck();
         ArrayAdapter sexAdapter = ArrayAdapter.createFromResource(this, R.array.city_weather, android.R.layout.simple_spinner_item);
         sexAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

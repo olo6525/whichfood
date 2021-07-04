@@ -28,44 +28,43 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0px"
-                android:layout_weight="0.2"
+                android:layout_weight="0.3"
                 android:orientation="vertical">
 
+                <ImageButton
+                    android:id="@+id/login"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/kakao_login_medium_narrow"
+                    android:visibility="visible" />
+
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:orientation="horizontal">
 
                     <ImageButton
-                        android:id="@+id/login"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:src="@drawable/kakao_login_medium_narrow"
-                        android:scaleType="fitXY"
-                        style="@style/Widget.AppCompat.Button.Borderless"
-                        android:visibility="visible"/>
-
-                    <ImageButton
-                        android:id="@+id/join"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/applelogo"
-                        style="@style/Widget.AppCompat.Button.Borderless"
-                        android:visibility="visible"/>
-
-                    <ImageButton
                         android:id="@+id/myinfo"
+                        style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:src="@drawable/applelogo"
+                        android:layout_gravity="right"
                         android:scaleType="fitXY"
+                        android:src="@drawable/myinfo"
+                        android:visibility="gone" />
+                    <ImageButton
+                        android:id="@+id/logout"
                         style="@style/Widget.AppCompat.Button.Borderless"
-                        android:visibility="gone"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/kakao_logout_medium_narrow"
+                        android:visibility="gone" />
                 </LinearLayout>
 
 

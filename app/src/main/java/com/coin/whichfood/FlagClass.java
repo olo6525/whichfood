@@ -34,6 +34,7 @@ public class FlagClass extends Application {
 
     //카카오톡로그인연동
     private static FlagClass instance;
+    private static int loginflag;
 
     public static FlagClass getFalgClassContext() throws IllegalAccessException {
         if(instance == null){
@@ -63,6 +64,7 @@ public class FlagClass extends Application {
         howcookpagedrink = new JSONArray();
 //카카오톡 로그인 연동
         instance = this;
+        loginflag = 0;
         KakaoSdk.init(this, "675ccfa4872a4eb6e1be8a61059dc307");
     }
 
@@ -89,6 +91,7 @@ public class FlagClass extends Application {
         thenumberoffooddeliverdrink=0;
         howcookpage = new JSONArray();
         howcookpagedrink = new JSONArray();
+        loginflag = 0;
     }
 
     public void setWhere(int flag){this.where = flag;}
@@ -107,6 +110,7 @@ public class FlagClass extends Application {
     public void setThenumberoffooddeliverdrink(int flag) {this.thenumberoffooddeliverdrink = flag;}
     public void setHowcookpage(JSONArray flag) {this.howcookpage = flag;}
     public void setHowcookpagedrink(JSONArray flag) {this.howcookpagedrink = flag;}
+    public void setLoginflag(int flag) { this.loginflag = flag;}
 
     public int getWhere() {return where;}
     public int getKind() {return kind;}
@@ -124,6 +128,8 @@ public class FlagClass extends Application {
     public int getThenumberoffooddeliverdrink(){return thenumberoffooddeliverdrink;}
     public JSONArray getHowcookpage(){ return howcookpage;}
     public JSONArray getHowcookpagedrink(){ return howcookpagedrink;}
+    public int getLoginflag(){return loginflag;}
+
 
 
 
