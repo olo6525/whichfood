@@ -25,6 +25,52 @@
                 app:adSize="BANNER"
                 app:adUnitId="ca-app-pub-8231620186256321/7210705835"></com.google.android.gms.ads.AdView>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.2"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.1"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/login"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/kakao_login_medium_narrow"
+                        android:scaleType="fitXY"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:visibility="visible"/>
+
+                    <ImageButton
+                        android:id="@+id/join"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/applelogo"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:visibility="visible"/>
+
+                    <ImageButton
+                        android:id="@+id/myinfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/applelogo"
+                        android:scaleType="fitXY"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:visibility="gone"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"

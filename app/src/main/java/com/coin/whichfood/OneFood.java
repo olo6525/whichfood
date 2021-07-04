@@ -40,6 +40,9 @@ public class OneFood extends Activity {
     private InterstitialAd mInterstitialAd;
     private int mapint =0;
     private int onefood=0;
+    ImageButton menu1;
+    ImageButton menu2;
+    ImageButton menu3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +54,12 @@ public class OneFood extends Activity {
         mAdView.loadAd(adRequest);
         Intent intent_thank = new Intent(this,MainActivity.class);
         Intent intentEnternet = new Intent(Intent.ACTION_VIEW);
+        Intent nutrient = new Intent(this, foodnutrientclass.class);
         ImageButton imbtn_thank = (ImageButton)findViewById(R.id.imbtn_thank);
         ImageButton imbtn_end = (ImageButton)findViewById(R.id.imbtn_end);
+        menu1 = (ImageButton)findViewById(R.id.menu1);
+        menu2 = (ImageButton)findViewById(R.id.menu2);
+        menu3 = (ImageButton)findViewById(R.id.menu3);
 
 
 
@@ -93,14 +100,37 @@ public class OneFood extends Activity {
                 food_image_one.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String url = new String();
-                        try {
-                            url = flag.getHowcookpage().getJSONObject(0).getString(String.valueOf(onefood));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        if(menu1.getVisibility() == View.VISIBLE){
+                            menu1.setVisibility(View.INVISIBLE);
+                            menu2.setVisibility(View.INVISIBLE);
+                            menu3.setVisibility(View.INVISIBLE);
+                        }else{
+                            menu1.setVisibility(View.VISIBLE);
+                            menu1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    flag.setWhat(mapint);
+                                    startActivity(nutrient);
+                                }
+                            });
+                            menu2.setVisibility(View.VISIBLE);
+                            menu2.setImageResource(R.drawable.recipe);
+                            menu2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    String url = new String();
+                                    try {
+                                        url = flag.getHowcookpage().getJSONObject(0).getString(String.valueOf(onefood));
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    intentEnternet.setData(Uri.parse(url));
+                                    startActivity(intentEnternet);
+                                }
+                            });
+                            menu3.setVisibility(View.VISIBLE);
                         }
-                        intentEnternet.setData(Uri.parse(url));
-                        startActivity(intentEnternet);
+
                     }
                 });
 
@@ -108,14 +138,36 @@ public class OneFood extends Activity {
                 food_image_one.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String url = new String();
-                        try {
-                            url = flag.getHowcookpagedrink().getJSONObject(0).getString(String.valueOf(onefood));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        if(menu1.getVisibility() == View.VISIBLE){
+                            menu1.setVisibility(View.INVISIBLE);
+                            menu2.setVisibility(View.INVISIBLE);
+                            menu3.setVisibility(View.INVISIBLE);
+                        }else{
+                            menu1.setVisibility(View.VISIBLE);
+                            menu1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    flag.setWhat(mapint);
+                                    startActivity(nutrient);
+                                }
+                            });
+                            menu2.setVisibility(View.VISIBLE);
+                            menu2.setImageResource(R.drawable.recipe);
+                            menu2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    String url = new String();
+                                    try {
+                                        url = flag.getHowcookpage().getJSONObject(0).getString(String.valueOf(onefood));
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    intentEnternet.setData(Uri.parse(url));
+                                    startActivity(intentEnternet);
+                                }
+                            });
+                            menu3.setVisibility(View.VISIBLE);
                         }
-                        intentEnternet.setData(Uri.parse(url));
-                        startActivity(intentEnternet);
                     }
                 });
 
@@ -127,26 +179,65 @@ public class OneFood extends Activity {
             food_image_one=(ImageButton) findViewById(R.id.foodimageone);
             Intent intentmap = new Intent(this, mapofstore.class);
             if (kind == 1) {
-
-
                 food_image_one.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        flag.setFindstore(mapint);
-                        startActivity(intentmap);
+                        if(menu1.getVisibility() == View.VISIBLE){
+                            menu1.setVisibility(View.INVISIBLE);
+                            menu2.setVisibility(View.INVISIBLE);
+                            menu3.setVisibility(View.INVISIBLE);
+                        }else{
+                            menu1.setVisibility(View.VISIBLE);
+                            menu1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    flag.setWhat(mapint);
+                                    startActivity(nutrient);
+                                }
+                            });
+                            menu2.setVisibility(View.VISIBLE);
+                            menu2.setImageResource(R.drawable.storelocation);
+                            menu2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    flag.setFindstore(mapint);
+                                    startActivity(intentmap);
+                                }
+                            });
+                            menu3.setVisibility(View.VISIBLE);
+                        }
                     }
                 });
 
 
 
             } else if (kind == 2) {
-
-
                 food_image_one.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        flag.setFindstore(mapint);
-                        startActivity(intentmap);
+                    public void onClick(View v) {if(menu1.getVisibility() == View.VISIBLE){
+                        menu1.setVisibility(View.INVISIBLE);
+                        menu2.setVisibility(View.INVISIBLE);
+                        menu3.setVisibility(View.INVISIBLE);
+                    }else {
+                        menu1.setVisibility(View.VISIBLE);
+                        menu1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                flag.setWhat(mapint);
+                                startActivity(nutrient);
+                            }
+                        });
+                        menu2.setVisibility(View.VISIBLE);
+                        menu2.setImageResource(R.drawable.storelocation);
+                        menu2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                flag.setFindstore(mapint);
+                                startActivity(intentmap);
+                            }
+                        });
+                        menu3.setVisibility(View.VISIBLE);
+                    }
                     }
                 });
 
@@ -155,6 +246,69 @@ public class OneFood extends Activity {
             }
         }else if(where == 3) {
             food_image_one=(ImageButton) findViewById(R.id.foodimageone);
+            if(kind == 1){
+                food_image_one.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {if(menu1.getVisibility() == View.VISIBLE){
+                        menu1.setVisibility(View.INVISIBLE);
+                        menu2.setVisibility(View.INVISIBLE);
+                        menu3.setVisibility(View.INVISIBLE);
+                    }else {
+                        menu1.setVisibility(View.VISIBLE);
+                        menu1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                flag.setWhat(mapint);
+                                startActivity(nutrient);
+                            }
+                        });
+                        menu2.setVisibility(View.VISIBLE);
+                        menu2.setImageResource(R.drawable.delivery);
+                        menu2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                            }
+                        });
+                        menu3.setVisibility(View.VISIBLE);
+                    }
+                    }
+                });
+
+
+            }else if(kind ==2){
+                food_image_one.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {if(menu1.getVisibility() == View.VISIBLE){
+                        menu1.setVisibility(View.INVISIBLE);
+                        menu2.setVisibility(View.INVISIBLE);
+                        menu3.setVisibility(View.INVISIBLE);
+                    }else {
+                        menu1.setVisibility(View.VISIBLE);
+                        menu1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                flag.setWhat(mapint);
+                                startActivity(nutrient);
+                            }
+                        });
+                        menu2.setVisibility(View.VISIBLE);
+                        menu2.setImageResource(R.drawable.delivery);
+                        menu2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                            }
+                        });
+                        menu3.setVisibility(View.VISIBLE);
+                    }
+                    }
+                });
+
+
+            }else{
+
+            }
 
         } else {}
 //음식한개 보여지기 끝-------------------------------------------------------------------------------------------------

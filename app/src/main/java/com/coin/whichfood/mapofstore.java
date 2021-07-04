@@ -262,18 +262,18 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                         String postParameters = new String();
                         if(flag.getKind() == 1) {
                             if (flag.getFindstore() == 1) {
-                                postParameters = "purpose=findstore&kind=meal&food=food" + food1 + "&latitude=" + latitude + "&longitude=" + longitude;
-                                Log.d(TAG, "ㅇㅇ"+postParameters);
+                                postParameters = "purpose=findstore&kind=meal&food=meal" + food1 + "&latitude=" + latitude + "&longitude=" + longitude;
+                                Log.d(TAG, "ㅇㅇ1"+postParameters);
                             } else if (flag.getFindstore() == 2) {
-                                postParameters = "purpose=findstore&kind=meal&food=food" + food2 + "&latitude=" + latitude + "&longitude=" + longitude;
+                                postParameters = "purpose=findstore&kind=meal&food=meal" + food2 + "&latitude=" + latitude + "&longitude=" + longitude;
                                 Log.d(TAG, "ㅇㅇ"+postParameters);
                             }
                         }else if(flag.getKind() ==2){
                             if (flag.getFindstore() == 1) {
-                                postParameters = "purpose=findstore&kind=drink&food=food" + food1 + "&latitude=" + latitude + "&longitude=" + longitude;
+                                postParameters = "purpose=findstore&kind=drink&food=drink" + food1 + "&latitude=" + latitude + "&longitude=" + longitude;
                                 Log.d(TAG, "ㅇㅇ"+postParameters);
                             } else if (flag.getFindstore() == 2) {
-                                postParameters = "purpose=findstore&kind=drink&food=food" + food2 + "&latitude=" + latitude + "&longitude=" + longitude;
+                                postParameters = "purpose=findstore&kind=drink&food=drink" + food2 + "&latitude=" + latitude + "&longitude=" + longitude;
                                 Log.d(TAG, "ㅇㅇ"+postParameters);
                             }
                         }

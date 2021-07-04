@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -116,6 +117,19 @@ public class MainActivity extends AppCompatActivity {
             builder.show();
 
         }
+
+        //로그인============================================================================================
+        ImageButton loginbutton = (ImageButton)findViewById(R.id.login);
+        ImageButton join = (ImageButton)findViewById(R.id.join);
+        ImageButton myinfo = (ImageButton)findViewById(R.id.myinfo);
+        Intent loginlayout = new Intent(this,kakaologin.class);
+
+        loginbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(loginlayout);
+            }
+        });
 //광고-----------------------------------------------------------------------------------------------------
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -160,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
             flag.setHowcookpage(jsonObject.getJSONArray("howcook"));
             flag.setHowcookpagedrink(jsonObject.getJSONArray("howcookdrink"));
             Log.d("TAG", "serverdata" + version+","+flag.getThenumberoffoodhomemeal()+ flag.getThenumberoffoodoutdrink()+ flag.getHowcookpage().getJSONObject(0).getString("1"));
-            if(!version.equals("2"))
+            if(!version.equals("3"))
             {
                 Log.d("TAG", "The interstitial wasn't loaded yet."+ version);
                 startActivity(update_pop);

@@ -1,10 +1,13 @@
 package com.coin.whichfood;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
 
 import com.kakao.sdk.common.KakaoSdk;
+import com.kakao.sdk.common.model.ApprovalType;
+
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,6 +31,17 @@ public class FlagClass extends Application {
     private JSONArray howcookpage;
     private JSONArray howcookpagedrink;
 
+
+    //카카오톡로그인연동
+    private static FlagClass instance;
+
+    public static FlagClass getFalgClassContext() throws IllegalAccessException {
+        if(instance == null){
+            throw new IllegalAccessException("This Application does not inherit com.kakao");
+        }
+        return instance;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -47,12 +61,16 @@ public class FlagClass extends Application {
         thenumberoffooddeliverdrink=0;
         howcookpage = new JSONArray();
         howcookpagedrink = new JSONArray();
-
+//카카오톡 로그인 연동
+        instance = this;
         KakaoSdk.init(this, "675ccfa4872a4eb6e1be8a61059dc307");
     }
 
     @Override
-    public void onTerminate() {super.onTerminate();}
+    public void onTerminate() {
+        super.onTerminate();
+        instance = null;
+    }
 
     public void Init() {
         where = 0;
@@ -106,5 +124,8 @@ public class FlagClass extends Application {
     public int getThenumberoffooddeliverdrink(){return thenumberoffooddeliverdrink;}
     public JSONArray getHowcookpage(){ return howcookpage;}
     public JSONArray getHowcookpagedrink(){ return howcookpagedrink;}
+
+
+
 
 }

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 30
@@ -7,7 +8,7 @@ android {
         applicationId "com.coin.whichfood"
         minSdkVersion 27
         targetSdkVersion 29
-        versionCode 12
+        versionCode 16
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -18,10 +19,18 @@ android {
         }
     }
 
+    sourceSets{
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
 
 }
 
@@ -41,14 +50,15 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads:19.3.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
     implementation 'com.google.android.gms:play-services-location:16.0.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.0.0'
 
     implementation('com.naver.maps:map-sdk:3.11.0') {
         exclude group: 'com.android.support'
     }
-    implementation "com.kakao.sdk:v2-user:2.5.1" // 카카오 로그인
-    implementation "com.kakao.sdk:v2-talk:2.5.1" // 친구, 메시지(카카오톡)
-    implementation "com.kakao.sdk:v2-story:2.5.1" // 카카오스토리
-    implementation "com.kakao.sdk:v2-link:2.5.1" // 메시지(카카오링크)
-    implementation "com.kakao.sdk:v2-navi:2.5.1" // 카카오내비
+    implementation "com.kakao.sdk:v2-user:2.5.2" // 카카오 로그인
+    implementation "com.kakao.sdk:v2-talk:2.5.2" // 친구, 메시지(카카오톡)
+    implementation "com.kakao.sdk:v2-story:2.5.2" // 카카오스토리
+    implementation "com.kakao.sdk:v2-link:2.5.2" // 메시지(카카오링크)
+    implementation "com.kakao.sdk:v2-navi:2.5.2" // 카카오내비
 }
 
