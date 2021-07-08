@@ -74,20 +74,20 @@
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="0px"
-                android:layout_weight="1"
+                android:layout_weight="1.1"
                 android:scaleType="fitXY"
                 android:src="@drawable/eatpizza" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0px"
-                android:layout_weight="2"
+                android:layout_weight="1.7"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0px"
-                    android:layout_weight="0.1"
+                    android:layout_weight="0.15"
                     android:orientation="horizontal">
 
                     <ImageButton

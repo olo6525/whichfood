@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
             flag.setHowcookpage(jsonObject.getJSONArray("howcook"));
             flag.setHowcookpagedrink(jsonObject.getJSONArray("howcookdrink"));
             Log.d("TAG", "serverdata" + version+","+flag.getThenumberoffoodhomemeal()+ flag.getThenumberoffoodoutdrink()+ flag.getHowcookpage().getJSONObject(0).getString("1"));
-            if(!version.equals("3"))
+            if(!version.equals("4"))
             {
                 Log.d("TAG", "The interstitial wasn't loaded yet."+ version);
                 startActivity(update_pop);

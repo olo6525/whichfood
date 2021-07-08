@@ -134,26 +134,31 @@ public class TwoFood extends Activity {
         String s_kind = new String();
         Random random = new Random();
 
-        int i_rand1;
-        int i_rand2;
+
         if(kind ==1){s_kind = "meal";
             flag.setOne_kind(s_kind);}
         else if (kind ==2){s_kind ="drink";
             flag.setOne_kind(s_kind);}
         else {s_kind = "error";}
-
+        int i_rand1=0;
+        int i_rand2=0;
 
         if (where ==1)
         {
             food_image1=(ImageButton)findViewById(R.id.result_image1);
             food_image2=(ImageButton)findViewById(R.id.result_image2);
+
             String s_rand1 = new String();
             String s_rand2 = new String();
             s_where = "homefood";
             flag.setOne_where(s_where);
             if(kind==1) {
-                i_rand1 = random.nextInt(flag.getThenumberoffoodhomemeal()) + 1;
-                i_rand2 = random.nextInt(flag.getThenumberoffoodhomemeal()) + 1;
+                while(i_rand1 == i_rand2){
+                    i_rand1 = random.nextInt(flag.getThenumberoffoodhomemeal()) + 1;
+                    i_rand2 = random.nextInt(flag.getThenumberoffoodhomemeal()) + 1;
+                }
+                int finalI_rand1 = i_rand1;
+                int finalI_rand2 = i_rand2;
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -180,7 +185,7 @@ public class TwoFood extends Activity {
                                 public void onClick(View v) {
                                     String url = new String();
                                     try {
-                                        url = flag.getHowcookpage().getJSONObject(0).getString(String.valueOf(i_rand1));
+                                        url = flag.getHowcookpage().getJSONObject(0).getString(String.valueOf(finalI_rand1));
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
@@ -193,6 +198,7 @@ public class TwoFood extends Activity {
 
                     }
                 });
+
                 food_image2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -219,7 +225,7 @@ public class TwoFood extends Activity {
                                 public void onClick(View v) {
                                     String url = new String();
                                     try {
-                                        url = flag.getHowcookpage().getJSONObject(0).getString(String.valueOf(i_rand2));
+                                        url = flag.getHowcookpage().getJSONObject(0).getString(String.valueOf(finalI_rand1));
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
@@ -235,8 +241,12 @@ public class TwoFood extends Activity {
 
 
             }else if(kind ==2){
-                i_rand1 = random.nextInt(flag.getThenumberoffoodhomedrink()) + 1;
-                i_rand2 = random.nextInt(flag.getThenumberoffoodhomedrink()) + 1;
+                while(i_rand1 == i_rand2){
+                    i_rand1 = random.nextInt(flag.getThenumberoffoodhomedrink()) + 1;
+                    i_rand2 = random.nextInt(flag.getThenumberoffoodhomedrink()) + 1;
+                }
+                int finalI_rand1 = i_rand1;
+                int finalI_rand2 = i_rand2;
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -263,7 +273,7 @@ public class TwoFood extends Activity {
                                 public void onClick(View v) {
                                     String url = new String();
                                     try {
-                                        url = flag.getHowcookpagedrink().getJSONObject(0).getString(String.valueOf(i_rand1));
+                                        url = flag.getHowcookpagedrink().getJSONObject(0).getString(String.valueOf(finalI_rand1));
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
@@ -302,7 +312,7 @@ public class TwoFood extends Activity {
                                 public void onClick(View v) {
                                     String url = new String();
                                     try {
-                                        url = flag.getHowcookpagedrink().getJSONObject(0).getString(String.valueOf(i_rand2));
+                                        url = flag.getHowcookpagedrink().getJSONObject(0).getString(String.valueOf(finalI_rand2));
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
@@ -341,8 +351,13 @@ public class TwoFood extends Activity {
             s_where = "outfood";
             flag.setOne_where(s_where);
             if (kind == 1) {
-                i_rand1 = random.nextInt(flag.getThenumberoffoodoutmeal()) + 1;
-                i_rand2 = random.nextInt(flag.getThenumberoffoodoutmeal()) + 1;
+                while (i_rand1 == i_rand2) {
+                    i_rand1 = random.nextInt(flag.getThenumberoffoodoutmeal()) + 1;
+                    i_rand2 = random.nextInt(flag.getThenumberoffoodoutmeal()) + 1;
+                }
+                Log.d(TAG, "랜덤숫자"+i_rand1+","+i_rand2);
+                int finalI_rand1 = i_rand1;
+                int finalI_rand2 = i_rand2;
 
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -413,8 +428,10 @@ public class TwoFood extends Activity {
 
 
             } else if (kind == 2) {
-                i_rand1 = random.nextInt(flag.getThenumberoffoodoutdrink()) + 1;
-                i_rand2 = random.nextInt(flag.getThenumberoffoodoutdrink()) + 1;
+                while (i_rand1 == i_rand2) {
+                    i_rand1 = random.nextInt(flag.getThenumberoffoodoutdrink()) + 1;
+                    i_rand2 = random.nextInt(flag.getThenumberoffoodoutdrink()) + 1;
+                }
 
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -501,8 +518,10 @@ public class TwoFood extends Activity {
             s_where="deliverfood";
             flag.setOne_where(s_where);
             if(kind == 1) {
-                i_rand1 = random.nextInt(flag.getThenumberoffooddelivermeal()) + 1;
-                i_rand2 = random.nextInt(flag.getThenumberoffooddelivermeal()) + 1;
+                while (i_rand1 == i_rand2) {
+                    i_rand1 = random.nextInt(flag.getThenumberoffooddelivermeal()) + 1;
+                    i_rand2 = random.nextInt(flag.getThenumberoffooddelivermeal()) + 1;
+                }
 
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -555,8 +574,10 @@ public class TwoFood extends Activity {
                     }
                 });
             }else if(kind == 2){
-                i_rand1 = random.nextInt(flag.getThenumberoffooddeliverdrink()) + 1;
-                i_rand2 = random.nextInt(flag.getThenumberoffooddeliverdrink()) + 1;
+                while (i_rand1 == i_rand2) {
+                    i_rand1 = random.nextInt(flag.getThenumberoffooddeliverdrink()) + 1;
+                    i_rand2 = random.nextInt(flag.getThenumberoffooddeliverdrink()) + 1;
+                }
 
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
