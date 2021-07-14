@@ -339,6 +339,8 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                             marker.setPosition(new LatLng(storelatitudedouble, storelongitudedouble));
                             marker.setIcon(OverlayImage.fromResource(R.drawable.findstoreicon));
                             marker.setCaptionText(storejson.getString("storename"));
+                            marker.setWidth(75);
+                            marker.setHeight(75);
                             marker.setFlat(true);
                             markers.add(marker);
                         }
@@ -367,7 +369,7 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
             uiSettings.setZoomControlEnabled(true);
             naverMap.setLocationSource(locationSource);
             naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
-            CameraPosition cameraPosition = new CameraPosition(new LatLng(latitude, longitude), 17,0, 0);
+            CameraPosition cameraPosition = new CameraPosition(new LatLng(latitude, longitude), 16,0, 0);
             naverMap.setCameraPosition(cameraPosition);
 
 

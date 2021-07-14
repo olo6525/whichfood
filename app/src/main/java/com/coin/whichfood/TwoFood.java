@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 
@@ -194,6 +195,16 @@ public class TwoFood extends Activity {
                                 }
                             });
                             left_menu3.setVisibility(View.VISIBLE);
+                            left_menu3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if(flag.getLoginflag() == 1){
+                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT);
+                                    }else{
+                                       Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT);
+                                    }
+                                }
+                            });
                         }
 
                     }
@@ -225,7 +236,7 @@ public class TwoFood extends Activity {
                                 public void onClick(View v) {
                                     String url = new String();
                                     try {
-                                        url = flag.getHowcookpage().getJSONObject(0).getString(String.valueOf(finalI_rand1));
+                                        url = flag.getHowcookpage().getJSONObject(0).getString(String.valueOf(finalI_rand2));
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
@@ -234,6 +245,16 @@ public class TwoFood extends Activity {
                                 }
                             });
                             right_menu3.setVisibility(View.VISIBLE);
+                            right_menu3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (flag.getLoginflag() == 1) {
+                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT);
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT);
+                                    }
+                                }
+                            });
                         }
 
                     }
@@ -282,6 +303,16 @@ public class TwoFood extends Activity {
                                 }
                             });
                             left_menu3.setVisibility(View.VISIBLE);
+                            left_menu3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (flag.getLoginflag() == 1) {
+                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT);
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT);
+                                    }
+                                }
+                            });
                         }
 
                     }
@@ -321,6 +352,16 @@ public class TwoFood extends Activity {
                                 }
                             });
                             right_menu3.setVisibility(View.VISIBLE);
+                            right_menu3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (flag.getLoginflag() == 1) {
+                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT);
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT);
+                                    }
+                                }
+                            });
                         }
 
                     }
@@ -388,6 +429,16 @@ public class TwoFood extends Activity {
                                 }
                             });
                             left_menu3.setVisibility(View.VISIBLE);
+                            left_menu3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (flag.getLoginflag() == 1) {
+                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT);
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT);
+                                    }
+                                }
+                            });
                         }
 
                     }
@@ -421,6 +472,16 @@ public class TwoFood extends Activity {
                                 }
                             });
                             right_menu3.setVisibility(View.VISIBLE);
+                            right_menu3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (flag.getLoginflag() == 1) {
+                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT);
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT);
+                                    }
+                                }
+                            });
                         }
 
                     }
