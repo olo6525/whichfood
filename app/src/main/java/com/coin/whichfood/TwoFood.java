@@ -199,9 +199,9 @@ public class TwoFood extends Activity {
                                 @Override
                                 public void onClick(View v) {
                                     if(flag.getLoginflag() == 1){
-                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT);
+                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
                                     }else{
-                                       Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT);
+                                       Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
@@ -249,9 +249,9 @@ public class TwoFood extends Activity {
                                 @Override
                                 public void onClick(View v) {
                                     if (flag.getLoginflag() == 1) {
-                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT);
+                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT);
+                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
@@ -307,9 +307,9 @@ public class TwoFood extends Activity {
                                 @Override
                                 public void onClick(View v) {
                                     if (flag.getLoginflag() == 1) {
-                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT);
+                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT);
+                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
@@ -356,9 +356,9 @@ public class TwoFood extends Activity {
                                 @Override
                                 public void onClick(View v) {
                                     if (flag.getLoginflag() == 1) {
-                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT);
+                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT);
+                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
@@ -433,9 +433,9 @@ public class TwoFood extends Activity {
                                 @Override
                                 public void onClick(View v) {
                                     if (flag.getLoginflag() == 1) {
-                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT);
+                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT);
+                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
@@ -476,9 +476,9 @@ public class TwoFood extends Activity {
                                 @Override
                                 public void onClick(View v) {
                                     if (flag.getLoginflag() == 1) {
-                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT);
+                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT);
+                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
@@ -523,6 +523,16 @@ public class TwoFood extends Activity {
                                 }
                             });
                             left_menu3.setVisibility(View.VISIBLE);
+                            left_menu3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (flag.getLoginflag() == 1) {
+                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                         }
 
                     }
@@ -555,6 +565,16 @@ public class TwoFood extends Activity {
                                     startActivity(intentmap);                                }
                             });
                             right_menu3.setVisibility(View.VISIBLE);
+                            right_menu3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (flag.getLoginflag() == 1) {
+                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                         }
                     }
                 });
@@ -606,6 +626,16 @@ public class TwoFood extends Activity {
                             left_menu2.setVisibility(View.VISIBLE);
                             left_menu2.setImageResource(R.drawable.delivery);
                             left_menu3.setVisibility(View.VISIBLE);
+                            left_menu3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (flag.getLoginflag() == 1) {
+                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                         }
                     }
                 });
@@ -631,6 +661,16 @@ public class TwoFood extends Activity {
                             right_menu2.setVisibility(View.VISIBLE);
                             right_menu2.setImageResource(R.drawable.delivery);
                             right_menu3.setVisibility(View.VISIBLE);
+                            right_menu3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (flag.getLoginflag() == 1) {
+                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                         }
                     }
                 });
@@ -662,6 +702,16 @@ public class TwoFood extends Activity {
                             left_menu2.setVisibility(View.VISIBLE);
                             left_menu2.setImageResource(R.drawable.delivery);
                             left_menu3.setVisibility(View.VISIBLE);
+                            left_menu3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (flag.getLoginflag() == 1) {
+                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                         }
                     }
                 });
@@ -687,6 +737,16 @@ public class TwoFood extends Activity {
                             right_menu2.setVisibility(View.VISIBLE);
                             right_menu2.setImageResource(R.drawable.delivery);
                             right_menu3.setVisibility(View.VISIBLE);
+                            right_menu3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (flag.getLoginflag() == 1) {
+                                        Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                         }
                     }
                 });

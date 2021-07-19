@@ -258,23 +258,28 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
+                    String foodnumber = null;
                     try {
                         String postParameters = new String();
                         if(flag.getKind() == 1) {
                             if (flag.getFindstore() == 1) {
                                 postParameters = "purpose=findstore&kind=meal&food=meal" + food1 + "&latitude=" + latitude + "&longitude=" + longitude;
                                 Log.d(TAG, "ㅇㅇ1"+postParameters);
+                               foodnumber = "meal"+food1;
                             } else if (flag.getFindstore() == 2) {
                                 postParameters = "purpose=findstore&kind=meal&food=meal" + food2 + "&latitude=" + latitude + "&longitude=" + longitude;
                                 Log.d(TAG, "ㅇㅇ"+postParameters);
+                                foodnumber = "meal"+food2;
                             }
                         }else if(flag.getKind() ==2){
                             if (flag.getFindstore() == 1) {
                                 postParameters = "purpose=findstore&kind=drink&food=drink" + food1 + "&latitude=" + latitude + "&longitude=" + longitude;
                                 Log.d(TAG, "ㅇㅇ"+postParameters);
+                                foodnumber = "drink"+food1;
                             } else if (flag.getFindstore() == 2) {
                                 postParameters = "purpose=findstore&kind=drink&food=drink" + food2 + "&latitude=" + latitude + "&longitude=" + longitude;
                                 Log.d(TAG, "ㅇㅇ"+postParameters);
+                                foodnumber = "drink"+food2;
                             }
                         }
                         URL url = new URL("https://uristory.com/whichfoodstorelist.php");
@@ -332,17 +337,47 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                             JSONObject storejson = jsonArray.getJSONObject(i);
                             String storelatitudestring = storejson.getString("latitude");
                             String storelongitudestring = storejson.getString("longitude");
+                            String custom = storejson.getString(foodnumber);
                             double storelatitudedouble = Double.parseDouble(storelatitudestring);
                             double storelongitudedouble = Double.parseDouble(storelongitudestring);
-                            Log.d(TAG, "ㅇㅇ : " + storelatitudestring + "," + storelongitudestring);
-                            Marker marker = new Marker();
-                            marker.setPosition(new LatLng(storelatitudedouble, storelongitudedouble));
-                            marker.setIcon(OverlayImage.fromResource(R.drawable.findstoreicon));
-                            marker.setCaptionText(storejson.getString("storename"));
-                            marker.setWidth(75);
-                            marker.setHeight(75);
-                            marker.setFlat(true);
-                            markers.add(marker);
+                            Log.d(TAG, "ㅇㅇ : " + storelatitudestring + "," + storelongitudestring+","+custom);
+                            if(custom.charAt(0) == '1') {
+                                Marker marker = new Marker();
+                                marker.setPosition(new LatLng(storelatitudedouble, storelongitudedouble));
+                                marker.setIcon(OverlayImage.fromResource(R.drawable.findstoreicon));
+                                marker.setCaptionText(storejson.getString("storename"));
+                                marker.setWidth(75);
+                                marker.setHeight(75);
+                                marker.setFlat(true);
+                                markers.add(marker);
+                            }else if(custom.charAt(0)=='2'){
+                                Marker marker = new Marker();
+                                marker.setPosition(new LatLng(storelatitudedouble, storelongitudedouble));
+                                marker.setIcon(OverlayImage.fromResource(R.drawable.findstoreicon));
+                                marker.setCaptionText(storejson.getString("storename"));
+                                marker.setWidth(75);
+                                marker.setHeight(75);
+                                marker.setFlat(true);
+                                markers.add(marker);
+                            }else if(custom.charAt(0)=='3'){
+                                Marker marker = new Marker();
+                                marker.setPosition(new LatLng(storelatitudedouble, storelongitudedouble));
+                                marker.setIcon(OverlayImage.fromResource(R.drawable.findstoreicon));
+                                marker.setCaptionText(storejson.getString("storename"));
+                                marker.setWidth(75);
+                                marker.setHeight(75);
+                                marker.setFlat(true);
+                                markers.add(marker);
+                            }else{
+                                Marker marker = new Marker();
+                                marker.setPosition(new LatLng(storelatitudedouble, storelongitudedouble));
+                                marker.setIcon(OverlayImage.fromResource(R.drawable.findstoreicon));
+                                marker.setCaptionText(storejson.getString("storename"));
+                                marker.setWidth(75);
+                                marker.setHeight(75);
+                                marker.setFlat(true);
+                                markers.add(marker);
+                            }
                         }
 
                             handler.post(() -> {
