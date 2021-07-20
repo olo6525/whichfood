@@ -31,15 +31,38 @@
                 android:layout_weight="0.3"
                 android:orientation="vertical">
 
-                <ImageButton
-                    android:id="@+id/login"
-                    style="@style/Widget.AppCompat.Button.Borderless"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/kakao_login_medium_narrow"
-                    android:visibility="visible" />
+                    android:orientation="horizontal">
+                    <ImageButton
+                        android:id="@+id/partnershipfake"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:layout_gravity="right"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/partnershipbutton"
+                        android:visibility="visible" />
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <ImageButton
+                        android:id="@+id/login"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:layout_gravity="right"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/kakao_login_medium_narrow"
+                        android:visibility="visible" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -48,10 +71,22 @@
                     android:orientation="horizontal">
 
                     <ImageButton
+                        android:id="@+id/partnershiplogin"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="right"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/partnershipbutton"
+                        android:visibility="gone" />
+
+                    <ImageButton
                         android:id="@+id/myinfo"
                         style="@style/Widget.AppCompat.Button.Borderless"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0px"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:layout_gravity="right"
                         android:scaleType="fitXY"
                         android:src="@drawable/myinfo"
@@ -59,8 +94,9 @@
                     <ImageButton
                         android:id="@+id/logout"
                         style="@style/Widget.AppCompat.Button.Borderless"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0px"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:layout_gravity="right"
                         android:scaleType="fitXY"
                         android:src="@drawable/kakao_logout_medium_narrow"

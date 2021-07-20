@@ -46,6 +46,7 @@
         <activity android:name=".kakaologin"
             android:theme="@android:style/Theme.Dialog"/>
         <activity android:name=".foodnutrientclass"/>
+        <activity android:name=".Partnershippay"/>
 
 
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">

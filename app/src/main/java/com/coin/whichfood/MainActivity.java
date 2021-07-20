@@ -146,10 +146,14 @@ public class MainActivity extends AppCompatActivity {
         ImageButton loginbutton = (ImageButton)findViewById(R.id.login);
         ImageButton myinfo = (ImageButton)findViewById(R.id.myinfo);
         ImageButton logout = (ImageButton)findViewById(R.id.logout);
+        ImageButton partnershipfake = (ImageButton)findViewById(R.id.partnershipfake);
+        ImageButton partnershiplogin = (ImageButton)findViewById(R.id.partnershiplogin);
+        Intent partnershipregister = new Intent(this,Partnershippay.class);
         Intent loginlayout = new Intent(this,kakaologin.class);
         if(flag.getLoginflag() == 0) {
             myinfo.setVisibility(View.GONE);
             logout.setVisibility(View.GONE);
+            partnershipfake.setVisibility(View.VISIBLE);
             loginbutton.setVisibility(View.VISIBLE);
             loginbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -157,10 +161,18 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(loginlayout);
                 }
             });
+            partnershipfake.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getApplicationContext(),"로그인 후 이용가능한 서비스 입니다.",Toast.LENGTH_LONG).show();
+                }
+            });
         }else if (flag.getLoginflag() == 1){
             loginbutton.setVisibility(View.GONE);
+            partnershipfake.setVisibility(View.GONE);
             myinfo.setVisibility(View.VISIBLE);
             logout.setVisibility(View.VISIBLE);
+            partnershiplogin.setVisibility(View.VISIBLE);
             myinfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -171,6 +183,12 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     startActivity(loginlayout);
+                }
+            });
+            partnershiplogin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(partnershipregister);
                 }
             });
         }

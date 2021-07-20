@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -353,7 +354,6 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                             }else if(custom.charAt(0)=='2'){
                                 Marker marker = new Marker();
                                 marker.setPosition(new LatLng(storelatitudedouble, storelongitudedouble));
-                                marker.setIcon(OverlayImage.fromResource(R.drawable.findstoreicon));
                                 marker.setCaptionText(storejson.getString("storename"));
                                 marker.setWidth(75);
                                 marker.setHeight(75);
