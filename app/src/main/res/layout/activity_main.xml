@@ -112,7 +112,7 @@
                 android:layout_height="0px"
                 android:layout_weight="1.1"
                 android:scaleType="fitXY"
-                android:src="@drawable/eatpizza" />
+                android:src="@drawable/splashlogo" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -160,7 +160,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:scaleType="fitXY"
-                        android:src="@drawable/quastion" />
+                        android:src="@drawable/ic_question" />
 
                 </LinearLayout>
 

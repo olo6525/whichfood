@@ -114,7 +114,7 @@ public class OneFood extends Activity {
                                 }
                             });
                             menu2.setVisibility(View.VISIBLE);
-                            menu2.setImageResource(R.drawable.recipe);
+                            menu2.setImageResource(R.drawable.ic_recipe);
                             menu2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -152,7 +152,7 @@ public class OneFood extends Activity {
                                 }
                             });
                             menu2.setVisibility(View.VISIBLE);
-                            menu2.setImageResource(R.drawable.recipe);
+                            menu2.setImageResource(R.drawable.ic_recipe);
                             menu2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -196,7 +196,7 @@ public class OneFood extends Activity {
                                 }
                             });
                             menu2.setVisibility(View.VISIBLE);
-                            menu2.setImageResource(R.drawable.storelocation);
+                            menu2.setImageResource(R.drawable.ic_storelocation);
                             menu2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -228,7 +228,7 @@ public class OneFood extends Activity {
                             }
                         });
                         menu2.setVisibility(View.VISIBLE);
-                        menu2.setImageResource(R.drawable.storelocation);
+                        menu2.setImageResource(R.drawable.ic_storelocation);
                         menu2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -263,7 +263,7 @@ public class OneFood extends Activity {
                             }
                         });
                         menu2.setVisibility(View.VISIBLE);
-                        menu2.setImageResource(R.drawable.delivery);
+                        menu2.setImageResource(R.drawable.ic_delivery);
                         menu2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -293,7 +293,7 @@ public class OneFood extends Activity {
                             }
                         });
                         menu2.setVisibility(View.VISIBLE);
-                        menu2.setImageResource(R.drawable.delivery);
+                        menu2.setImageResource(R.drawable.ic_delivery);
                         menu2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {

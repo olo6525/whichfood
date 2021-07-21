@@ -14,13 +14,16 @@ import org.json.JSONObject;
 
 public class FlagClass extends Application {
 
+    private static String version;
     private static int where;
     private static int kind;
     private static int what;
     private static String one_where;
     private static String one_kind;
     private static int one_food1;
+    private static int one_food1_before;
     private static int one_food2;
+    private static int one_food2_before;
     private static int findstore;
     private static int thenumberoffoodhomemeal;
     private static int thenumberoffoodhomedrink;
@@ -46,13 +49,16 @@ public class FlagClass extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        version = "";
         where = 0;
         kind = 0;
         what = 0;
         one_where="";
         one_kind="";
         one_food1 = 0;
+        one_food1_before =0;
         one_food2 = 0;
+        one_food2_before =0;
         findstore = 0;
         thenumberoffoodhomemeal=0;
         thenumberoffoodhomedrink=0;
@@ -75,13 +81,16 @@ public class FlagClass extends Application {
     }
 
     public void Init() {
+        version = "";
         where = 0;
         kind = 0;
         what = 0;
         one_where="";
         one_kind="";
         one_food1 = 0;
+        one_food1_before =0;
         one_food2 = 0;
+        one_food2_before =0;
         findstore = 0;
         thenumberoffoodhomemeal=0;
         thenumberoffoodhomedrink=0;
@@ -94,13 +103,16 @@ public class FlagClass extends Application {
         loginflag = 0;
     }
 
+    public void setVersion(String flag){this.version = flag;}
     public void setWhere(int flag){this.where = flag;}
     public void setKind(int flag) {this.kind = flag;}
     public void setWhat(int flag) {this.what = flag;}
     public void setOne_where(String flag) {this.one_where = flag;}
     public void setOne_kind(String flag) {this.one_kind = flag;}
     public void setOne_food1(int flag) {this.one_food1 = flag;}
+    public void setOne_food1_before(int flag) {this.one_food1_before = flag;}
     public void setOne_food2(int flag) {this.one_food2 =flag;}
+    public void setOne_food2_before(int flag) {this.one_food2_before = flag;}
     public void setFindstore(int flag) {this.findstore=flag;}
     public void setThenumberoffoodhomemeal(int flag) {this.thenumberoffoodhomemeal = flag;}
     public void setThenumberoffoodhomedrink(int flag) {this.thenumberoffoodhomedrink = flag;}
@@ -112,13 +124,16 @@ public class FlagClass extends Application {
     public void setHowcookpagedrink(JSONArray flag) {this.howcookpagedrink = flag;}
     public void setLoginflag(int flag) { this.loginflag = flag;}
 
+    public String getVersion(){return version;}
     public int getWhere() {return where;}
     public int getKind() {return kind;}
     public int getWhat() {return what;}
     public String getOne_where() {return one_where;}
     public String getOne_kind() {return one_kind;}
     public int getOne_food1() { return one_food1;}
+    public int getOne_food1_before() { return one_food1_before;}
     public int getOne_food2() {return one_food2;}
+    public int getOne_food2_before() { return one_food2_before;}
     public int getFindstore(){return findstore;}
     public int getThenumberoffoodhomemeal(){return thenumberoffoodhomemeal;}
     public int getThenumberoffoodhomedrink(){return thenumberoffoodhomedrink;}

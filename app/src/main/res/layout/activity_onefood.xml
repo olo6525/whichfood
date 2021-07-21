@@ -31,7 +31,8 @@
         android:layout_height="0px"
         android:layout_weight="2"
         android:scaleType="fitXY"
-        android:src="@drawable/splashlogo" />
+        android:src="@drawable/splashlogo"
+        style="@style/Widget.AppCompat.Button.Borderless"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,7 +52,7 @@
                 android:layout_weight="1"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:scaleType="fitXY"
-                android:src="@drawable/nutirent"
+                android:src="@drawable/ic_circlegrape"
                 android:visibility="invisible"/>
 
             <ImageButton
@@ -71,7 +72,7 @@
                 android:layout_weight="1"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:scaleType="fitXY"
-                android:src="@drawable/pickdish"
+                android:src="@drawable/ic_choicefood"
                 android:visibility="invisible"/>
         </LinearLayout>
     </LinearLayout>
@@ -89,7 +90,7 @@
             android:layout_weight="1"
             android:scaleType="fitXY"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:src="@drawable/gohomelogo" />
+            android:src="@drawable/ic_home" />
 
         <Space
             android:layout_width="500px"
@@ -103,7 +104,7 @@
             android:layout_weight="1"
             android:scaleType="fitXY"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:src="@drawable/endlogo" />
+            android:src="@drawable/ic_end" />
     </LinearLayout>
 
 </LinearLayout>

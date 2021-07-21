@@ -345,7 +345,7 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                             if(custom.charAt(0) == '1') {
                                 Marker marker = new Marker();
                                 marker.setPosition(new LatLng(storelatitudedouble, storelongitudedouble));
-                                marker.setIcon(OverlayImage.fromResource(R.drawable.findstoreicon));
+                                marker.setIcon(OverlayImage.fromResource(R.drawable.ic_storeimage));
                                 marker.setCaptionText(storejson.getString("storename"));
                                 marker.setWidth(75);
                                 marker.setHeight(75);
@@ -362,16 +362,16 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                             }else if(custom.charAt(0)=='3'){
                                 Marker marker = new Marker();
                                 marker.setPosition(new LatLng(storelatitudedouble, storelongitudedouble));
-                                marker.setIcon(OverlayImage.fromResource(R.drawable.findstoreicon));
+                                marker.setIcon(OverlayImage.fromResource(R.drawable.ic_storeimage));
                                 marker.setCaptionText(storejson.getString("storename"));
-                                marker.setWidth(75);
-                                marker.setHeight(75);
+                                marker.setWidth(100);
+                                marker.setHeight(100);
                                 marker.setFlat(true);
                                 markers.add(marker);
                             }else{
                                 Marker marker = new Marker();
                                 marker.setPosition(new LatLng(storelatitudedouble, storelongitudedouble));
-                                marker.setIcon(OverlayImage.fromResource(R.drawable.findstoreicon));
+                                marker.setIcon(OverlayImage.fromResource(R.drawable.ic_storeimage));
                                 marker.setCaptionText(storejson.getString("storename"));
                                 marker.setWidth(75);
                                 marker.setHeight(75);

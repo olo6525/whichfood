@@ -154,10 +154,13 @@ public class TwoFood extends Activity {
             s_where = "homefood";
             flag.setOne_where(s_where);
             if(kind==1) {
-                while(i_rand1 == i_rand2){
+                while(i_rand1 == i_rand2 || i_rand1 == flag.getOne_food1_before() || i_rand1 == flag.getOne_food2_before()|| i_rand2 == flag.getOne_food1_before() || i_rand2 == flag.getOne_food2_before()){
                     i_rand1 = random.nextInt(flag.getThenumberoffoodhomemeal()) + 1;
                     i_rand2 = random.nextInt(flag.getThenumberoffoodhomemeal()) + 1;
                 }
+                flag.setOne_food1_before(i_rand1);
+                flag.setOne_food2_before(i_rand2);
+                Log.d(TAG,"whatfood?:"+i_rand1+","+i_rand2);
                 int finalI_rand1 = i_rand1;
                 int finalI_rand2 = i_rand2;
                 food_image1.setOnClickListener(new View.OnClickListener() {
@@ -180,7 +183,7 @@ public class TwoFood extends Activity {
                                 }
                             });
                             left_menu2.setVisibility(View.VISIBLE);
-                            left_menu2.setImageResource(R.drawable.recipe);
+                            left_menu2.setImageResource(R.drawable.ic_recipe);
                             left_menu2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -230,7 +233,7 @@ public class TwoFood extends Activity {
                                 }
                             });
                             right_menu2.setVisibility(View.VISIBLE);
-                            right_menu2.setImageResource(R.drawable.recipe);
+                            right_menu2.setImageResource(R.drawable.ic_recipe);
                             right_menu2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -262,10 +265,12 @@ public class TwoFood extends Activity {
 
 
             }else if(kind ==2){
-                while(i_rand1 == i_rand2){
+                while(i_rand1 == i_rand2 || i_rand1 == flag.getOne_food1_before() || i_rand1 == flag.getOne_food2_before()|| i_rand2 == flag.getOne_food1_before() || i_rand2 == flag.getOne_food2_before()){
                     i_rand1 = random.nextInt(flag.getThenumberoffoodhomedrink()) + 1;
                     i_rand2 = random.nextInt(flag.getThenumberoffoodhomedrink()) + 1;
                 }
+                flag.setOne_food1_before(i_rand1);
+                flag.setOne_food2_before(i_rand2);
                 int finalI_rand1 = i_rand1;
                 int finalI_rand2 = i_rand2;
                 food_image1.setOnClickListener(new View.OnClickListener() {
@@ -288,7 +293,7 @@ public class TwoFood extends Activity {
                                 }
                             });
                             left_menu2.setVisibility(View.VISIBLE);
-                            left_menu2.setImageResource(R.drawable.recipe);
+                            left_menu2.setImageResource(R.drawable.ic_recipe);
                             left_menu2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -337,7 +342,7 @@ public class TwoFood extends Activity {
                                 }
                             });
                             right_menu2.setVisibility(View.VISIBLE);
-                            right_menu2.setImageResource(R.drawable.recipe);
+                            right_menu2.setImageResource(R.drawable.ic_recipe);
                             right_menu2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -392,10 +397,12 @@ public class TwoFood extends Activity {
             s_where = "outfood";
             flag.setOne_where(s_where);
             if (kind == 1) {
-                while (i_rand1 == i_rand2) {
+                while(i_rand1 == i_rand2 || i_rand1 == flag.getOne_food1_before() || i_rand1 == flag.getOne_food2_before()|| i_rand2 == flag.getOne_food1_before() || i_rand2 == flag.getOne_food2_before()){
                     i_rand1 = random.nextInt(flag.getThenumberoffoodoutmeal()) + 1;
                     i_rand2 = random.nextInt(flag.getThenumberoffoodoutmeal()) + 1;
                 }
+                flag.setOne_food1_before(i_rand1);
+                flag.setOne_food2_before(i_rand2);
                 Log.d(TAG, "랜덤숫자"+i_rand1+","+i_rand2);
                 int finalI_rand1 = i_rand1;
                 int finalI_rand2 = i_rand2;
@@ -420,7 +427,7 @@ public class TwoFood extends Activity {
                                 }
                             });
                             left_menu2.setVisibility(View.VISIBLE);
-                            left_menu2.setImageResource(R.drawable.storelocation);
+                            left_menu2.setImageResource(R.drawable.ic_storelocation);
                             left_menu2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -463,7 +470,7 @@ public class TwoFood extends Activity {
                                 }
                             });
                             right_menu2.setVisibility(View.VISIBLE);
-                            right_menu2.setImageResource(R.drawable.storelocation);
+                            right_menu2.setImageResource(R.drawable.ic_storelocation);
                             right_menu2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -489,10 +496,12 @@ public class TwoFood extends Activity {
 
 
             } else if (kind == 2) {
-                while (i_rand1 == i_rand2) {
+                while(i_rand1 == i_rand2 || i_rand1 == flag.getOne_food1_before() || i_rand1 == flag.getOne_food2_before()|| i_rand2 == flag.getOne_food1_before() || i_rand2 == flag.getOne_food2_before()){
                     i_rand1 = random.nextInt(flag.getThenumberoffoodoutdrink()) + 1;
                     i_rand2 = random.nextInt(flag.getThenumberoffoodoutdrink()) + 1;
                 }
+                flag.setOne_food1_before(i_rand1);
+                flag.setOne_food2_before(i_rand2);
 
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -514,7 +523,7 @@ public class TwoFood extends Activity {
                                 }
                             });
                             left_menu2.setVisibility(View.VISIBLE);
-                            left_menu2.setImageResource(R.drawable.storelocation);
+                            left_menu2.setImageResource(R.drawable.ic_storelocation);
                             left_menu2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -557,7 +566,7 @@ public class TwoFood extends Activity {
                                 }
                             });
                             right_menu2.setVisibility(View.VISIBLE);
-                            right_menu2.setImageResource(R.drawable.storelocation);
+                            right_menu2.setImageResource(R.drawable.ic_storelocation);
                             right_menu2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -599,10 +608,12 @@ public class TwoFood extends Activity {
             s_where="deliverfood";
             flag.setOne_where(s_where);
             if(kind == 1) {
-                while (i_rand1 == i_rand2) {
+                while(i_rand1 == i_rand2 || i_rand1 == flag.getOne_food1_before() || i_rand1 == flag.getOne_food2_before()|| i_rand2 == flag.getOne_food1_before() || i_rand2 == flag.getOne_food2_before()){
                     i_rand1 = random.nextInt(flag.getThenumberoffooddelivermeal()) + 1;
                     i_rand2 = random.nextInt(flag.getThenumberoffooddelivermeal()) + 1;
                 }
+                flag.setOne_food1_before(i_rand1);
+                flag.setOne_food2_before(i_rand2);
 
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -624,7 +635,7 @@ public class TwoFood extends Activity {
                                 }
                             });
                             left_menu2.setVisibility(View.VISIBLE);
-                            left_menu2.setImageResource(R.drawable.delivery);
+                            left_menu2.setImageResource(R.drawable.ic_delivery);
                             left_menu3.setVisibility(View.VISIBLE);
                             left_menu3.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -659,7 +670,7 @@ public class TwoFood extends Activity {
                                 }
                             });
                             right_menu2.setVisibility(View.VISIBLE);
-                            right_menu2.setImageResource(R.drawable.delivery);
+                            right_menu2.setImageResource(R.drawable.ic_delivery);
                             right_menu3.setVisibility(View.VISIBLE);
                             right_menu3.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -675,10 +686,12 @@ public class TwoFood extends Activity {
                     }
                 });
             }else if(kind == 2){
-                while (i_rand1 == i_rand2) {
+                while(i_rand1 == i_rand2 || i_rand1 == flag.getOne_food1_before() || i_rand1 == flag.getOne_food2_before()|| i_rand2 == flag.getOne_food1_before() || i_rand2 == flag.getOne_food2_before()){
                     i_rand1 = random.nextInt(flag.getThenumberoffooddeliverdrink()) + 1;
                     i_rand2 = random.nextInt(flag.getThenumberoffooddeliverdrink()) + 1;
                 }
+                flag.setOne_food1_before(i_rand1);
+                flag.setOne_food2_before(i_rand2);
 
                 food_image1.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -700,7 +713,7 @@ public class TwoFood extends Activity {
                                 }
                             });
                             left_menu2.setVisibility(View.VISIBLE);
-                            left_menu2.setImageResource(R.drawable.delivery);
+                            left_menu2.setImageResource(R.drawable.ic_delivery);
                             left_menu3.setVisibility(View.VISIBLE);
                             left_menu3.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -735,7 +748,7 @@ public class TwoFood extends Activity {
                                 }
                             });
                             right_menu2.setVisibility(View.VISIBLE);
-                            right_menu2.setImageResource(R.drawable.delivery);
+                            right_menu2.setImageResource(R.drawable.ic_delivery);
                             right_menu3.setVisibility(View.VISIBLE);
                             right_menu3.setOnClickListener(new View.OnClickListener() {
                                 @Override

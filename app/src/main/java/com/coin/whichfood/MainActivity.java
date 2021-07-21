@@ -46,7 +46,6 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 public class MainActivity extends AppCompatActivity {
     private AdView mAdView; //광고 변수 선언
-    VersionCheck versionCheck;
     private static String FoodIP = "https://www.uristory.com/whichfood.php"; //음식 이미지 서버
     private InterstitialAd mInterstitialAd;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
@@ -71,7 +70,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         activity = MainActivity.this;
-
+        final FlagClass flag = (FlagClass)getApplication();
+//버전체크=========================================================
+        if(!flag.getVersion().equals("5")){
+            Intent popup = new Intent(this,PopUp.class);
+            startActivity(popup);
+        }
 //권한 신청 --------------------------------------------------
         if (ContextCompat.checkSelfPermission(
                 this, Manifest.permission.ACCESS_COARSE_LOCATION) ==
@@ -142,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
         //광고 끝---------------------------------------------------------------------------------------
 //광고끝 -----------------------------------------------------------------------------------------------------
         //로그인============================================================================================
-        final FlagClass flag = (FlagClass)getApplication();
         ImageButton loginbutton = (ImageButton)findViewById(R.id.login);
         ImageButton myinfo = (ImageButton)findViewById(R.id.myinfo);
         ImageButton logout = (ImageButton)findViewById(R.id.logout);
@@ -193,39 +196,7 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         final Intent intent_whatkindfood = new Intent(this, WhatKindFood.class);
-        versionCheck = new VersionCheck();
-        ArrayAdapter sexAdapter = ArrayAdapter.createFromResource(this, R.array.city_weather, android.R.layout.simple_spinner_item);
-        sexAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Intent update_pop = new Intent(this, PopUp.class);
-        String serverdata;
-        try {
-            serverdata = new VersionCheck().execute(FoodIP).get();
-            Log.d("TAG", "serverdata" + serverdata);
-            JSONObject jsonObject = new JSONObject(serverdata);
-            String version = jsonObject.getString("version");
-            JSONArray jsonArray = jsonObject.getJSONArray("thenumberoffood");
-            JSONObject thenumberoffood = jsonArray.getJSONObject(0);
-            flag.setThenumberoffoodhomemeal(Integer.parseInt(thenumberoffood.getString("homemeal")));
-            flag.setThenumberoffoodhomedrink(Integer.parseInt(thenumberoffood.getString("homedrink")));
-            flag.setThenumberoffoodoutmeal(Integer.parseInt(thenumberoffood.getString("outmeal")));
-            flag.setThenumberoffoodoutdrink(Integer.parseInt(thenumberoffood.getString("outdrink")));
-            flag.setThenumberoffooddelivermeal(Integer.parseInt(thenumberoffood.getString("delivermeal")));
-            flag.setThenumberoffooddeliverdrink(Integer.parseInt(thenumberoffood.getString("deliverdrink")));
-            flag.setHowcookpage(jsonObject.getJSONArray("howcook"));
-            flag.setHowcookpagedrink(jsonObject.getJSONArray("howcookdrink"));
-            Log.d("TAG", "serverdata" + version+","+flag.getThenumberoffoodhomemeal()+ flag.getThenumberoffoodoutdrink()+ flag.getHowcookpage().getJSONObject(0).getString("1"));
-            if(!version.equals("4"))
-            {
-                Log.d("TAG", "The interstitial wasn't loaded yet."+ version);
-                startActivity(update_pop);
-            }
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
 
 
         ImageButton btn_cook = (ImageButton)findViewById(R.id.btncook);
@@ -276,63 +247,7 @@ public class MainActivity extends AppCompatActivity {
 
     //뒤로가기 종료 끝-----------------------------------------------------------------------------
 
-//버전체크 서버 접속-------------------------------------------------------------------------------
-    private class VersionCheck extends AsyncTask <String, Void, String>{
 
-        @Override
-        protected String doInBackground(String... strings) {
-            String IP = strings[0];
-            String server_version = new String();
-
-            try{
-                URL Version = new URL(IP);
-                HttpURLConnection conn = (HttpURLConnection)Version.openConnection();
-                conn.setDoInput(true);
-                conn.connect();
-
-
-                int responseStatusCode = conn.getResponseCode();
-
-                InputStream inputStream;
-                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
-                    inputStream = conn.getInputStream();
-                } else {
-                    inputStream = conn.getErrorStream();
-                }
-
-
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-                StringBuilder sb = new StringBuilder();
-                String line = "";
-
-                while ((line = bufferedReader.readLine()) != null) {
-                    sb.append(line);
-                }
-
-
-                bufferedReader.close();
-
-                Log.d("TAG","version"+sb.toString());
-                return sb.toString();
-
-            }catch (IOException e)
-            {
-                e.printStackTrace();
-                return null;
-            }
-
-        }
-
-        @Override
-        protected void onPostExecute(String result){
-            super.onPostExecute(result);
-
-        }
-
-    }
-    //버전체크 서버접속 끝!!----------------------------------------------------------------------------------
 
 
 }

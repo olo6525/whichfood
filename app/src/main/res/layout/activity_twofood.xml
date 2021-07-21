@@ -37,6 +37,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/applelogo"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:scaleType="fitXY"/>
 
         <View
@@ -52,6 +53,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/applelogo"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:scaleType="fitXY"/>
     </LinearLayout>
 
@@ -68,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            android:src="@drawable/nutirent"
+            android:src="@drawable/ic_circlegrape"
             android:visibility="invisible"/>
 
         <ImageButton
@@ -88,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            android:src="@drawable/pickdish"
+            android:src="@drawable/ic_choicefood"
             android:visibility="invisible"/>
         <ImageButton
             android:id="@+id/right_menu3"
@@ -97,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            android:src="@drawable/pickdish"
+            android:src="@drawable/ic_choicefood"
             android:visibility="invisible"/>
 
         <ImageButton
@@ -117,7 +119,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            android:src="@drawable/nutirent"
+            android:src="@drawable/ic_circlegrape"
             android:visibility="invisible"/>
         </LinearLayout>
 
@@ -135,7 +137,7 @@
             android:layout_weight="1"
             android:scaleType="fitXY"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:src="@drawable/gohomelogo" />
+            android:src="@drawable/ic_home" />
 
         <ImageButton
             android:id="@+id/btnno"
@@ -144,7 +146,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            android:src="@drawable/findanotherlogo" />
+            android:src="@drawable/ic_rechoice" />
 
         <ImageButton
             android:id="@+id/btnpleaseselect"
@@ -153,7 +155,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            android:src="@drawable/checklogo" />
+            android:src="@drawable/ic_checkicon" />
 
         <ImageButton
             android:id="@+id/btnend"
@@ -162,7 +164,7 @@
             android:layout_weight="1"
             android:scaleType="fitXY"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:src="@drawable/endlogo" />
+            android:src="@drawable/ic_end" />
     </LinearLayout>
 
 </LinearLayout>

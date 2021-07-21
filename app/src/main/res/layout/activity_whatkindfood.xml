@@ -21,30 +21,50 @@
 
         <ImageButton
             android:id="@+id/btnmeal"
-            android:layout_width="wrap_content"
+            android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:scaleType="fitXY"
-            android:src="@drawable/mealfood" />
+            android:src="@drawable/ic_kindfood" />
 
         <ImageButton
             android:id="@+id/btndrink"
-            android:layout_width="wrap_content"
+            android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:scaleType="fitXY"
-            android:src="@drawable/mealdrink" />
+            android:src="@drawable/ic_alcohol" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="fitXY"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:src="@drawable/ic_question" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:orientation="horizontal">
+
+
     </LinearLayout>
 
 
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_weight="0.6"
-        android:src="@drawable/cooker1"
-        android:scaleType="fitXY"/>
 </LinearLayout>
