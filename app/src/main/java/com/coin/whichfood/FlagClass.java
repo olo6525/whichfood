@@ -3,6 +3,7 @@ package com.coin.whichfood;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Bitmap;
 
 
 import com.kakao.sdk.common.KakaoSdk;
@@ -33,6 +34,13 @@ public class FlagClass extends Application {
     private static int thenumberoffooddeliverdrink;
     private JSONArray howcookpage;
     private JSONArray howcookpagedrink;
+    private JSONArray outfoodmealindex;
+    private JSONArray outfooddrinkindex;
+    private static Bitmap adimage1;
+    private static Bitmap adimage2;
+    private static Bitmap adimage3;
+    private static Bitmap adimage4;
+    private static Bitmap adimage5;
 
 
     //카카오톡로그인연동
@@ -68,6 +76,13 @@ public class FlagClass extends Application {
         thenumberoffooddeliverdrink=0;
         howcookpage = new JSONArray();
         howcookpagedrink = new JSONArray();
+        outfoodmealindex = new JSONArray();
+        outfooddrinkindex = new JSONArray();
+        adimage1 = null;
+        adimage2 = null;
+        adimage3 = null;
+        adimage4 = null;
+        adimage5 = null;
 //카카오톡 로그인 연동
         instance = this;
         loginflag = 0;
@@ -100,7 +115,14 @@ public class FlagClass extends Application {
         thenumberoffooddeliverdrink=0;
         howcookpage = new JSONArray();
         howcookpagedrink = new JSONArray();
+        outfoodmealindex = new JSONArray();
+        outfooddrinkindex = new JSONArray();
         loginflag = 0;
+        adimage1 = null;
+        adimage2 = null;
+        adimage3 = null;
+        adimage4 = null;
+        adimage5 = null;
     }
 
     public void setVersion(String flag){this.version = flag;}
@@ -122,7 +144,14 @@ public class FlagClass extends Application {
     public void setThenumberoffooddeliverdrink(int flag) {this.thenumberoffooddeliverdrink = flag;}
     public void setHowcookpage(JSONArray flag) {this.howcookpage = flag;}
     public void setHowcookpagedrink(JSONArray flag) {this.howcookpagedrink = flag;}
+    public void setOutfoodmealindex(JSONArray flag) {this.outfoodmealindex = flag;}
+    public void setOutfooddrinkindex(JSONArray flag) {this.outfooddrinkindex = flag;}
     public void setLoginflag(int flag) { this.loginflag = flag;}
+    public void setAdimage1(Bitmap flag){this.adimage1 = flag;}
+    public void setAdimage2(Bitmap flag){this.adimage2 = flag;}
+    public void setAdimage3(Bitmap flag){this.adimage3 = flag;}
+    public void setAdimage4(Bitmap flag){this.adimage4 = flag;}
+    public void setAdimage5(Bitmap flag){this.adimage5 = flag;}
 
     public String getVersion(){return version;}
     public int getWhere() {return where;}
@@ -143,7 +172,14 @@ public class FlagClass extends Application {
     public int getThenumberoffooddeliverdrink(){return thenumberoffooddeliverdrink;}
     public JSONArray getHowcookpage(){ return howcookpage;}
     public JSONArray getHowcookpagedrink(){ return howcookpagedrink;}
+    public JSONArray getOutfoodmealindex(){return outfoodmealindex;}
+    public JSONArray getOutfooddrinkindex(){return outfooddrinkindex;}
     public int getLoginflag(){return loginflag;}
+    public Bitmap getAdimage1(){return adimage1;}
+    public Bitmap getAdimage2(){return adimage2;}
+    public Bitmap getAdimage3(){return adimage3;}
+    public Bitmap getAdimage4(){return adimage4;}
+    public Bitmap getAdimage5(){return adimage5;}
 
 
 

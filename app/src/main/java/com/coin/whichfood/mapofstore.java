@@ -5,8 +5,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
@@ -24,11 +22,8 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.naver.maps.geometry.LatLng;
-import com.naver.maps.map.CameraAnimation;
 import com.naver.maps.map.CameraPosition;
-import com.naver.maps.map.CameraUpdate;
 import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.MapView;
@@ -37,16 +32,15 @@ import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.UiSettings;
 import com.naver.maps.map.overlay.LocationOverlay;
 import com.naver.maps.map.overlay.Marker;
+import com.naver.maps.map.overlay.Overlay;
 import com.naver.maps.map.overlay.OverlayImage;
 import com.naver.maps.map.util.FusedLocationSource;
-import com.naver.maps.map.widget.ZoomControlView;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -54,7 +48,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -80,7 +73,7 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
     protected LocationManager locationManager;
     private ExecutorService executorService = Executors.newFixedThreadPool(1);
     private JSONArray jsonArray;
-
+    private ImageContol blobtoBitmap;
 
 
     public boolean hasPermissions(Context context, String... permissions) {
@@ -354,9 +347,15 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                             }else if(custom.charAt(0)=='2'){
                                 Marker marker = new Marker();
                                 marker.setPosition(new LatLng(storelatitudedouble, storelongitudedouble));
+                                if(storejson.isNull("storeimage")){
+                                    marker.setIcon(OverlayImage.fromResource(R.drawable.ic_storeimage));
+                                }else{
+                                    blobtoBitmap = new ImageContol();
+                                    marker.setIcon(OverlayImage.fromBitmap(blobtoBitmap.getImage(storejson.getString("storeimage"))));
+                                }
                                 marker.setCaptionText(storejson.getString("storename"));
-                                marker.setWidth(75);
-                                marker.setHeight(75);
+                                marker.setWidth(100);
+                                marker.setHeight(100);
                                 marker.setFlat(true);
                                 markers.add(marker);
                             }else if(custom.charAt(0)=='3'){
@@ -364,9 +363,16 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                                 marker.setPosition(new LatLng(storelatitudedouble, storelongitudedouble));
                                 marker.setIcon(OverlayImage.fromResource(R.drawable.ic_storeimage));
                                 marker.setCaptionText(storejson.getString("storename"));
-                                marker.setWidth(100);
-                                marker.setHeight(100);
+                                marker.setWidth(130);
+                                marker.setHeight(130);
                                 marker.setFlat(true);
+                                marker.setOnClickListener(new Overlay.OnClickListener() {
+                                    @Override
+                                    public boolean onClick(@NonNull @NotNull Overlay overlay) {
+
+                                        return false;
+                                    }
+                                });
                                 markers.add(marker);
                             }else{
                                 Marker marker = new Marker();
@@ -405,6 +411,7 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
             naverMap.setLocationSource(locationSource);
             naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
             CameraPosition cameraPosition = new CameraPosition(new LatLng(latitude, longitude), 16,0, 0);
+            Log.d(TAG,"mylocation: 위도:"+latitude+",경도:"+longitude);
             naverMap.setCameraPosition(cameraPosition);
 
 

@@ -26,4 +26,8 @@
 <!--        \n4. 지도에 표출된 이미지 및 클릭 정보 확인-->
 
     </string>
+    <string name="pickmeal">식사음식 메뉴 선택</string>
+    <string name="pickdrink">안주음식 메뉴 선택</string>
+    <string name="goregister">통의 및 제휴 등록하기</string>
+
 </resources>

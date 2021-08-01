@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         activity = MainActivity.this;
         final FlagClass flag = (FlagClass)getApplication();
 //버전체크=========================================================
-        if(!flag.getVersion().equals("5")){
+        if(!flag.getVersion().equals("6")){
             Intent popup = new Intent(this,PopUp.class);
             startActivity(popup);
         }

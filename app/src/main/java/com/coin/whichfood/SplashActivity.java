@@ -34,7 +34,7 @@ public class SplashActivity extends Activity {
         String serverdata;
         try {
             serverdata = new SplashActivity.VersionCheck().execute(FoodIP).get();
-            Log.d("TAG", "serverdata" + serverdata);
+            Log.d("TAG", "serverinit" + serverdata);
             JSONObject jsonObject = new JSONObject(serverdata);
             flag.setVersion(jsonObject.getString("version"));
             JSONArray jsonArray = jsonObject.getJSONArray("thenumberoffood");
@@ -47,7 +47,9 @@ public class SplashActivity extends Activity {
             flag.setThenumberoffooddeliverdrink(Integer.parseInt(thenumberoffood.getString("deliverdrink")));
             flag.setHowcookpage(jsonObject.getJSONArray("howcook"));
             flag.setHowcookpagedrink(jsonObject.getJSONArray("howcookdrink"));
-            Log.d("TAG", "serverdata"+flag.getThenumberoffoodhomemeal()+ flag.getThenumberoffoodoutdrink()+ flag.getHowcookpage().getJSONObject(0).getString("1"));
+            flag.setOutfoodmealindex(jsonObject.getJSONArray("outfoodmeal"));
+            flag.setOutfooddrinkindex(jsonObject.getJSONArray("outfooddrink"));
+            Log.d("TAG", "serverdata"+flag.getThenumberoffoodhomemeal()+ flag.getThenumberoffoodoutdrink() + flag.getOutfoodmealindex().getJSONObject(0).getString("1"));
 
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -63,10 +65,10 @@ public class SplashActivity extends Activity {
         hendler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                finish();
                 startActivity(startmain);
+                finish();
             }
-        }, 1500);
+        }, 500);
     }
 
     static class VersionCheck extends AsyncTask<String, Void, String> {
