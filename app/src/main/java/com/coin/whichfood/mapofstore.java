@@ -361,7 +361,12 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                             }else if(custom.charAt(0)=='3'){
                                 Marker marker = new Marker();
                                 marker.setPosition(new LatLng(storelatitudedouble, storelongitudedouble));
-                                marker.setIcon(OverlayImage.fromResource(R.drawable.ic_storeimage));
+                                if(storejson.isNull("storeimage")){
+                                    marker.setIcon(OverlayImage.fromResource(R.drawable.ic_storeimage));
+                                }else{
+                                    blobtoBitmap = new ImageContol();
+                                    marker.setIcon(OverlayImage.fromBitmap(blobtoBitmap.getImage(storejson.getString("storeimage"))));
+                                }
                                 marker.setCaptionText(storejson.getString("storename"));
                                 marker.setWidth(130);
                                 marker.setHeight(130);
