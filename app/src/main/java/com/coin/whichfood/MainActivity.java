@@ -71,6 +71,35 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         activity = MainActivity.this;
         final FlagClass flag = (FlagClass)getApplication();
+        Intent get_registervalue = getIntent();
+
+        if(get_registervalue.getIntExtra("Success", 0)==1){
+            Toast.makeText(getApplicationContext(),"입력하신 정보로 제휴 등록이 완료되셨습니다.",Toast.LENGTH_LONG).show();
+            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+            dlg.setTitle("제휴 서비스 등록 완료"); //제목
+            dlg.setMessage("입력하신 정보로 제휴 등록이 완료되셨습니다.");
+            dlg.setIcon(R.drawable.ic_storeimage);
+            dlg.setPositiveButton("확인",new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            dlg.show();
+        }else if(get_registervalue.getIntExtra("Fail", 0)==1){
+            Toast.makeText(getApplicationContext(),"제휴 등록에 실패하였습니다. 네트워크, 입력하신 정보를 다시 한번 확인바랍니다.",Toast.LENGTH_LONG).show();
+            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+            dlg.setTitle("제휴 서비스 등록 실패"); //제목
+            dlg.setMessage("제휴 등록에 실패하였습니다. \n네트워크, 입력하신 정보를 다시 한번 확인바랍니다.");
+            dlg.setIcon(R.drawable.ic_storeimage);
+            dlg.setPositiveButton("확인",new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            dlg.show();
+        }else{
+
+        }
 //버전체크=========================================================
         if(!flag.getVersion().equals("6")){
             Intent popup = new Intent(this,PopUp.class);
