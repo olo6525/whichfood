@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Geocoder;
 import android.location.Location;
@@ -38,6 +39,7 @@ import com.naver.maps.map.util.FusedLocationSource;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -258,6 +260,7 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                         if(flag.getKind() == 1) {
                             if (flag.getFindstore() == 1) {
                                 postParameters = "purpose=findstore&kind=meal&food=meal" + food1 + "&latitude=" + latitude + "&longitude=" + longitude;
+                                int tempfood = food1;
                                 Log.d(TAG, "ㅇㅇ1"+postParameters);
                                foodnumber = "meal"+food1;
                             } else if (flag.getFindstore() == 2) {
@@ -332,6 +335,7 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                             String storelatitudestring = storejson.getString("latitude");
                             String storelongitudestring = storejson.getString("longitude");
                             String custom = storejson.getString(foodnumber);
+                            String foodnum = foodnumber;
                             double storelatitudedouble = Double.parseDouble(storelatitudestring);
                             double storelongitudedouble = Double.parseDouble(storelongitudestring);
                             Log.d(TAG, "ㅇㅇ : " + storelatitudestring + "," + storelongitudestring+","+custom);
@@ -354,6 +358,20 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                                     marker.setIcon(OverlayImage.fromBitmap(blobtoBitmap.getImage(storejson.getString("storeimage"))));
                                 }
                                 marker.setCaptionText(storejson.getString("storename"));
+                                marker.setOnClickListener(new Overlay.OnClickListener() {
+                                    @Override
+                                    public boolean onClick(@NonNull @NotNull Overlay overlay) {
+                                        Intent adintent = new Intent(mapofstore.this,ShowStoreAd.class);
+                                        try {
+                                            adintent.putExtra("storenum",storejson.getString("storenum"));
+                                            adintent.putExtra("foodnum",foodnum);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                        startActivity(adintent);
+                                        return true;
+                                    }
+                                });
                                 marker.setWidth(100);
                                 marker.setHeight(100);
                                 marker.setFlat(true);
@@ -368,6 +386,20 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                                     marker.setIcon(OverlayImage.fromBitmap(blobtoBitmap.getImage(storejson.getString("storeimage"))));
                                 }
                                 marker.setCaptionText(storejson.getString("storename"));
+                                marker.setOnClickListener(new Overlay.OnClickListener() {
+                                    @Override
+                                    public boolean onClick(@NonNull @NotNull Overlay overlay) {
+                                        Intent adintent = new Intent(mapofstore.this,ShowStoreAd.class);
+                                        try {
+                                            adintent.putExtra("storenum",storejson.getString("storenum"));
+                                            adintent.putExtra("foodnum",foodnum);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                        startActivity(adintent);
+                                        return true;
+                                    }
+                                });
                                 marker.setWidth(130);
                                 marker.setHeight(130);
                                 marker.setFlat(true);

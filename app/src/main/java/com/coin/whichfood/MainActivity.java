@@ -100,6 +100,17 @@ public class MainActivity extends AppCompatActivity {
         }else{
 
         }
+//테스트 기능 버튼 =============================================================================================
+        Button testbutton1 = (Button)findViewById(R.id.testbutton1);
+        Button testbutton2 = (Button)findViewById(R.id.testbutton2);
+        testbutton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,ShowStoreAd.class);
+                startActivity(intent);
+            }
+        });
+//테스트 기능 버튼 =============================================================================================
 //버전체크=========================================================
         if(!flag.getVersion().equals("6")){
             Intent popup = new Intent(this,PopUp.class);
