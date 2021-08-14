@@ -29,7 +29,7 @@ public class ShowStoreAd extends FragmentActivity {
     private SlideViewFlagment slideViewFlagment;
     private FragmentTransaction fragmentTransaction;
     private ExecutorService executorService = Executors.newFixedThreadPool(1);
-    private String baseurl="https://uristory.com/home/ubuntu";
+    private String baseurl="https://uristory.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +50,8 @@ public class ShowStoreAd extends FragmentActivity {
             public void run() {
                 try{
                     for(int i = 1 ; i < 6; i++) {
-                        urlArrayList.add(i, baseurl + "/whichfoodadimages/" + stotrnum + "/" + foodnum + "/"+Integer.toString(i)+".jpg");
-
+                       // urlArrayList.add(i, baseurl + "/whichfoodadimages/" + stotrnum + "/" + foodnum + "/"+Integer.toString(i)+".jpg");
+                        urlArrayList.add(i-1, "https://uristory.com/whichfoodadimages/1234/1/1.jpg");
                     }
                     adimages.putStringArrayList("adimages",urlArrayList);
                     fragment.setArguments(adimages);

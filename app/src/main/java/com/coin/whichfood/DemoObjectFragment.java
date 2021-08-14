@@ -34,9 +34,8 @@ public class DemoObjectFragment extends Fragment {
     private Bitmap adimage;
     ImageView adimages;
     ArrayList<Bitmap> bitmapArrayList = new ArrayList<>();
-    Bundle args = getArguments();
-    ArrayList<String> images = new ArrayList<>();
 
+    ArrayList<String> images = new ArrayList<>();
 
 
 
@@ -45,11 +44,13 @@ public class DemoObjectFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ViewGroup adview = (ViewGroup)inflater.inflate(R.layout.slidepages, container,false);
-        images = args.getStringArrayList("images");
+        Bundle args = getArguments();
         Thread runnablthread = new Thread(){
 
             @Override
             public void run() {
+                images = args.getStringArrayList("adimages");
+                Log.d(TAG,"adimage path:"+args.getStringArrayList("adimages").get(0));
                 try{
                     for(int i = 0 ; i < 5; i++) {
                         URL url = new URL(images.get(i));
@@ -72,6 +73,7 @@ public class DemoObjectFragment extends Fragment {
                 }
             }
         };
+
         runnablthread.start();
         try {
             runnablthread.join();
