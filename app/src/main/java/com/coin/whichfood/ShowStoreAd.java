@@ -86,7 +86,7 @@ public class ShowStoreAd extends FragmentActivity {
             Fragment fragment = new SlideViewFlagment();
             Bundle args = new Bundle();
             for(int i =1 ; i < 6; i++) {
-                imagepaths.add(imagepath.getStringExtra("path") + "1234/1/" + i+".jpg");
+                imagepaths.add(imagepath.getStringExtra("path") + i+".jpg");
             }
             args.putStringArrayList("path",imagepaths);
             switch (position){

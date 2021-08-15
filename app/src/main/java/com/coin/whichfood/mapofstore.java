@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
@@ -75,7 +77,7 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
     protected LocationManager locationManager;
     private ExecutorService executorService = Executors.newFixedThreadPool(1);
     private JSONArray jsonArray;
-    private ImageContol blobtoBitmap;
+
 
 
     public boolean hasPermissions(Context context, String... permissions) {
@@ -254,13 +256,12 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
-                    String foodnumber = null;
+                    String foodnumber = "";
                     try {
                         String postParameters = new String();
                         if(flag.getKind() == 1) {
                             if (flag.getFindstore() == 1) {
                                 postParameters = "purpose=findstore&kind=meal&food=meal" + food1 + "&latitude=" + latitude + "&longitude=" + longitude;
-                                int tempfood = food1;
                                 Log.d(TAG, "ㅇㅇ1"+postParameters);
                                foodnumber = "meal"+food1;
                             } else if (flag.getFindstore() == 2) {
@@ -279,7 +280,7 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                                 foodnumber = "drink"+food2;
                             }
                         }
-                        URL url = new URL("https://uristory.com/whichfoodstorelist.php");
+                        URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
                         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
 
@@ -334,6 +335,7 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                             JSONObject storejson = jsonArray.getJSONObject(i);
                             String storelatitudestring = storejson.getString("latitude");
                             String storelongitudestring = storejson.getString("longitude");
+                            String storenum = storejson.getString("storenum");
                             String custom = storejson.getString(foodnumber);
                             String foodnum = foodnumber;
                             double storelatitudedouble = Double.parseDouble(storelatitudestring);
@@ -354,17 +356,43 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                                 if(storejson.isNull("storeimage")){
                                     marker.setIcon(OverlayImage.fromResource(R.drawable.ic_storeimage));
                                 }else{
-                                    blobtoBitmap = new ImageContol();
-                                    marker.setIcon(OverlayImage.fromBitmap(blobtoBitmap.getImage(storejson.getString("storeimage"))));
+                                    String finalFoodnumber = foodnumber;
+                                    Thread runnablthread = new Thread(){
+                                        @Override
+                                        public void run() {
+                                            try{
+                                                URL url = new URL(flag.getServers().get(0)+"whichfoodadimages/"+storenum+"/"+ finalFoodnumber+"/0.jpg");
+                                                Log.d(TAG,"adimage line1");
+                                                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                                                conn.setDoInput(true);
+                                                Log.d(TAG,"adimage line2");
+                                                conn.connect();
+                                                Log.d(TAG, "adimage line3");
+                                                InputStream is = conn.getInputStream();
+                                                Bitmap bitmap = BitmapFactory.decodeStream(is);
+                                                Log.d(TAG, "adimage" + bitmap);
+                                                marker.setIcon(OverlayImage.fromBitmap(bitmap));
+
+                                            }catch (Exception e){
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    };
+                                    runnablthread.start();
+                                    try {
+                                        runnablthread.join();
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                                 marker.setCaptionText(storejson.getString("storename"));
+                                String finalFoodnumber1 = foodnumber;
                                 marker.setOnClickListener(new Overlay.OnClickListener() {
                                     @Override
                                     public boolean onClick(@NonNull @NotNull Overlay overlay) {
                                         Intent adintent = new Intent(mapofstore.this,ShowStoreAd.class);
                                         try {
-                                            adintent.putExtra("storenum",storejson.getString("storenum"));
-                                            adintent.putExtra("foodnum",foodnum);
+                                            adintent.putExtra("path",flag.getServers().get(0)+"whichfoodadimages/"+storejson.getString("storenum")+"/"+ finalFoodnumber1+"/");
                                         } catch (Exception e) {
                                             e.printStackTrace();
                                         }
@@ -382,8 +410,7 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                                 if(storejson.isNull("storeimage")){
                                     marker.setIcon(OverlayImage.fromResource(R.drawable.ic_storeimage));
                                 }else{
-                                    blobtoBitmap = new ImageContol();
-                                    marker.setIcon(OverlayImage.fromBitmap(blobtoBitmap.getImage(storejson.getString("storeimage"))));
+
                                 }
                                 marker.setCaptionText(storejson.getString("storename"));
                                 marker.setOnClickListener(new Overlay.OnClickListener() {

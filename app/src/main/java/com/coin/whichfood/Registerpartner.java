@@ -50,7 +50,7 @@ public class Registerpartner extends Activity {
     private ArrayList<String> imagepath = new ArrayList<>();
     private ArrayList<String> imagename = new ArrayList<>();
     private int imagecount=0;
-    private String pickitem = "";
+    private String pickfood = "";
     private String pickindex = "";
     private ExecutorService executorService = Executors.newFixedThreadPool(2);
 
@@ -141,7 +141,9 @@ public class Registerpartner extends Activity {
                         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView parent, View view, int position, long id) {
-                                Log.d(TAG,"메뉴 선택된거 보기 : "+position+",,"+spinnerlist.get(position));
+                                pickfood = "meal";
+                                pickindex = Integer.toString(position+1);
+                                Log.d(TAG,"메뉴 선택된거 보기 : "+pickindex+",,"+pickfood);
                             }
 
                             @Override
@@ -164,7 +166,9 @@ public class Registerpartner extends Activity {
                         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView parent, View view, int position, long id) {
-                                Log.d(TAG,"메뉴 선택된거 보기 : "+position+",,"+spinnerlist.get(position));
+                                pickfood = "drink";
+                                pickindex = Integer.toString(position+1);
+                                Log.d(TAG,"메뉴 선택된거 보기 : "+pickindex+",,"+pickfood);
                             }
 
                             @Override
@@ -223,13 +227,13 @@ public class Registerpartner extends Activity {
                                     outputStream.writeBytes("Content-Disposition: form-data; name=\"purpose\"\r\n\r\nregisterpartner");
                                     outputStream.writeBytes("\r\n--" + boundary + "\r\n");
                                     outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                                    outputStream.writeBytes("Content-Disposition: form-data; name=\"storenum\"\r\n\r\n1234");
+                                    outputStream.writeBytes("Content-Disposition: form-data; name=\"storenum\"\r\n\r\n123");
                                     outputStream.writeBytes("\r\n--" + boundary + "\r\n");
                                     outputStream.writeBytes("\r\n--" + boundary + "\r\n");
                                     outputStream.writeBytes("Content-Disposition: form-data; name=\"adimagecount\"\r\n\r\n"+imagepath.size());
                                     outputStream.writeBytes("\r\n--" + boundary + "\r\n");
                                     outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                                    outputStream.writeBytes("Content-Disposition: form-data; name=\"foodnum\"\r\n\r\n"+1);
+                                    outputStream.writeBytes("Content-Disposition: form-data; name=\"foodnum\"\r\n\r\n"+pickfood+pickindex);
                                     outputStream.writeBytes("\r\n--" + boundary + "\r\n");
 
 

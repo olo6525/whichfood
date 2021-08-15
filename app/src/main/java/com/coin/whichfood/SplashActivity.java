@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class SplashActivity extends Activity {
@@ -31,6 +32,7 @@ public class SplashActivity extends Activity {
         final FlagClass flag = (FlagClass)getApplication();
         flag.Init();
         versionCheck = new VersionCheck();
+        ArrayList<String> subservers = new ArrayList<>();
         String serverdata;
         try {
             serverdata = new SplashActivity.VersionCheck().execute(FoodIP).get();
@@ -49,7 +51,11 @@ public class SplashActivity extends Activity {
             flag.setHowcookpagedrink(jsonObject.getJSONArray("howcookdrink"));
             flag.setOutfoodmealindex(jsonObject.getJSONArray("outfoodmeal"));
             flag.setOutfooddrinkindex(jsonObject.getJSONArray("outfooddrink"));
-            Log.d("TAG", "serverdata"+flag.getThenumberoffoodhomemeal()+ flag.getThenumberoffoodoutdrink() + flag.getOutfoodmealindex().getJSONObject(0).getString("1"));
+            for(int i=0; i<5; i++){
+                subservers.add(jsonObject.getString("server"+Integer.toString(i+1)));
+            }
+            flag.setServers(subservers);
+            Log.d("TAG", "serverdata"+flag.getThenumberoffoodhomemeal()+ flag.getThenumberoffoodoutdrink() + flag.getOutfoodmealindex().getJSONObject(0).getString("1") + flag.getServers().get(0));
 
         } catch (ExecutionException e) {
             e.printStackTrace();
