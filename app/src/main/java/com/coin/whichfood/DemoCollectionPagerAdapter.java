@@ -10,6 +10,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 // Since this is an object collection, use a FragmentStatePagerAdapter,
 // and NOT a FragmentPagerAdapter.
 public class DemoCollectionPagerAdapter extends FragmentStatePagerAdapter {
+
     public DemoCollectionPagerAdapter(FragmentManager fm) {
         super(fm,  BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
     }
@@ -18,7 +19,7 @@ public class DemoCollectionPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int i) {
-        Fragment fragment = new DemoObjectFragment();
+        Fragment fragment = new SlideViewFlagment();
         Bundle args = new Bundle();
         switch (i){
             case 0:

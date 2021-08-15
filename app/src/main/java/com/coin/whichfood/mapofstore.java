@@ -389,14 +389,6 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                                 marker.setOnClickListener(new Overlay.OnClickListener() {
                                     @Override
                                     public boolean onClick(@NonNull @NotNull Overlay overlay) {
-                                        Intent adintent = new Intent(mapofstore.this,ShowStoreAd.class);
-                                        try {
-                                            adintent.putExtra("storenum",storejson.getString("storenum"));
-                                            adintent.putExtra("foodnum",foodnum);
-                                        } catch (Exception e) {
-                                            e.printStackTrace();
-                                        }
-                                        startActivity(adintent);
                                         return true;
                                     }
                                 });

@@ -16,6 +16,13 @@
             android:orientation="vertical"
             android:background="@color/colorWhite">
 
+            <LinearLayout
+                android:id="@+id/fragmantlayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone"></LinearLayout>
+
             <com.google.android.gms.ads.AdView
                 android:id="@+id/adView"
                 android:layout_width="wrap_content"

@@ -3,6 +3,8 @@ package com.coin.whichfood;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.app.Activity;
@@ -19,6 +21,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -62,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public static Activity activity;
 
+    LinearLayout fragmentlayout;
 
 
 
@@ -72,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         activity = MainActivity.this;
         final FlagClass flag = (FlagClass)getApplication();
         Intent get_registervalue = getIntent();
-
+        fragmentlayout = (LinearLayout)findViewById(R.id.fragmantlayout);
         if(get_registervalue.getIntExtra("Success", 0)==1){
             Toast.makeText(getApplicationContext(),"입력하신 정보로 제휴 등록이 완료되셨습니다.",Toast.LENGTH_LONG).show();
             AlertDialog.Builder dlg = new AlertDialog.Builder(this);
@@ -107,7 +111,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,ShowStoreAd.class);
+                intent.putExtra("path","https://uristory.com/whichfoodadimages/");
                 startActivity(intent);
+
             }
         });
 //테스트 기능 버튼 =============================================================================================
@@ -274,6 +280,8 @@ public class MainActivity extends AppCompatActivity {
         if(System.currentTimeMillis()-time>=2000){
             time=System.currentTimeMillis();
             Toast.makeText(getApplicationContext(),"뒤로 버튼을 한번 더 누르면 종료합니다.",Toast.LENGTH_SHORT).show();
+            fragmentlayout = (LinearLayout)findViewById(R.id.fragmantlayout);
+            fragmentlayout.setVisibility(View.GONE);
         }else if(System.currentTimeMillis()-time<2000){
 
             if (mInterstitialAd.isLoaded()) {

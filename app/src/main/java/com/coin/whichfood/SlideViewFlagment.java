@@ -1,9 +1,13 @@
 package com.coin.whichfood;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,30 +19,96 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
+
 public class SlideViewFlagment extends Fragment {
 
     // When requested, this adapter returns a DemoObjectFragment,
     // representing an object in the collection.
-    DemoCollectionPagerAdapter demoCollectionPagerAdapter;
-    ViewPager viewPager;
+
+    private Bitmap adimage;
+    ImageView adimages;
+    ArrayList<Bitmap> bitmapArrayList = new ArrayList<>();
+    ArrayList<String> images = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.storead, container, false);
+        ViewGroup adview = (ViewGroup) inflater.inflate(R.layout.slidepages, container, false);
+        adimages = (ImageView)adview.findViewById(R.id.adimage);
+        Bundle args = getArguments();
+        Log.d(TAG,"adimagepath  : "+args.getStringArrayList("path").get(0));
+        images = args.getStringArrayList("path");
+
+        Thread runnablthread = new Thread(){
+            @Override
+            public void run() {
+                try{
+                    URL url = new URL(images.get(args.getInt("page")));
+                    Log.d(TAG,"adimage line1");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setDoInput(true);
+                    Log.d(TAG,"adimage line2");
+                    conn.connect();
+                    Log.d(TAG, "adimage line3");
+                    InputStream is = conn.getInputStream();
+                    Bitmap bitmap = BitmapFactory.decodeStream(is);
+                    Log.d(TAG, "adimage" + bitmap);
+                    bitmapArrayList.add(bitmap);
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        };
+        runnablthread.start();
+        try {
+            runnablthread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        if(args.getInt("page") == 0 && !bitmapArrayList.isEmpty()){
+            adimages.setImageBitmap(bitmapArrayList.get(0));
+            bitmapArrayList.clear();
+        }else if (args.getInt("page") == 1 && !bitmapArrayList.isEmpty()){
+            adimages.setImageBitmap(bitmapArrayList.get(0));
+            bitmapArrayList.clear();
+        }else if (args.getInt("page") == 2 && !bitmapArrayList.isEmpty()){
+            adimages.setImageBitmap(bitmapArrayList.get(0));
+            bitmapArrayList.clear();
+        }else if (args.getInt("page") == 3 && !bitmapArrayList.isEmpty()){
+            adimages.setImageBitmap(bitmapArrayList.get(0));
+            bitmapArrayList.clear();
+        }else if (args.getInt("page")== 4 && !bitmapArrayList.isEmpty()){
+            adimages.setImageBitmap(bitmapArrayList.get(0));
+            bitmapArrayList.clear();
+        }
+
+
+        return adview;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        demoCollectionPagerAdapter = new DemoCollectionPagerAdapter(getChildFragmentManager());
-        viewPager = view.findViewById(R.id.pager);
-       viewPager.setAdapter(demoCollectionPagerAdapter);
-       TabLayout tabLayout = view.findViewById(R.id.tab_layout);
-        tabLayout.setupWithViewPager(viewPager);
-   }
 
+
+
+    }
+
+//===========================================================================================================================================
+//===========================================================================================================================================
+//===========================================================================================================================================
+
+    //===========================================================================================================================================
+    //===========================================================================================================================================
+    //===========================================================================================================================================
 }
-
 
