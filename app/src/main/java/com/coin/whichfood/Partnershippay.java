@@ -26,7 +26,7 @@ public class Partnershippay extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.partnership_choice);
-
+        checkpermission();
         Button paytest = (Button)findViewById(R.id.paytest);
         billingService = new BillingService(this);
 

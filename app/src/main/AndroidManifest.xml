@@ -43,7 +43,8 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity"
+            />
         <activity android:name=".PopUp" android:theme="@android:style/Theme.Dialog"/>
         <activity android:name=".WhatKindFood"/>
         <activity android:name=".TwoFood"/>

@@ -32,17 +32,17 @@
                 app:adSize="BANNER"
                 app:adUnitId="ca-app-pub-8231620186256321/7210705835"></com.google.android.gms.ads.AdView>
 
-            <Button
-                android:id="@+id/testbutton1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
+<!--            <Button-->
+<!--                android:id="@+id/testbutton1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button" />-->
 
-            <Button
-                android:id="@+id/testbutton2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button" />
+<!--            <Button-->
+<!--                android:id="@+id/testbutton2"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -63,7 +63,7 @@
                         android:layout_weight="2"
                         android:layout_gravity="right"
                         android:scaleType="fitXY"
-                        android:src="@drawable/partnershipbutton"
+                        android:src="@drawable/ic_partnershipbutton"
                         android:visibility="visible" />
 
                     <Space
@@ -76,10 +76,10 @@
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0px"
                         android:layout_height="wrap_content"
-                        android:layout_weight="3"
+                        android:layout_weight="2"
                         android:layout_gravity="right"
                         android:scaleType="fitXY"
-                        android:src="@drawable/kakao_login_medium_narrow"
+                        android:src="@drawable/ic_loginbutton"
                         android:visibility="visible" />
                 </LinearLayout>
 
@@ -94,10 +94,10 @@
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0px"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.7"
                         android:layout_gravity="right"
                         android:scaleType="fitXY"
-                        android:src="@drawable/partnershipbutton"
+                        android:src="@drawable/ic_partnershipbutton"
                         android:visibility="gone" />
 
                     <ImageButton
@@ -108,7 +108,7 @@
                         android:layout_weight="1"
                         android:layout_gravity="right"
                         android:scaleType="fitXY"
-                        android:src="@drawable/myinfo"
+                        android:src="@drawable/ic_myinfo"
                         android:visibility="gone" />
                     <ImageButton
                         android:id="@+id/logout"
@@ -118,7 +118,7 @@
                         android:layout_weight="1"
                         android:layout_gravity="right"
                         android:scaleType="fitXY"
-                        android:src="@drawable/kakao_logout_medium_narrow"
+                        android:src="@drawable/ic_logoutbutton"
                         android:visibility="gone" />
                 </LinearLayout>
 

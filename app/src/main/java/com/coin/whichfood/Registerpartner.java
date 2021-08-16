@@ -14,6 +14,8 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -45,7 +47,8 @@ public class Registerpartner extends Activity {
     ImageView adpicture3;
     ImageView adpicture4;
     ImageView adpicture5;
-    Button register;
+    ImageButton register;
+    EditText storenumedit;
     private String storenum = "";
     private ArrayList<String> imagepath = new ArrayList<>();
     private ArrayList<String> imagename = new ArrayList<>();
@@ -59,6 +62,12 @@ public class Registerpartner extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registerpartner);
+//매장인허가번호 입력===========================================================================================
+        storenumedit = (EditText)findViewById(R.id.storenum);
+
+
+
+// 매장인허가번호 입력  끝===========================================================================================
 //지도 표출 이미지, 홍보이미지 등록 ============================================================================
         storeimage = (ImageView) findViewById(R.id.storeimage);
         storeimage.setOnClickListener(new View.OnClickListener() {
@@ -70,50 +79,72 @@ public class Registerpartner extends Activity {
             }
         });
         adpicture1 = (ImageView)findViewById(R.id.adpicure1);
-        adpicture1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
-                startActivityForResult(intent,1);
-            }
-        });
-        adpicture2 = (ImageView)findViewById(R.id.adpicure2);
-        adpicture2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
-                startActivityForResult(intent,2);
-            }
-        });
-        adpicture3 = (ImageView)findViewById(R.id.adpicure3);
-        adpicture3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
-                startActivityForResult(intent,3);
-            }
-        });
-        adpicture4 = (ImageView)findViewById(R.id.adpicure4);
-        adpicture4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
-                startActivityForResult(intent,4);
-            }
-        });
-        adpicture5 = (ImageView)findViewById(R.id.adpicure5);
-        adpicture5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
-                startActivityForResult(intent,5);
-            }
-        });
+
+            adpicture1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(!imagepath.isEmpty()) {
+                        Intent intent = new Intent(Intent.ACTION_PICK);
+                        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                        startActivityForResult(intent, 1);
+                    }else{
+                        Toast.makeText(getApplicationContext(),"지도표출 이미지를 업로드 해주시길 바랍니다.",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+            adpicture2 = (ImageView) findViewById(R.id.adpicure2);
+            adpicture2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(!imagepath.isEmpty()) {
+                        Intent intent = new Intent(Intent.ACTION_PICK);
+                        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                        startActivityForResult(intent, 2);
+                    }else{
+                        Toast.makeText(getApplicationContext(),"지도표출 이미지를 업로드 해주시길 바랍니다.",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+            adpicture3 = (ImageView) findViewById(R.id.adpicure3);
+            adpicture3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(!imagepath.isEmpty()) {
+                        Intent intent = new Intent(Intent.ACTION_PICK);
+                        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                        startActivityForResult(intent, 3);
+                    }else{
+                        Toast.makeText(getApplicationContext(),"지도표출 이미지를 업로드 해주시길 바랍니다.",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+            adpicture4 = (ImageView) findViewById(R.id.adpicure4);
+            adpicture4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(!imagepath.isEmpty()) {
+                        Intent intent = new Intent(Intent.ACTION_PICK);
+                        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                        startActivityForResult(intent, 4);
+                    }else{
+                        Toast.makeText(getApplicationContext(),"지도표출 이미지를 업로드 해주시길 바랍니다.",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+            adpicture5 = (ImageView) findViewById(R.id.adpicure5);
+            adpicture5.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(!imagepath.isEmpty()) {
+                        Intent intent = new Intent(Intent.ACTION_PICK);
+                        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                        startActivityForResult(intent, 5);
+                    }else{
+                        Toast.makeText(getApplicationContext(),"지도표출 이미지를 업로드 해주시길 바랍니다.",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
 //지도 표출 이미지, 홍보이미지 등록 끝 ============================================================================
 //음식 등록 ===================================================================================================
         final FlagClass flagClass = (FlagClass)getApplication();
@@ -183,124 +214,125 @@ public class Registerpartner extends Activity {
             }
         });
 
-
-
 //음식 등록 끝 =================================================================================================
 
 
-        register = (Button)findViewById(R.id.register);
+        register = (ImageButton)findViewById(R.id.register);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder dlg = new AlertDialog.Builder(Registerpartner.this);
-                Intent intent1 = new Intent(Registerpartner.this, MainActivity.class);
-                dlg.setTitle("제휴 서비스 등록"); //제목
-                dlg.setMessage("입력하신 정보로 제휴 서비스 등록을 하시겠습니까?");
-                dlg.setIcon(R.drawable.ic_storeimage);
-                dlg.setPositiveButton("확인",new DialogInterface.OnClickListener(){
-                    public void onClick(DialogInterface dialog, int which) {
-                        Runnable runnable = new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    String lineend = "\r\n";
-                                    String twohyphens = "--";
-                                    String boundary = "*****";
-                                    int bytesRead, bytesAvailable, bufferSize;
-                                    byte[] buffer;
-                                    int maximagesize = 1*2048*1024;
-                                    String postParameters = "purpose=registerpartner";
-                                    URL url =  new URL("https://uristory.com/whichfoodstorelist.php");
-                                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                                    httpURLConnection.setDoInput(true);
-                                    httpURLConnection.setDoOutput(true);
-                                    httpURLConnection.setUseCaches(false);
-                                    httpURLConnection.setRequestMethod("POST");
-                                    httpURLConnection.setRequestProperty("Connection","Keep-Alive");
-                                    httpURLConnection.setRequestProperty("ENCTYPE","multipart/form-data");
-                                    httpURLConnection.setRequestProperty("Content-Type","multipart/form-data;boundary="+boundary);
+                storenum = storenumedit.getText().toString();
+                if (storenum != "" && pickfood != "" && pickindex != "" && !imagepath.isEmpty()) {
+                    AlertDialog.Builder dlg = new AlertDialog.Builder(Registerpartner.this);
+                    Intent intent1 = new Intent(Registerpartner.this, MainActivity.class);
+                    dlg.setTitle("제휴 서비스 등록"); //제목
+                    dlg.setMessage("입력하신 정보로 제휴 서비스 등록을 하시겠습니까?");
+                    dlg.setIcon(R.drawable.ic_storeimage);
+                    dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Runnable runnable = new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        String lineend = "\r\n";
+                                        String twohyphens = "--";
+                                        String boundary = "*****";
+                                        int bytesRead, bytesAvailable, bufferSize;
+                                        byte[] buffer;
+                                        int maximagesize = 1 * 2048 * 1024;
+                                        String postParameters = "purpose=registerpartner";
+                                        URL url = new URL("https://uristory.com/whichfoodstorelist.php");
+                                        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                                        httpURLConnection.setDoInput(true);
+                                        httpURLConnection.setDoOutput(true);
+                                        httpURLConnection.setUseCaches(false);
+                                        httpURLConnection.setRequestMethod("POST");
+                                        httpURLConnection.setRequestProperty("Connection", "Keep-Alive");
+                                        httpURLConnection.setRequestProperty("ENCTYPE", "multipart/form-data");
+                                        httpURLConnection.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
 
 
+                                        DataOutputStream outputStream = new DataOutputStream(httpURLConnection.getOutputStream());
+                                        outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                                        outputStream.writeBytes("Content-Disposition: form-data; name=\"purpose\"\r\n\r\nregisterpartner");
+                                        outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                                        outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                                        outputStream.writeBytes("Content-Disposition: form-data; name=\"storenum\"\r\n\r\n" + storenum);
+                                        outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                                        outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                                        outputStream.writeBytes("Content-Disposition: form-data; name=\"adimagecount\"\r\n\r\n" + imagepath.size());
+                                        outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                                        outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                                        outputStream.writeBytes("Content-Disposition: form-data; name=\"foodnum\"\r\n\r\n" + pickfood + pickindex);
+                                        outputStream.writeBytes("\r\n--" + boundary + "\r\n");
 
-                                    DataOutputStream outputStream = new DataOutputStream(httpURLConnection.getOutputStream());
-                                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                                    outputStream.writeBytes("Content-Disposition: form-data; name=\"purpose\"\r\n\r\nregisterpartner");
-                                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                                    outputStream.writeBytes("Content-Disposition: form-data; name=\"storenum\"\r\n\r\n123");
-                                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                                    outputStream.writeBytes("Content-Disposition: form-data; name=\"adimagecount\"\r\n\r\n"+imagepath.size());
-                                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                                    outputStream.writeBytes("Content-Disposition: form-data; name=\"foodnum\"\r\n\r\n"+pickfood+pickindex);
-                                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
 
-
-                                    if(imagepath.size() > 0){
-                                        for( int i = 0 ; i < imagepath.size(); i++){
-                                            String index = "";
-                                            File imagefile = new File(imagepath.get(i));
-                                            FileInputStream fileInputStream = new FileInputStream(imagefile);
-                                            DataOutputStream sendimage;
-                                            Log.d(TAG,"imagelocationregisterpartner:"+imagepath.size());
-                                            index = String.valueOf(i);
-                                            sendimage= new DataOutputStream(httpURLConnection.getOutputStream());
-                                            sendimage.writeBytes(twohyphens + boundary + lineend);
-                                            sendimage.writeBytes("Content-Disposition: form-data; name=\"uploaded_file"+index+"\";filename=\""+ imagepath.get(i) + "\"" + lineend);
-                                            sendimage.writeBytes(lineend);
-                                            Log.d(TAG,"imagelocationregisterpartner:Content-Disposition: form-data; name=\"uploaded_file"+index+"\";filename=\""+ imagepath.get(i) + "\"" + lineend);
-                                            bytesAvailable = fileInputStream.available();
-                                            bufferSize = Math.min(bytesAvailable, maximagesize);
-                                            buffer = new byte[bufferSize];
-                                            bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-
-                                            while (bytesRead > 0){
-                                                sendimage.write(buffer, 0, bufferSize);
+                                        if (imagepath.size() > 0) {
+                                            for (int i = 0; i < imagepath.size(); i++) {
+                                                String index = "";
+                                                File imagefile = new File(imagepath.get(i));
+                                                FileInputStream fileInputStream = new FileInputStream(imagefile);
+                                                DataOutputStream sendimage;
+                                                Log.d(TAG, "imagelocationregisterpartner:" + imagepath.size());
+                                                index = String.valueOf(i);
+                                                sendimage = new DataOutputStream(httpURLConnection.getOutputStream());
+                                                sendimage.writeBytes(twohyphens + boundary + lineend);
+                                                sendimage.writeBytes("Content-Disposition: form-data; name=\"uploaded_file" + index + "\";filename=\"" + imagepath.get(i) + "\"" + lineend);
+                                                sendimage.writeBytes(lineend);
+                                                Log.d(TAG, "imagelocationregisterpartner:Content-Disposition: form-data; name=\"uploaded_file" + index + "\";filename=\"" + imagepath.get(i) + "\"" + lineend);
                                                 bytesAvailable = fileInputStream.available();
                                                 bufferSize = Math.min(bytesAvailable, maximagesize);
-                                                bytesRead = fileInputStream.read(buffer,0, bufferSize);
+                                                buffer = new byte[bufferSize];
+                                                bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+
+                                                while (bytesRead > 0) {
+                                                    sendimage.write(buffer, 0, bufferSize);
+                                                    bytesAvailable = fileInputStream.available();
+                                                    bufferSize = Math.min(bytesAvailable, maximagesize);
+                                                    bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+                                                }
+                                                sendimage.writeBytes(lineend);
+                                                sendimage.writeBytes(twohyphens + boundary + twohyphens + lineend);
                                             }
-                                            sendimage.writeBytes(lineend);
-                                            sendimage.writeBytes(twohyphens + boundary + twohyphens + lineend);
                                         }
+
+                                        int responseStatusCode = httpURLConnection.getResponseCode();
+                                        Log.d(TAG, "POST response code - " + responseStatusCode);
+
+
+                                        InputStreamReader inputStreamReader = new InputStreamReader(httpURLConnection.getInputStream(), "UTF-8");
+                                        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                                        StringBuilder builder = new StringBuilder();
+                                        String sb;
+
+                                        while ((sb = bufferedReader.readLine()) != null) {
+                                            builder.append(sb);
+                                        }
+
+                                        String result = builder.toString();
+                                        Log.d(TAG, "imagelocation:" + result);
+                                        intent1.putExtra("Success", 1);
+                                        startActivity(intent1);
+
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                        Log.d(TAG, "imagelocationregisterpartner:eroororo");
+                                        intent1.putExtra("Fail", 2);
+                                        startActivity(intent1);
                                     }
-
-                                    int responseStatusCode = httpURLConnection.getResponseCode();
-                                    Log.d(TAG, "POST response code - " + responseStatusCode);
-
-
-                                    InputStreamReader inputStreamReader = new InputStreamReader(httpURLConnection.getInputStream(),"UTF-8");
-                                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                                    StringBuilder builder = new StringBuilder();
-                                    String sb;
-
-                                    while((sb = bufferedReader.readLine()) != null){
-                                        builder.append(sb);
-                                    }
-
-                                    String result = builder.toString();
-                                    Log.d(TAG,"imagelocation:"+result);
-                                    intent1.putExtra("Success",1);
-                                    startActivity(intent1);
-
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                    Log.d(TAG,"imagelocationregisterpartner:eroororo");
-                                    intent1.putExtra("Fail",2);
-                                    startActivity(intent1);
                                 }
-                            }
-                        };
-                        executorService.execute(runnable);
-                        executorService.shutdown();
+                            };
+                            executorService.execute(runnable);
+                            executorService.shutdown();
 
-                    }
-                });
-                dlg.show();
+                        }
+                    });
+                    dlg.show();
 
+                }else{
+                    Toast.makeText(getApplicationContext(),"인허가번호, 음식선택, 홍보이미지 등록을 해주시길 바랍니다.", Toast.LENGTH_LONG).show();
+                }
             }
-
         });
     }
 
@@ -313,47 +345,47 @@ public class Registerpartner extends Activity {
             Uri ImageUri = data.getData();
             imagepath.add(0,getPath(ImageUri));
             imagename.add(0,getName(ImageUri));
-            Log.d(TAG,"imagelocation = "+data.getData()+",path:" + imagepath.get(0)+",name:"+imagename.get(0)+"arraycount : "+imagepath.size());
+            Log.d(TAG,"imagelocation = "+data.getData()+imagepath.size());
             storeimage.setImageURI(ImageUri);
 
         }else if(requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null){
 
             Uri ImageUri = data.getData();
-            imagepath.add(1,getPath(ImageUri));
-            imagename.add(1,getName(ImageUri));
-            Log.d(TAG,"imagelocation = "+data.getData()+",path:" + imagepath.get(1)+",name:"+imagename.get(1)+"arraycount : "+imagepath.size());
+            imagepath.add(getPath(ImageUri));
+            imagename.add(getName(ImageUri));
+            Log.d(TAG,"imagelocation = "+data.getData()+imagepath.size());
             adpicture1.setImageURI(ImageUri);
 
         }else if(requestCode == 2 && resultCode == RESULT_OK && data != null && data.getData() != null){
 
             Uri ImageUri = data.getData();
-            imagepath.add(2,getPath(ImageUri));
-            imagename.add(2,getName(ImageUri));
-            Log.d(TAG,"imagelocation = "+data.getData()+",path:" + imagepath.get(2)+",name:"+imagename.get(2)+"arraycount : "+imagepath.size());
+            imagepath.add(getPath(ImageUri));
+            imagename.add(getName(ImageUri));
+            Log.d(TAG,"imagelocation = "+data.getData()+imagepath.size());
             adpicture2.setImageURI(ImageUri);
 
         }else if(requestCode == 3 && resultCode == RESULT_OK && data != null && data.getData() != null){
 
             Uri ImageUri = data.getData();
-            imagepath.add(3,getPath(ImageUri));
-            imagename.add(3,getName(ImageUri));
-            Log.d(TAG,"imagelocation = "+data.getData()+",path:" + imagepath.get(3)+",name:"+imagename.get(3)+"arraycount : "+imagepath.size());
+            imagepath.add(getPath(ImageUri));
+            imagename.add(getName(ImageUri));
+            Log.d(TAG,"imagelocation = "+data.getData()+imagepath.size());
             adpicture3.setImageURI(ImageUri);
 
         }else if(requestCode == 4 && resultCode == RESULT_OK && data != null && data.getData() != null){
 
             Uri ImageUri = data.getData();
-            imagepath.add(4,getPath(ImageUri));
-            imagename.add(4,getName(ImageUri));
-            Log.d(TAG,"imagelocation = "+data.getData()+",path:" + imagepath.get(4)+",name:"+imagename.get(4)+"arraycount : "+imagepath.size());
+            imagepath.add(getPath(ImageUri));
+            imagename.add(getName(ImageUri));
+            Log.d(TAG,"imagelocation = "+data.getData()+imagepath.size());
             adpicture4.setImageURI(ImageUri);
 
         }else if(requestCode == 5 && resultCode == RESULT_OK && data != null && data.getData() != null){
 
             Uri ImageUri = data.getData();
-            imagepath.add(5,getPath(ImageUri));
-            imagename.add(5,getName(ImageUri));
-            Log.d(TAG,"imagelocation = "+data.getData()+",path:" + imagepath.get(5)+",name:"+imagename.get(5)+"arraycount : "+imagepath.size());
+            imagepath.add(getPath(ImageUri));
+            imagename.add(getName(ImageUri));
+            Log.d(TAG,"imagelocation = "+data.getData()+imagepath.size());
             adpicture5.setImageURI(ImageUri);
 
         }

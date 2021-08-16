@@ -105,20 +105,20 @@ public class MainActivity extends AppCompatActivity {
 
         }
 //테스트 기능 버튼 =============================================================================================
-        Button testbutton1 = (Button)findViewById(R.id.testbutton1);
-        Button testbutton2 = (Button)findViewById(R.id.testbutton2);
-        testbutton1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,ShowStoreAd.class);
-                intent.putExtra("path","https://uristory.com/whichfoodadimages/");
-                startActivity(intent);
-
-            }
-        });
+//        Button testbutton1 = (Button)findViewById(R.id.testbutton1);
+//        Button testbutton2 = (Button)findViewById(R.id.testbutton2);
+//        testbutton1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this,ShowStoreAd.class);
+//                intent.putExtra("path","https://uristory.com/whichfoodadimages/");
+//                startActivity(intent);
+//
+//            }
+//        });
 //테스트 기능 버튼 =============================================================================================
 //버전체크=========================================================
-        if(!flag.getVersion().equals("6")){
+        if(!flag.getVersion().equals("7")){
             Intent popup = new Intent(this,PopUp.class);
             startActivity(popup);
         }
@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
             myinfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Toast.makeText(getApplicationContext(),"서비스 준비중 입니다 !",Toast.LENGTH_SHORT).show();
                 }
             });
             logout.setOnClickListener(new View.OnClickListener() {

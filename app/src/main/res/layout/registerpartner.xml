@@ -9,12 +9,56 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/register"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="1"
-            android:text="Button" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:textColor="#000000"
+                android:gravity="center"
+                 />
+
+            <LinearLayout
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/register"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="0px"
+                    android:layout_weight="3"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_registericon" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0px"
+                    android:layout_weight="1"
+                    android:textColor="#000000"
+                    android:gravity="center"
+                    android:text="@string/register"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/storenum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minEms="3"
+            android:inputType="textPersonName"
+            android:hint="@string/storenum"
+            android:backgroundTint="#000000"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -85,7 +129,7 @@
                         android:scaleType="centerCrop"
                         android:padding="50dp"
                         android:background="@drawable/roundborder"
-                        android:src="@drawable/applelogo" />
+                        android:src="@drawable/ic_registerpartnermapicon" />
 
                     <ImageView
                         android:id="@+id/adpicure4"
@@ -96,7 +140,7 @@
                         android:scaleType="centerCrop"
                         android:padding="50dp"
                         android:background="@drawable/roundborder"
-                        android:src="@drawable/applelogo" />
+                        android:src="@drawable/ic_registerpartneradimage" />
 
                     <ImageView
                         android:id="@+id/adpicure5"
@@ -107,7 +151,7 @@
                         android:scaleType="centerCrop"
                         android:padding="50dp"
                         android:background="@drawable/roundborder"
-                        android:src="@drawable/applelogo" />
+                        android:src="@drawable/ic_registerpartneradimage" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -125,7 +169,7 @@
                         android:scaleType="centerCrop"
                         android:padding="50dp"
                         android:background="@drawable/roundborder"
-                        android:src="@drawable/applelogo" />
+                        android:src="@drawable/ic_registerpartneradimage" />
 
                     <ImageView
                         android:id="@+id/adpicure2"
@@ -136,7 +180,7 @@
                         android:background="@drawable/roundborder"
                         android:scaleType="centerCrop"
                         android:padding="50dp"
-                        android:src="@drawable/applelogo" />
+                        android:src="@drawable/ic_registerpartneradimage" />
 
                     <ImageView
                         android:id="@+id/adpicure3"
@@ -147,7 +191,7 @@
                         android:scaleType="centerCrop"
                         android:padding="50dp"
                         android:background="@drawable/roundborder"
-                        android:src="@drawable/applelogo" />
+                        android:src="@drawable/ic_registerpartneradimage" />
 
 
                 </LinearLayout>
