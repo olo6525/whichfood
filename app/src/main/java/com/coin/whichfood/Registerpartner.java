@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -50,6 +51,7 @@ public class Registerpartner extends Activity {
     ImageButton register;
     EditText storenumedit;
     private String storenum = "";
+    private int storenumcheck = 0;
     private ArrayList<String> imagepath = new ArrayList<>();
     private ArrayList<String> imagename = new ArrayList<>();
     private int imagecount=0;
@@ -230,7 +232,7 @@ public class Registerpartner extends Activity {
                     dlg.setIcon(R.drawable.ic_storeimage);
                     dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            Runnable runnable = new Runnable() {
+                            Thread runnablthread = new Thread(){
                                 @Override
                                 public void run() {
                                     try {
@@ -310,9 +312,14 @@ public class Registerpartner extends Activity {
                                         }
 
                                         String result = builder.toString();
-                                        Log.d(TAG, "imagelocation:" + result);
-                                        intent1.putExtra("Success", 1);
-                                        startActivity(intent1);
+                                        if(result.equals("nostorenum")){
+                                            storenumcheck = 1;
+                                        }else {
+                                            storenumcheck = 0;
+                                            Log.d(TAG, "imagelocation:" + result);
+                                            intent1.putExtra("Success", 1);
+                                            startActivity(intent1);
+                                        }
 
                                     } catch (Exception e) {
                                         e.printStackTrace();
@@ -322,10 +329,19 @@ public class Registerpartner extends Activity {
                                     }
                                 }
                             };
-                            executorService.execute(runnable);
-                            executorService.shutdown();
-
+                            runnablthread.start();
+                            try {
+                                runnablthread.join();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            if(storenumcheck == 1){
+                                Toast toast = Toast.makeText(getApplicationContext(),"등록되지 않은 인허가번호 입니다. \n※사업자번호가 아닌 -인허가번호- 를 입력하셔야 합니다. \n 정확한 인허가번호 입력시에도 안될시, 고객센터에 문의해주시길 바랍니다. \n H.P : 010-6525-3883", Toast.LENGTH_LONG);
+                                toast.setGravity(Gravity.CENTER|Gravity.CENTER,0,0);
+                                toast.show();
+                            }
                         }
+
                     });
                     dlg.show();
 
