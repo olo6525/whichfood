@@ -81,13 +81,13 @@ public class kakaologin extends Activity {
                             if (user != null) {
                                 JSONObject jsonObject;
 
-                                startActivity(mainactivitylayout);
                                 Log.d(TAG,"로그인정보 : "+user);
 
-                                Runnable runnable = new Runnable() {
+                                Thread runnable = new Thread() {
                                     @Override
                                     public void run() {
                                         try{
+                                            loginflag.setLoginid(user.getId());
                                             String postParameters;
                                             URL url = new URL("https://uristory.com/whichfoodstorelist.php");
                                             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -134,9 +134,13 @@ public class kakaologin extends Activity {
                                     }
 
                                 };
-                                executorService.execute(runnable);
-                                executorService.shutdown();
-
+                                runnable.start();
+                                try {
+                                    runnable.join();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                startActivity(mainactivitylayout);
                                 finish();
                                 loginflag.setLoginflag(1);
                                 MA.finish();
@@ -172,6 +176,7 @@ public class kakaologin extends Activity {
                     public Unit invoke(Throwable throwable) {
                         finish();
                         loginflag.setLoginflag(0);
+                        loginflag.setLoginid(0);
                         MA.finish();
                         startActivity(mainactivitylayout);
                         return null;

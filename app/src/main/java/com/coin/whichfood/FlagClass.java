@@ -49,6 +49,7 @@ public class FlagClass extends Application {
     //카카오톡로그인연동
     private static FlagClass instance;
     private static int loginflag;
+    private static long loginid;
 
     public static FlagClass getFalgClassContext() throws IllegalAccessException {
         if(instance == null){
@@ -91,6 +92,7 @@ public class FlagClass extends Application {
         instance = this;
         loginflag = 0;
         KakaoSdk.init(this, "675ccfa4872a4eb6e1be8a61059dc307");
+        long loginid =0;
     }
 
     @Override
@@ -121,13 +123,16 @@ public class FlagClass extends Application {
         howcookpagedrink = new JSONArray();
         outfoodmealindex = new JSONArray();
         outfooddrinkindex = new JSONArray();
-        loginflag = 0;
         adimage1 = null;
         adimage2 = null;
         adimage3 = null;
         adimage4 = null;
         adimage5 = null;
         servers = new ArrayList<>();
+
+        //카카오톡 로그인
+        loginflag = 0;
+        long loginid =0;
 
     }
 
@@ -159,6 +164,7 @@ public class FlagClass extends Application {
     public void setAdimage4(Bitmap flag){this.adimage4 = flag;}
     public void setAdimage5(Bitmap flag){this.adimage5 = flag;}
     public void setServers(ArrayList<String> flag){this.servers = flag;}
+    public void setLoginid(long flag){this.loginid = flag;}
 
     public String getVersion(){return version;}
     public int getWhere() {return where;}
@@ -188,6 +194,7 @@ public class FlagClass extends Application {
     public Bitmap getAdimage4(){return adimage4;}
     public Bitmap getAdimage5(){return adimage5;}
     public ArrayList<String> getServers(){return servers;}
+    public long getLoginid(){return loginid;}
 
 
 
