@@ -1,6 +1,8 @@
 package com.coin.whichfood;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -115,7 +117,49 @@ public class OneFood extends Activity {
                         startActivity(intentEnternet);
                     }
                 });
+                menu3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (flag.getLoginflag() == 1) {
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(OneFood.this);
+                            dlg.setTitle("관심음식으로 선택");
+                            dlg.setMessage("선택하신 음식을 관심요리식사 목록에 추가하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
+                        } else {
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(OneFood.this);
+                            dlg.setTitle("회원 전용 서비스입니다.");
+                            dlg.setMessage("로그인 후 이용가능한 서비스 입니다. \n로그인 화면으로 이동하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("로그인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent longinlayout = new Intent(OneFood.this, kakaologin.class);
+                                    startActivity(longinlayout);
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
+                        }
+                    }
+                });
 
             } else if (kind == 2) {
 
@@ -141,6 +185,49 @@ public class OneFood extends Activity {
                         startActivity(intentEnternet);
                     }
                 });
+                menu3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (flag.getLoginflag() == 1) {
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(OneFood.this);
+                            dlg.setTitle("관심음식으로 선택");
+                            dlg.setMessage("선택하신 음식을 관심요리안주 목록에 추가하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
+                        } else {
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(OneFood.this);
+                            dlg.setTitle("회원 전용 서비스입니다.");
+                            dlg.setMessage("로그인 후 이용가능한 서비스 입니다. \n로그인 화면으로 이동하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("로그인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent longinlayout = new Intent(OneFood.this, kakaologin.class);
+                                    startActivity(longinlayout);
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
+                        }
+                    }
+                });
 
 
             } else {
@@ -164,10 +251,53 @@ public class OneFood extends Activity {
                     @Override
                     public void onClick(View v) {
                         flag.setFindstore(mapint);
+                        intentmap.putExtra("scope",1);
                         startActivity(intentmap);
                     }
                 });
+                menu3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (flag.getLoginflag() == 1) {
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(OneFood.this);
+                            dlg.setTitle("관심음식으로 선택");
+                            dlg.setMessage("선택하신 음식을 관심외식식사 목록에 추가하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
+                        } else {
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(OneFood.this);
+                            dlg.setTitle("회원 전용 서비스입니다.");
+                            dlg.setMessage("로그인 후 이용가능한 서비스 입니다. \n로그인 화면으로 이동하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("로그인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent longinlayout = new Intent(OneFood.this, kakaologin.class);
+                                    startActivity(longinlayout);
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
+                        }
+                    }
+                });
 
             } else if (kind == 2) {
 
@@ -184,10 +314,53 @@ public class OneFood extends Activity {
                     @Override
                     public void onClick(View v) {
                         flag.setFindstore(mapint);
+                        intentmap.putExtra("scope",1);
                         startActivity(intentmap);
                     }
                 });
+                menu3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (flag.getLoginflag() == 1) {
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(OneFood.this);
+                            dlg.setTitle("관심음식으로 선택");
+                            dlg.setMessage("선택하신 음식을 관심외식안주 목록에 추가하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
+                        } else {
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(OneFood.this);
+                            dlg.setTitle("회원 전용 서비스입니다.");
+                            dlg.setMessage("로그인 후 이용가능한 서비스 입니다. \n로그인 화면으로 이동하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("로그인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent longinlayout = new Intent(OneFood.this, kakaologin.class);
+                                    startActivity(longinlayout);
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
+                        }
+                    }
+                });
 
             } else {
 
@@ -211,7 +384,49 @@ public class OneFood extends Activity {
 
                     }
                 });
+                menu3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (flag.getLoginflag() == 1) {
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(OneFood.this);
+                            dlg.setTitle("관심음식으로 선택");
+                            dlg.setMessage("선택하신 음식을 관심배달식사 목록에 추가하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
+                        } else {
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(OneFood.this);
+                            dlg.setTitle("회원 전용 서비스입니다.");
+                            dlg.setMessage("로그인 후 이용가능한 서비스 입니다. \n로그인 화면으로 이동하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("로그인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent longinlayout = new Intent(OneFood.this, kakaologin.class);
+                                    startActivity(longinlayout);
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
+                        }
+                    }
+                });
 
             } else if (kind == 2) {
 
@@ -230,7 +445,49 @@ public class OneFood extends Activity {
 
                     }
                 });
+                menu3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (flag.getLoginflag() == 1) {
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(OneFood.this);
+                            dlg.setTitle("관심음식으로 선택");
+                            dlg.setMessage("선택하신 음식을 관심배달안주 목록에 추가하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
+                        } else {
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(OneFood.this);
+                            dlg.setTitle("회원 전용 서비스입니다.");
+                            dlg.setMessage("로그인 후 이용가능한 서비스 입니다. \n로그인 화면으로 이동하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("로그인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent longinlayout = new Intent(OneFood.this, kakaologin.class);
+                                    startActivity(longinlayout);
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
+                        }
+                    }
+                });
 
             } else {
 

@@ -33,4 +33,6 @@
     <string name="goregister">약관 확인, 홍보 및 제휴 등록하기</string>
     <string name="register">등록 ↑</string>
     <string name="storenum">매장 인허가 번호 입력 (정확히 입력해 주세요.)</string>
+    <string name="scope">지도표츌 범위 입력 (1~10)km 기본 1km</string>
+    <string name="enter">적용</string>
 </resources>

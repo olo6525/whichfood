@@ -35,6 +35,7 @@ public class SlideViewFlagment extends Fragment {
     ImageView adimages;
     ArrayList<Bitmap> bitmapArrayList = new ArrayList<>();
     ArrayList<String> images = new ArrayList<>();
+    TextView storename;
 
     @Nullable
     @Override
@@ -46,7 +47,7 @@ public class SlideViewFlagment extends Fragment {
         Bundle args = getArguments();
         Log.d(TAG,"adimagepath  : "+args.getStringArrayList("path").get(0));
         images = args.getStringArrayList("path");
-
+        storename = (TextView)adview.findViewById(R.id.storename);
         Thread runnablthread = new Thread(){
             @Override
             public void run() {
@@ -76,18 +77,23 @@ public class SlideViewFlagment extends Fragment {
         }
 
         if(args.getInt("page") == 0 && !bitmapArrayList.isEmpty()){
+            storename.setText(args.getString("storename"));
             adimages.setImageBitmap(bitmapArrayList.get(0));
             bitmapArrayList.clear();
         }else if (args.getInt("page") == 1 && !bitmapArrayList.isEmpty()){
+            storename.setText(args.getString("storename"));
             adimages.setImageBitmap(bitmapArrayList.get(0));
             bitmapArrayList.clear();
         }else if (args.getInt("page") == 2 && !bitmapArrayList.isEmpty()){
+            storename.setText(args.getString("storename"));
             adimages.setImageBitmap(bitmapArrayList.get(0));
             bitmapArrayList.clear();
         }else if (args.getInt("page") == 3 && !bitmapArrayList.isEmpty()){
+            storename.setText(args.getString("storename"));
             adimages.setImageBitmap(bitmapArrayList.get(0));
             bitmapArrayList.clear();
         }else if (args.getInt("page")== 4 && !bitmapArrayList.isEmpty()){
+            storename.setText(args.getString("storename"));
             adimages.setImageBitmap(bitmapArrayList.get(0));
             bitmapArrayList.clear();
         }

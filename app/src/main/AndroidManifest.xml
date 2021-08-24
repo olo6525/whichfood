@@ -57,6 +57,7 @@
         <activity android:name=".Partnershippay"/>
         <activity android:name=".ShowStoreAd"/>
         <activity android:name=".Registerpartner"/>
+        <activity android:name=".Myinfo"/>
 
 
 

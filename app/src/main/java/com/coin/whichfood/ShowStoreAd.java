@@ -89,6 +89,7 @@ public class ShowStoreAd extends FragmentActivity {
                 imagepaths.add(imagepath.getStringExtra("path") + i+".jpg");
             }
             args.putStringArrayList("path",imagepaths);
+            args.putString("storename",imagepath.getStringExtra("storename"));
             switch (position){
                 case 0:
                     args.putInt("page",0);

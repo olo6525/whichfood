@@ -199,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
         ImageButton partnershiplogin = (ImageButton)findViewById(R.id.partnershiplogin);
         Intent partnershipregister = new Intent(this,Partnershippay.class);
         Intent loginlayout = new Intent(this,kakaologin.class);
+        Intent gomyinfo = new Intent(this, Myinfo.class);
         if(flag.getLoginflag() == 0) {
             myinfo.setVisibility(View.GONE);
             logout.setVisibility(View.GONE);
@@ -225,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
             myinfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getApplicationContext(),"서비스 준비중 입니다 !",Toast.LENGTH_SHORT).show();
+                    startActivity(gomyinfo);
                 }
             });
             logout.setOnClickListener(new View.OnClickListener() {

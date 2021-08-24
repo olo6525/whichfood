@@ -1,6 +1,8 @@
 package com.coin.whichfood;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,6 +16,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -79,6 +82,9 @@ public class TwoFood extends Activity {
         mInterstitialAd.setAdUnitId("ca-app-pub-8231620186256321/1155279399");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 //광고끝-------------------------------------------------------------------------------------------------
+
+
+// 음식 이미지 불러오기----------------------------------------------------------------------------------------
         ImageButton Btnno = (ImageButton) findViewById(R.id.btnno);
         ImageButton Btnpleaseselect = (ImageButton) findViewById(R.id.btnpleaseselect);
         ImageButton Btnthank = (ImageButton) findViewById(R.id.btnthank);
@@ -98,8 +104,6 @@ public class TwoFood extends Activity {
         getfoodimage1 = new GetFoodImage1();// 음식 이미지 클레스
         getfoodimage2 = new GetFoodImage2();//음식 이미지 클레스
 
-
-        //음식 이미지 불러오기----------------------------------------------------------------------------------------
         final FlagClass flag = (FlagClass) getApplication();
         int where = flag.getWhere();
         String s_where = new String();
@@ -168,9 +172,42 @@ public class TwoFood extends Activity {
                     public void onClick(View v) {
                         flag.setWhat(1);
                         if (flag.getLoginflag() == 1) {
-                            Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("관심음식으로 선택");
+                            dlg.setMessage("선택하신 음식을 관심요리식사 목록에 추가하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         } else {
-                            Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("회원 전용 서비스입니다.");
+                            dlg.setMessage("로그인 후 이용가능한 서비스 입니다. \n로그인 화면으로 이동하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("로그인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent longinlayout = new Intent(TwoFood.this, kakaologin.class);
+                                    startActivity(longinlayout);
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         }
                     }
                 });
@@ -205,9 +242,42 @@ public class TwoFood extends Activity {
                     public void onClick(View v) {
                         flag.setWhat(2);
                         if (flag.getLoginflag() == 1) {
-                            Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("관심음식으로 선택");
+                            dlg.setMessage("선택하신 음식을 관심요리식사 목록에 추가하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         } else {
-                            Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("회원 전용 서비스입니다.");
+                            dlg.setMessage("로그인 후 이용가능한 서비스 입니다. \n로그인 화면으로 이동하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("로그인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent longinlayout = new Intent(TwoFood.this, kakaologin.class);
+                                    startActivity(longinlayout);
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         }
                     }
                 });
@@ -253,9 +323,42 @@ public class TwoFood extends Activity {
                     public void onClick(View v) {
                         flag.setWhat(1);
                         if (flag.getLoginflag() == 1) {
-                            Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("관심음식으로 선택");
+                            dlg.setMessage("선택하신 음식을 관심요리안주 목록에 추가하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         } else {
-                            Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("회원 전용 서비스입니다.");
+                            dlg.setMessage("로그인 후 이용가능한 서비스 입니다. \n로그인 화면으로 이동하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("로그인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent longinlayout = new Intent(TwoFood.this, kakaologin.class);
+                                    startActivity(longinlayout);
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         }
                     }
                 });
@@ -291,9 +394,42 @@ public class TwoFood extends Activity {
                     public void onClick(View v) {
                         if (flag.getLoginflag() == 1) {
                             flag.setWhat(2);
-                            Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("관심음식으로 선택");
+                            dlg.setMessage("선택하신 음식을 관심요리안주 목록에 추가하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         } else {
-                            Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("회원 전용 서비스입니다.");
+                            dlg.setMessage("로그인 후 이용가능한 서비스 입니다. \n로그인 화면으로 이동하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("로그인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent longinlayout = new Intent(TwoFood.this, kakaologin.class);
+                                    startActivity(longinlayout);
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         }
                     }
                 });
@@ -348,6 +484,7 @@ public class TwoFood extends Activity {
                     public void onClick(View v) {
                         flag.setWhat(1);
                         flag.setFindstore(1);
+                        intentmap.putExtra("scope",1);
                         startActivity(intentmap);
                     }
                 });
@@ -357,9 +494,42 @@ public class TwoFood extends Activity {
                     public void onClick(View v) {
                         if (flag.getLoginflag() == 1) {
                             flag.setWhat(1);
-                            Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("관심음식으로 선택");
+                            dlg.setMessage("선택하신 음식을 관심외식식사 목록에 추가하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         } else {
-                            Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("회원 전용 서비스입니다.");
+                            dlg.setMessage("로그인 후 이용가능한 서비스 입니다. \n로그인 화면으로 이동하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("로그인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent longinlayout = new Intent(TwoFood.this, kakaologin.class);
+                                    startActivity(longinlayout);
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         }
                     }
                 });
@@ -380,6 +550,7 @@ public class TwoFood extends Activity {
                     public void onClick(View v) {
                         flag.setWhat(2);
                         flag.setFindstore(2);
+                        intentmap.putExtra("scope",1);
                         startActivity(intentmap);
                     }
                 });
@@ -389,9 +560,42 @@ public class TwoFood extends Activity {
                     public void onClick(View v) {
                         flag.setWhat(2);
                         if (flag.getLoginflag() == 1) {
-                            Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("관심음식으로 선택");
+                            dlg.setMessage("선택하신 음식을 관심외식식사 목록에 추가하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         } else {
-                            Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("회원 전용 서비스입니다.");
+                            dlg.setMessage("로그인 후 이용가능한 서비스 입니다. \n로그인 화면으로 이동하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("로그인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent longinlayout = new Intent(TwoFood.this, kakaologin.class);
+                                    startActivity(longinlayout);
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         }
                     }
                 });
@@ -421,6 +625,7 @@ public class TwoFood extends Activity {
                     public void onClick(View v) {
                         flag.setWhat(1);
                         flag.setFindstore(1);
+                        intentmap.putExtra("scope",1);
                         startActivity(intentmap);
                     }
                 });
@@ -430,9 +635,42 @@ public class TwoFood extends Activity {
                     public void onClick(View v) {
                         flag.setWhat(1);
                         if (flag.getLoginflag() == 1) {
-                            Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("관심음식으로 선택");
+                            dlg.setMessage("선택하신 음식을 관심외식안주 목록에 추가하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         } else {
-                            Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("회원 전용 서비스입니다.");
+                            dlg.setMessage("로그인 후 이용가능한 서비스 입니다. \n로그인 화면으로 이동하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("로그인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent longinlayout = new Intent(TwoFood.this, kakaologin.class);
+                                    startActivity(longinlayout);
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         }
                     }
                 });
@@ -453,6 +691,7 @@ public class TwoFood extends Activity {
                     public void onClick(View v) {
                         flag.setWhat(2);
                         flag.setFindstore(2);
+                        intentmap.putExtra("scope",1);
                         startActivity(intentmap);
                     }
                 });
@@ -462,9 +701,42 @@ public class TwoFood extends Activity {
                     public void onClick(View v) {
                         flag.setWhat(2);
                         if (flag.getLoginflag() == 1) {
-                            Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("관심음식으로 선택");
+                            dlg.setMessage("선택하신 음식을 관심외식안주 목록에 추가하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         } else {
-                            Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("회원 전용 서비스입니다.");
+                            dlg.setMessage("로그인 후 이용가능한 서비스 입니다. \n로그인 화면으로 이동하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("로그인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent longinlayout = new Intent(TwoFood.this, kakaologin.class);
+                                    startActivity(longinlayout);
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         }
                     }
                 });
@@ -520,9 +792,42 @@ public class TwoFood extends Activity {
                     public void onClick(View v) {
                         flag.setWhat(1);
                         if (flag.getLoginflag() == 1) {
-                            Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("관심음식으로 선택");
+                            dlg.setMessage("선택하신 음식을 관심배달식사 목록에 추가하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         } else {
-                            Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("회원 전용 서비스입니다.");
+                            dlg.setMessage("로그인 후 이용가능한 서비스 입니다. \n로그인 화면으로 이동하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("로그인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent longinlayout = new Intent(TwoFood.this, kakaologin.class);
+                                    startActivity(longinlayout);
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         }
                     }
                 });
@@ -552,9 +857,42 @@ public class TwoFood extends Activity {
                     public void onClick(View v) {
                         flag.setWhat(2);
                         if (flag.getLoginflag() == 1) {
-                            Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("관심음식으로 선택");
+                            dlg.setMessage("선택하신 음식을 관심배달식사 목록에 추가하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         } else {
-                            Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("회원 전용 서비스입니다.");
+                            dlg.setMessage("로그인 후 이용가능한 서비스 입니다. \n로그인 화면으로 이동하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("로그인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent longinlayout = new Intent(TwoFood.this, kakaologin.class);
+                                    startActivity(longinlayout);
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         }
                     }
                 });
@@ -592,7 +930,23 @@ public class TwoFood extends Activity {
                     public void onClick(View v) {
                         if (flag.getLoginflag() == 1) {
                             flag.setWhat(1);
-                            Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("관심음식으로 선택");
+                            dlg.setMessage("선택하신 음식을 관심배달안주 목록에 추가하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         } else {
                             Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
                         }
@@ -624,7 +978,23 @@ public class TwoFood extends Activity {
                     public void onClick(View v) {
                         flag.setWhat(2);
                         if (flag.getLoginflag() == 1) {
-                            Toast.makeText(getApplicationContext(), "서비스 준비중입니다.", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dlg = new AlertDialog.Builder(TwoFood.this);
+                            dlg.setTitle("관심음식으로 선택");
+                            dlg.setMessage("선택하신 음식을 관심배달안주 목록에 추가하시겠습니까?");
+                            dlg.setIcon(R.drawable.ic_storeimage);
+                            dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dlg.show();
                         } else {
                             Toast.makeText(getApplicationContext(), "로그인 후 이용가능한 서비스 입니다.", Toast.LENGTH_SHORT).show();
                         }

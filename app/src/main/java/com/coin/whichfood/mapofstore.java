@@ -16,6 +16,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -24,6 +30,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraPosition;
@@ -77,6 +86,10 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
     protected LocationManager locationManager;
     private ExecutorService executorService = Executors.newFixedThreadPool(1);
     private JSONArray jsonArray;
+    int mapscope = 1;
+    int getmapscope;
+    Button enter;
+
 
 
 
@@ -98,12 +111,41 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapofstore);
-        Toolbar myChildToolbar =
-                (Toolbar) findViewById(R.id.toolbar);
 
+//지도표출 범위 적용=========================================================================================
+        Intent getscope = getIntent();
+        mapscope = getscope.getIntExtra("scope",1);
+        Spinner spinnerscope = findViewById(R.id.spinnerscope);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.spinnerscope, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerscope.setAdapter(adapter);
+        spinnerscope.setSelection(0);
+        spinnerscope.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                getmapscope = position+1;
+                spinnerscope.setSelection(position);
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-
+            }
+        });
+        enter = (Button)findViewById(R.id.enter);
+        enter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mapscope = new Intent(mapofstore.this,mapofstore.class);
+                mapscope.putExtra("scope",getmapscope);
+                finish();
+                startActivity(mapscope);
+            }
+        });
+//지도표출 범위적용 끝 =====================================================================================
+////네이버 멥 지도 연걸\=======================================================================================
+//        mapfragment fragment = new mapfragment();
+//        getSupportFragmentManager().beginTransaction().add(R.id.maplayout, fragment).commit();
         FragmentManager fm = getSupportFragmentManager();
         MapFragment mapFragment = (MapFragment)fm.findFragmentById(R.id.map);
         if (mapFragment == null) {
@@ -111,9 +153,9 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
             fm.beginTransaction().add(R.id.map, mapFragment).commit();
         }
 
-
         mapFragment.getMapAsync(this);
         locationSource = new FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE);
+//네이버 멥 지도 연걸끝 =======================================================================================
 //권한 =============================================================================================
 
 
@@ -170,10 +212,10 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
 
         boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        int permissionCheck1;
-        int permissionCheck2;
-        permissionCheck1 = ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION);
-        permissionCheck2 = ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION);
+//        int permissionCheck1;
+//        int permissionCheck2;
+//        permissionCheck1 = ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION);
+//        permissionCheck2 = ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION);
         LocationListener locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
@@ -256,26 +298,27 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
+                    Log.d(TAG,"mapscope :"+mapscope);
                     String foodnumber = "";
                     try {
                         String postParameters = new String();
                         if(flag.getKind() == 1) {
                             if (flag.getFindstore() == 1) {
-                                postParameters = "purpose=findstore&kind=meal&food=meal" + food1 + "&latitude=" + latitude + "&longitude=" + longitude;
+                                postParameters = "purpose=findstore&kind=meal&food=meal" + food1 + "&latitude=" + latitude + "&longitude=" + longitude +"&mapscope="+mapscope;
                                 Log.d(TAG, "ㅇㅇ1"+postParameters);
                                foodnumber = "meal"+food1;
                             } else if (flag.getFindstore() == 2) {
-                                postParameters = "purpose=findstore&kind=meal&food=meal" + food2 + "&latitude=" + latitude + "&longitude=" + longitude;
+                                postParameters = "purpose=findstore&kind=meal&food=meal" + food2 + "&latitude=" + latitude + "&longitude=" + longitude +"&mapscope="+mapscope;
                                 Log.d(TAG, "ㅇㅇ"+postParameters);
                                 foodnumber = "meal"+food2;
                             }
                         }else if(flag.getKind() ==2){
                             if (flag.getFindstore() == 1) {
-                                postParameters = "purpose=findstore&kind=drink&food=drink" + food1 + "&latitude=" + latitude + "&longitude=" + longitude;
+                                postParameters = "purpose=findstore&kind=drink&food=drink" + food1 + "&latitude=" + latitude + "&longitude=" + longitude +"&mapscope="+mapscope;
                                 Log.d(TAG, "ㅇㅇ"+postParameters);
                                 foodnumber = "drink"+food1;
                             } else if (flag.getFindstore() == 2) {
-                                postParameters = "purpose=findstore&kind=drink&food=drink" + food2 + "&latitude=" + latitude + "&longitude=" + longitude;
+                                postParameters = "purpose=findstore&kind=drink&food=drink" + food2 + "&latitude=" + latitude + "&longitude=" + longitude +"&mapscope="+mapscope;
                                 Log.d(TAG, "ㅇㅇ"+postParameters);
                                 foodnumber = "drink"+food2;
                             }
@@ -393,6 +436,7 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                                         Intent adintent = new Intent(mapofstore.this,ShowStoreAd.class);
                                         try {
                                             adintent.putExtra("path",flag.getServers().get(0)+"whichfoodadimages/"+storejson.getString("storenum")+"/"+ finalFoodnumber1+"/");
+                                            adintent.putExtra("storename",storejson.getString("storename"));
                                         } catch (Exception e) {
                                             e.printStackTrace();
                                         }
@@ -491,10 +535,9 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                 requestCode, permissions, grantResults);
     }
 
+
     @Override
     public void onMapReady(@NonNull @NotNull NaverMap naverMap) {
 
-
     }
-
 }
