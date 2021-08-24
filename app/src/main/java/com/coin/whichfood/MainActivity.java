@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 //        });
 //테스트 기능 버튼 =============================================================================================
 //버전체크=========================================================
-        if(!flag.getVersion().equals("7")){
+        if(!flag.getVersion().equals("8")){
             Intent popup = new Intent(this,PopUp.class);
             startActivity(popup);
         }

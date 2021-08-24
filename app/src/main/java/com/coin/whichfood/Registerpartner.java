@@ -259,6 +259,9 @@ public class Registerpartner extends Activity {
                                         outputStream.writeBytes("Content-Disposition: form-data; name=\"purpose\"\r\n\r\nregisterpartner");
                                         outputStream.writeBytes("\r\n--" + boundary + "\r\n");
                                         outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                                        outputStream.writeBytes("Content-Disposition: form-data; name=\"userid\"\r\n\r\n" + flagClass.getLoginid());
+                                        outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                                        outputStream.writeBytes("\r\n--" + boundary + "\r\n");
                                         outputStream.writeBytes("Content-Disposition: form-data; name=\"storenum\"\r\n\r\n" + storenum);
                                         outputStream.writeBytes("\r\n--" + boundary + "\r\n");
                                         outputStream.writeBytes("\r\n--" + boundary + "\r\n");

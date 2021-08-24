@@ -211,9 +211,11 @@ public class TwoFood extends Activity {
                                             } catch (Exception e) {
                                                 e.printStackTrace();
                                             }
+
                                         }
                                     };
                                     getdata.start();
+                                    Toast.makeText(getApplicationContext(),"관심음식으로 등록이 되었습니다.",Toast.LENGTH_LONG).show();
                                     try {
                                         getdata.join();
                                     } catch (Exception e) {
@@ -320,6 +322,7 @@ public class TwoFood extends Activity {
                                         }
                                     };
                                     getdata.start();
+                                    Toast.makeText(getApplicationContext(),"관심음식으로 등록이 되었습니다.",Toast.LENGTH_LONG).show();
                                     try {
                                         getdata.join();
                                     } catch (Exception e) {
@@ -436,6 +439,7 @@ public class TwoFood extends Activity {
                                         }
                                     };
                                     getdata.start();
+                                    Toast.makeText(getApplicationContext(),"관심음식으로 등록이 되었습니다.",Toast.LENGTH_LONG).show();
                                     try {
                                         getdata.join();
                                     } catch (Exception e) {
@@ -542,6 +546,7 @@ public class TwoFood extends Activity {
                                         }
                                     };
                                     getdata.start();
+                                    Toast.makeText(getApplicationContext(),"관심음식으로 등록이 되었습니다.",Toast.LENGTH_LONG).show();
                                     try {
                                         getdata.join();
                                     } catch (Exception e) {
@@ -677,6 +682,7 @@ public class TwoFood extends Activity {
                                         }
                                     };
                                     getdata.start();
+                                    Toast.makeText(getApplicationContext(),"관심음식으로 등록이 되었습니다.",Toast.LENGTH_LONG).show();
                                     try {
                                         getdata.join();
                                     } catch (Exception e) {
@@ -778,6 +784,7 @@ public class TwoFood extends Activity {
                                         }
                                     };
                                     getdata.start();
+                                    Toast.makeText(getApplicationContext(),"관심음식으로 등록이 되었습니다.",Toast.LENGTH_LONG).show();
                                     try {
                                         getdata.join();
                                     } catch (Exception e) {
@@ -890,6 +897,7 @@ public class TwoFood extends Activity {
                                         }
                                     };
                                     getdata.start();
+                                    Toast.makeText(getApplicationContext(),"관심음식으로 등록이 되었습니다.",Toast.LENGTH_LONG).show();
                                     try {
                                         getdata.join();
                                     } catch (Exception e) {
@@ -991,6 +999,7 @@ public class TwoFood extends Activity {
                                         }
                                     };
                                     getdata.start();
+                                    Toast.makeText(getApplicationContext(),"관심음식으로 등록이 되었습니다.",Toast.LENGTH_LONG).show();
                                     try {
                                         getdata.join();
                                     } catch (Exception e) {
@@ -1119,6 +1128,7 @@ public class TwoFood extends Activity {
                                         }
                                     };
                                     getdata.start();
+                                    Toast.makeText(getApplicationContext(),"관심음식으로 등록이 되었습니다.",Toast.LENGTH_LONG).show();
                                     try {
                                         getdata.join();
                                     } catch (Exception e) {
@@ -1219,6 +1229,7 @@ public class TwoFood extends Activity {
                                         }
                                     };
                                     getdata.start();
+                                    Toast.makeText(getApplicationContext(),"관심음식으로 등록이 되었습니다.",Toast.LENGTH_LONG).show();
                                     try {
                                         getdata.join();
                                     } catch (Exception e) {
@@ -1328,6 +1339,7 @@ public class TwoFood extends Activity {
                                         }
                                     };
                                     getdata.start();
+                                    Toast.makeText(getApplicationContext(),"관심음식으로 등록이 되었습니다.",Toast.LENGTH_LONG).show();
                                     try {
                                         getdata.join();
                                     } catch (Exception e) {
@@ -1411,6 +1423,7 @@ public class TwoFood extends Activity {
                                         }
                                     };
                                     getdata.start();
+                                    Toast.makeText(getApplicationContext(),"관심음식으로 등록이 되었습니다.",Toast.LENGTH_LONG).show();
                                     try {
                                         getdata.join();
                                     } catch (Exception e) {
