@@ -113,6 +113,8 @@ public class SplashActivity extends Activity {
 
 
                 bufferedReader.close();
+                inputStream.close();
+                inputStreamReader.close();
 
                 Log.d("TAG","version"+sb.toString());
                 return sb.toString();

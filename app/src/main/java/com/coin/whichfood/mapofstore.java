@@ -415,6 +415,7 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                                                 Bitmap bitmap = BitmapFactory.decodeStream(is);
                                                 Log.d(TAG, "adimage" + bitmap);
                                                 marker.setIcon(OverlayImage.fromBitmap(bitmap));
+                                                is.close();
 
                                             }catch (Exception e){
                                                 e.printStackTrace();

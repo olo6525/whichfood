@@ -38,9 +38,13 @@ import com.google.android.gms.ads.InterstitialAd;
 
 import org.json.JSONException;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Random;
 
@@ -179,6 +183,42 @@ public class TwoFood extends Activity {
                             dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    Thread getdata = new Thread(){
+                                        @Override
+                                        public void run(){
+                                            try {
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=meal"+finalI_rand1;
+                                                Log.d(TAG,"getdata post : "+postParameters);
+                                                URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
+                                                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                                                conn.setDoInput(true);
+                                                conn.setDoOutput(true);
+                                                conn.connect();
+
+                                                OutputStream outputStream = conn.getOutputStream();
+                                                outputStream.write(postParameters.getBytes("UTF-8"));
+                                                outputStream.flush();
+                                                outputStream.close();
+
+                                                int response = conn.getResponseCode();
+                                                if(response == conn.HTTP_OK){
+                                                    Log.d(TAG,"getdata connected to myinfo");
+                                                }else{
+                                                    Log.d(TAG,"getdata disconnected to myinfo");
+                                                }
+
+
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    };
+                                    getdata.start();
+                                    try {
+                                        getdata.join();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
 
                                 }
                             });
@@ -249,7 +289,42 @@ public class TwoFood extends Activity {
                             dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    Thread getdata = new Thread(){
+                                        @Override
+                                        public void run(){
+                                            try {
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=meal"+finalI_rand2;
+                                                Log.d(TAG,"getdata post : "+postParameters);
+                                                URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
+                                                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                                                conn.setDoInput(true);
+                                                conn.setDoOutput(true);
+                                                conn.connect();
 
+                                                OutputStream outputStream = conn.getOutputStream();
+                                                outputStream.write(postParameters.getBytes("UTF-8"));
+                                                outputStream.flush();
+                                                outputStream.close();
+
+                                                int response = conn.getResponseCode();
+                                                if(response == conn.HTTP_OK){
+                                                    Log.d(TAG,"getdata connected to myinfo");
+                                                }else{
+                                                    Log.d(TAG,"getdata disconnected to myinfo");
+                                                }
+
+
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    };
+                                    getdata.start();
+                                    try {
+                                        getdata.join();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             });
                             dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -330,7 +405,42 @@ public class TwoFood extends Activity {
                             dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    Thread getdata = new Thread(){
+                                        @Override
+                                        public void run(){
+                                            try {
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=drink"+finalI_rand1;
+                                                Log.d(TAG,"getdata post : "+postParameters);
+                                                URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
+                                                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                                                conn.setDoInput(true);
+                                                conn.setDoOutput(true);
+                                                conn.connect();
 
+                                                OutputStream outputStream = conn.getOutputStream();
+                                                outputStream.write(postParameters.getBytes("UTF-8"));
+                                                outputStream.flush();
+                                                outputStream.close();
+
+                                                int response = conn.getResponseCode();
+                                                if(response == conn.HTTP_OK){
+                                                    Log.d(TAG,"getdata connected to myinfo");
+                                                }else{
+                                                    Log.d(TAG,"getdata disconnected to myinfo");
+                                                }
+
+
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    };
+                                    getdata.start();
+                                    try {
+                                        getdata.join();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             });
                             dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -401,7 +511,42 @@ public class TwoFood extends Activity {
                             dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    Thread getdata = new Thread(){
+                                        @Override
+                                        public void run(){
+                                            try {
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=drink"+finalI_rand2;
+                                                Log.d(TAG,"getdata post : "+postParameters);
+                                                URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
+                                                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                                                conn.setDoInput(true);
+                                                conn.setDoOutput(true);
+                                                conn.connect();
 
+                                                OutputStream outputStream = conn.getOutputStream();
+                                                outputStream.write(postParameters.getBytes("UTF-8"));
+                                                outputStream.flush();
+                                                outputStream.close();
+
+                                                int response = conn.getResponseCode();
+                                                if(response == conn.HTTP_OK){
+                                                    Log.d(TAG,"getdata connected to myinfo");
+                                                }else{
+                                                    Log.d(TAG,"getdata disconnected to myinfo");
+                                                }
+
+
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    };
+                                    getdata.start();
+                                    try {
+                                        getdata.join();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             });
                             dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -501,7 +646,42 @@ public class TwoFood extends Activity {
                             dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    Thread getdata = new Thread(){
+                                        @Override
+                                        public void run(){
+                                            try {
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=meal"+finalI_rand1;
+                                                Log.d(TAG,"getdata post : "+postParameters);
+                                                URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
+                                                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                                                conn.setDoInput(true);
+                                                conn.setDoOutput(true);
+                                                conn.connect();
 
+                                                OutputStream outputStream = conn.getOutputStream();
+                                                outputStream.write(postParameters.getBytes("UTF-8"));
+                                                outputStream.flush();
+                                                outputStream.close();
+
+                                                int response = conn.getResponseCode();
+                                                if(response == conn.HTTP_OK){
+                                                    Log.d(TAG,"getdata connected to myinfo");
+                                                }else{
+                                                    Log.d(TAG,"getdata disconnected to myinfo");
+                                                }
+
+
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    };
+                                    getdata.start();
+                                    try {
+                                        getdata.join();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             });
                             dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -567,7 +747,42 @@ public class TwoFood extends Activity {
                             dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    Thread getdata = new Thread(){
+                                        @Override
+                                        public void run(){
+                                            try {
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=meal"+finalI_rand2;
+                                                Log.d(TAG,"getdata post : "+postParameters);
+                                                URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
+                                                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                                                conn.setDoInput(true);
+                                                conn.setDoOutput(true);
+                                                conn.connect();
 
+                                                OutputStream outputStream = conn.getOutputStream();
+                                                outputStream.write(postParameters.getBytes("UTF-8"));
+                                                outputStream.flush();
+                                                outputStream.close();
+
+                                                int response = conn.getResponseCode();
+                                                if(response == conn.HTTP_OK){
+                                                    Log.d(TAG,"getdata connected to myinfo");
+                                                }else{
+                                                    Log.d(TAG,"getdata disconnected to myinfo");
+                                                }
+
+
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    };
+                                    getdata.start();
+                                    try {
+                                        getdata.join();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             });
                             dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -608,6 +823,8 @@ public class TwoFood extends Activity {
                 }
                 flag.setOne_food1_before(i_rand1);
                 flag.setOne_food2_before(i_rand2);
+                int finalI_rand1 = i_rand1;
+                int finalI_rand2 = i_rand2;
 
 
                 left_menu1.setOnClickListener(new View.OnClickListener() {
@@ -642,7 +859,42 @@ public class TwoFood extends Activity {
                             dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    Thread getdata = new Thread(){
+                                        @Override
+                                        public void run(){
+                                            try {
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=drink"+finalI_rand1;
+                                                Log.d(TAG,"getdata post : "+postParameters);
+                                                URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
+                                                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                                                conn.setDoInput(true);
+                                                conn.setDoOutput(true);
+                                                conn.connect();
 
+                                                OutputStream outputStream = conn.getOutputStream();
+                                                outputStream.write(postParameters.getBytes("UTF-8"));
+                                                outputStream.flush();
+                                                outputStream.close();
+
+                                                int response = conn.getResponseCode();
+                                                if(response == conn.HTTP_OK){
+                                                    Log.d(TAG,"getdata connected to myinfo");
+                                                }else{
+                                                    Log.d(TAG,"getdata disconnected to myinfo");
+                                                }
+
+
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    };
+                                    getdata.start();
+                                    try {
+                                        getdata.join();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             });
                             dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -708,7 +960,42 @@ public class TwoFood extends Activity {
                             dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    Thread getdata = new Thread(){
+                                        @Override
+                                        public void run(){
+                                            try {
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=drink"+finalI_rand2;
+                                                Log.d(TAG,"getdata post : "+postParameters);
+                                                URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
+                                                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                                                conn.setDoInput(true);
+                                                conn.setDoOutput(true);
+                                                conn.connect();
 
+                                                OutputStream outputStream = conn.getOutputStream();
+                                                outputStream.write(postParameters.getBytes("UTF-8"));
+                                                outputStream.flush();
+                                                outputStream.close();
+
+                                                int response = conn.getResponseCode();
+                                                if(response == conn.HTTP_OK){
+                                                    Log.d(TAG,"getdata connected to myinfo");
+                                                }else{
+                                                    Log.d(TAG,"getdata disconnected to myinfo");
+                                                }
+
+
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    };
+                                    getdata.start();
+                                    try {
+                                        getdata.join();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             });
                             dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -766,6 +1053,8 @@ public class TwoFood extends Activity {
                 }
                 flag.setOne_food1_before(i_rand1);
                 flag.setOne_food2_before(i_rand2);
+                int finalI_rand1 = i_rand1;
+                int finalI_rand2 = i_rand2;
 
 
                 left_menu1.setOnClickListener(new View.OnClickListener() {
@@ -799,7 +1088,42 @@ public class TwoFood extends Activity {
                             dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    Thread getdata = new Thread(){
+                                        @Override
+                                        public void run(){
+                                            try {
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=meal"+finalI_rand1;
+                                                Log.d(TAG,"getdata post : "+postParameters);
+                                                URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
+                                                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                                                conn.setDoInput(true);
+                                                conn.setDoOutput(true);
+                                                conn.connect();
 
+                                                OutputStream outputStream = conn.getOutputStream();
+                                                outputStream.write(postParameters.getBytes("UTF-8"));
+                                                outputStream.flush();
+                                                outputStream.close();
+
+                                                int response = conn.getResponseCode();
+                                                if(response == conn.HTTP_OK){
+                                                    Log.d(TAG,"getdata connected to myinfo");
+                                                }else{
+                                                    Log.d(TAG,"getdata disconnected to myinfo");
+                                                }
+
+
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    };
+                                    getdata.start();
+                                    try {
+                                        getdata.join();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             });
                             dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -864,7 +1188,42 @@ public class TwoFood extends Activity {
                             dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    Thread getdata = new Thread(){
+                                        @Override
+                                        public void run(){
+                                            try {
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=meal"+finalI_rand2;
+                                                Log.d(TAG,"getdata post : "+postParameters);
+                                                URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
+                                                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                                                conn.setDoInput(true);
+                                                conn.setDoOutput(true);
+                                                conn.connect();
 
+                                                OutputStream outputStream = conn.getOutputStream();
+                                                outputStream.write(postParameters.getBytes("UTF-8"));
+                                                outputStream.flush();
+                                                outputStream.close();
+
+                                                int response = conn.getResponseCode();
+                                                if(response == conn.HTTP_OK){
+                                                    Log.d(TAG,"getdata connected to myinfo");
+                                                }else{
+                                                    Log.d(TAG,"getdata disconnected to myinfo");
+                                                }
+
+
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    };
+                                    getdata.start();
+                                    try {
+                                        getdata.join();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             });
                             dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -904,7 +1263,8 @@ public class TwoFood extends Activity {
                 }
                 flag.setOne_food1_before(i_rand1);
                 flag.setOne_food2_before(i_rand2);
-
+                int finalI_rand1 = i_rand1;
+                int finalI_rand2 = i_rand2;
 
                 left_menu1.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -937,7 +1297,42 @@ public class TwoFood extends Activity {
                             dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    Thread getdata = new Thread(){
+                                        @Override
+                                        public void run(){
+                                            try {
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=drink"+finalI_rand1;
+                                                Log.d(TAG,"getdata post : "+postParameters);
+                                                URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
+                                                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                                                conn.setDoInput(true);
+                                                conn.setDoOutput(true);
+                                                conn.connect();
 
+                                                OutputStream outputStream = conn.getOutputStream();
+                                                outputStream.write(postParameters.getBytes("UTF-8"));
+                                                outputStream.flush();
+                                                outputStream.close();
+
+                                                int response = conn.getResponseCode();
+                                                if(response == conn.HTTP_OK){
+                                                    Log.d(TAG,"getdata connected to myinfo");
+                                                }else{
+                                                    Log.d(TAG,"getdata disconnected to myinfo");
+                                                }
+
+
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    };
+                                    getdata.start();
+                                    try {
+                                        getdata.join();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             });
                             dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
@@ -985,7 +1380,42 @@ public class TwoFood extends Activity {
                             dlg.setPositiveButton("추가", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    Thread getdata = new Thread(){
+                                        @Override
+                                        public void run(){
+                                            try {
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=drink"+finalI_rand2;
+                                                Log.d(TAG,"getdata post : "+postParameters);
+                                                URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
+                                                HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                                                conn.setDoInput(true);
+                                                conn.setDoOutput(true);
+                                                conn.connect();
 
+                                                OutputStream outputStream = conn.getOutputStream();
+                                                outputStream.write(postParameters.getBytes("UTF-8"));
+                                                outputStream.flush();
+                                                outputStream.close();
+
+                                                int response = conn.getResponseCode();
+                                                if(response == conn.HTTP_OK){
+                                                    Log.d(TAG,"getdata connected to myinfo");
+                                                }else{
+                                                    Log.d(TAG,"getdata disconnected to myinfo");
+                                                }
+
+
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    };
+                                    getdata.start();
+                                    try {
+                                        getdata.join();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             });
                             dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
