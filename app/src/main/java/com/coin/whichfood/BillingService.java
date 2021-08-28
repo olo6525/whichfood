@@ -31,14 +31,13 @@ public class BillingService implements PurchasesUpdatedListener{
     private List<SkuDetails> skuDetails_list;
     private ConsumeResponseListener consumeResponseListener;
     private Context context;
-
-    public BillingService(Context context) {
+    private FlagClass flagClass;
+    public BillingService(Context context, int mealListSize, int drinkListsize) {
         this.context = context;
         billingClient = BillingClient.newBuilder(context)
                 .setListener(this::onPurchasesUpdated)
                 .enablePendingPurchases()
                 .build();
-
 
 
         billingClient.startConnection(new BillingClientStateListener() {
@@ -48,7 +47,9 @@ public class BillingService implements PurchasesUpdatedListener{
                 if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
                     // The BillingClient is ready. You can query purchases here.
                     Log.d(TAG, "biilingcount2");
-                    getSkuDetailList();
+                    getSkuDetailList(mealListSize, drinkListsize);
+                }else{
+                    Log.d(TAG, "biilingcount2 연결 안됨");
                 }
             }
 
@@ -95,11 +96,16 @@ public class BillingService implements PurchasesUpdatedListener{
 
 
 
-        public void getSkuDetailList() {
+        public void getSkuDetailList(int mealListSize, int drinkListsize) {
             Log.d(TAG, "biilingcount3");
             List<String> skuList = new ArrayList<>();
-            skuList.add("VIP정기구독");
-            skuList.add("VVIP정기구독");
+            for(int i = 0 ; i < mealListSize; i++){
+                skuList.add("meal"+Integer.toString(i+1));
+            }
+            for(int i = 0; i< drinkListsize; i++){
+                skuList.add("drink"+Integer.toString(i+1));
+            }
+
             SkuDetailsParams.Builder params = SkuDetailsParams.newBuilder();
             params.setSkusList(skuList).setType(BillingClient.SkuType.SUBS);
             billingClient.querySkuDetailsAsync(params.build(),
@@ -108,19 +114,20 @@ public class BillingService implements PurchasesUpdatedListener{
                         public void onSkuDetailsResponse(BillingResult billingResult,
                                                          List<SkuDetails> skuDetailsList) {
                             Log.d(TAG, "biilingcount3.1");
+                            //연결못함
                             if (billingResult.getResponseCode() != BillingClient.BillingResponseCode.OK) {
-                                Log.d(TAG, "biilingcount3.2");
+                                Log.d(TAG, "biilingcount3.2 연결못함");
                                 return;
                             }
                             Log.d(TAG, "biilingcount3.3");
                             //상품정보를 가저오지 못함 -
                             if (skuDetailsList == null) {
-                                Log.d(TAG,"결제 상품 리스트에 없음 ");
+                                Log.d(TAG,"bii결제 상품 리스트에 없음 ");
                                 return;
                             }
-
+                            Log.d(TAG, "biilingcount3.4");
                             //상품사이즈 체크
-                            Log.d(TAG, "결제 상품 리스트 크기 : " + skuDetailsList.size());
+                            Log.d(TAG, "bii결제 상품 리스트 크기 : " + skuDetailsList.size());
 
                             //상품가저오기 : 정기결제상품 하나라서 한개만 처리함.
                             try {
@@ -130,9 +137,11 @@ public class BillingService implements PurchasesUpdatedListener{
                                     String price = skuDetails.getPrice();
 //                                userSkuDetails = skuDetails;
 
+                                    Log.d(TAG,"bii결제상품 상세 리스트 :" + title + ","+sku+", "+price);
+
                                 }
                             } catch (Exception e) {
-                                Log.d(TAG, "itemerror" + e.toString());
+                                Log.d(TAG, "biiitemerror" + e.toString());
                             }
 
                             skuDetails_list = skuDetailsList;

@@ -28,13 +28,14 @@ public class Partnershippay extends Activity {
         setContentView(R.layout.partnership_choice);
         checkpermission();
         Button paytest = (Button)findViewById(R.id.paytest);
-        billingService = new BillingService(this);
+        FlagClass flagClass = (FlagClass)getApplication();
+        billingService = new BillingService(this,flagClass.getThenumberoffoodoutmeal(), flagClass.getThenumberoffoodoutdrink());
 
         paytest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Partnershippay.this, Registerpartner.class);
-                startActivity(intent);
+//                Intent intent = new Intent(Partnershippay.this, Registerpartner.class);
+//                startActivity(intent);
             }
         });
     }

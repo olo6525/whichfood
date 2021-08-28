@@ -437,4 +437,9 @@ public class Registerpartner extends Activity {
         return cursor.getString(column_index);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
 }
