@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -52,18 +53,22 @@ public class Registerpartner extends Activity {
     EditText storenumedit;
     private String storenum = "";
     private int storenumcheck = 0;
+    private int successcheck = 0;
     private ArrayList<String> imagepath = new ArrayList<>();
     private ArrayList<String> imagename = new ArrayList<>();
     private int imagecount=0;
     private String pickfood = "";
     private String pickindex = "";
     private ExecutorService executorService = Executors.newFixedThreadPool(2);
+    private BillingService billingService;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registerpartner);
+        final FlagClass flagClass = (FlagClass)getApplication();
+        billingService = new BillingService(this,flagClass.getThenumberoffoodoutmeal(), flagClass.getThenumberoffoodoutdrink());
 //매장인허가번호 입력===========================================================================================
         storenumedit = (EditText)findViewById(R.id.storenum);
 
@@ -149,7 +154,6 @@ public class Registerpartner extends Activity {
 
 //지도 표출 이미지, 홍보이미지 등록 끝 ============================================================================
 //음식 등록 ===================================================================================================
-        final FlagClass flagClass = (FlagClass)getApplication();
         RadioGroup radioGroup = (RadioGroup)findViewById(R.id.checkoutfood);
         RadioButton pickmeal = (RadioButton)findViewById(R.id.pickmeal);
         RadioButton pickdrink = (RadioButton)findViewById(R.id.pickdrink);
@@ -226,6 +230,7 @@ public class Registerpartner extends Activity {
                 storenum = storenumedit.getText().toString();
                 if (storenum != "" && pickfood != "" && pickindex != "" && !imagepath.isEmpty()) {
                     AlertDialog.Builder dlg = new AlertDialog.Builder(Registerpartner.this);
+                    AlertDialog.Builder faildlg = new AlertDialog.Builder(Registerpartner.this);
                     Intent intent1 = new Intent(Registerpartner.this, MainActivity.class);
                     dlg.setTitle("제휴 서비스 등록"); //제목
                     dlg.setMessage("입력하신 정보로 제휴 서비스 등록을 하시겠습니까?");
@@ -317,11 +322,24 @@ public class Registerpartner extends Activity {
                                         String result = builder.toString();
                                         if(result.equals("nostorenum")){
                                             storenumcheck = 1;
-                                        }else {
+                                        }else if(result.charAt(result.length()-1) == '7'){
                                             storenumcheck = 0;
                                             Log.d(TAG, "imagelocation:" + result);
                                             intent1.putExtra("Success", 1);
                                             startActivity(intent1);
+                                        }else{
+                                            successcheck = 1;
+                                            faildlg.setTitle("형식 불일치");
+                                            faildlg.setMessage("형식에 알맞은 입력값을 기입해주시길 바랍니다.");
+                                            faildlg.setIcon(R.drawable.ic_storeimage);
+                                            faildlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    finish();
+                                                    Intent reregister = new Intent(Registerpartner.this, Registerpartner.class);
+                                                    startActivity(reregister);
+                                                }
+                                            });
                                         }
 
                                     } catch (Exception e) {
@@ -343,8 +361,17 @@ public class Registerpartner extends Activity {
                                 toast.setGravity(Gravity.CENTER|Gravity.CENTER,0,0);
                                 toast.show();
                             }
+                            if(successcheck ==1){
+                                faildlg.show();
+                            }
                         }
 
+                    });
+                    dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
                     });
                     dlg.show();
 
