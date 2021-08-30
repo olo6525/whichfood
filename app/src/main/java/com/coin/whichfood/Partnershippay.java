@@ -20,7 +20,6 @@ import static android.content.ContentValues.TAG;
 
 public class Partnershippay extends Activity {
 
-    private BillingService billingService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +27,6 @@ public class Partnershippay extends Activity {
         setContentView(R.layout.partnership_choice);
         checkpermission();
         Button paytest = (Button)findViewById(R.id.paytest);
-        billingService = new BillingService(this);
 
         paytest.setOnClickListener(new View.OnClickListener() {
             @Override

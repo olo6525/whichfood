@@ -7,6 +7,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.android.billingclient.api.AcknowledgePurchaseParams;
+import com.android.billingclient.api.AcknowledgePurchaseResponseListener;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingFlowParams;
@@ -30,15 +32,15 @@ public class BillingService implements PurchasesUpdatedListener{
     private BillingClient billingClient;
     private List<SkuDetails> skuDetails_list;
     private ConsumeResponseListener consumeResponseListener;
+    private AcknowledgePurchaseResponseListener acknowledgePurchaseResponseListener;
     private Context context;
-
-    public BillingService(Context context) {
+    private FlagClass flagClass;
+    public BillingService(Context context, int mealListSize, int drinkListsize) {
         this.context = context;
         billingClient = BillingClient.newBuilder(context)
                 .setListener(this::onPurchasesUpdated)
                 .enablePendingPurchases()
                 .build();
-
 
 
         billingClient.startConnection(new BillingClientStateListener() {
@@ -48,7 +50,9 @@ public class BillingService implements PurchasesUpdatedListener{
                 if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
                     // The BillingClient is ready. You can query purchases here.
                     Log.d(TAG, "biilingcount2");
-                    getSkuDetailList();
+                    getSkuDetailList(mealListSize, drinkListsize);
+                }else{
+                    Log.d(TAG, "biilingcount2 연결 안됨");
                 }
             }
 
@@ -56,6 +60,7 @@ public class BillingService implements PurchasesUpdatedListener{
             public void onBillingServiceDisconnected() {
                 // Try to restart the connection on the next request to
                 // Google Play by calling the startConnection() method.
+                Log.d(TAG, "biilingcount2 연결 안됨");
             }
         });
 
@@ -81,25 +86,32 @@ public class BillingService implements PurchasesUpdatedListener{
             // To be implemented in a later section.
             if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK
                     && purchases != null) {
-                Log.d(TAG, "결제에 성공했으며, 아래에 구매한 상품들이 나열됨");
+                Log.d(TAG, "bii결제에 성공했으며, 아래에 구매한 상품들이 나열됨");
                 for (Purchase purchase : purchases) {
-                    Log.e(TAG, "결제 구매완료상품: " + purchases);
+                    Log.e(TAG, "bii결제 구매완료상품: " + purchases);
                     handlePurchase(purchase);
                 }
             } else if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.USER_CANCELED) {
                 // Handle an error caused by a user cancelling the purchase flow.
+                Log.d(TAG, "bii결제에 취소하였음니다 !");
             } else {
                 // Handle any other error codes.
+                Log.d(TAG, "bii결제도중 예상치 못한 에러가 발생하였습니다 !");
             }
         }
 
 
 
-        public void getSkuDetailList() {
+        public void getSkuDetailList(int mealListSize, int drinkListsize) {
             Log.d(TAG, "biilingcount3");
             List<String> skuList = new ArrayList<>();
-            skuList.add("VIP정기구독");
-            skuList.add("VVIP정기구독");
+            for(int i = 0 ; i < mealListSize; i++){
+                skuList.add("meal"+Integer.toString(i+1));
+            }
+            for(int i = 0; i< drinkListsize; i++){
+                skuList.add("drink"+Integer.toString(i+1));
+            }
+
             SkuDetailsParams.Builder params = SkuDetailsParams.newBuilder();
             params.setSkusList(skuList).setType(BillingClient.SkuType.SUBS);
             billingClient.querySkuDetailsAsync(params.build(),
@@ -108,19 +120,20 @@ public class BillingService implements PurchasesUpdatedListener{
                         public void onSkuDetailsResponse(BillingResult billingResult,
                                                          List<SkuDetails> skuDetailsList) {
                             Log.d(TAG, "biilingcount3.1");
+                            //연결못함
                             if (billingResult.getResponseCode() != BillingClient.BillingResponseCode.OK) {
-                                Log.d(TAG, "biilingcount3.2");
+                                Log.d(TAG, "biilingcount3.2 연결못함");
                                 return;
                             }
                             Log.d(TAG, "biilingcount3.3");
                             //상품정보를 가저오지 못함 -
                             if (skuDetailsList == null) {
-                                Log.d(TAG,"결제 상품 리스트에 없음 ");
+                                Log.d(TAG,"bii결제 상품 리스트에 없음 ");
                                 return;
                             }
-
+                            Log.d(TAG, "biilingcount3.4");
                             //상품사이즈 체크
-                            Log.d(TAG, "결제 상품 리스트 크기 : " + skuDetailsList.size());
+                            Log.d(TAG, "bii결제 상품 리스트 크기 : " + skuDetailsList.size());
 
                             //상품가저오기 : 정기결제상품 하나라서 한개만 처리함.
                             try {
@@ -130,9 +143,11 @@ public class BillingService implements PurchasesUpdatedListener{
                                     String price = skuDetails.getPrice();
 //                                userSkuDetails = skuDetails;
 
+                                    Log.d(TAG,"bii결제상품 상세 리스트 :" + title + ","+sku+", "+price);
+
                                 }
                             } catch (Exception e) {
-                                Log.d(TAG, "itemerror" + e.toString());
+                                Log.d(TAG, "biiitemerror" + e.toString());
                             }
 
                             skuDetails_list = skuDetailsList;
@@ -161,36 +176,58 @@ public class BillingService implements PurchasesUpdatedListener{
             BillingFlowParams flowParams = BillingFlowParams.newBuilder()
                     .setSkuDetails(skuDetails)
                     .build();
-            Log.d(TAG,"purchase state : "+billingClient.launchBillingFlow(activity,flowParams).getResponseCode());
+            Log.d(TAG,"biipurchase state : "+billingClient.launchBillingFlow(activity,flowParams).getResponseCode());
         }
 
     }
+//일회성 결제용 구매핸들러=============================================================================
+//    public void handlePurchase(Purchase purchase) {
+//        Log.d(TAG,"biilingcount5");
+//        // Purchase retrieved from BillingClient#queryPurchasesAsync or your PurchasesUpdatedListener.
+//
+//        // Verify the purchase.
+//        // Ensure entitlement was not already granted for this purchaseToken.
+//        // Grant entitlement to the user.
+//
+//        ConsumeParams consumeParams =
+//                ConsumeParams.newBuilder()
+//                        .setPurchaseToken(purchase.getPurchaseToken())
+//                        .build();
+//
+//        ConsumeResponseListener listener = new ConsumeResponseListener() {
+//            @Override
+//            public void onConsumeResponse(BillingResult billingResult, String purchaseToken) {
+//                if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+//                    // Handle the success of the consume operation.
+//                }
+//            }
+//        };
+//
+//        billingClient.consumeAsync(consumeParams, listener);
+//    }
+//일회성구매핸들러끝=====================================================================================
 
-    public void handlePurchase(Purchase purchase) {
-        Log.d(TAG,"biilingcount5");
-        // Purchase retrieved from BillingClient#queryPurchasesAsync or your PurchasesUpdatedListener.
+    void handlePurchase(Purchase purchase) {
+        if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
+            if (!purchase.isAcknowledged()) {
+                AcknowledgePurchaseParams acknowledgePurchaseParams =
+                        AcknowledgePurchaseParams.newBuilder()
+                                .setPurchaseToken(purchase.getPurchaseToken())
+                                .build();
 
-        // Verify the purchase.
-        // Ensure entitlement was not already granted for this purchaseToken.
-        // Grant entitlement to the user.
+                acknowledgePurchaseResponseListener = new AcknowledgePurchaseResponseListener() {
+                    @Override
+                    public void onAcknowledgePurchaseResponse(@NonNull @NotNull BillingResult billingResult) {
+                        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                            // Handle the success of the consume operation.
 
-        ConsumeParams consumeParams =
-                ConsumeParams.newBuilder()
-                        .setPurchaseToken(purchase.getPurchaseToken())
-                        .build();
-
-        ConsumeResponseListener listener = new ConsumeResponseListener() {
-            @Override
-            public void onConsumeResponse(BillingResult billingResult, String purchaseToken) {
-                if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
-                    // Handle the success of the consume operation.
-                }
+                        }
+                    }
+                };
+                billingClient.acknowledgePurchase(acknowledgePurchaseParams, acknowledgePurchaseResponseListener);
             }
-        };
-
-        billingClient.consumeAsync(consumeParams, listener);
+        }
     }
-
 
     
     
