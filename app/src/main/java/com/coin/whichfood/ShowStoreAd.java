@@ -85,7 +85,7 @@ public class ShowStoreAd extends FragmentActivity {
         public Fragment getItem(int position) {
             Fragment fragment = new SlideViewFlagment();
             Bundle args = new Bundle();
-            for(int i =1 ; i < 6; i++) {
+            for(int i =1 ; i < 4; i++) {
                 imagepaths.add(imagepath.getStringExtra("path") + i+".jpg");
             }
             args.putStringArrayList("path",imagepaths);
@@ -103,14 +103,6 @@ public class ShowStoreAd extends FragmentActivity {
                     args.putInt("page",2);
                     fragment.setArguments(args);
                     return fragment;
-                case 3:
-                    args.putInt("page",3);
-                    fragment.setArguments(args);
-                    return fragment;
-                case 4:
-                    args.putInt("page",4);
-                    fragment.setArguments(args);
-                    return fragment;
                 default:
                     return fragment;
             }
@@ -119,7 +111,7 @@ public class ShowStoreAd extends FragmentActivity {
 
         @Override
         public int getCount() {
-            return 5;
+            return 3;
         }
 
         @Override

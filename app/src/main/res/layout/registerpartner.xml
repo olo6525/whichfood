@@ -132,7 +132,7 @@
                         android:src="@drawable/ic_registerpartnermapicon" />
 
                     <ImageView
-                        android:id="@+id/adpicure4"
+                        android:id="@+id/adpicure3"
                         android:layout_width="match_parent"
                         android:layout_height="0px"
                         android:layout_weight="1"
@@ -143,7 +143,6 @@
                         android:src="@drawable/ic_registerpartneradimage" />
 
                     <ImageView
-                        android:id="@+id/adpicure5"
                         android:layout_width="match_parent"
                         android:layout_height="0px"
                         android:layout_weight="1"
@@ -183,7 +182,6 @@
                         android:src="@drawable/ic_registerpartneradimage" />
 
                     <ImageView
-                        android:id="@+id/adpicure3"
                         android:layout_width="match_parent"
                         android:layout_height="0px"
                         android:layout_weight="1"

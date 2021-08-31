@@ -2,10 +2,12 @@ package com.coin.whichfood;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.android.billingclient.api.AcknowledgePurchaseParams;
 import com.android.billingclient.api.AcknowledgePurchaseResponseListener;
@@ -227,6 +229,10 @@ public class BillingService implements PurchasesUpdatedListener{
                 billingClient.acknowledgePurchase(acknowledgePurchaseParams, acknowledgePurchaseResponseListener);
             }
         }
+        Log.d(TAG,"biipurchasegogo");
+        Intent intent = new Intent(context,MainActivity.class);
+        intent.putExtra("Success",1);
+        context.startActivity(intent);
     }
 
     

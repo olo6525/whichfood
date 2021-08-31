@@ -88,14 +88,6 @@ public class SlideViewFlagment extends Fragment {
             storename.setText(args.getString("storename"));
             adimages.setImageBitmap(bitmapArrayList.get(0));
             bitmapArrayList.clear();
-        }else if (args.getInt("page") == 3 && !bitmapArrayList.isEmpty()){
-            storename.setText(args.getString("storename"));
-            adimages.setImageBitmap(bitmapArrayList.get(0));
-            bitmapArrayList.clear();
-        }else if (args.getInt("page")== 4 && !bitmapArrayList.isEmpty()){
-            storename.setText(args.getString("storename"));
-            adimages.setImageBitmap(bitmapArrayList.get(0));
-            bitmapArrayList.clear();
         }
 
 
