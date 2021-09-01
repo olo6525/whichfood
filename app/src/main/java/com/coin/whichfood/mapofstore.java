@@ -393,22 +393,22 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                                 marker.setHeight(75);
                                 marker.setFlat(true);
                                 markers.add(marker);
-                            }else if(custom.charAt(0)=='2'){
+                            }else if(custom.charAt(0)=='2') {
                                 Marker marker = new Marker();
                                 marker.setPosition(new LatLng(storelatitudedouble, storelongitudedouble));
-                                if(storejson.isNull("storeimage")){
+                                if (storejson.isNull("storeimage")) {
                                     marker.setIcon(OverlayImage.fromResource(R.drawable.ic_storeimage));
-                                }else{
+                                } else {
                                     String finalFoodnumber = foodnumber;
-                                    Thread runnablthread = new Thread(){
+                                    Thread runnablthread = new Thread() {
                                         @Override
                                         public void run() {
-                                            try{
-                                                URL url = new URL(flag.getServers().get(0)+"whichfoodadimages/"+storenum+"/"+ finalFoodnumber+"/0.jpg");
-                                                Log.d(TAG,"adimage line1");
+                                            try {
+                                                URL url = new URL(flag.getServers().get(0) + "whichfoodadimages/" + storenum + "/" + finalFoodnumber + "/0.jpg");
+                                                Log.d(TAG, "adimage line1");
                                                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                                                 conn.setDoInput(true);
-                                                Log.d(TAG,"adimage line2");
+                                                Log.d(TAG, "adimage line2");
                                                 conn.connect();
                                                 Log.d(TAG, "adimage line3");
                                                 InputStream is = conn.getInputStream();
@@ -417,7 +417,7 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                                                 marker.setIcon(OverlayImage.fromBitmap(bitmap));
                                                 is.close();
 
-                                            }catch (Exception e){
+                                            } catch (Exception e) {
                                                 e.printStackTrace();
                                             }
                                         }
@@ -434,67 +434,10 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                                 marker.setOnClickListener(new Overlay.OnClickListener() {
                                     @Override
                                     public boolean onClick(@NonNull @NotNull Overlay overlay) {
-                                        Intent adintent = new Intent(mapofstore.this,ShowStoreAd.class);
+                                        Intent adintent = new Intent(mapofstore.this, ShowStoreAd.class);
                                         try {
-                                            adintent.putExtra("path",flag.getServers().get(0)+"whichfoodadimages/"+storejson.getString("storenum")+"/"+ finalFoodnumber1+"/");
-                                            adintent.putExtra("storename",storejson.getString("storename"));
-                                        } catch (Exception e) {
-                                            e.printStackTrace();
-                                        }
-                                        startActivity(adintent);
-                                        return true;
-                                    }
-                                });
-                                marker.setWidth(100);
-                                marker.setHeight(100);
-                                marker.setFlat(true);
-                                markers.add(marker);
-                            }else if(custom.charAt(0)=='3'){
-                                Marker marker = new Marker();
-                                marker.setPosition(new LatLng(storelatitudedouble, storelongitudedouble));
-                                if(storejson.isNull("storeimage")){
-                                    marker.setIcon(OverlayImage.fromResource(R.drawable.ic_storeimage));
-                                }else{
-                                    String finalFoodnumber = foodnumber;
-                                    Thread runnablthread = new Thread(){
-                                        @Override
-                                        public void run() {
-                                            try{
-                                                URL url = new URL(flag.getServers().get(0)+"whichfoodadimages/"+storenum+"/"+ finalFoodnumber+"/0.jpg");
-                                                Log.d(TAG,"adimage line1");
-                                                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                                                conn.setDoInput(true);
-                                                Log.d(TAG,"adimage line2");
-                                                conn.connect();
-                                                Log.d(TAG, "adimage line3");
-                                                InputStream is = conn.getInputStream();
-                                                Bitmap bitmap = BitmapFactory.decodeStream(is);
-                                                Log.d(TAG, "adimage" + bitmap);
-                                                marker.setIcon(OverlayImage.fromBitmap(bitmap));
-                                                is.close();
-
-                                            }catch (Exception e){
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                    };
-                                    runnablthread.start();
-                                    try {
-                                        runnablthread.join();
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                }
-                                marker.setCaptionText(storejson.getString("storename"));
-                                String finalFoodnumber1 = foodnumber;
-                                marker.setOnClickListener(new Overlay.OnClickListener() {
-                                    @Override
-                                    public boolean onClick(@NonNull @NotNull Overlay overlay) {
-                                        Intent adintent = new Intent(mapofstore.this,ShowStoreAdvvip.class);
-                                        try {
-                                            adintent.putExtra("path",flag.getServers().get(0)+"whichfoodadimages/"+storejson.getString("storenum")+"/"+ finalFoodnumber1+"/");
-                                            adintent.putExtra("storename",storejson.getString("storename"));
+                                            adintent.putExtra("path", flag.getServers().get(0) + "whichfoodadimages/" + storejson.getString("storenum") + "/" + finalFoodnumber1 + "/");
+                                            adintent.putExtra("storename", storejson.getString("storename"));
                                         } catch (Exception e) {
                                             e.printStackTrace();
                                         }
@@ -506,7 +449,66 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                                 marker.setHeight(130);
                                 marker.setFlat(true);
                                 markers.add(marker);
-                            }else{
+                            }
+//                            }else if(custom.charAt(0)=='3'){
+//                                Marker marker = new Marker();
+//                                marker.setPosition(new LatLng(storelatitudedouble, storelongitudedouble));
+//                                if(storejson.isNull("storeimage")){
+//                                    marker.setIcon(OverlayImage.fromResource(R.drawable.ic_storeimage));
+//                                }else{
+//                                    String finalFoodnumber = foodnumber;
+//                                    Thread runnablthread = new Thread(){
+//                                        @Override
+//                                        public void run() {
+//                                            try{
+//                                                URL url = new URL(flag.getServers().get(0)+"whichfoodadimages/"+storenum+"/"+ finalFoodnumber+"/0.jpg");
+//                                                Log.d(TAG,"adimage line1");
+//                                                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//                                                conn.setDoInput(true);
+//                                                Log.d(TAG,"adimage line2");
+//                                                conn.connect();
+//                                                Log.d(TAG, "adimage line3");
+//                                                InputStream is = conn.getInputStream();
+//                                                Bitmap bitmap = BitmapFactory.decodeStream(is);
+//                                                Log.d(TAG, "adimage" + bitmap);
+//                                                marker.setIcon(OverlayImage.fromBitmap(bitmap));
+//                                                is.close();
+//
+//                                            }catch (Exception e){
+//                                                e.printStackTrace();
+//                                            }
+//                                        }
+//                                    };
+//                                    runnablthread.start();
+//                                    try {
+//                                        runnablthread.join();
+//                                    } catch (InterruptedException e) {
+//                                        e.printStackTrace();
+//                                    }
+//
+//                                }
+//                                marker.setCaptionText(storejson.getString("storename"));
+//                                String finalFoodnumber1 = foodnumber;
+//                                marker.setOnClickListener(new Overlay.OnClickListener() {
+//                                    @Override
+//                                    public boolean onClick(@NonNull @NotNull Overlay overlay) {
+//                                        Intent adintent = new Intent(mapofstore.this,ShowStoreAdvvip.class);
+//                                        try {
+//                                            adintent.putExtra("path",flag.getServers().get(0)+"whichfoodadimages/"+storejson.getString("storenum")+"/"+ finalFoodnumber1+"/");
+//                                            adintent.putExtra("storename",storejson.getString("storename"));
+//                                        } catch (Exception e) {
+//                                            e.printStackTrace();
+//                                        }
+//                                        startActivity(adintent);
+//                                        return true;
+//                                    }
+//                                });
+//                                marker.setWidth(130);
+//                                marker.setHeight(130);
+//                                marker.setFlat(true);
+//                                markers.add(marker);
+//                            }
+                            else{
                                 Marker marker = new Marker();
                                 marker.setPosition(new LatLng(storelatitudedouble, storelongitudedouble));
                                 marker.setIcon(OverlayImage.fromResource(R.drawable.ic_storeimage));

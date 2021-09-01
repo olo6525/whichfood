@@ -47,6 +47,8 @@ public class Registerpartner extends Activity {
     ImageView adpicture1;
     ImageView adpicture2;
     ImageView adpicture3;
+    ImageView adpicture4;
+    ImageView adpicture5;
     ImageButton register;
     EditText storenumedit;
     private String storenum = "";
@@ -123,6 +125,32 @@ public class Registerpartner extends Activity {
                     }
                 }
             });
+        adpicture4 = (ImageView) findViewById(R.id.adpicure4);
+        adpicture4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!imagepath.isEmpty()) {
+                    Intent intent = new Intent(Intent.ACTION_PICK);
+                    intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                    startActivityForResult(intent, 5);
+                }else{
+                    Toast.makeText(getApplicationContext(),"지도표출 이미지를 업로드 해주시길 바랍니다.",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        adpicture5 = (ImageView) findViewById(R.id.adpicure5);
+        adpicture5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!imagepath.isEmpty()) {
+                    Intent intent = new Intent(Intent.ACTION_PICK);
+                    intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                    startActivityForResult(intent, 5);
+                }else{
+                    Toast.makeText(getApplicationContext(),"지도표출 이미지를 업로드 해주시길 바랍니다.",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
 //지도 표출 이미지, 홍보이미지 등록 끝 ============================================================================
@@ -295,6 +323,8 @@ public class Registerpartner extends Activity {
                                         String result = builder.toString();
                                         if(result.equals("nostorenum")){
                                             storenumcheck = 1;
+                                        }else if(result.equals("alreadyregistered")){
+                                            storenumcheck = 2;
                                         }else if(result.charAt(result.length()-1) == '7'){
                                             storenumcheck = 0;
                                             billingService.purchase(pickfood+pickindex,Registerpartner.this);
@@ -330,6 +360,10 @@ public class Registerpartner extends Activity {
                             }
                             if(storenumcheck == 1){
                                 Toast toast = Toast.makeText(getApplicationContext(),"등록되지 않은 인허가번호 입니다. \n※사업자번호가 아닌 -인허가번호- 를 입력하셔야 합니다. \n 정확한 인허가번호 입력시에도 안될시, 고객센터에 문의해주시길 바랍니다. \n H.P : 010-6525-3883", Toast.LENGTH_LONG);
+                                toast.setGravity(Gravity.CENTER|Gravity.CENTER,0,0);
+                                toast.show();
+                            }else if(storenumcheck == 2){
+                                Toast toast = Toast.makeText(getApplicationContext(),"이미 제휴 신청을 한 메뉴 입니다. \n H.P : 010-6525-3883", Toast.LENGTH_LONG);
                                 toast.setGravity(Gravity.CENTER|Gravity.CENTER,0,0);
                                 toast.show();
                             }
@@ -389,6 +423,22 @@ public class Registerpartner extends Activity {
             imagename.add(getName(ImageUri));
             Log.d(TAG,"imagelocation = "+data.getData()+imagepath.size());
             adpicture3.setImageURI(ImageUri);
+
+        }else if(requestCode == 4 && resultCode == RESULT_OK && data != null && data.getData() != null){
+
+            Uri ImageUri = data.getData();
+            imagepath.add(getPath(ImageUri));
+            imagename.add(getName(ImageUri));
+            Log.d(TAG,"imagelocation = "+data.getData()+imagepath.size());
+            adpicture4.setImageURI(ImageUri);
+
+        }else if(requestCode == 5 && resultCode == RESULT_OK && data != null && data.getData() != null){
+
+            Uri ImageUri = data.getData();
+            imagepath.add(getPath(ImageUri));
+            imagename.add(getName(ImageUri));
+            Log.d(TAG,"imagelocation = "+data.getData()+imagepath.size());
+            adpicture5.setImageURI(ImageUri);
 
         }
 

@@ -71,10 +71,10 @@ public class BillingService implements PurchasesUpdatedListener{
             @Override
             public void onConsumeResponse(BillingResult billingResult, String purchaseToken) {
                 if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
-                    Log.d(TAG, "상품을 성공적으로 소모하였습니다. 소모된 상품 => " + purchaseToken);
+                    Log.d(TAG, "bii상품을 성공적으로 소모하였습니다. 소모된 상품 => " + purchaseToken);
                     return;
                 } else {
-                    Log.d(TAG, "상품 소모에 실패하였습니다. 오류코드 (" + billingResult.getResponseCode() + "), 대상 상품 코드: " + purchaseToken);
+                    Log.d(TAG, "bii상품 소모에 실패하였습니다. 오류코드 (" + billingResult.getResponseCode() + "), 대상 상품 코드: " + purchaseToken);
                     return;
                 }
             }
@@ -181,6 +181,7 @@ public class BillingService implements PurchasesUpdatedListener{
             Log.d(TAG,"biipurchase state : "+billingClient.launchBillingFlow(activity,flowParams).getResponseCode());
         }
 
+
     }
 //일회성 결제용 구매핸들러=============================================================================
 //    public void handlePurchase(Purchase purchase) {
@@ -210,6 +211,7 @@ public class BillingService implements PurchasesUpdatedListener{
 //일회성구매핸들러끝=====================================================================================
 
     void handlePurchase(Purchase purchase) {
+        Log.d(TAG,"biil중복체크0");
         if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
             if (!purchase.isAcknowledged()) {
                 AcknowledgePurchaseParams acknowledgePurchaseParams =
@@ -217,11 +219,13 @@ public class BillingService implements PurchasesUpdatedListener{
                                 .setPurchaseToken(purchase.getPurchaseToken())
                                 .build();
 
+                Log.d(TAG,"biil중복체크1");
                 acknowledgePurchaseResponseListener = new AcknowledgePurchaseResponseListener() {
                     @Override
                     public void onAcknowledgePurchaseResponse(@NonNull @NotNull BillingResult billingResult) {
                         if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
                             // Handle the success of the consume operation.
+                            Log.d(TAG,"biil중복체크2");
 
                         }
                     }
@@ -229,6 +233,7 @@ public class BillingService implements PurchasesUpdatedListener{
                 billingClient.acknowledgePurchase(acknowledgePurchaseParams, acknowledgePurchaseResponseListener);
             }
         }
+        Log.d(TAG,"biil중복체크3");
         Log.d(TAG,"biipurchasegogo");
         Intent intent = new Intent(context,MainActivity.class);
         intent.putExtra("Success",1);

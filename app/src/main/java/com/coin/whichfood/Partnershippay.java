@@ -26,9 +26,10 @@ public class Partnershippay extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.partnership_choice);
         checkpermission();
-        Button paytest = (Button)findViewById(R.id.paytest);
+        Button vippay = (Button)findViewById(R.id.vippay);
 
-        paytest.setOnClickListener(new View.OnClickListener() {
+
+        vippay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Partnershippay.this, Registerpartner.class);
