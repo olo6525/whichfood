@@ -90,6 +90,7 @@ public class ShowStoreAd extends FragmentActivity {
             }
             args.putStringArrayList("path",imagepaths);
             args.putString("storename",imagepath.getStringExtra("storename"));
+            args.putString("storeaddress",imagepath.getStringExtra("storeaddress"));
             switch (position){
                 case 0:
                     args.putInt("page",0);
@@ -124,7 +125,7 @@ public class ShowStoreAd extends FragmentActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return "가게 정보 " + (position + 1);
+            return "매장홍보" + (position + 1);
         }
     }
 }

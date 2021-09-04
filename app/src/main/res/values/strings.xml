@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">이거먹자</string>
     <string name="partnershipintro">
-        "현재 테스트 중인 서비스 입니다. \n 금액은 차후 서비스 완성 후 지불 예정이오니 매장을 운영중이시라면 현재 무료로 등록하실 수 있습니다."
-        \nf
-        \n서비스 완성시 적용 사항
+        \n ※ 본인의 매장이 아닌 다른 사람의 매장에 허가없이 홍보물을 등록할 경우 명예훼손 죄로 처벌 받을 수 있습니다 !
         \n-이거먹자- 제휴 및 홍보 결제 시 서비스 사항
         \n(vip - 1500원/월)
         \n1. -외식-음식종류 선택시 추천되는 음식에서 -주변식당- 검색 시 제휴 음식점 고유의 이미지 표출
@@ -35,4 +33,6 @@
     <string name="storenum">매장 인허가 번호 입력 (정확히 입력해 주세요.)</string>
     <string name="scope">지도표츌 범위 입력 (1~10)km 기본 1km</string>
     <string name="enter">적용</string>
+    <string name="agreecheck">동의</string>
+    <string name="agree">약관 확인 및 동의</string>
 </resources>

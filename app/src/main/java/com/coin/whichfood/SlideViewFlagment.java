@@ -36,6 +36,7 @@ public class SlideViewFlagment extends Fragment {
     ArrayList<Bitmap> bitmapArrayList = new ArrayList<>();
     ArrayList<String> images = new ArrayList<>();
     TextView storename;
+    TextView storeaddress;
 
     @Nullable
     @Override
@@ -48,6 +49,7 @@ public class SlideViewFlagment extends Fragment {
         Log.d(TAG,"adimagepath  : "+args.getStringArrayList("path").get(0));
         images = args.getStringArrayList("path");
         storename = (TextView)adview.findViewById(R.id.storename);
+        storeaddress = (TextView)adview.findViewById(R.id.storeaddress);
         Thread runnablthread = new Thread(){
             @Override
             public void run() {
@@ -77,23 +79,28 @@ public class SlideViewFlagment extends Fragment {
         }
 
         if(args.getInt("page") == 0 && !bitmapArrayList.isEmpty()){
-            storename.setText(args.getString("storename"));
+            storename.setText("매장이름 : "+args.getString("storename"));
+            storeaddress.setText("매장주소 : "+args.getString("storeaddress"));
             adimages.setImageBitmap(bitmapArrayList.get(0));
             bitmapArrayList.clear();
         }else if (args.getInt("page") == 1 && !bitmapArrayList.isEmpty()){
-            storename.setText(args.getString("storename"));
+            storename.setText("매장이름 : "+args.getString("storename"));
+            storeaddress.setText("매장주소 : "+args.getString("storeaddress"));
             adimages.setImageBitmap(bitmapArrayList.get(0));
             bitmapArrayList.clear();
         }else if (args.getInt("page") == 2 && !bitmapArrayList.isEmpty()){
-            storename.setText(args.getString("storename"));
+            storename.setText("매장이름 : "+args.getString("storename"));
+            storeaddress.setText("매장주소 : "+args.getString("storeaddress"));
             adimages.setImageBitmap(bitmapArrayList.get(0));
             bitmapArrayList.clear();
         }else if (args.getInt("page") == 3 && !bitmapArrayList.isEmpty()){
-            storename.setText(args.getString("storename"));
+            storename.setText("매장이름 : "+args.getString("storename"));
+            storeaddress.setText("매장주소 : "+args.getString("storeaddress"));
             adimages.setImageBitmap(bitmapArrayList.get(0));
             bitmapArrayList.clear();
         }else if (args.getInt("page")== 4 && !bitmapArrayList.isEmpty()){
-            storename.setText(args.getString("storename"));
+            storename.setText("매장이름 : "+args.getString("storename"));
+            storeaddress.setText("매장주소 : "+args.getString("storeaddress"));
             adimages.setImageBitmap(bitmapArrayList.get(0));
             bitmapArrayList.clear();
         }

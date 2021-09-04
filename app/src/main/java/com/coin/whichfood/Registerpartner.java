@@ -325,11 +325,13 @@ public class Registerpartner extends Activity {
                                             storenumcheck = 1;
                                         }else if(result.equals("alreadyregistered")){
                                             storenumcheck = 2;
-                                        }else if(result.charAt(result.length()-1) == '7'){
+                                        } else if (result.equals("nomember")) {
+                                            storenumcheck = 3;
+                                        } else if (result.charAt(result.length() - 1) == '7') {
                                             storenumcheck = 0;
-                                            billingService.purchase(pickfood+pickindex,Registerpartner.this);
-                                            Log.d(TAG, "imagelocation:" + result);
-                                        }else{
+                                            billingService.purchase(pickfood + pickindex, Registerpartner.this);
+                                            Log.d(TAG, "imagelocation1111:" + result);
+                                        } else {
                                             successcheck = 1;
                                             faildlg.setTitle("형식 불일치");
                                             faildlg.setMessage("형식에 알맞은 입력값을 기입해주시길 바랍니다.");
@@ -363,7 +365,11 @@ public class Registerpartner extends Activity {
                                 toast.setGravity(Gravity.CENTER|Gravity.CENTER,0,0);
                                 toast.show();
                             }else if(storenumcheck == 2){
-                                Toast toast = Toast.makeText(getApplicationContext(),"이미 제휴 신청을 한 메뉴 입니다. \n H.P : 010-6525-3883", Toast.LENGTH_LONG);
+                                Toast toast = Toast.makeText(getApplicationContext(),"해당 매장에서 이미 제휴 신청을 한 메뉴 입니다. \n H.P : 010-6525-3883", Toast.LENGTH_LONG);
+                                toast.setGravity(Gravity.CENTER|Gravity.CENTER,0,0);
+                                toast.show();
+                            }else if(storenumcheck == 3){
+                                Toast toast = Toast.makeText(getApplicationContext(),"등록되지 않은 아이디(사용자) 입니다. \n H.P : 010-6525-3883", Toast.LENGTH_LONG);
                                 toast.setGravity(Gravity.CENTER|Gravity.CENTER,0,0);
                                 toast.show();
                             }

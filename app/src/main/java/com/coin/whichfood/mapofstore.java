@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -88,7 +89,7 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
     private JSONArray jsonArray;
     int mapscope = 1;
     int getmapscope;
-    Button enter;
+    ImageButton enter;
 
 
 
@@ -132,7 +133,7 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
 
             }
         });
-        enter = (Button)findViewById(R.id.enter);
+        enter = (ImageButton)findViewById(R.id.enter);
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -438,6 +439,7 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
                                         try {
                                             adintent.putExtra("path", flag.getServers().get(0) + "whichfoodadimages/" + storejson.getString("storenum") + "/" + finalFoodnumber1 + "/");
                                             adintent.putExtra("storename", storejson.getString("storename"));
+                                            adintent.putExtra("storeaddress", storejson.getString("storeaddress"));
                                         } catch (Exception e) {
                                             e.printStackTrace();
                                         }

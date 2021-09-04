@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,18 +28,23 @@ public class Partnershippay extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.partnership_choice);
         checkpermission();
-        Button vippay = (Button)findViewById(R.id.vippay);
+        ImageButton vippay = (ImageButton) findViewById(R.id.vippay);
+        CheckBox agreecheck = (CheckBox) findViewById(R.id.agreecheck);
 
 
-        vippay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Partnershippay.this, Registerpartner.class);
-                startActivity(intent);
-            }
-        });
+            vippay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (agreecheck.isChecked()) {
+                        Intent intent = new Intent(Partnershippay.this, Registerpartner.class);
+                        startActivity(intent);
+                    }else {
+                        Toast.makeText(getApplication(),"약관에 동의를 하지않으셨습니다.",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

@@ -25,13 +25,15 @@
             android:layout_weight="2"
             android:layout_gravity="center"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/enter"
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_gravity="center"
-            android:text="@string/enter" />
+            android:scaleType="centerCrop"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:src="@drawable/ic_adjust" />
     </LinearLayout>
 
     <FrameLayout
