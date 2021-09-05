@@ -228,6 +228,7 @@ public class Registerpartner extends Activity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final String[] alreadyregisteredid = {""};
                 storenum = storenumedit.getText().toString();
                 if (storenum != "" && pickfood != "" && pickindex != "" && !imagepath.isEmpty()) {
                     AlertDialog.Builder dlg = new AlertDialog.Builder(Registerpartner.this);
@@ -323,7 +324,8 @@ public class Registerpartner extends Activity {
                                         String result = builder.toString();
                                         if(result.equals("nostorenum")){
                                             storenumcheck = 1;
-                                        }else if(result.equals("alreadyregistered")){
+                                        }else if(result.charAt(0)=='I'){
+                                            alreadyregisteredid[0] = result;
                                             storenumcheck = 2;
                                         } else if (result.equals("nomember")) {
                                             storenumcheck = 3;
@@ -361,15 +363,15 @@ public class Registerpartner extends Activity {
                                 e.printStackTrace();
                             }
                             if(storenumcheck == 1){
-                                Toast toast = Toast.makeText(getApplicationContext(),"등록되지 않은 인허가번호 입니다. \n※사업자번호가 아닌 -인허가번호- 를 입력하셔야 합니다. \n 정확한 인허가번호 입력시에도 안될시, 고객센터에 문의해주시길 바랍니다. \n H.P : 010-6525-3883", Toast.LENGTH_LONG);
+                                Toast toast = Toast.makeText(getApplicationContext(),"등록되지 않은 인허가번호 입니다. \n※사업자번호가 아닌 -인허가번호- 를 입력하셔야 합니다. \n 정확한 인허가번호 입력시에도 안될시, 고객센터에 문의해주시길 바랍니다. \n고객센터 : H.P : 010-6525-3883", Toast.LENGTH_LONG);
                                 toast.setGravity(Gravity.CENTER|Gravity.CENTER,0,0);
                                 toast.show();
                             }else if(storenumcheck == 2){
-                                Toast toast = Toast.makeText(getApplicationContext(),"해당 매장에서 이미 제휴 신청을 한 메뉴 입니다. \n H.P : 010-6525-3883", Toast.LENGTH_LONG);
+                                Toast toast = Toast.makeText(getApplicationContext(),"해당 매의 메뉴는 이미 "+alreadyregisteredid[0]+"사용자가 제휴 신청을 한 메뉴 입니다. \n고객센터 : H.P : 010-6525-3883", Toast.LENGTH_LONG);
                                 toast.setGravity(Gravity.CENTER|Gravity.CENTER,0,0);
                                 toast.show();
                             }else if(storenumcheck == 3){
-                                Toast toast = Toast.makeText(getApplicationContext(),"등록되지 않은 아이디(사용자) 입니다. \n H.P : 010-6525-3883", Toast.LENGTH_LONG);
+                                Toast toast = Toast.makeText(getApplicationContext(),"등록되지 않은 아이디(사용자) 입니다. \n고객센터 : H.P : 010-6525-3883", Toast.LENGTH_LONG);
                                 toast.setGravity(Gravity.CENTER|Gravity.CENTER,0,0);
                                 toast.show();
                             }
