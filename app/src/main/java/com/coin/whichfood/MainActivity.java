@@ -194,7 +194,6 @@ public class MainActivity extends AppCompatActivity {
         //로그인============================================================================================
         ImageButton loginbutton = (ImageButton)findViewById(R.id.login);
         ImageButton myinfo = (ImageButton)findViewById(R.id.myinfo);
-        ImageButton logout = (ImageButton)findViewById(R.id.logout);
         ImageButton partnershipfake = (ImageButton)findViewById(R.id.partnershipfake);
         ImageButton partnershiplogin = (ImageButton)findViewById(R.id.partnershiplogin);
         Intent partnershipregister = new Intent(this,Partnershippay.class);
@@ -202,7 +201,6 @@ public class MainActivity extends AppCompatActivity {
         Intent gomyinfo = new Intent(this, Myinfo.class);
         if(flag.getLoginflag() == 0) {
             myinfo.setVisibility(View.GONE);
-            logout.setVisibility(View.GONE);
             partnershipfake.setVisibility(View.VISIBLE);
             loginbutton.setVisibility(View.VISIBLE);
             loginbutton.setOnClickListener(new View.OnClickListener() {
@@ -221,18 +219,11 @@ public class MainActivity extends AppCompatActivity {
             loginbutton.setVisibility(View.GONE);
             partnershipfake.setVisibility(View.GONE);
             myinfo.setVisibility(View.VISIBLE);
-            logout.setVisibility(View.VISIBLE);
             partnershiplogin.setVisibility(View.VISIBLE);
             myinfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     startActivity(gomyinfo);
-                }
-            });
-            logout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(loginlayout);
                 }
             });
             partnershiplogin.setOnClickListener(new View.OnClickListener() {

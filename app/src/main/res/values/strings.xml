@@ -35,4 +35,6 @@
     <string name="enter">적용</string>
     <string name="agreecheck">동의</string>
     <string name="agree">약관 확인 및 동의</string>
+    <string name="mypage">마이페이지</string>
+    <string name="welcome">환영합니다.</string>
 </resources>

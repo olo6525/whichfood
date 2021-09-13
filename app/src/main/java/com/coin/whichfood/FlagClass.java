@@ -36,8 +36,12 @@ public class FlagClass extends Application {
     private static int thenumberoffooddeliverdrink;
     private JSONArray howcookpage;
     private JSONArray howcookpagedrink;
+    private JSONArray homefoodmealindex;
+    private JSONArray homefooddrinkindex;
     private JSONArray outfoodmealindex;
     private JSONArray outfooddrinkindex;
+    private JSONArray deliveryfoodmealindex;
+    private JSONArray deliveryfooddrinkindex;
     private static Bitmap adimage1;
     private static Bitmap adimage2;
     private static Bitmap adimage3;
@@ -80,8 +84,12 @@ public class FlagClass extends Application {
         thenumberoffooddeliverdrink=0;
         howcookpage = new JSONArray();
         howcookpagedrink = new JSONArray();
+        homefoodmealindex = new JSONArray();
+        homefooddrinkindex = new JSONArray();
         outfoodmealindex = new JSONArray();
         outfooddrinkindex = new JSONArray();
+        deliveryfoodmealindex = new JSONArray();
+        deliveryfooddrinkindex = new JSONArray();
         adimage1 = null;
         adimage2 = null;
         adimage3 = null;
@@ -121,8 +129,12 @@ public class FlagClass extends Application {
         thenumberoffooddeliverdrink=0;
         howcookpage = new JSONArray();
         howcookpagedrink = new JSONArray();
+        homefoodmealindex = new JSONArray();
+        homefooddrinkindex = new JSONArray();
         outfoodmealindex = new JSONArray();
         outfooddrinkindex = new JSONArray();
+        deliveryfoodmealindex = new JSONArray();
+        deliveryfooddrinkindex = new JSONArray();
         adimage1 = null;
         adimage2 = null;
         adimage3 = null;
@@ -155,8 +167,12 @@ public class FlagClass extends Application {
     public void setThenumberoffooddeliverdrink(int flag) {this.thenumberoffooddeliverdrink = flag;}
     public void setHowcookpage(JSONArray flag) {this.howcookpage = flag;}
     public void setHowcookpagedrink(JSONArray flag) {this.howcookpagedrink = flag;}
+    public void setHomefoodmealindex(JSONArray flag) {this.homefoodmealindex = flag;}
+    public void setHomefooddrinkindex(JSONArray flag) {this.homefooddrinkindex = flag;}
     public void setOutfoodmealindex(JSONArray flag) {this.outfoodmealindex = flag;}
     public void setOutfooddrinkindex(JSONArray flag) {this.outfooddrinkindex = flag;}
+    public void setDeliveryfoodmealindex(JSONArray flag) {this.deliveryfoodmealindex = flag;}
+    public void setDeliveryfooddrinkindex(JSONArray flag) {this.deliveryfooddrinkindex = flag;}
     public void setLoginflag(int flag) { this.loginflag = flag;}
     public void setAdimage1(Bitmap flag){this.adimage1 = flag;}
     public void setAdimage2(Bitmap flag){this.adimage2 = flag;}
@@ -185,8 +201,12 @@ public class FlagClass extends Application {
     public int getThenumberoffooddeliverdrink(){return thenumberoffooddeliverdrink;}
     public JSONArray getHowcookpage(){ return howcookpage;}
     public JSONArray getHowcookpagedrink(){ return howcookpagedrink;}
+    public JSONArray getHomefoodmealindex(){return homefoodmealindex;}
+    public JSONArray getHomefooddrinkindex(){return homefooddrinkindex;}
     public JSONArray getOutfoodmealindex(){return outfoodmealindex;}
     public JSONArray getOutfooddrinkindex(){return outfooddrinkindex;}
+    public JSONArray getDeliveryfoodmealindex(){return deliveryfoodmealindex;}
+    public JSONArray getDeliveryfooddrinkindex(){return deliveryfooddrinkindex;}
     public int getLoginflag(){return loginflag;}
     public Bitmap getAdimage1(){return adimage1;}
     public Bitmap getAdimage2(){return adimage2;}

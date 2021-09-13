@@ -187,7 +187,7 @@ public class TwoFood extends Activity {
                                         @Override
                                         public void run(){
                                             try {
-                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=meal"+finalI_rand1;
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food="+where+"meal"+finalI_rand1;
                                                 Log.d(TAG,"getdata post : "+postParameters);
                                                 URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
                                                 HttpURLConnection conn = (HttpURLConnection)url.openConnection();
@@ -295,7 +295,7 @@ public class TwoFood extends Activity {
                                         @Override
                                         public void run(){
                                             try {
-                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=meal"+finalI_rand2;
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food="+where+"meal"+finalI_rand2;
                                                 Log.d(TAG,"getdata post : "+postParameters);
                                                 URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
                                                 HttpURLConnection conn = (HttpURLConnection)url.openConnection();
@@ -412,7 +412,7 @@ public class TwoFood extends Activity {
                                         @Override
                                         public void run(){
                                             try {
-                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=drink"+finalI_rand1;
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food="+where+"drink"+finalI_rand1;
                                                 Log.d(TAG,"getdata post : "+postParameters);
                                                 URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
                                                 HttpURLConnection conn = (HttpURLConnection)url.openConnection();
@@ -519,7 +519,7 @@ public class TwoFood extends Activity {
                                         @Override
                                         public void run(){
                                             try {
-                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=drink"+finalI_rand2;
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food="+where+"drink"+finalI_rand2;
                                                 Log.d(TAG,"getdata post : "+postParameters);
                                                 URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
                                                 HttpURLConnection conn = (HttpURLConnection)url.openConnection();
@@ -655,7 +655,7 @@ public class TwoFood extends Activity {
                                         @Override
                                         public void run(){
                                             try {
-                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=meal"+finalI_rand1;
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food="+where+"meal"+finalI_rand1;
                                                 Log.d(TAG,"getdata post : "+postParameters);
                                                 URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
                                                 HttpURLConnection conn = (HttpURLConnection)url.openConnection();
@@ -757,7 +757,7 @@ public class TwoFood extends Activity {
                                         @Override
                                         public void run(){
                                             try {
-                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=meal"+finalI_rand2;
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food="+where+"meal"+finalI_rand2;
                                                 Log.d(TAG,"getdata post : "+postParameters);
                                                 URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
                                                 HttpURLConnection conn = (HttpURLConnection)url.openConnection();
@@ -870,7 +870,7 @@ public class TwoFood extends Activity {
                                         @Override
                                         public void run(){
                                             try {
-                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=drink"+finalI_rand1;
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food="+where+"drink"+finalI_rand1;
                                                 Log.d(TAG,"getdata post : "+postParameters);
                                                 URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
                                                 HttpURLConnection conn = (HttpURLConnection)url.openConnection();
@@ -972,7 +972,7 @@ public class TwoFood extends Activity {
                                         @Override
                                         public void run(){
                                             try {
-                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=drink"+finalI_rand2;
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food="+where+"drink"+finalI_rand2;
                                                 Log.d(TAG,"getdata post : "+postParameters);
                                                 URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
                                                 HttpURLConnection conn = (HttpURLConnection)url.openConnection();
@@ -1101,7 +1101,7 @@ public class TwoFood extends Activity {
                                         @Override
                                         public void run(){
                                             try {
-                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=meal"+finalI_rand1;
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food="+where+"meal"+finalI_rand1;
                                                 Log.d(TAG,"getdata post : "+postParameters);
                                                 URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
                                                 HttpURLConnection conn = (HttpURLConnection)url.openConnection();
@@ -1202,7 +1202,7 @@ public class TwoFood extends Activity {
                                         @Override
                                         public void run(){
                                             try {
-                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=meal"+finalI_rand2;
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food="+where+"meal"+finalI_rand2;
                                                 Log.d(TAG,"getdata post : "+postParameters);
                                                 URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
                                                 HttpURLConnection conn = (HttpURLConnection)url.openConnection();
@@ -1312,7 +1312,7 @@ public class TwoFood extends Activity {
                                         @Override
                                         public void run(){
                                             try {
-                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=drink"+finalI_rand1;
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food="+where+"drink"+finalI_rand1;
                                                 Log.d(TAG,"getdata post : "+postParameters);
                                                 URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
                                                 HttpURLConnection conn = (HttpURLConnection)url.openConnection();
@@ -1396,7 +1396,7 @@ public class TwoFood extends Activity {
                                         @Override
                                         public void run(){
                                             try {
-                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food=drink"+finalI_rand2;
+                                                String postParameters = "purpose=getdata&userid="+flag.getLoginid()+"&where="+where+"&kind="+kind+"&food="+where+"drink"+finalI_rand2;
                                                 Log.d(TAG,"getdata post : "+postParameters);
                                                 URL url = new URL(flag.getServers().get(0)+"whichfoodstorelist.php");
                                                 HttpURLConnection conn = (HttpURLConnection)url.openConnection();

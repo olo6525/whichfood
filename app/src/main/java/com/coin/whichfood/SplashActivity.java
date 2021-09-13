@@ -49,8 +49,12 @@ public class SplashActivity extends Activity {
             flag.setThenumberoffooddeliverdrink(Integer.parseInt(thenumberoffood.getString("deliverdrink")));
             flag.setHowcookpage(jsonObject.getJSONArray("howcook"));
             flag.setHowcookpagedrink(jsonObject.getJSONArray("howcookdrink"));
+            flag.setHomefoodmealindex(jsonObject.getJSONArray("homefoodmeal"));
+            flag.setHomefooddrinkindex(jsonObject.getJSONArray("homefooddrink"));
             flag.setOutfoodmealindex(jsonObject.getJSONArray("outfoodmeal"));
             flag.setOutfooddrinkindex(jsonObject.getJSONArray("outfooddrink"));
+            flag.setDeliveryfoodmealindex(jsonObject.getJSONArray("deliveryfoodmeal"));
+            flag.setDeliveryfooddrinkindex(jsonObject.getJSONArray("deliveryfooddrink"));
             for(int i=0; i<5; i++){
                 subservers.add(jsonObject.getString("server"+Integer.toString(i+1)));
             }

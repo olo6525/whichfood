@@ -160,6 +160,7 @@ public class OneFood extends Activity {
                                         }
                                     };
                                     getdata.start();
+                                    Toast.makeText(getApplicationContext(),"관심음식으로 등록이 되었습니다.",Toast.LENGTH_LONG).show();
                                     try {
                                         getdata.join();
                                     } catch (Exception e) {
@@ -263,6 +264,7 @@ public class OneFood extends Activity {
                                         }
                                     };
                                     getdata.start();
+                                    Toast.makeText(getApplicationContext(),"관심음식으로 등록이 되었습니다.",Toast.LENGTH_LONG).show();
                                     try {
                                         getdata.join();
                                     } catch (Exception e) {
@@ -368,6 +370,7 @@ public class OneFood extends Activity {
                                         }
                                     };
                                     getdata.start();
+                                    Toast.makeText(getApplicationContext(),"관심음식으로 등록이 되었습니다.",Toast.LENGTH_LONG).show();
                                     try {
                                         getdata.join();
                                     } catch (Exception e) {
@@ -466,6 +469,7 @@ public class OneFood extends Activity {
                                         }
                                     };
                                     getdata.start();
+                                    Toast.makeText(getApplicationContext(),"관심음식으로 등록이 되었습니다.",Toast.LENGTH_LONG).show();
                                     try {
                                         getdata.join();
                                     } catch (Exception e) {
@@ -567,6 +571,7 @@ public class OneFood extends Activity {
                                         }
                                     };
                                     getdata.start();
+                                    Toast.makeText(getApplicationContext(),"관심음식으로 등록이 되었습니다.",Toast.LENGTH_LONG).show();
                                     try {
                                         getdata.join();
                                     } catch (Exception e) {
@@ -663,6 +668,7 @@ public class OneFood extends Activity {
                                         }
                                     };
                                     getdata.start();
+                                    Toast.makeText(getApplicationContext(),"관심음식으로 등록이 되었습니다.",Toast.LENGTH_LONG).show();
                                     try {
                                         getdata.join();
                                     } catch (Exception e) {
