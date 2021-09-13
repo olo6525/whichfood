@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:textSize="35dp"
+            android:textColor="#000000"
+            android:padding="2dp"
+            android:background="@drawable/roundborder"
+
+            android:text="@string/mypage" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#F1F1F1"
+                        android:gravity="center"
+                        android:text="@string/welcome" />
+
+                    <TextView
+                        android:id="@+id/myinfowelcome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#F1F1F1"
+                        android:gravity="center"
+                        android:text="TextView"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/myemail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#F1F1F1"
+                        android:gravity="center"
+                        android:text="TextView" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_weight="2" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_weight="3"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/partnerinfo"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:text="TextView" />
+
+                        <ImageButton
+                            android:id="@+id/openpartnerinfo"
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="0px"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_open" />
+
+
+
+
+                    </LinearLayout>
+
+                    <GridView
+                        android:id ="@+id/partnerlist1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:numColumns="4"/>
+
+                    <GridView
+                        android:id ="@+id/partnerlist2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:numColumns="4"/>
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_weight="2" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_weight="3"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/cookinfo"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:text="TextView" />
+
+                        <ImageButton
+                            android:id="@+id/opencookinfo"
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="0px"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_open" />
+                    </LinearLayout>
+
+                    <GridView
+                        android:id="@+id/cookfoodlist1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:numColumns="4"/>
+
+                    <GridView
+                        android:id="@+id/cookfoodlist2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:numColumns="4"/>
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_weight="2" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_weight="3"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/outinfo"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:text="TextView" />
+
+                        <ImageButton
+                            android:id="@+id/openoutinfo"
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="0px"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_open" />
+                    </LinearLayout>
+
+                    <GridView
+                        android:id="@+id/outfoodlist1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:numColumns="4"/>
+
+                    <GridView
+                        android:id="@+id/outfoodlist2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:numColumns="4"/>
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_weight="2" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_weight="3"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/deliveryinfo"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:text="TextView" />
+
+                        <ImageButton
+                            android:id="@+id/opendeliveryinfo"
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="0px"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_open" />
+                    </LinearLayout>
+
+                    <GridView
+                        android:id="@+id/deliveryfoodlist1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:numColumns="4"/>
+
+                    <GridView
+                        android:id="@+id/deliveryfoodlist2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:numColumns="4"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
