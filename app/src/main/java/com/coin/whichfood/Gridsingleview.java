@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.Layout;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import static android.content.ContentValues.TAG;
 
 public class Gridsingleview extends LinearLayout {
 
@@ -40,6 +43,7 @@ public class Gridsingleview extends LinearLayout {
         if(where ==1){
             foodname.setText(name);
             wherefunction.setImageResource(R.drawable.ic_recipe);
+            Log.d(TAG, "seeview");
         }else if (where == 2){
             foodname.setText(name);
             wherefunction.setImageResource(R.drawable.ic_storelocation);

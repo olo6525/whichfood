@@ -343,7 +343,7 @@ public class Myinfo extends Activity {
             Griditem griditem = items.get(position);
 
             view.setfooditem(griditem.getWhere(),griditem.getKind(),griditem.getFoodnum() , griditem.getName());
-
+            Log.d(TAG,"seeviewgrid");
             return view;
         }
     }
