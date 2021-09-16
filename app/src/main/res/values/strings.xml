@@ -37,4 +37,6 @@
     <string name="agree">약관 확인 및 동의</string>
     <string name="mypage">마이페이지</string>
     <string name="welcome">환영합니다.</string>
+    <string name="meal">식사음식</string>
+    <string name="drink">안주음식</string>
 </resources>

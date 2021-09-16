@@ -163,7 +163,7 @@ public class Myinfo extends Activity {
         getindex = flagClass.getOutfoodmealindex();
         for(int i = 1; i < count+1; i++){
             try {
-                Log.d(TAG, "lists"+myinfodata.getJSONObject(0).getString("partnermeal"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
+                Log.d(TAG, "lists"+myinfodata.getJSONObject(0).getString("partnermeal"+i)+getindex.getJSONObject(0).getString(Integer.toString(i))+"count"+gridviewadapterpartnermeal.getCount());
                 int check = Integer.parseInt(myinfodata.getJSONObject(0).getString("partnermeal"+i));
                 if(check == 1){
                     Log.d(TAG, "lists partner1");
@@ -291,14 +291,6 @@ public class Myinfo extends Activity {
             }
         }
         partnerlist1.setAdapter(gridviewadapterpartnermeal);
-        partnerlist1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Griditem griditem = (Griditem)gridviewadapterpartnermeal.getItem(position);
-
-            }
-        });
-
         partnerlist2.setAdapter(gridviewadapterpartnerdrink);
         cookfoodlist1.setAdapter(gridviewadapterhomemeal);
         cookfoodlist2.setAdapter(gridviewadapterhomedrink);
@@ -341,9 +333,9 @@ public class Myinfo extends Activity {
             }
 
             Griditem griditem = items.get(position);
-
+            view.init(getApplicationContext());
             view.setfooditem(griditem.getWhere(),griditem.getKind(),griditem.getFoodnum() , griditem.getName());
-            Log.d(TAG,"seeviewgrid");
+            Log.d(TAG,"seeviewgrid,"+position+"," + griditem.getWhere()+","+griditem.getKind()+","+griditem.getName());
             return view;
         }
     }

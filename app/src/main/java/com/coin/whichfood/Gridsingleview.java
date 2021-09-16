@@ -31,11 +31,11 @@ public class Gridsingleview extends LinearLayout {
         init(context);
     }
 
-    private void init(Context context) {
+    public void init(Context context) {
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.singlegridview, this, true);
 
-        foodname = (TextView)findViewById(R.id.foodname);
+        foodname = (TextView)findViewById(R.id.foodname1);
         wherefunction = (ImageButton)findViewById(R.id.wherefunction);
     }
 
@@ -43,17 +43,20 @@ public class Gridsingleview extends LinearLayout {
         if(where ==1){
             foodname.setText(name);
             wherefunction.setImageResource(R.drawable.ic_recipe);
-            Log.d(TAG, "seeview");
+            Log.d(TAG, "seeview where1");
         }else if (where == 2){
             foodname.setText(name);
             wherefunction.setImageResource(R.drawable.ic_storelocation);
+            Log.d(TAG, "seeview where2");
         }else if(where ==3){
             foodname.setText(name);
             wherefunction.setImageResource(R.drawable.ic_delivery);
+            Log.d(TAG, "seeview where3");
         }else if(where == 0){
             foodname.setText(name);
+            Log.d(TAG, "seeview where0");
         }else{
-            Toast.makeText(getContext(),"error",Toast.LENGTH_SHORT).show();
+           Toast.makeText(getContext(),"error",Toast.LENGTH_SHORT).show();
         }
     }
 }

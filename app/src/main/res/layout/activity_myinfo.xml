@@ -24,7 +24,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -65,18 +66,17 @@
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
-                    android:layout_weight="2" />
+                    android:layout_weight="0.2" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_weight="3"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <TextView
@@ -90,10 +90,12 @@
                             android:id="@+id/openpartnerinfo"
                             style="@style/Widget.AppCompat.Button.Borderless"
                             android:layout_width="0px"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
                             android:layout_weight="1"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ic_open" />
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_open"
+                            tools:ignore="SpeakableTextPresentCheck" />
 
 
 
@@ -103,33 +105,34 @@
                     <GridView
                         android:id ="@+id/partnerlist1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:numColumns="4"/>
+                        android:layout_height="360dp"
+                        android:adjustViewBounds="true"
+                        android:numColumns="4"
+                        android:visibility="gone"/>
 
                     <GridView
                         android:id ="@+id/partnerlist2"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:numColumns="4"/>
+                        android:layout_height="360dp"
+                        android:adjustViewBounds="true"
+                        android:numColumns="4"
+                        android:visibility="gone"/>
 
                 </LinearLayout>
 
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
-                    android:layout_weight="2" />
+                    android:layout_weight="0.2" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_weight="3"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <TextView
@@ -143,42 +146,45 @@
                             android:id="@+id/opencookinfo"
                             style="@style/Widget.AppCompat.Button.Borderless"
                             android:layout_width="0px"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
                             android:layout_weight="1"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/ic_open" />
+                            android:src="@drawable/ic_open"
+                            tools:ignore="SpeakableTextPresentCheck" />
                     </LinearLayout>
 
                     <GridView
                         android:id="@+id/cookfoodlist1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:numColumns="4"/>
+                        android:layout_height="360dp"
+                        android:adjustViewBounds="true"
+                        android:numColumns="4"
+                        android:visibility="gone"/>
 
                     <GridView
                         android:id="@+id/cookfoodlist2"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:numColumns="4"/>
+                        android:layout_height="360dp"
+                        android:adjustViewBounds="true"
+                        android:numColumns="4"
+                        android:visibility="gone"/>
 
                 </LinearLayout>
 
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
-                    android:layout_weight="2" />
+                    android:layout_weight="0.2" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_weight="3"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <TextView
@@ -192,24 +198,40 @@
                             android:id="@+id/openoutinfo"
                             style="@style/Widget.AppCompat.Button.Borderless"
                             android:layout_width="0px"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
                             android:layout_weight="1"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/ic_open" />
+                            android:src="@drawable/ic_open"
+                            tools:ignore="SpeakableTextPresentCheck" />
                     </LinearLayout>
 
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#C9F4A4"
+                        android:text="@string/meal" />
                     <GridView
                         android:id="@+id/outfoodlist1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3"
+                        android:layout_height="360dp"
+                        android:adjustViewBounds="true"
                         android:numColumns="4"/>
-
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_weight="0.2" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#6FF3FF"
+                        android:text="@string/drink" />
                     <GridView
                         android:id="@+id/outfoodlist2"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3"
+                        android:layout_height="360dp"
+                        android:adjustViewBounds="true"
                         android:numColumns="4"/>
 
                 </LinearLayout>
@@ -217,17 +239,16 @@
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
-                    android:layout_weight="2" />
+                    android:layout_weight="0.2" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_weight="3"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <TextView
@@ -241,26 +262,28 @@
                             android:id="@+id/opendeliveryinfo"
                             style="@style/Widget.AppCompat.Button.Borderless"
                             android:layout_width="0px"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
                             android:layout_weight="1"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/ic_open" />
+                            android:src="@drawable/ic_open"
+                            tools:ignore="SpeakableTextPresentCheck" />
                     </LinearLayout>
 
                     <GridView
                         android:id="@+id/deliveryfoodlist1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:numColumns="4"/>
-
+                        android:layout_height="360dp"
+                        android:adjustViewBounds="true"
+                        android:numColumns="4"
+                        android:visibility="gone"/>
                     <GridView
                         android:id="@+id/deliveryfoodlist2"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:numColumns="4"/>
-
+                        android:layout_height="360dp"
+                        android:adjustViewBounds="true"
+                        android:numColumns="4"
+                        android:visibility="gone"/>
                 </LinearLayout>
 
             </LinearLayout>

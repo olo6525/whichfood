@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,22 +10,29 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/foodname"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="1"
-            android:textSize="20dp"
-             />
+            android:layout_height="120dp"
+            android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/wherefunction"
-            android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="9"
-            android:background="@drawable/roundborder"
-            android:padding="4dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/applelogo" />
+            <TextView
+                android:id="@+id/foodname1"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="1"
+                android:textSize="10dp" />
+
+            <ImageButton
+                android:id="@+id/wherefunction"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="4"
+                android:background="@drawable/roundborder"
+                android:padding="4dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/applelogo"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </LinearLayout>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
