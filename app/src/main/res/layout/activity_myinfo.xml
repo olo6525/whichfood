@@ -84,7 +84,9 @@
                             android:layout_width="0px"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:textSize="20dp"
+                            android:textColor="#000000"/>
 
                         <ImageButton
                             android:id="@+id/openpartnerinfo"
@@ -96,27 +98,65 @@
                             android:scaleType="fitXY"
                             android:src="@drawable/ic_open"
                             tools:ignore="SpeakableTextPresentCheck" />
+                        <ImageButton
+                            android:id="@+id/closepartnerinfo"
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:layout_weight="1"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_open"
+                            tools:ignore="SpeakableTextPresentCheck"
+                            android:visibility="gone"/>
 
 
 
 
                     </LinearLayout>
 
-                    <GridView
-                        android:id ="@+id/partnerlist1"
+                    <LinearLayout
+                        android:id="@+id/partnerlistlayout"
                         android:layout_width="match_parent"
-                        android:layout_height="360dp"
-                        android:adjustViewBounds="true"
-                        android:numColumns="4"
-                        android:visibility="gone"/>
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
-                    <GridView
-                        android:id ="@+id/partnerlist2"
-                        android:layout_width="match_parent"
-                        android:layout_height="360dp"
-                        android:adjustViewBounds="true"
-                        android:numColumns="4"
-                        android:visibility="gone"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#C9F4A4"
+                            android:text="@string/meal"
+                            android:textSize="17dp"/>
+
+                        <GridView
+                            android:id="@+id/partnerlist1"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:numColumns="4"
+                            android:scrollbars="horizontal"
+                            android:horizontalSpacing="10dp"/>
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:layout_weight="0.2" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#6FF3FF"
+                            android:text="@string/drink"
+                            android:textSize="17dp"/>
+
+                        <GridView
+                            android:id="@+id/partnerlist2"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scrollbars = "horizontal"
+                            android:horizontalSpacing="10dp"
+                            android:numColumns="4"/>
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -140,7 +180,9 @@
                             android:layout_width="0px"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:textSize="20dp"
+                            android:textColor="#000000"/>
 
                         <ImageButton
                             android:id="@+id/opencookinfo"
@@ -152,23 +194,61 @@
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_open"
                             tools:ignore="SpeakableTextPresentCheck" />
+                        <ImageButton
+                            android:id="@+id/closecookinfo"
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:layout_weight="1"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_open"
+                            tools:ignore="SpeakableTextPresentCheck"
+                            android:visibility="gone"/>
                     </LinearLayout>
 
-                    <GridView
-                        android:id="@+id/cookfoodlist1"
+                    <LinearLayout
+                        android:id="@+id/cookfoodlistlayout"
                         android:layout_width="match_parent"
-                        android:layout_height="360dp"
-                        android:adjustViewBounds="true"
-                        android:numColumns="4"
-                        android:visibility="gone"/>
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
-                    <GridView
-                        android:id="@+id/cookfoodlist2"
-                        android:layout_width="match_parent"
-                        android:layout_height="360dp"
-                        android:adjustViewBounds="true"
-                        android:numColumns="4"
-                        android:visibility="gone"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#C9F4A4"
+                            android:text="@string/meal"
+                            android:textSize="17dp"/>
+
+                        <GridView
+                            android:id="@+id/cookfoodlist1"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:numColumns="4"
+                            android:scrollbars="horizontal"
+                            android:horizontalSpacing="10dp"/>
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:layout_weight="0.2" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#6FF3FF"
+                            android:text="@string/drink"
+                            android:textSize="17dp"/>
+
+                        <GridView
+                            android:id="@+id/cookfoodlist2"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scrollbars = "horizontal"
+                            android:horizontalSpacing="10dp"
+                            android:numColumns="4"/>
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -192,7 +272,9 @@
                             android:layout_width="0px"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:textSize="20dp"
+                            android:textColor="#000000"/>
 
                         <ImageButton
                             android:id="@+id/openoutinfo"
@@ -204,35 +286,67 @@
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_open"
                             tools:ignore="SpeakableTextPresentCheck" />
+                        <ImageButton
+                            android:id="@+id/closeoutinfo"
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:layout_weight="1"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_open"
+                            tools:ignore="SpeakableTextPresentCheck"
+                            android:visibility="gone"/>
                     </LinearLayout>
 
 
-                    <TextView
+                    <LinearLayout
+                        android:id="@+id/outfoodlistlayout"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#C9F4A4"
-                        android:text="@string/meal" />
-                    <GridView
-                        android:id="@+id/outfoodlist1"
-                        android:layout_width="match_parent"
-                        android:layout_height="360dp"
-                        android:adjustViewBounds="true"
-                        android:numColumns="4"/>
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="10dp"
-                        android:layout_weight="0.2" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#6FF3FF"
-                        android:text="@string/drink" />
-                    <GridView
-                        android:id="@+id/outfoodlist2"
-                        android:layout_width="match_parent"
-                        android:layout_height="360dp"
-                        android:adjustViewBounds="true"
-                        android:numColumns="4"/>
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#C9F4A4"
+                            android:text="@string/meal"
+                            android:textSize="17dp"/>
+
+
+
+
+                                <GridView
+                                    android:id="@+id/outfoodlist1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="120dp"
+                                    android:horizontalSpacing="10dp"
+                                    android:numColumns="4"
+                                    />
+
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:layout_weight="0.2" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#6FF3FF"
+                            android:text="@string/drink"
+                            android:textSize="17dp"/>
+
+                        <GridView
+                            android:id="@+id/outfoodlist2"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scrollbars = "horizontal"
+                            android:numColumns="4"
+                            android:horizontalSpacing="10dp"/>
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
@@ -256,7 +370,9 @@
                             android:layout_width="0px"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
-                            android:text="TextView" />
+                            android:text="TextView"
+                            android:textSize="20dp"
+                            android:textColor="#000000"/>
 
                         <ImageButton
                             android:id="@+id/opendeliveryinfo"
@@ -268,22 +384,62 @@
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_open"
                             tools:ignore="SpeakableTextPresentCheck" />
+                        <ImageButton
+                            android:id="@+id/closedeliveryinfo"
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:layout_weight="1"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_open"
+                            tools:ignore="SpeakableTextPresentCheck"
+                            android:visibility="gone"/>
                     </LinearLayout>
 
-                    <GridView
-                        android:id="@+id/deliveryfoodlist1"
+
+                    <LinearLayout
+                        android:id="@+id/deliveryfoodlistlayout"
                         android:layout_width="match_parent"
-                        android:layout_height="360dp"
-                        android:adjustViewBounds="true"
-                        android:numColumns="4"
-                        android:visibility="gone"/>
-                    <GridView
-                        android:id="@+id/deliveryfoodlist2"
-                        android:layout_width="match_parent"
-                        android:layout_height="360dp"
-                        android:adjustViewBounds="true"
-                        android:numColumns="4"
-                        android:visibility="gone"/>
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#C9F4A4"
+                            android:textSize="17dp"
+                            android:text="@string/meal" />
+
+                        <GridView
+                            android:id="@+id/deliveryfoodlist1"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:numColumns="4"
+                            android:scrollbars="horizontal"
+                            android:horizontalSpacing="10dp"/>
+
+                        <Space
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:layout_weight="0.2" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#6FF3FF"
+                            android:text="@string/drink"
+                            android:textSize="17dp"/>
+
+                        <GridView
+                            android:id="@+id/deliveryfoodlist2"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:scrollbars = "horizontal"
+                            android:numColumns="4"
+                            android:horizontalSpacing="10dp"/>
+                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>

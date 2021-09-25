@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,24 +14,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="120dp"
+            android:background="@drawable/roundborder"
+            android:padding="4dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/foodname1"
                 android:layout_width="match_parent"
                 android:layout_height="0px"
-                android:layout_weight="1"
-                android:textSize="10dp" />
+                android:layout_weight="2"
 
-            <ImageButton
+                android:textSize="13dp" />
+
+            <ImageView
                 android:id="@+id/wherefunction"
                 android:layout_width="match_parent"
                 android:layout_height="0px"
-                android:layout_weight="4"
-                android:background="@drawable/roundborder"
-                android:padding="4dp"
+                android:layout_weight="3"
                 android:scaleType="fitCenter"
                 android:src="@drawable/applelogo"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 tools:ignore="SpeakableTextPresentCheck" />
         </LinearLayout>
 

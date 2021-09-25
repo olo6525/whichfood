@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,12 +37,20 @@ public class Myinfo extends Activity {
     ImageButton opencookinfo;
     ImageButton openoutinfo;
     ImageButton opendeliveryinfo;
+    ImageButton closepartnerinfo;
+    ImageButton closecookinfo;
+    ImageButton closeoutinfo;
+    ImageButton closedeliveryinfo;
     TextView myinfowelcome;
     TextView myemail;
     TextView partnerinfo;
     TextView cookinfo;
     TextView outinfo;
     TextView deliveryinfo;
+    LinearLayout partnerlistlayout;
+    LinearLayout cookfoodlistlayout;
+    LinearLayout outfoodlistlayout;
+    LinearLayout deliveryfoodlistlayout;
     GridView partnerlist1;
     GridView cookfoodlist1;
     GridView outfoodlist1;
@@ -62,12 +71,20 @@ public class Myinfo extends Activity {
         opencookinfo = (ImageButton)findViewById(R.id.opencookinfo);
         openoutinfo = (ImageButton)findViewById(R.id.openoutinfo);
         opendeliveryinfo = (ImageButton)findViewById(R.id.opendeliveryinfo);
+        closepartnerinfo = (ImageButton)findViewById(R.id.closepartnerinfo);
+        closecookinfo =(ImageButton)findViewById(R.id.closecookinfo);
+        closeoutinfo = (ImageButton)findViewById(R.id.closeoutinfo);
+        closedeliveryinfo = (ImageButton)findViewById(R.id.closedeliveryinfo);
         myinfowelcome = (TextView)findViewById(R.id.myinfowelcome);
         myemail = (TextView)findViewById(R.id.myemail);
         partnerinfo = (TextView)findViewById(R.id.partnerinfo);
         cookinfo = (TextView)findViewById(R.id.cookinfo);
         outinfo = (TextView)findViewById(R.id.outinfo);
         deliveryinfo = (TextView)findViewById(R.id.deliveryinfo);
+        partnerlistlayout = (LinearLayout)findViewById(R.id.partnerlistlayout);
+        cookfoodlistlayout = (LinearLayout)findViewById(R.id.cookfoodlistlayout);
+        outfoodlistlayout = (LinearLayout)findViewById(R.id.outfoodlistlayout);
+        deliveryfoodlistlayout = (LinearLayout)findViewById(R.id.deliveryfoodlistlayout);
         partnerlist1 = (GridView)findViewById(R.id.partnerlist1);
         cookfoodlist1= (GridView)findViewById(R.id.cookfoodlist1);
         outfoodlist1 = (GridView)findViewById(R.id.outfoodlist1);
@@ -85,6 +102,73 @@ public class Myinfo extends Activity {
         Gridviewadapter gridviewadapteroutdrink;
         Gridviewadapter gridviewadapterdeliverymeal;
         Gridviewadapter gridviewadapterdeliverydrink;
+//관심음식 열고닫기=================================================================================
+        openpartnerinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openpartnerinfo.setVisibility(View.GONE);
+                partnerlistlayout.setVisibility(View.VISIBLE);
+                closepartnerinfo.setVisibility(View.VISIBLE);
+            }
+        });
+        opencookinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                opencookinfo.setVisibility(View.GONE);
+                cookfoodlistlayout.setVisibility(View.VISIBLE);
+                closecookinfo.setVisibility(View.VISIBLE);
+            }
+        });
+        openoutinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openoutinfo.setVisibility(View.GONE);
+                outfoodlistlayout.setVisibility(View.VISIBLE);
+                closeoutinfo.setVisibility(View.VISIBLE);
+            }
+        });
+        opendeliveryinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                opendeliveryinfo.setVisibility(View.GONE);
+                deliveryfoodlistlayout.setVisibility(View.VISIBLE);
+                closedeliveryinfo.setVisibility(View.VISIBLE);
+            }
+        });
+
+        closepartnerinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closepartnerinfo.setVisibility(View.GONE);
+                partnerlistlayout.setVisibility(View.GONE);
+                openpartnerinfo.setVisibility(View.VISIBLE);
+            }
+        });
+        closecookinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closecookinfo.setVisibility(View.GONE);
+                cookfoodlistlayout.setVisibility(View.GONE);
+                opencookinfo.setVisibility(View.VISIBLE);
+            }
+        });
+        closeoutinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeoutinfo.setVisibility(View.GONE);
+                outfoodlistlayout.setVisibility(View.GONE);
+                openoutinfo.setVisibility(View.VISIBLE);
+            }
+        });
+        closedeliveryinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closedeliveryinfo.setVisibility(View.GONE);
+                deliveryfoodlistlayout.setVisibility(View.GONE);
+                opendeliveryinfo.setVisibility(View.VISIBLE);
+            }
+        });
+//관심음식 열고닫기 끝 ================================================================================
         Thread datathread = new Thread(){
             @Override
             public void run(){
@@ -166,8 +250,10 @@ public class Myinfo extends Activity {
                 Log.d(TAG, "lists"+myinfodata.getJSONObject(0).getString("partnermeal"+i)+getindex.getJSONObject(0).getString(Integer.toString(i))+"count"+gridviewadapterpartnermeal.getCount());
                 int check = Integer.parseInt(myinfodata.getJSONObject(0).getString("partnermeal"+i));
                 if(check == 1){
+                    String url = new String();
+                    url = flagClass.getHowcookpage().getJSONObject(0).getString(String.valueOf(i));
                     Log.d(TAG, "lists partner1");
-                    gridviewadapterpartnermeal.addItem(new Griditem(0,1,i,getindex.getJSONObject(0).getString(Integer.toString(i))));
+                    gridviewadapterpartnermeal.addItem(new Griditem(0,1,i,getindex.getJSONObject(0).getString(Integer.toString(i)),url));
                     Log.d(TAG, "lists partner1");
                 }else{
                     Log.d(TAG, "lists if no!");
@@ -185,7 +271,7 @@ public class Myinfo extends Activity {
                 Log.d(TAG, "lists"+myinfodata.getJSONObject(0).getString("partnerdrink"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
                 int check = Integer.parseInt(myinfodata.getJSONObject(0).getString("partnerdrink"+i));
                 if(check == 1){
-                    gridviewadapterpartnerdrink.addItem(new Griditem(0,2,i,getindex.getJSONObject(0).getString(Integer.toString(i))));
+                    gridviewadapterpartnerdrink.addItem(new Griditem(0,2,i,getindex.getJSONObject(0).getString(Integer.toString(i)),""));
                     Log.d(TAG, "lists partner2");
                 }
             } catch (JSONException e) {
@@ -201,7 +287,7 @@ public class Myinfo extends Activity {
                 Log.d(TAG, "lists"+myinfodata.getJSONObject(0).getString("1meal"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
                 int check = Integer.parseInt(myinfodata.getJSONObject(0).getString("1meal"+i));
                 if(check == 1){
-                    gridviewadapterhomemeal.addItem(new Griditem(1,1,i,getindex.getJSONObject(0).getString(Integer.toString(i))));
+                    gridviewadapterhomemeal.addItem(new Griditem(1,1,i,getindex.getJSONObject(0).getString(Integer.toString(i)),""));
                     Log.d(TAG, "lists homemeal");
                 }
             } catch (JSONException e) {
@@ -217,7 +303,7 @@ public class Myinfo extends Activity {
                 Log.d(TAG, "lists"+myinfodata.getJSONObject(0).getString("1drink"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
                 int check = Integer.parseInt(myinfodata.getJSONObject(0).getString("1drink"+i));
                 if(check == 1){
-                    gridviewadapterhomedrink.addItem(new Griditem(1,2,i,getindex.getJSONObject(0).getString(Integer.toString(i))));
+                    gridviewadapterhomedrink.addItem(new Griditem(1,2,i,getindex.getJSONObject(0).getString(Integer.toString(i)),""));
                     Log.d(TAG, "lists homedrink");
                 }
             } catch (JSONException e) {
@@ -233,7 +319,7 @@ public class Myinfo extends Activity {
                 Log.d(TAG, "lists"+myinfodata.getJSONObject(0).getString("2meal"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
                 int check = Integer.parseInt(myinfodata.getJSONObject(0).getString("2meal"+i));
                 if(check == 1){
-                    gridviewadapteroutmeal.addItem(new Griditem(2,1,i,getindex.getJSONObject(0).getString(Integer.toString(i))));
+                    gridviewadapteroutmeal.addItem(new Griditem(2,1,i,getindex.getJSONObject(0).getString(Integer.toString(i)),""));
                     Log.d(TAG, "lists outmeal");
                 }
             } catch (JSONException e) {
@@ -249,7 +335,7 @@ public class Myinfo extends Activity {
                 Log.d(TAG, "lists"+myinfodata.getJSONObject(0).getString("2drink"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
                 int check = Integer.parseInt(myinfodata.getJSONObject(0).getString("2drink"+i));
                 if(check == 1){
-                    gridviewadapteroutdrink.addItem(new Griditem(2,2,i,getindex.getJSONObject(0).getString(Integer.toString(i))));
+                    gridviewadapteroutdrink.addItem(new Griditem(2,2,i,getindex.getJSONObject(0).getString(Integer.toString(i)),""));
                     Log.d(TAG, "lists outmeal");
                 }
             } catch (JSONException e) {
@@ -265,7 +351,7 @@ public class Myinfo extends Activity {
                 Log.d(TAG, "lists"+myinfodata.getJSONObject(0).getString("3meal"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
                 int check = Integer.parseInt(myinfodata.getJSONObject(0).getString("3meal"+i));
                 if(check == 1){
-                    gridviewadapterdeliverymeal.addItem(new Griditem(3,1,i,getindex.getJSONObject(0).getString(Integer.toString(i))));
+                    gridviewadapterdeliverymeal.addItem(new Griditem(3,1,i,getindex.getJSONObject(0).getString(Integer.toString(i)),""));
                     Log.d(TAG, "lists deliverymeal");
                 }
             } catch (JSONException e) {
@@ -281,7 +367,7 @@ public class Myinfo extends Activity {
                 Log.d(TAG, "lists"+myinfodata.getJSONObject(0).getString("3drink"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
                 int check = Integer.parseInt(myinfodata.getJSONObject(0).getString("3drink"+i));
                 if(check == 1){
-                    gridviewadapterdeliverydrink.addItem(new Griditem(3,2,i,getindex.getJSONObject(0).getString(Integer.toString(i))));
+                    gridviewadapterdeliverydrink.addItem(new Griditem(3,2,i,getindex.getJSONObject(0).getString(Integer.toString(i)),""));
                     Log.d(TAG, "lists deliverydrink");
 
                 }
@@ -298,6 +384,65 @@ public class Myinfo extends Activity {
         outfoodlist2.setAdapter(gridviewadapteroutdrink);
         deliveryfoodlist1.setAdapter(gridviewadapterdeliverymeal);
         deliveryfoodlist2.setAdapter(gridviewadapterdeliverydrink);
+
+        partnerlist1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Griditem item = (Griditem)gridviewadapterpartnermeal.getItem(position);
+                Toast.makeText(Myinfo.this,"test"+item.getName(),Toast.LENGTH_SHORT).show();
+                Log.d(TAG,"click grid");
+            }
+        });
+        partnerlist2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Griditem item = (Griditem)gridviewadapterpartnerdrink.getItem(position);
+                Toast.makeText(Myinfo.this,"test"+item.getName(),Toast.LENGTH_SHORT).show();
+                Log.d(TAG,"click grid");
+            }
+        });
+        cookfoodlist1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Griditem item = (Griditem)gridviewadapterhomemeal.getItem(position);
+                Toast.makeText(Myinfo.this,"test"+item.getName(),Toast.LENGTH_SHORT).show();
+            }
+        });
+        cookfoodlist2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Griditem item = (Griditem)gridviewadapterhomedrink.getItem(position);
+                Toast.makeText(Myinfo.this,"test"+item.getName(),Toast.LENGTH_SHORT).show();
+            }
+        });
+        outfoodlist1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Griditem item = (Griditem)gridviewadapteroutmeal.getItem(position);
+                Toast.makeText(Myinfo.this,"test"+item.getName(),Toast.LENGTH_SHORT).show();
+            }
+        });
+        outfoodlist2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Griditem item = (Griditem)gridviewadapteroutdrink.getItem(position);
+                Toast.makeText(Myinfo.this,"test"+item.getName(),Toast.LENGTH_SHORT).show();
+            }
+        });
+        deliveryfoodlist1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Griditem item = (Griditem)gridviewadapterdeliverymeal.getItem(position);
+                Toast.makeText(Myinfo.this,"test"+item.getName(),Toast.LENGTH_SHORT).show();
+            }
+        });
+        deliveryfoodlist2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Griditem item = (Griditem)gridviewadapterdeliverydrink.getItem(position);
+                Toast.makeText(Myinfo.this,"test"+item.getName(),Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     class Gridviewadapter extends BaseAdapter {
@@ -334,7 +479,7 @@ public class Myinfo extends Activity {
 
             Griditem griditem = items.get(position);
             view.init(getApplicationContext());
-            view.setfooditem(griditem.getWhere(),griditem.getKind(),griditem.getFoodnum() , griditem.getName());
+            view.setfooditem(griditem.getWhere(),griditem.getKind(),griditem.getFoodnum() , griditem.getName(),griditem.getUrl());
             Log.d(TAG,"seeviewgrid,"+position+"," + griditem.getWhere()+","+griditem.getKind()+","+griditem.getName());
             return view;
         }
