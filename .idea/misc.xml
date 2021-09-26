@@ -9,6 +9,10 @@
         <entry key="app/src/main/res/layout/activity_twofood.xml" value="0.1" />
         <entry key="app/src/main/res/layout/singlegridview.xml" value="0.10364583333333334" />
         <entry key="app/src/main/res/layout/slidepage.xml" value="0.10052083333333334" />
+        <entry key="app/src/main/res/menu/myinfo_cook_menu.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/menu/myinfo_delivery_menu.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/menu/myinfo_out_menu.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/menu/myinfo_partner_menu.xml" value="0.15364583333333334" />
       </map>
     </option>
   </component>

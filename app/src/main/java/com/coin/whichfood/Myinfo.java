@@ -1,8 +1,11 @@
 package com.coin.whichfood;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -10,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -388,59 +392,223 @@ public class Myinfo extends Activity {
         partnerlist1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Griditem item = (Griditem)gridviewadapterpartnermeal.getItem(position);
-                Toast.makeText(Myinfo.this,"test"+item.getName(),Toast.LENGTH_SHORT).show();
+                Griditem fooditem = (Griditem)gridviewadapterpartnermeal.getItem(position);
+                PopupMenu popupMenu = new PopupMenu(getApplicationContext(),view);
+                getMenuInflater().inflate(R.menu.myinfo_partner_menu,popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch(item.getItemId()){
+                            case R.id.detail:
+                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.break_contract:
+                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                break;
+
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
                 Log.d(TAG,"click grid");
             }
         });
         partnerlist2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Griditem item = (Griditem)gridviewadapterpartnerdrink.getItem(position);
-                Toast.makeText(Myinfo.this,"test"+item.getName(),Toast.LENGTH_SHORT).show();
+                Griditem fooditem = (Griditem)gridviewadapterpartnerdrink.getItem(position);
+                PopupMenu popupMenu = new PopupMenu(getApplicationContext(),view);
+                getMenuInflater().inflate(R.menu.myinfo_partner_menu,popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch(item.getItemId()){
+                            case R.id.detail:
+                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.break_contract:
+                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                break;
+
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
                 Log.d(TAG,"click grid");
             }
         });
         cookfoodlist1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Griditem item = (Griditem)gridviewadapterhomemeal.getItem(position);
-                Toast.makeText(Myinfo.this,"test"+item.getName(),Toast.LENGTH_SHORT).show();
+                Griditem fooditem = (Griditem)gridviewadapterhomemeal.getItem(position);
+                PopupMenu popupMenu = new PopupMenu(getApplicationContext(),view);
+                getMenuInflater().inflate(R.menu.myinfo_cook_menu,popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch(item.getItemId()){
+                            case R.id.gorecipe:
+                                Intent intent_recipe = new Intent(Intent.ACTION_VIEW);
+                                String url = new String();
+                                try {
+                                    url = flagClass.getHowcookpage().getJSONObject(0).getString(String.valueOf(fooditem.getFoodnum()));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                intent_recipe.setData(Uri.parse(url));
+                                startActivity(intent_recipe);
+                                break;
+                            case R.id.delete_interest:
+                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                break;
+
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
+
             }
         });
         cookfoodlist2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Griditem item = (Griditem)gridviewadapterhomedrink.getItem(position);
-                Toast.makeText(Myinfo.this,"test"+item.getName(),Toast.LENGTH_SHORT).show();
+                Griditem fooditem = (Griditem)gridviewadapterhomedrink.getItem(position);
+                PopupMenu popupMenu = new PopupMenu(getApplicationContext(),view);
+                getMenuInflater().inflate(R.menu.myinfo_cook_menu,popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch(item.getItemId()){
+                            case R.id.gorecipe:
+                                Intent intent_recipe = new Intent(Intent.ACTION_VIEW);
+                                String url = new String();
+                                try {
+                                    url = flagClass.getHowcookpagedrink().getJSONObject(0).getString(String.valueOf(fooditem.getFoodnum()));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                intent_recipe.setData(Uri.parse(url));
+                                startActivity(intent_recipe);
+                                break;
+                            case R.id.delete_interest:
+                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                break;
+
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
+
             }
         });
         outfoodlist1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Griditem item = (Griditem)gridviewadapteroutmeal.getItem(position);
-                Toast.makeText(Myinfo.this,"test"+item.getName(),Toast.LENGTH_SHORT).show();
+                Griditem fooditem = (Griditem)gridviewadapteroutmeal.getItem(position);
+                PopupMenu popupMenu = new PopupMenu(getApplicationContext(),view);
+                getMenuInflater().inflate(R.menu.myinfo_out_menu,popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch(item.getItemId()){
+                            case R.id.gomap:
+                                flagClass.setOne_food1(fooditem.getFoodnum());
+                                flagClass.setKind(1);
+                                flagClass.setFindstore(1);
+                                Intent intentmap = new Intent(Myinfo.this, mapofstore.class);
+                                intentmap.putExtra("scope",1);
+                                startActivity(intentmap);
+                                break;
+                            case R.id.delete_interest:
+                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                break;
+
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
             }
         });
         outfoodlist2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Griditem item = (Griditem)gridviewadapteroutdrink.getItem(position);
-                Toast.makeText(Myinfo.this,"test"+item.getName(),Toast.LENGTH_SHORT).show();
+                Griditem fooditem = (Griditem)gridviewadapteroutdrink.getItem(position);
+                PopupMenu popupMenu = new PopupMenu(getApplicationContext(),view);
+                getMenuInflater().inflate(R.menu.myinfo_out_menu,popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch(item.getItemId()){
+                            case R.id.gomap:
+                                flagClass.setOne_food1(fooditem.getFoodnum());
+                                flagClass.setKind(2);
+                                flagClass.setFindstore(1);
+                                Intent intentmap = new Intent(Myinfo.this, mapofstore.class);
+                                intentmap.putExtra("scope",1);
+                                startActivity(intentmap);
+                                break;
+                            case R.id.delete_interest:
+                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                break;
+
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
             }
         });
         deliveryfoodlist1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Griditem item = (Griditem)gridviewadapterdeliverymeal.getItem(position);
-                Toast.makeText(Myinfo.this,"test"+item.getName(),Toast.LENGTH_SHORT).show();
+                PopupMenu popupMenu = new PopupMenu(getApplicationContext(),view);
+                getMenuInflater().inflate(R.menu.myinfo_delivery_menu,popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch(item.getItemId()){
+                            case R.id.godelivery:
+                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.delete_interest:
+                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                break;
+
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
             }
         });
         deliveryfoodlist2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Griditem item = (Griditem)gridviewadapterdeliverydrink.getItem(position);
-                Toast.makeText(Myinfo.this,"test"+item.getName(),Toast.LENGTH_SHORT).show();
+                PopupMenu popupMenu = new PopupMenu(getApplicationContext(),view);
+                getMenuInflater().inflate(R.menu.myinfo_delivery_menu,popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch(item.getItemId()){
+                            case R.id.godelivery:
+                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                break;
+                            case R.id.delete_interest:
+                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                break;
+
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
             }
         });
     }

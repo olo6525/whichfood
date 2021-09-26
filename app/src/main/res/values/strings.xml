@@ -39,4 +39,10 @@
     <string name="welcome">환영합니다.</string>
     <string name="meal">식사음식</string>
     <string name="drink">안주음식</string>
+    <string name="menu_detail">자세히 보기</string>
+    <string name="menu_delete">관심목록 제거</string>
+    <string name="menu_gorecipe">레시피 보기</string>
+    <string name="menu_gomap">매장 위치찾기</string>
+    <string name="menu_godelivery">배달 정보보기</string>
+    <string name="menu_break">제휴 해제방법</string>
 </resources>
