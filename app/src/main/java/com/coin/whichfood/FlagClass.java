@@ -48,6 +48,7 @@ public class FlagClass extends Application {
     private static Bitmap adimage4;
     private static Bitmap adimage5;
     private static ArrayList<String> servers;
+    private static int myinforenew;
 
 
     //카카오톡로그인연동
@@ -96,6 +97,7 @@ public class FlagClass extends Application {
         adimage4 = null;
         adimage5 = null;
         servers = new ArrayList<>();
+        myinforenew = 0;
 //카카오톡 로그인 연동
         instance = this;
         loginflag = 0;
@@ -141,6 +143,7 @@ public class FlagClass extends Application {
         adimage4 = null;
         adimage5 = null;
         servers = new ArrayList<>();
+        myinforenew =0;
 
         //카카오톡 로그인
         loginflag = 0;
@@ -181,6 +184,7 @@ public class FlagClass extends Application {
     public void setAdimage5(Bitmap flag){this.adimage5 = flag;}
     public void setServers(ArrayList<String> flag){this.servers = flag;}
     public void setLoginid(long flag){this.loginid = flag;}
+    public void setMyinforenew(int flag){this.myinforenew = flag;}
 
     public String getVersion(){return version;}
     public int getWhere() {return where;}
@@ -215,6 +219,7 @@ public class FlagClass extends Application {
     public Bitmap getAdimage5(){return adimage5;}
     public ArrayList<String> getServers(){return servers;}
     public long getLoginid(){return loginid;}
+    public int getMyinforenew(){return myinforenew;}
 
 
 

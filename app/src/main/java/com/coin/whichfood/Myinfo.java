@@ -1,6 +1,8 @@
 package com.coin.whichfood;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -107,6 +109,24 @@ public class Myinfo extends Activity {
         Gridviewadapter gridviewadapterdeliverymeal;
         Gridviewadapter gridviewadapterdeliverydrink;
 //관심음식 열고닫기=================================================================================
+        if(flagClass.getMyinforenew() == 1){
+            openpartnerinfo.setVisibility(View.GONE);
+            partnerlistlayout.setVisibility(View.VISIBLE);
+            closepartnerinfo.setVisibility(View.VISIBLE);
+        }else if(flagClass.getMyinforenew() ==2){
+            opencookinfo.setVisibility(View.GONE);
+            cookfoodlistlayout.setVisibility(View.VISIBLE);
+            closecookinfo.setVisibility(View.VISIBLE);
+        }else if(flagClass.getMyinforenew() ==3){
+            openoutinfo.setVisibility(View.GONE);
+            outfoodlistlayout.setVisibility(View.VISIBLE);
+            closeoutinfo.setVisibility(View.VISIBLE);
+        }else if(flagClass.getMyinforenew() ==4){
+            opendeliveryinfo.setVisibility(View.GONE);
+            deliveryfoodlistlayout.setVisibility(View.VISIBLE);
+            closedeliveryinfo.setVisibility(View.VISIBLE);
+        }
+        flagClass.setMyinforenew(0);
         openpartnerinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -461,7 +481,62 @@ public class Myinfo extends Activity {
                                 startActivity(intent_recipe);
                                 break;
                             case R.id.delete_interest:
-                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                AlertDialog.Builder deletecheck = new AlertDialog.Builder(Myinfo.this);
+                                deletecheck.setIcon(R.drawable.ic_choicefood);
+                                deletecheck.setTitle("식사요리 관심 음식");
+                                deletecheck.setMessage("관심음식 목록에서 제거하시겠습니까?");
+                                deletecheck.setPositiveButton("제거", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Thread thread = new Thread(){
+                                            @Override
+                                            public void run(){
+                                                try {
+                                                    String postParameters = "purpose=deletedata&userid="+flagClass.getLoginid()+"&where="+fooditem.getWhere()+"&kind="+fooditem.getKind()+"&food="+fooditem.getWhere()+"meal"+fooditem.getFoodnum();
+                                                    Log.d(TAG,"getdata post : "+postParameters);
+                                                    URL url = new URL(flagClass.getServers().get(0)+"whichfoodstorelist.php");
+                                                    HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                                                    conn.setDoInput(true);
+                                                    conn.setDoOutput(true);
+                                                    conn.connect();
+
+                                                    OutputStream outputStream = conn.getOutputStream();
+                                                    outputStream.write(postParameters.getBytes("UTF-8"));
+                                                    outputStream.flush();
+                                                    outputStream.close();
+
+                                                    int response = conn.getResponseCode();
+                                                    if(response == conn.HTTP_OK){
+                                                        Log.d(TAG,"deletedata connected to myinfo");
+                                                    }else{
+                                                        Log.d(TAG,"deletedata disconnected to myinfo");
+                                                    }
+
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        };
+                                        thread.start();
+                                        try {
+                                            thread.join();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                        flagClass.setMyinforenew(2);
+                                        Intent intentrenew = getIntent();
+                                        finish();
+                                        startActivity(intentrenew);
+
+                                    }
+                                });
+                                deletecheck.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+                                deletecheck.show();
                                 break;
 
                         }
@@ -494,7 +569,62 @@ public class Myinfo extends Activity {
                                 startActivity(intent_recipe);
                                 break;
                             case R.id.delete_interest:
-                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                AlertDialog.Builder deletecheck = new AlertDialog.Builder(Myinfo.this);
+                                deletecheck.setIcon(R.drawable.ic_choicefood);
+                                deletecheck.setTitle("안주요리 관심 음식");
+                                deletecheck.setMessage("관심음식 목록에서 제거하시겠습니까?");
+                                deletecheck.setPositiveButton("제거", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Thread thread = new Thread(){
+                                            @Override
+                                            public void run(){
+                                                try {
+                                                    String postParameters = "purpose=deletedata&userid="+flagClass.getLoginid()+"&where="+fooditem.getWhere()+"&kind="+fooditem.getKind()+"&food="+fooditem.getWhere()+"drink"+fooditem.getFoodnum();
+                                                    Log.d(TAG,"getdata post : "+postParameters);
+                                                    URL url = new URL(flagClass.getServers().get(0)+"whichfoodstorelist.php");
+                                                    HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                                                    conn.setDoInput(true);
+                                                    conn.setDoOutput(true);
+                                                    conn.connect();
+
+                                                    OutputStream outputStream = conn.getOutputStream();
+                                                    outputStream.write(postParameters.getBytes("UTF-8"));
+                                                    outputStream.flush();
+                                                    outputStream.close();
+
+                                                    int response = conn.getResponseCode();
+                                                    if(response == conn.HTTP_OK){
+                                                        Log.d(TAG,"deletedata connected to myinfo");
+                                                    }else{
+                                                        Log.d(TAG,"deletedata disconnected to myinfo");
+                                                    }
+
+
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        };
+                                        thread.start();
+                                        try {
+                                            thread.join();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                        flagClass.setMyinforenew(2);
+                                        Intent intentrenew = getIntent();
+                                        finish();
+                                        startActivity(intentrenew);
+                                    }
+                                });
+                                deletecheck.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+                                deletecheck.show();
                                 break;
 
                         }
@@ -524,7 +654,62 @@ public class Myinfo extends Activity {
                                 startActivity(intentmap);
                                 break;
                             case R.id.delete_interest:
-                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                AlertDialog.Builder deletecheck = new AlertDialog.Builder(Myinfo.this);
+                                deletecheck.setIcon(R.drawable.ic_choicefood);
+                                deletecheck.setTitle("식사외식 관심 음식");
+                                deletecheck.setMessage("관심음식 목록에서 제거하시겠습니까?");
+                                deletecheck.setPositiveButton("제거", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Thread thread = new Thread(){
+                                            @Override
+                                            public void run(){
+                                                try {
+                                                    String postParameters = "purpose=deletedata&userid="+flagClass.getLoginid()+"&where="+fooditem.getWhere()+"&kind="+fooditem.getKind()+"&food="+fooditem.getWhere()+"meal"+fooditem.getFoodnum();
+                                                    Log.d(TAG,"getdata post : "+postParameters);
+                                                    URL url = new URL(flagClass.getServers().get(0)+"whichfoodstorelist.php");
+                                                    HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                                                    conn.setDoInput(true);
+                                                    conn.setDoOutput(true);
+                                                    conn.connect();
+
+                                                    OutputStream outputStream = conn.getOutputStream();
+                                                    outputStream.write(postParameters.getBytes("UTF-8"));
+                                                    outputStream.flush();
+                                                    outputStream.close();
+
+                                                    int response = conn.getResponseCode();
+                                                    if(response == conn.HTTP_OK){
+                                                        Log.d(TAG,"deletedata connected to myinfo");
+                                                    }else{
+                                                        Log.d(TAG,"deletedata disconnected to myinfo");
+                                                    }
+
+
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        };
+                                        thread.start();
+                                        try {
+                                            thread.join();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                        flagClass.setMyinforenew(3);
+                                        Intent intentrenew = getIntent();
+                                        finish();
+                                        startActivity(intentrenew);
+                                    }
+                                });
+                                deletecheck.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+                                deletecheck.show();
                                 break;
 
                         }
@@ -553,7 +738,62 @@ public class Myinfo extends Activity {
                                 startActivity(intentmap);
                                 break;
                             case R.id.delete_interest:
-                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                AlertDialog.Builder deletecheck = new AlertDialog.Builder(Myinfo.this);
+                                deletecheck.setIcon(R.drawable.ic_choicefood);
+                                deletecheck.setTitle("안주외식 관심 음식");
+                                deletecheck.setMessage("관심음식 목록에서 제거하시겠습니까?");
+                                deletecheck.setPositiveButton("제거", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Thread thread = new Thread(){
+                                            @Override
+                                            public void run(){
+                                                try {
+                                                    String postParameters = "purpose=deletedata&userid="+flagClass.getLoginid()+"&where="+fooditem.getWhere()+"&kind="+fooditem.getKind()+"&food="+fooditem.getWhere()+"drink"+fooditem.getFoodnum();
+                                                    Log.d(TAG,"getdata post : "+postParameters);
+                                                    URL url = new URL(flagClass.getServers().get(0)+"whichfoodstorelist.php");
+                                                    HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                                                    conn.setDoInput(true);
+                                                    conn.setDoOutput(true);
+                                                    conn.connect();
+
+                                                    OutputStream outputStream = conn.getOutputStream();
+                                                    outputStream.write(postParameters.getBytes("UTF-8"));
+                                                    outputStream.flush();
+                                                    outputStream.close();
+
+                                                    int response = conn.getResponseCode();
+                                                    if(response == conn.HTTP_OK){
+                                                        Log.d(TAG,"deletedata connected to myinfo");
+                                                    }else{
+                                                        Log.d(TAG,"deletedata disconnected to myinfo");
+                                                    }
+
+
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        };
+                                        thread.start();
+                                        try {
+                                            thread.join();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                        flagClass.setMyinforenew(3);
+                                        Intent intentrenew = getIntent();
+                                        finish();
+                                        startActivity(intentrenew);
+                                    }
+                                });
+                                deletecheck.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+                                deletecheck.show();
                                 break;
 
                         }
@@ -566,7 +806,7 @@ public class Myinfo extends Activity {
         deliveryfoodlist1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Griditem item = (Griditem)gridviewadapterdeliverymeal.getItem(position);
+                Griditem fooditem = (Griditem)gridviewadapterdeliverymeal.getItem(position);
                 PopupMenu popupMenu = new PopupMenu(getApplicationContext(),view);
                 getMenuInflater().inflate(R.menu.myinfo_delivery_menu,popupMenu.getMenu());
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -577,7 +817,62 @@ public class Myinfo extends Activity {
                                 Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
                                 break;
                             case R.id.delete_interest:
-                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                AlertDialog.Builder deletecheck = new AlertDialog.Builder(Myinfo.this);
+                                deletecheck.setIcon(R.drawable.ic_choicefood);
+                                deletecheck.setTitle("식사배달 관심 음식");
+                                deletecheck.setMessage("관심음식 목록에서 제거하시겠습니까?");
+                                deletecheck.setPositiveButton("제거", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Thread thread = new Thread(){
+                                            @Override
+                                            public void run(){
+                                                try {
+                                                    String postParameters = "purpose=deletedata&userid="+flagClass.getLoginid()+"&where="+fooditem.getWhere()+"&kind="+fooditem.getKind()+"&food="+fooditem.getWhere()+"meal"+fooditem.getFoodnum();
+                                                    Log.d(TAG,"getdata post : "+postParameters);
+                                                    URL url = new URL(flagClass.getServers().get(0)+"whichfoodstorelist.php");
+                                                    HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                                                    conn.setDoInput(true);
+                                                    conn.setDoOutput(true);
+                                                    conn.connect();
+
+                                                    OutputStream outputStream = conn.getOutputStream();
+                                                    outputStream.write(postParameters.getBytes("UTF-8"));
+                                                    outputStream.flush();
+                                                    outputStream.close();
+
+                                                    int response = conn.getResponseCode();
+                                                    if(response == conn.HTTP_OK){
+                                                        Log.d(TAG,"deletedata connected to myinfo");
+                                                    }else{
+                                                        Log.d(TAG,"deletedata disconnected to myinfo");
+                                                    }
+
+
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        };
+                                        thread.start();
+                                        try {
+                                            thread.join();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                        flagClass.setMyinforenew(4);
+                                        Intent intentrenew = getIntent();
+                                        finish();
+                                        startActivity(intentrenew);
+                                    }
+                                });
+                                deletecheck.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+                                deletecheck.show();
                                 break;
 
                         }
@@ -590,7 +885,7 @@ public class Myinfo extends Activity {
         deliveryfoodlist2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Griditem item = (Griditem)gridviewadapterdeliverydrink.getItem(position);
+                Griditem fooditem = (Griditem)gridviewadapterdeliverydrink.getItem(position);
                 PopupMenu popupMenu = new PopupMenu(getApplicationContext(),view);
                 getMenuInflater().inflate(R.menu.myinfo_delivery_menu,popupMenu.getMenu());
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -601,7 +896,62 @@ public class Myinfo extends Activity {
                                 Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
                                 break;
                             case R.id.delete_interest:
-                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                AlertDialog.Builder deletecheck = new AlertDialog.Builder(Myinfo.this);
+                                deletecheck.setIcon(R.drawable.ic_choicefood);
+                                deletecheck.setTitle("안주배달 관심 음식");
+                                deletecheck.setMessage("관심음식 목록에서 제거하시겠습니까?");
+                                deletecheck.setPositiveButton("제거", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Thread thread = new Thread(){
+                                            @Override
+                                            public void run(){
+                                                try {
+                                                    String postParameters = "purpose=deletedata&userid="+flagClass.getLoginid()+"&where="+fooditem.getWhere()+"&kind="+fooditem.getKind()+"&food="+fooditem.getWhere()+"drink"+fooditem.getFoodnum();
+                                                    Log.d(TAG,"getdata post : "+postParameters);
+                                                    URL url = new URL(flagClass.getServers().get(0)+"whichfoodstorelist.php");
+                                                    HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                                                    conn.setDoInput(true);
+                                                    conn.setDoOutput(true);
+                                                    conn.connect();
+
+                                                    OutputStream outputStream = conn.getOutputStream();
+                                                    outputStream.write(postParameters.getBytes("UTF-8"));
+                                                    outputStream.flush();
+                                                    outputStream.close();
+
+                                                    int response = conn.getResponseCode();
+                                                    if(response == conn.HTTP_OK){
+                                                        Log.d(TAG,"deletedata connected to myinfo");
+                                                    }else{
+                                                        Log.d(TAG,"deletedata disconnected to myinfo");
+                                                    }
+
+
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        };
+                                        thread.start();
+                                        try {
+                                            thread.join();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                        flagClass.setMyinforenew(4);
+                                        Intent intentrenew = getIntent();
+                                        finish();
+                                        startActivity(intentrenew);
+                                    }
+                                });
+                                deletecheck.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+                                deletecheck.show();
                                 break;
 
                         }
