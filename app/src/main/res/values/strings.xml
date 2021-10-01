@@ -45,4 +45,5 @@
     <string name="menu_gomap">매장 위치찾기</string>
     <string name="menu_godelivery">배달 정보보기</string>
     <string name="menu_break">제휴 해제방법</string>
+    <string name="contractstore">제휴 매장</string>
 </resources>

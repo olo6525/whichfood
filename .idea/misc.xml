@@ -4,10 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.13020833333333334" />
+        <entry key="app/src/main/res/drawable/ic_close.xml" value="0.22407407407407406" />
+        <entry key="app/src/main/res/drawable/singlegridviewcontract.xml" value="0.21510416666666668" />
         <entry key="app/src/main/res/layout/activity_myinfo.xml" value="0.10364583333333334" />
         <entry key="app/src/main/res/layout/activity_onefood.xml" value="0.10052083333333334" />
         <entry key="app/src/main/res/layout/activity_twofood.xml" value="0.1" />
         <entry key="app/src/main/res/layout/singlegridview.xml" value="0.10364583333333334" />
+        <entry key="app/src/main/res/layout/singlegridviewcontract.xml" value="0.19895833333333332" />
         <entry key="app/src/main/res/layout/slidepage.xml" value="0.10052083333333334" />
         <entry key="app/src/main/res/menu/myinfo_cook_menu.xml" value="0.15364583333333334" />
         <entry key="app/src/main/res/menu/myinfo_delivery_menu.xml" value="0.15364583333333334" />

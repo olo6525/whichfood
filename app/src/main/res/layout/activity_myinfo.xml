@@ -126,11 +126,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#C9F4A4"
-                            android:text="@string/meal"
+                            android:text="@string/contractstore"
                             android:textSize="17dp"/>
 
                         <GridView
-                            android:id="@+id/partnerlist1"
+                            android:id="@+id/partnerlist"
                             android:layout_width="match_parent"
                             android:layout_height="120dp"
                             android:numColumns="4"
@@ -142,20 +142,6 @@
                             android:layout_height="10dp"
                             android:layout_weight="0.2" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#6FF3FF"
-                            android:text="@string/drink"
-                            android:textSize="17dp"/>
-
-                        <GridView
-                            android:id="@+id/partnerlist2"
-                            android:layout_width="match_parent"
-                            android:layout_height="120dp"
-                            android:scrollbars = "horizontal"
-                            android:horizontalSpacing="10dp"
-                            android:numColumns="4"/>
                     </LinearLayout>
 
                 </LinearLayout>

@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -57,15 +58,14 @@ public class Myinfo extends Activity {
     LinearLayout cookfoodlistlayout;
     LinearLayout outfoodlistlayout;
     LinearLayout deliveryfoodlistlayout;
-    GridView partnerlist1;
+    GridView partnerlist;
     GridView cookfoodlist1;
     GridView outfoodlist1;
     GridView deliveryfoodlist1;
-    GridView partnerlist2;
     GridView cookfoodlist2;
     GridView outfoodlist2;
     GridView deliveryfoodlist2;
-    JSONArray myinfodata;
+    JSONObject myinfodata;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -91,15 +91,15 @@ public class Myinfo extends Activity {
         cookfoodlistlayout = (LinearLayout)findViewById(R.id.cookfoodlistlayout);
         outfoodlistlayout = (LinearLayout)findViewById(R.id.outfoodlistlayout);
         deliveryfoodlistlayout = (LinearLayout)findViewById(R.id.deliveryfoodlistlayout);
-        partnerlist1 = (GridView)findViewById(R.id.partnerlist1);
+        partnerlist = (GridView)findViewById(R.id.partnerlist);
         cookfoodlist1= (GridView)findViewById(R.id.cookfoodlist1);
         outfoodlist1 = (GridView)findViewById(R.id.outfoodlist1);
         deliveryfoodlist1 = (GridView)findViewById(R.id.deliveryfoodlist1);
-        partnerlist2 = (GridView)findViewById(R.id.partnerlist2);
         cookfoodlist2= (GridView)findViewById(R.id.cookfoodlist2);
         outfoodlist2 = (GridView)findViewById(R.id.outfoodlist2);
         deliveryfoodlist2 = (GridView)findViewById(R.id.deliveryfoodlist2);
-        myinfodata = new JSONArray();
+        myinfodata = new JSONObject();
+        Gridviewadapter2 gridviewadaptercontractstore;
         Gridviewadapter gridviewadapterpartnermeal;
         Gridviewadapter gridviewadapterpartnerdrink;
         Gridviewadapter gridviewadapterhomemeal;
@@ -234,7 +234,7 @@ public class Myinfo extends Activity {
 
                     Log.d(TAG,"로그인정보확인 : "+sb.toString());
 
-                    myinfodata = new JSONArray(sb.toString());
+                    myinfodata = new JSONObject(sb.toString());
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -250,13 +250,14 @@ public class Myinfo extends Activity {
         }
 
 
+
         try {
-            myinfowelcome.setText("'"+myinfodata.getJSONObject(0).getString("nickname")+"' 님의 '이거먹자' 페이지 입니다. \nID : "+myinfodata.getJSONObject(0).getString("id"));
-            myemail.setText(myinfodata.getJSONObject(0).getString("email"));
-            partnerinfo.setText("제휴 및 홍보 음식 : "+myinfodata.getJSONObject(0).getString("partnerships")+" 가지");
-            cookinfo.setText("관심요리음식 : "+myinfodata.getJSONObject(0).getString("cookfood")+" 가지");
-            outinfo.setText("관심외식음식 : "+myinfodata.getJSONObject(0).getString("outfood")+" 가지");
-            deliveryinfo.setText("관심배달음식 : "+myinfodata.getJSONObject(0).getString("deliveryfood")+" 가지");
+            myinfowelcome.setText("'"+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("id")+"' 님의 '이거먹자' 페이지 입니다. \nID : "+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("id"));
+            myemail.setText(myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("email"));
+            partnerinfo.setText("제휴 및 홍보 음식 : "+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("partnerships")+" 가지");
+            cookinfo.setText("관심요리음식 : "+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("cookfood")+" 가지");
+            outinfo.setText("관심외식음식 : "+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("outfood")+" 가지");
+            deliveryinfo.setText("관심배달음식 : "+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("deliveryfood")+" 가지");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -265,14 +266,25 @@ public class Myinfo extends Activity {
         int count = 0;
         JSONArray getindex = new JSONArray();
         //그리드용 전역 변수 끝=======================================
+//파트너 음식 정보================================================================
+        gridviewadaptercontractstore = new Gridviewadapter2();
 
+        try {
+            for (int i = 0; i < myinfodata.getJSONArray("mycontractinfo").length(); i++) {
+                gridviewadaptercontractstore.addItem(new GriditemContract(myinfodata.getJSONArray("mycontractinfo").getJSONObject(0).getString("membersstorenum")
+                        ,myinfodata.getJSONArray("mycontractinfo").getJSONObject(0).getString("storename")));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            Log.d(TAG, "error for getdata mycontractinfo");
+        }
         gridviewadapterpartnermeal = new Gridviewadapter();
         count = flagClass.getThenumberoffoodoutmeal();
         getindex = flagClass.getOutfoodmealindex();
         for(int i = 1; i < count+1; i++){
             try {
-                Log.d(TAG, "lists"+myinfodata.getJSONObject(0).getString("partnermeal"+i)+getindex.getJSONObject(0).getString(Integer.toString(i))+"count"+gridviewadapterpartnermeal.getCount());
-                int check = Integer.parseInt(myinfodata.getJSONObject(0).getString("partnermeal"+i));
+                Log.d(TAG, "lists"+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("partnermeal"+i)+getindex.getJSONObject(0).getString(Integer.toString(i))+"count"+gridviewadapterpartnermeal.getCount());
+                int check = Integer.parseInt(myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("partnermeal"+i));
                 if(check == 1){
                     String url = new String();
                     url = flagClass.getHowcookpage().getJSONObject(0).getString(String.valueOf(i));
@@ -284,7 +296,7 @@ public class Myinfo extends Activity {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                Log.d(TAG, "error");
+                Log.d(TAG, "error get fooddatas");
             }
         }
         gridviewadapterpartnerdrink = new Gridviewadapter();
@@ -292,31 +304,34 @@ public class Myinfo extends Activity {
         getindex = flagClass.getOutfooddrinkindex();
         for(int i = 1; i< count + 1; i++){
             try {
-                Log.d(TAG, "lists"+myinfodata.getJSONObject(0).getString("partnerdrink"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
-                int check = Integer.parseInt(myinfodata.getJSONObject(0).getString("partnerdrink"+i));
+                Log.d(TAG, "lists"+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("partnerdrink"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
+                int check = Integer.parseInt(myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("partnerdrink"+i));
                 if(check == 1){
                     gridviewadapterpartnerdrink.addItem(new Griditem(0,2,i,getindex.getJSONObject(0).getString(Integer.toString(i)),""));
                     Log.d(TAG, "lists partner2");
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                Log.d(TAG, "error");
+                Log.d(TAG, "error get fooddatas");
             }
         }
+        //파트너 음식 정보 ================================================================
         gridviewadapterhomemeal = new Gridviewadapter();
+
+
         count = flagClass.getThenumberoffoodhomemeal();
         getindex = flagClass.getHomefoodmealindex();
         for(int i = 1; i< count + 1; i++){
             try {
-                Log.d(TAG, "lists"+myinfodata.getJSONObject(0).getString("1meal"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
-                int check = Integer.parseInt(myinfodata.getJSONObject(0).getString("1meal"+i));
+                Log.d(TAG, "lists"+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("1meal"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
+                int check = Integer.parseInt(myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("1meal"+i));
                 if(check == 1){
                     gridviewadapterhomemeal.addItem(new Griditem(1,1,i,getindex.getJSONObject(0).getString(Integer.toString(i)),""));
                     Log.d(TAG, "lists homemeal");
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                Log.d(TAG, "error");
+                Log.d(TAG, "error get fooddatas");
             }
         }
         gridviewadapterhomedrink = new Gridviewadapter();
@@ -324,15 +339,15 @@ public class Myinfo extends Activity {
         getindex = flagClass.getHomefooddrinkindex();
         for(int i = 1; i< count + 1; i++){
             try {
-                Log.d(TAG, "lists"+myinfodata.getJSONObject(0).getString("1drink"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
-                int check = Integer.parseInt(myinfodata.getJSONObject(0).getString("1drink"+i));
+                Log.d(TAG, "lists"+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("1drink"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
+                int check = Integer.parseInt(myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("1drink"+i));
                 if(check == 1){
                     gridviewadapterhomedrink.addItem(new Griditem(1,2,i,getindex.getJSONObject(0).getString(Integer.toString(i)),""));
                     Log.d(TAG, "lists homedrink");
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                Log.d(TAG, "error");
+                Log.d(TAG, "error get fooddatas");
             }
         }
         gridviewadapteroutmeal = new Gridviewadapter();
@@ -340,15 +355,15 @@ public class Myinfo extends Activity {
         getindex = flagClass.getOutfoodmealindex();
         for(int i = 1; i< count + 1; i++){
             try {
-                Log.d(TAG, "lists"+myinfodata.getJSONObject(0).getString("2meal"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
-                int check = Integer.parseInt(myinfodata.getJSONObject(0).getString("2meal"+i));
+                Log.d(TAG, "lists"+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("2meal"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
+                int check = Integer.parseInt(myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("2meal"+i));
                 if(check == 1){
                     gridviewadapteroutmeal.addItem(new Griditem(2,1,i,getindex.getJSONObject(0).getString(Integer.toString(i)),""));
                     Log.d(TAG, "lists outmeal");
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                Log.d(TAG, "error");
+                Log.d(TAG, "error get fooddatas");
             }
         }
         gridviewadapteroutdrink = new Gridviewadapter();
@@ -356,15 +371,15 @@ public class Myinfo extends Activity {
         getindex = flagClass.getOutfooddrinkindex();
         for(int i = 1; i< count + 1; i++){
             try {
-                Log.d(TAG, "lists"+myinfodata.getJSONObject(0).getString("2drink"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
-                int check = Integer.parseInt(myinfodata.getJSONObject(0).getString("2drink"+i));
+                Log.d(TAG, "lists"+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("2drink"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
+                int check = Integer.parseInt(myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("2drink"+i));
                 if(check == 1){
                     gridviewadapteroutdrink.addItem(new Griditem(2,2,i,getindex.getJSONObject(0).getString(Integer.toString(i)),""));
                     Log.d(TAG, "lists outmeal");
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                Log.d(TAG, "error");
+                Log.d(TAG, "error get fooddatas");
             }
         }
         gridviewadapterdeliverymeal = new Gridviewadapter();
@@ -372,15 +387,15 @@ public class Myinfo extends Activity {
         getindex = flagClass.getDeliveryfoodmealindex();
         for(int i = 1; i< count + 1; i++){
             try {
-                Log.d(TAG, "lists"+myinfodata.getJSONObject(0).getString("3meal"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
-                int check = Integer.parseInt(myinfodata.getJSONObject(0).getString("3meal"+i));
+                Log.d(TAG, "lists"+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("3meal"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
+                int check = Integer.parseInt(myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("3meal"+i));
                 if(check == 1){
                     gridviewadapterdeliverymeal.addItem(new Griditem(3,1,i,getindex.getJSONObject(0).getString(Integer.toString(i)),""));
                     Log.d(TAG, "lists deliverymeal");
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                Log.d(TAG, "error");
+                Log.d(TAG, "error get fooddatas");
             }
         }
         gridviewadapterdeliverydrink = new Gridviewadapter();
@@ -388,8 +403,8 @@ public class Myinfo extends Activity {
         getindex = flagClass.getDeliveryfooddrinkindex();
         for(int i = 1; i< count + 1; i++){
             try {
-                Log.d(TAG, "lists"+myinfodata.getJSONObject(0).getString("3drink"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
-                int check = Integer.parseInt(myinfodata.getJSONObject(0).getString("3drink"+i));
+                Log.d(TAG, "lists"+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("3drink"+i)+getindex.getJSONObject(0).getString(Integer.toString(i)));
+                int check = Integer.parseInt(myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("3drink"+i));
                 if(check == 1){
                     gridviewadapterdeliverydrink.addItem(new Griditem(3,2,i,getindex.getJSONObject(0).getString(Integer.toString(i)),""));
                     Log.d(TAG, "lists deliverydrink");
@@ -397,11 +412,10 @@ public class Myinfo extends Activity {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                Log.d(TAG, "error");
+                Log.d(TAG, "error get fooddatas");
             }
         }
-        partnerlist1.setAdapter(gridviewadapterpartnermeal);
-        partnerlist2.setAdapter(gridviewadapterpartnerdrink);
+        partnerlist.setAdapter(gridviewadaptercontractstore);
         cookfoodlist1.setAdapter(gridviewadapterhomemeal);
         cookfoodlist2.setAdapter(gridviewadapterhomedrink);
         outfoodlist1.setAdapter(gridviewadapteroutmeal);
@@ -409,7 +423,7 @@ public class Myinfo extends Activity {
         deliveryfoodlist1.setAdapter(gridviewadapterdeliverymeal);
         deliveryfoodlist2.setAdapter(gridviewadapterdeliverydrink);
 
-        partnerlist1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        partnerlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Griditem fooditem = (Griditem)gridviewadapterpartnermeal.getItem(position);
@@ -424,7 +438,8 @@ public class Myinfo extends Activity {
                                     @Override
                                     public void run(){
                                         try {
-                                            String parameters = "purpose=myinfoshowad&id="+myinfodata.getJSONObject(0).getString("id")+" ";
+                                            String parameters = "purpose=myinfoshowad&id="+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("id")+" ";
+
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
@@ -436,6 +451,7 @@ public class Myinfo extends Activity {
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
+                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
                                 break;
                             case R.id.break_contract:
                                 Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
@@ -449,42 +465,7 @@ public class Myinfo extends Activity {
                 Log.d(TAG,"click grid");
             }
         });
-        partnerlist2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Griditem fooditem = (Griditem)gridviewadapterpartnerdrink.getItem(position);
-                PopupMenu popupMenu = new PopupMenu(getApplicationContext(),view);
-                getMenuInflater().inflate(R.menu.myinfo_partner_menu,popupMenu.getMenu());
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch(item.getItemId()){
-                            case R.id.detail:
-                                Thread thread = new Thread(){
-                                    @Override
-                                    public void run(){
 
-                                    }
-                                };
-                                thread.start();
-                                try {
-                                    thread.join();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                                break;
-                            case R.id.break_contract:
-                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
-                                break;
-
-                        }
-                        return false;
-                    }
-                });
-                popupMenu.show();
-                Log.d(TAG,"click grid");
-            }
-        });
         cookfoodlist1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -1028,5 +1009,46 @@ public class Myinfo extends Activity {
             return view;
         }
     }
+
+    class Gridviewadapter2 extends BaseAdapter {
+        ArrayList<GriditemContract> items = new ArrayList<GriditemContract>();
+
+        public void addItem(GriditemContract item){
+            items.add(item);
+        }
+
+        @Override
+        public int getCount() {
+            return items.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return items.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            GridsingleviewContract view = null;
+            if(convertView == null){
+                view = new GridsingleviewContract(getApplicationContext());
+            }else{
+                view = (GridsingleviewContract) convertView;
+            }
+
+            GriditemContract griditem = items.get(position);
+            view.init(getApplicationContext());
+            view.setstoreitem(griditem.getStorenum(),griditem.getStorename());
+            Log.d(TAG,"seeviewgrid,"+position+"," + griditem.getStorename()+","+griditem.getStorenum());
+            return view;
+        }
+    }
+
 
 }
