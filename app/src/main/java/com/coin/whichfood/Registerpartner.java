@@ -322,6 +322,7 @@ public class Registerpartner extends Activity {
                                         }
 
                                         String result = builder.toString();
+                                        Log.d(TAG, "registerresult="+result);
                                         if(result.equals("nostorenum")){
                                             storenumcheck = 1;
                                         }else if(result.charAt(0)=='I'){

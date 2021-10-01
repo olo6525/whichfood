@@ -420,7 +420,22 @@ public class Myinfo extends Activity {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch(item.getItemId()){
                             case R.id.detail:
-                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                Thread thread = new Thread(){
+                                    @Override
+                                    public void run(){
+                                        try {
+                                            String parameters = "purpose=myinfoshowad&id="+myinfodata.getJSONObject(0).getString("id")+" ";
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                };
+                                thread.start();
+                                try {
+                                    thread.join();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                                 break;
                             case R.id.break_contract:
                                 Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
@@ -445,7 +460,18 @@ public class Myinfo extends Activity {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch(item.getItemId()){
                             case R.id.detail:
-                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                Thread thread = new Thread(){
+                                    @Override
+                                    public void run(){
+
+                                    }
+                                };
+                                thread.start();
+                                try {
+                                    thread.join();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                                 break;
                             case R.id.break_contract:
                                 Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
