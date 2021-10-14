@@ -426,7 +426,7 @@ public class Myinfo extends Activity {
         partnerlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Griditem fooditem = (Griditem)gridviewadapterpartnermeal.getItem(position);
+                GriditemContract fooditem = (GriditemContract) gridviewadaptercontractstore.getItem(position);
                 PopupMenu popupMenu = new PopupMenu(getApplicationContext(),view);
                 getMenuInflater().inflate(R.menu.myinfo_partner_menu,popupMenu.getMenu());
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -434,24 +434,11 @@ public class Myinfo extends Activity {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch(item.getItemId()){
                             case R.id.detail:
-                                Thread thread = new Thread(){
-                                    @Override
-                                    public void run(){
-                                        try {
-                                            String parameters = "purpose=myinfoshowad&id="+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("id")+" ";
-
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                };
-                                thread.start();
-                                try {
-                                    thread.join();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                Intent contractstorelist = new Intent(Myinfo.this, Contractstorelistpopup.class);
+                                contractstorelist.putExtra("userid", flagClass.getLoginid());
+                                contractstorelist.putExtra("storenum", fooditem.getStorenum());
+                                contractstorelist.putExtra("storename", fooditem.getStorename());
+                                startActivity(contractstorelist);
                                 break;
                             case R.id.break_contract:
                                 Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
