@@ -254,7 +254,7 @@ public class Myinfo extends Activity {
         try {
             myinfowelcome.setText("'"+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("id")+"' 님의 '이거먹자' 페이지 입니다. \nID : "+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("id"));
             myemail.setText(myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("email"));
-            partnerinfo.setText("제휴 및 홍보 음식 : "+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("partnerships")+" 가지");
+            partnerinfo.setText("제휴 및 홍보 매장");
             cookinfo.setText("관심요리음식 : "+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("cookfood")+" 가지");
             outinfo.setText("관심외식음식 : "+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("outfood")+" 가지");
             deliveryinfo.setText("관심배달음식 : "+myinfodata.getJSONArray("myinfo").getJSONObject(0).getString("deliveryfood")+" 가지");
@@ -441,7 +441,7 @@ public class Myinfo extends Activity {
                                 startActivity(contractstorelist);
                                 break;
                             case R.id.break_contract:
-                                Toast.makeText(getApplication(),"서비스 준비 중 입니다.",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplication(),"정기 구독(자동결제) 해제 시 후 다음 결제가 미승인시 자동 헤제됩니다.",Toast.LENGTH_LONG).show();
                                 break;
 
                         }
