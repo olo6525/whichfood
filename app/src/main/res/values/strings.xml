@@ -3,7 +3,7 @@
     <string name="partnershipintro">
         \n ※ 본인의 매장이 아닌 다른 사람의 매장에 허가없이 홍보물을 등록할 경우 명예훼손 죄로 처벌 받을 수 있습니다 !
         \n-이거먹자- 제휴 및 홍보 결제 시 서비스 사항
-        \n(vip - 1500원/월)
+        \n\(메뉴 1개 vip - 1500원/월 )
         \n1. -외식-음식종류 선택시 추천되는 음식에서 -주변식당- 검색 시 제휴 음식점 고유의 이미지 표출
         \n2. 지도의 이미지 표출 크기 증가
         \n2. 홍보사진 5장 등록
@@ -46,4 +46,14 @@
     <string name="menu_godelivery">배달 정보보기</string>
     <string name="menu_break">제휴 해제방법</string>
     <string name="contractstore">제휴 매장</string>
+    <string name="registerchange">수정 ↑</string>
+    <string name="menu_change">제휴 및 홍보 수정</string>
+    <string name="menu_watchimages">제휴 및 홍보 보기</string>
+    <string name="mapimage">지도표출 사진 등록</string>
+    <string name="adimage1">첫번째 홍보사진 등록</string>
+    <string name="adimage2">두번째 홍보사진 등록</string>
+    <string name="adimage3">세번째 홍보사진 등록</string>
+    <string name="adimage4">네번째 홍보사진 등록</string>
+    <string name="adimage5">다섯번째 홍보사진 등록</string>
+
 </resources>

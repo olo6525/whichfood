@@ -16,7 +16,7 @@
             android:layout_height="0px"
             android:layout_weight="1"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_infoforpartnership" />
+            android:src="@drawable/ic_informationregister" />
 
         <ScrollView
             android:layout_width="match_parent"

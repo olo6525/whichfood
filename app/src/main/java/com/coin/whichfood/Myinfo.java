@@ -37,6 +37,13 @@ import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 public class Myinfo extends Activity {
 
     FlagClass flagClass;
@@ -67,10 +74,42 @@ public class Myinfo extends Activity {
     GridView deliveryfoodlist2;
     JSONObject myinfodata;
 
+    private AdView mAdView; //광고 변수 선언
+    private InterstitialAd mInterstitialAd; //광고변수
+
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myinfo);
+
+        //광고-----------------------------------------------------------------------------------------------------
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        mAdView = findViewById(R.id.adView3);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        //종료시 전면광고-----------------------------------------------------------------------------
+        MobileAds.initialize(this,
+                "ca-app-pub-8231620186256321~9673217647");
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-8231620186256321/1155279399");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        //광고 끝---------------------------------------------------------------------------------------
+
+        Intent getchangeinfo = getIntent();
+        //수정됫는지 안됬는지 확인===================================
+        if(getchangeinfo.getIntExtra("Success",0) == 1){
+            Toast.makeText(getApplicationContext(), "제휴 및 홍보 정보 수정이 적용되었습니다.",Toast.LENGTH_SHORT).show();
+        }
+        if(getchangeinfo.getIntExtra("Fail",0) == 1){
+            Toast.makeText(getApplicationContext(), "수정에 실패하였습니다. 정확히 요구되는 정보를 입력해주시길 바랍니다.",Toast.LENGTH_SHORT).show();
+        }
+
+        //수정된는지 안됬는지 확인 끝 =================================
 
         flagClass = (FlagClass)getApplication();
         openpartnerinfo = (ImageButton)findViewById(R.id.openpartnerinfo);
@@ -271,8 +310,8 @@ public class Myinfo extends Activity {
 
         try {
             for (int i = 0; i < myinfodata.getJSONArray("mycontractinfo").length(); i++) {
-                gridviewadaptercontractstore.addItem(new GriditemContract(myinfodata.getJSONArray("mycontractinfo").getJSONObject(0).getString("membersstorenum")
-                        ,myinfodata.getJSONArray("mycontractinfo").getJSONObject(0).getString("storename")));
+                gridviewadaptercontractstore.addItem(new GriditemContract(myinfodata.getJSONArray("mycontractinfo").getJSONObject(i).getString("membersstorenum")
+                        ,myinfodata.getJSONArray("mycontractinfo").getJSONObject(i).getString("storename")));
             }
         }catch (Exception e){
             e.printStackTrace();

@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:text="새로운 버전이 있습니다. ^^"
+        android:text="새로운 버전이 있습니다."
         android:gravity="center"
         android:textSize = "20sp"
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
          />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/notify"
         android:text="업데이트를 하시겠습니까?"
         android:gravity="center"
         android:textSize = "20sp"

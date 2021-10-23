@@ -8,10 +8,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.core.app.ActivityCompat;
 
 public class PopUp extends Activity {
+
+    FlagClass flagClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -19,8 +22,11 @@ public class PopUp extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_popup);
 
+        TextView notify = (TextView)findViewById(R.id.notify);
         Button btn_update = (Button)findViewById(R.id.button_update);
         Button btn_no = (Button)findViewById(R.id.button_no);
+
+        notify.setText(flagClass.getServers().get(4));
         //업데이트 버튼 클릭 시 업데이트 페이지로.
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override

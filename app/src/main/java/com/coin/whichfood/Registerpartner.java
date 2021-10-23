@@ -51,6 +51,12 @@ public class Registerpartner extends Activity {
     ImageView adpicture5;
     ImageButton register;
     EditText storenumedit;
+    int imagecheck0 =10;
+    int imagecheck1 = 10;
+    int imagecheck2 = 10;
+    int imagecheck3 = 10;
+    int imagecheck4 = 10;
+    int imagecheck5 = 10;
     private String storenum = "";
     private int storenumcheck = 0;
     private int successcheck = 0;
@@ -90,7 +96,7 @@ public class Registerpartner extends Activity {
             adpicture1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(!imagepath.isEmpty()) {
+                    if(imagepath.size() > 0) {
                         Intent intent = new Intent(Intent.ACTION_PICK);
                         intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
                         startActivityForResult(intent, 1);
@@ -103,12 +109,12 @@ public class Registerpartner extends Activity {
             adpicture2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(!imagepath.isEmpty()) {
+                    if(imagepath.size() > 1) {
                         Intent intent = new Intent(Intent.ACTION_PICK);
                         intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
                         startActivityForResult(intent, 2);
                     }else{
-                        Toast.makeText(getApplicationContext(),"지도표출 이미지를 업로드 해주시길 바랍니다.",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"순서대로 이미지를 업로드 해주시길 바립니다.",Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -116,12 +122,12 @@ public class Registerpartner extends Activity {
             adpicture3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(!imagepath.isEmpty()) {
+                    if(imagepath.size() >2) {
                         Intent intent = new Intent(Intent.ACTION_PICK);
                         intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
                         startActivityForResult(intent, 3);
                     }else{
-                        Toast.makeText(getApplicationContext(),"지도표출 이미지를 업로드 해주시길 바랍니다.",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"순서대로 이미지를 업로드 해주시길 바립니다.",Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -129,12 +135,12 @@ public class Registerpartner extends Activity {
         adpicture4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!imagepath.isEmpty()) {
+                if(imagepath.size() > 3) {
                     Intent intent = new Intent(Intent.ACTION_PICK);
                     intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                    startActivityForResult(intent, 5);
+                    startActivityForResult(intent, 4);
                 }else{
-                    Toast.makeText(getApplicationContext(),"지도표출 이미지를 업로드 해주시길 바랍니다.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"순서대로 이미지를 업로드 해주시길 바립니다.",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -142,12 +148,12 @@ public class Registerpartner extends Activity {
         adpicture5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!imagepath.isEmpty()) {
+                if(imagepath.size() > 4) {
                     Intent intent = new Intent(Intent.ACTION_PICK);
                     intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
                     startActivityForResult(intent, 5);
                 }else{
-                    Toast.makeText(getApplicationContext(),"지도표출 이미지를 업로드 해주시길 바랍니다.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"순서대로 이미지를 업로드 해주시길 바립니다.",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -403,51 +409,121 @@ public class Registerpartner extends Activity {
 
         if (requestCode == 100 && resultCode == RESULT_OK && data != null && data.getData() != null) {
 
-            Uri ImageUri = data.getData();
-            imagepath.add(0,getPath(ImageUri));
-            imagename.add(0,getName(ImageUri));
-            Log.d(TAG,"imagelocation = "+data.getData()+imagepath.size());
-            storeimage.setImageURI(ImageUri);
+            if(imagecheck0 == 1) {
+                imagepath.remove(0);
+                Uri ImageUri = data.getData();
+                imagepath.add(0, getPath(ImageUri));
+                imagename.add(0, getName(ImageUri));
+                Log.d(TAG, "imagelocation = " + data.getData() + imagepath.size());
+                storeimage.setImageURI(ImageUri);
+                imagecheck0 = 1;
+            }else {
+                Uri ImageUri = data.getData();
+                imagepath.add(0, getPath(ImageUri));
+                imagename.add(0, getName(ImageUri));
+                Log.d(TAG, "imagelocation = " + data.getData() + imagepath.size());
+                storeimage.setImageURI(ImageUri);
+                imagecheck0 = 1;
+            }
 
         }else if(requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null){
 
-            Uri ImageUri = data.getData();
-            imagepath.add(getPath(ImageUri));
-            imagename.add(getName(ImageUri));
-            Log.d(TAG,"imagelocation = "+data.getData()+imagepath.size());
-            adpicture1.setImageURI(ImageUri);
+            if(imagecheck1 ==1 ){
+                imagepath.remove(1);
+                Uri ImageUri = data.getData();
+                imagepath.add(1,getPath(ImageUri));
+                imagename.add(1,getName(ImageUri));
+                Log.d(TAG, "imagelocation = " + data.getData() + imagepath.size());
+                adpicture1.setImageURI(ImageUri);
+                imagecheck1 = 1;
+
+            }else {
+                Uri ImageUri = data.getData();
+                imagepath.add(getPath(ImageUri));
+                imagename.add(getName(ImageUri));
+                Log.d(TAG, "imagelocation = " + data.getData() + imagepath.size());
+                adpicture1.setImageURI(ImageUri);
+                imagecheck1 = 1;
+            }
 
         }else if(requestCode == 2 && resultCode == RESULT_OK && data != null && data.getData() != null){
 
-            Uri ImageUri = data.getData();
-            imagepath.add(getPath(ImageUri));
-            imagename.add(getName(ImageUri));
-            Log.d(TAG,"imagelocation = "+data.getData()+imagepath.size());
-            adpicture2.setImageURI(ImageUri);
+            if(imagecheck2 ==1 ){
+                imagepath.remove(2);
+                Uri ImageUri = data.getData();
+                imagepath.add(2,getPath(ImageUri));
+                imagename.add(2,getName(ImageUri));
+                Log.d(TAG, "imagelocation = " + data.getData() + imagepath.size());
+                adpicture2.setImageURI(ImageUri);
+                imagecheck2 = 1;
+
+            }else {
+                Uri ImageUri = data.getData();
+                imagepath.add(2,getPath(ImageUri));
+                imagename.add(2,getName(ImageUri));
+                Log.d(TAG, "imagelocation = " + data.getData() + imagepath.size());
+                adpicture2.setImageURI(ImageUri);
+                imagecheck2 = 1;
+            }
 
         }else if(requestCode == 3 && resultCode == RESULT_OK && data != null && data.getData() != null){
 
-            Uri ImageUri = data.getData();
-            imagepath.add(getPath(ImageUri));
-            imagename.add(getName(ImageUri));
-            Log.d(TAG,"imagelocation = "+data.getData()+imagepath.size());
-            adpicture3.setImageURI(ImageUri);
+            if(imagecheck3 ==1 ){
+                imagepath.remove(3);
+                Uri ImageUri = data.getData();
+                imagepath.add(3,getPath(ImageUri));
+                imagename.add(3,getName(ImageUri));
+                Log.d(TAG, "imagelocation = " + data.getData() + imagepath.size());
+                adpicture3.setImageURI(ImageUri);
+                imagecheck3 = 1;
 
+            }else {
+                Uri ImageUri = data.getData();
+                imagepath.add(3,getPath(ImageUri));
+                imagename.add(3,getName(ImageUri));
+                Log.d(TAG, "imagelocation = " + data.getData() + imagepath.size());
+                adpicture3.setImageURI(ImageUri);
+                imagecheck3 = 1;
+            }
         }else if(requestCode == 4 && resultCode == RESULT_OK && data != null && data.getData() != null){
 
-            Uri ImageUri = data.getData();
-            imagepath.add(getPath(ImageUri));
-            imagename.add(getName(ImageUri));
-            Log.d(TAG,"imagelocation = "+data.getData()+imagepath.size());
-            adpicture4.setImageURI(ImageUri);
+            if(imagecheck4 ==1 ){
+                imagepath.remove(4);
+                Uri ImageUri = data.getData();
+                imagepath.add(4,getPath(ImageUri));
+                imagename.add(4,getName(ImageUri));
+                Log.d(TAG, "imagelocation = " + data.getData() + imagepath.size());
+                adpicture4.setImageURI(ImageUri);
+                imagecheck4 = 1;
+
+            }else {
+                Uri ImageUri = data.getData();
+                imagepath.add(4,getPath(ImageUri));
+                imagename.add(4,getName(ImageUri));
+                Log.d(TAG, "imagelocation = " + data.getData() + imagepath.size());
+                adpicture4.setImageURI(ImageUri);
+                imagecheck4 = 1;
+            }
 
         }else if(requestCode == 5 && resultCode == RESULT_OK && data != null && data.getData() != null){
 
-            Uri ImageUri = data.getData();
-            imagepath.add(getPath(ImageUri));
-            imagename.add(getName(ImageUri));
-            Log.d(TAG,"imagelocation = "+data.getData()+imagepath.size());
-            adpicture5.setImageURI(ImageUri);
+            if(imagecheck5 ==1 ){
+                imagepath.remove(5);
+                Uri ImageUri = data.getData();
+                imagepath.add(5,getPath(ImageUri));
+                imagename.add(5,getName(ImageUri));
+                Log.d(TAG, "imagelocation = " + data.getData() + imagepath.size());
+                adpicture5.setImageURI(ImageUri);
+                imagecheck5 = 1;
+
+            }else {
+                Uri ImageUri = data.getData();
+                imagepath.add(5,getPath(ImageUri));
+                imagename.add(5,getName(ImageUri));
+                Log.d(TAG, "imagelocation = " + data.getData() + imagepath.size());
+                adpicture5.setImageURI(ImageUri);
+                imagecheck5 = 1;
+            }
 
         }
 

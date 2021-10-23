@@ -35,6 +35,12 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraPosition;
 import com.naver.maps.map.LocationTrackingMode;
@@ -91,6 +97,9 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
     int getmapscope;
     ImageButton enter;
 
+    private AdView mAdView; //광고 변수 선언
+    private InterstitialAd mInterstitialAd; //광고변수
+
 
 
 
@@ -112,6 +121,24 @@ public class mapofstore extends FragmentActivity implements OnMapReadyCallback{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapofstore);
+
+        //광고-----------------------------------------------------------------------------------------------------
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        mAdView = findViewById(R.id.adView3);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        //종료시 전면광고-----------------------------------------------------------------------------
+        MobileAds.initialize(this,
+                "ca-app-pub-8231620186256321~9673217647");
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-8231620186256321/1155279399");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        //광고 끝---------------------------------------------------------------------------------------
 
 //지도표출 범위 적용=========================================================================================
         Intent getscope = getIntent();

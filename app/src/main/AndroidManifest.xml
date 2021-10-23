@@ -59,6 +59,7 @@
         <activity android:name=".Registerpartner"/>
         <activity android:name=".Myinfo"/>
         <activity android:name=".Contractstorelistpopup"/>
+        <activity android:name=".Registerpartnerchange"/>
 
 
 

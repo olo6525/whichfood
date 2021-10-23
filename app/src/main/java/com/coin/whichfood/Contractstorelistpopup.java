@@ -6,11 +6,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -35,6 +38,7 @@ public class Contractstorelistpopup extends Activity {
 
         requestWindowFeature(getWindow().FEATURE_NO_TITLE);
         setContentView(R.layout.contractstorefoodlist);
+
         flagClass = (FlagClass)getApplication();
         jsoncontractstorefoodlist = new JSONObject();
         GridView contractfoodlist = (GridView)findViewById(R.id.contractfoodlist);
@@ -102,7 +106,7 @@ public class Contractstorelistpopup extends Activity {
         try {
             Log.d(TAG,"제휴가게음식리스트 : "+jsoncontractstorefoodlist.getJSONArray("foodlist").length());
             for (int i = 0; i < jsoncontractstorefoodlist.getJSONArray("foodlist").length(); i++) {
-                String kindfoodnumlist = jsoncontractstorefoodlist.getJSONArray("foodlist").getJSONObject(0).getString("foodnum");
+                String kindfoodnumlist = jsoncontractstorefoodlist.getJSONArray("foodlist").getJSONObject(i).getString("foodnum");
                 String onlyfoodnum = kindfoodnumlist.replaceAll("[^0-9]","");
                 int foodnumlist = Integer.parseInt(onlyfoodnum);
                 String contractfoodname = new String();
@@ -114,7 +118,7 @@ public class Contractstorelistpopup extends Activity {
                     contractfoodname = "";
                 }
                 Log.d(TAG,"제휴가게데이타음식 인덱스 : "+ contractfoodname);
-                //인자설명 -> 위치, 종류, 음식인덱스, 종류임식인덱스, 음식이
+                //인자설명 -> 위치, 종류, 음식인덱스, 종류임식인덱스, 음식이름
                 gridviewadaptercontractfoodlist.addItem(new GriditemContractstorefood(2,0,foodnumlist,kindfoodnumlist,contractfoodname, storenum));
             }
         }catch (Exception e){
@@ -126,15 +130,40 @@ public class Contractstorelistpopup extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 GriditemContractstorefood item = (GriditemContractstorefood)gridviewadaptercontractfoodlist.getItem(position);
-                Intent adintent = new Intent(Contractstorelistpopup.this, ShowStoreAd.class);
-                try {
-                    adintent.putExtra("path", flagClass.getServers().get(0) + "whichfoodadimages/" + item.getStorenum() + "/" + item.getKindfoodnum() + "/");
-                    adintent.putExtra("storename", storename);
-                    adintent.putExtra("storeaddress", jsoncontractstorefoodlist.getJSONArray("storeaddress").getJSONObject(0).getString("storeaddress"));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                startActivity(adintent);
+
+                PopupMenu popupMenu = new PopupMenu(getApplicationContext(),view);
+                getMenuInflater().inflate(R.menu.myinfo_partner_contractdetail,popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch(menuItem.getItemId()){
+                            case R.id.watch:
+                                Intent adintent = new Intent(Contractstorelistpopup.this, ShowStoreAd.class);
+                                try {
+                                    adintent.putExtra("path", flagClass.getServers().get(0) + "whichfoodadimages/" + item.getStorenum() + "/" + item.getKindfoodnum() + "/");
+                                    adintent.putExtra("storename", storename);
+                                    adintent.putExtra("storeaddress", jsoncontractstorefoodlist.getJSONArray("storeaddress").getJSONObject(0).getString("storeaddress"));
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                                startActivity(adintent);
+                                break;
+                            case R.id.change:
+                                Intent changeregister = new Intent(Contractstorelistpopup.this, Registerpartnerchange.class);
+                                changeregister.putExtra("storenum",item.getStorenum());
+                                changeregister.putExtra("kindfoodnum",item.getKindfoodnum());
+                                changeregister.putExtra("foodnum",item.getFoodnum());
+                                changeregister.putExtra("foodname", item.getfoodName());
+                                startActivity(changeregister);
+                                break;
+
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
+                Log.d(TAG,"click grid");
+
             }
         });
     }
@@ -174,8 +203,8 @@ public class Contractstorelistpopup extends Activity {
 
             GriditemContractstorefood griditem = items.get(position);
             view.init(getApplicationContext());
-            view.setfooditem(griditem.getWhere(),griditem.getKind(),griditem.getFoodnum() , griditem.getName());
-            Log.d(TAG,"seeviewgrid,"+position+"," + griditem.getWhere()+","+griditem.getKind()+","+griditem.getName());
+            view.setfooditem(griditem.getWhere(),griditem.getKind(),griditem.getFoodnum() , griditem.getfoodName());
+            Log.d(TAG,"seeviewgrid,"+position+"," + griditem.getWhere()+","+griditem.getKind()+","+griditem.getfoodName());
             return view;
         }
     }

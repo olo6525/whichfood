@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 //        });
 //테스트 기능 버튼 =============================================================================================
 //버전체크=========================================================
-        if(!flag.getVersion().equals("13")){
+        if(!flag.getVersion().equals("14")){
             Intent popup = new Intent(this,PopUp.class);
             startActivity(popup);
         }
@@ -213,6 +213,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(getApplicationContext(),"로그인 후 이용가능한 서비스 입니다.",Toast.LENGTH_LONG).show();
+                    startActivity(loginlayout);
                 }
             });
         }else if (flag.getLoginflag() == 1){

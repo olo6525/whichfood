@@ -2,23 +2,23 @@ package com.coin.whichfood;
 
 public class GriditemContractstorefood {
 
-    String name;
+    String foodname;
     int foodnum;
     String kindfoodnum;
     int where;
     int kind;
     String storenum;
 
-    public GriditemContractstorefood(int where, int kind, int foodnum, String kindfoodnum, String name, String storenum){
+    public GriditemContractstorefood(int where, int kind, int foodnum, String kindfoodnum, String foodname, String storenum){
         this.where = where;
         this.kind = kind;
-        this.name = name;
+        this.foodname = foodname;
         this.foodnum = foodnum;
         this.kindfoodnum = kindfoodnum;
         this.storenum = storenum;
     }
-    public String getName(){
-        return name;
+    public String getfoodName(){
+        return foodname;
     }
     public int getFoodnum(){
         return foodnum;

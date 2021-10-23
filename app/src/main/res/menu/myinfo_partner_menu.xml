@@ -3,6 +3,7 @@
     <item android:id ="@+id/detail"
         android:title = "@string/menu_detail"/>
 
+
     <item android:id="@+id/break_contract"
         android:title = "@string/menu_break"/>
 </menu>

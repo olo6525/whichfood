@@ -120,6 +120,14 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.2"
+                        android:textColor="#000000"
+                        android:text="@string/mapimage" />
+
                     <ImageView
                         android:id="@+id/storeimage"
                         android:layout_width="match_parent"
@@ -131,6 +139,14 @@
                         android:background="@drawable/roundborder"
                         android:src="@drawable/ic_registerpartnermapicon" />
 
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.2"
+                        android:textColor="#000000"
+                        android:text="@string/adimage2" />
+
                     <ImageView
                         android:id="@+id/adpicure2"
                         android:layout_width="match_parent"
@@ -141,6 +157,14 @@
                         android:padding="50dp"
                         android:background="@drawable/roundborder"
                         android:src="@drawable/ic_registerpartneradimage" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.2"
+                        android:textColor="#000000"
+                        android:text="@string/adimage4" />
 
                     <ImageView
                         android:id="@+id/adpicure4"
@@ -160,6 +184,14 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.2"
+                        android:textColor="#000000"
+                        android:text="@string/adimage1"/>
+
                     <ImageView
                         android:id="@+id/adpicure1"
                         android:layout_width="match_parent"
@@ -171,6 +203,14 @@
                         android:background="@drawable/roundborder"
                         android:src="@drawable/ic_registerpartneradimage" />
 
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.2"
+                        android:textColor="#000000"
+                        android:text="@string/adimage3" />
+
                     <ImageView
                         android:id="@+id/adpicure3"
                         android:layout_width="match_parent"
@@ -181,6 +221,14 @@
                         android:scaleType="centerCrop"
                         android:padding="50dp"
                         android:src="@drawable/ic_registerpartneradimage" />
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.2"
+                        android:textColor="#000000"
+                        android:text="@string/adimage5"/>
 
                     <ImageView
                         android:id="@+id/adpicure5"
