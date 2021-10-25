@@ -25,7 +25,7 @@ public class PopUp extends Activity {
         TextView notify = (TextView)findViewById(R.id.notify);
         Button btn_update = (Button)findViewById(R.id.button_update);
         Button btn_no = (Button)findViewById(R.id.button_no);
-
+        flagClass = (FlagClass)getApplication();
         notify.setText(flagClass.getServers().get(4));
         //업데이트 버튼 클릭 시 업데이트 페이지로.
         btn_update.setOnClickListener(new View.OnClickListener() {
