@@ -76,19 +76,25 @@ public class Registerpartner extends Activity {
     private ExecutorService executorService = Executors.newFixedThreadPool(2);
     private BillingService billingService;
     private ArrayList<Bitmap> bitmapresize = new ArrayList<>();
-
+    Intent intent1;
+    Intent errorintent;
+    Lodingclass lodingclass;
+    FlagClass flagClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registerpartner);
-        final FlagClass flagClass = (FlagClass)getApplication();
+
+        //초기 이닛=======================================================================================
+        lodingclass = new Lodingclass(this);
+        lodingclass.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        errorintent = new Intent(Registerpartner.this,Errorpopup.class);
+        intent1 = new Intent(Registerpartner.this, MainActivity.class);
+        flagClass = (FlagClass)getApplication();
         billingService = new BillingService(this,flagClass.getThenumberoffoodoutmeal(), flagClass.getThenumberoffoodoutdrink());
 //매장인허가번호 입력===========================================================================================
         storenumedit = (EditText)findViewById(R.id.storenum);
-
-
-
 // 매장인허가번호 입력  끝===========================================================================================
 //지도 표출 이미지, 홍보이미지 등록 ============================================================================
         storeimage = (ImageView) findViewById(R.id.storeimage);
@@ -238,172 +244,11 @@ public class Registerpartner extends Activity {
 
 //음식 등록 끝 =================================================================================================
 
-        Lodingclass lodingclass = new Lodingclass(this);
-        lodingclass.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
         register = (ImageButton)findViewById(R.id.register);
-        AlertDialog.Builder faildlg = new AlertDialog.Builder(Registerpartner.this);
-        Intent intent1 = new Intent(Registerpartner.this, MainActivity.class);
-        Intent errorintent = new Intent(Registerpartner.this,Errorpopup.class);
-        final String[] alreadyregisteredid = {""};
-        //홍보 및 제휴 등록 스레드 ========================================================
-        Thread runnablthread = new Thread(){
-            @Override
-            public void run() {
-                try {
-                    String lineend = "\r\n";
-                    String twohyphens = "--";
-                    String boundary = "*****";
-                    int bytesRead, bytesAvailable, bufferSize;
-                    byte[] buffer;
-                    int maximagesize = 1 * 2048 * 1024;
-                    String postParameters = "purpose=registerpartner";
-                    URL url = new URL("https://uristory.com/whichfoodstorelist.php");
-                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                    httpURLConnection.setDoInput(true);
-                    httpURLConnection.setDoOutput(true);
-                    httpURLConnection.setUseCaches(false);
-                    httpURLConnection.setRequestMethod("POST");
-                    httpURLConnection.setRequestProperty("Connection", "Keep-Alive");
-                    httpURLConnection.setRequestProperty("ENCTYPE", "multipart/form-data");
-                    httpURLConnection.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
 
 
-                    DataOutputStream outputStream = new DataOutputStream(httpURLConnection.getOutputStream());
-                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                    outputStream.writeBytes("Content-Disposition: form-data; name=\"purpose\"\r\n\r\nregisterpartner");
-                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                    outputStream.writeBytes("Content-Disposition: form-data; name=\"userid\"\r\n\r\n" + flagClass.getLoginid());
-                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                    outputStream.writeBytes("Content-Disposition: form-data; name=\"storenum\"\r\n\r\n" + storenum);
-                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                    outputStream.writeBytes("Content-Disposition: form-data; name=\"adimagecount\"\r\n\r\n" + imagepath.size());
-                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                    outputStream.writeBytes("Content-Disposition: form-data; name=\"foodnum\"\r\n\r\n" + pickfood + pickindex);
-                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                    Log.d(TAG, "imagelocation1111:" );
 
-                    if (imagepath.size() > 0) {
-                        for (int i = 0; i < imagepath.size(); i++) {
-                            if (imagepath.get(i).equals("tobig")) {
-                                outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                                outputStream.writeBytes("Content-Disposition: form-data; name=\"presentimagecheck" + i + "\"\r\n\r\n" + 2);
-                                outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                            } else {
-                                outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                                outputStream.writeBytes("Content-Disposition: form-data; name=\"presentimagecheck" + i + "\"\r\n\r\n" + 0);
-                                outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                                String index = "";
-                                File imagefile = new File(imagepath.get(i));
-                                FileInputStream fileInputStream = new FileInputStream(imagefile);
-                                DataOutputStream sendimage;
-                                Log.d(TAG, "imagelocationregisterpartner:" + imagepath.size());
-                                index = String.valueOf(i);
-                                sendimage = new DataOutputStream(httpURLConnection.getOutputStream());
-                                sendimage.writeBytes(twohyphens + boundary + lineend);
-                                sendimage.writeBytes("Content-Disposition: form-data; name=\"uploaded_file" + index + "\";filename=\"" + imagepath.get(i) + "\"" + lineend);
-                                sendimage.writeBytes(lineend);
-                                Log.d(TAG, "imagelocationregisterpartner:Content-Disposition: form-data; name=\"uploaded_file" + index + "\";filename=\"" + imagepath.get(i) + "\"" + lineend);
-                                bytesAvailable = fileInputStream.available();
-                                bufferSize = Math.min(bytesAvailable, maximagesize);
-                                buffer = new byte[bufferSize];
-                                bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-                                Log.d(TAG, "imagelocationgogo 1");
-                                while (bytesRead > 0) {
-                                    sendimage.write(buffer, 0, bufferSize);
-                                    bytesAvailable = fileInputStream.available();
-                                    bufferSize = Math.min(bytesAvailable, maximagesize);
-                                    bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-                                }
-                                sendimage.writeBytes(lineend);
-                                sendimage.writeBytes(twohyphens + boundary + twohyphens + lineend);
-                            }
-                        }
-                    }
-                    Log.d(TAG, "imagelocationgogo 2");
-                    int responseStatusCode = httpURLConnection.getResponseCode();
-                    Log.d(TAG, "imagelocationgogo POST response code1 - " + responseStatusCode);
-
-
-                    InputStreamReader inputStreamReader = new InputStreamReader(httpURLConnection.getInputStream(), "UTF-8");
-                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                    StringBuilder builder = new StringBuilder();
-                    String sb;
-
-                    while ((sb = bufferedReader.readLine()) != null) {
-                        builder.append(sb);
-                    }
-
-                    String result = builder.toString();
-                    Log.d(TAG, "registerresult="+result);
-                    if(result.equals("nostorenum")){
-                        storenumcheck = 1;
-                        Log.d(TAG, "imagelocation1111:" + result);
-                    }else if(result.charAt(0)=='I'){
-                        alreadyregisteredid[0] = result;
-                        storenumcheck = 2;
-                        Log.d(TAG, "imagelocation1111:" + result);
-                    } else if (result.equals("nomember")) {
-                        storenumcheck = 3;
-                        Log.d(TAG, "imagelocation1111:" + result);
-                    } else if (result.charAt(result.length() - 1) == '7') {
-                        storenumcheck = 0;
-                        billingService.purchase(pickfood + pickindex, Registerpartner.this);
-                        Log.d(TAG, "imagelocation1111:" + result);
-                    } else if (result.charAt(result.length() -1) == '4') {
-                        storenumcheck = 4;
-                    } else {
-                        successcheck = 1;
-                    }
-
-
-                    if(storenumcheck == 1){
-                        lodingclass.cancel();
-                        errorintent.putExtra("errormassage","등록되지 않은 인허가번호 입니다. \n※사업자번호가 아닌 -인허가번호- 를 입력하셔야 합니다. \n 정확한 인허가번호 입력시에도 안될시, 고객센터에 문의해주시길 바랍니다. \n고객센터 : H.P : 010-6525-3883");
-                        startActivity(errorintent);
-                        Log.d(TAG,"imagelocation register error 인허가 번호 없음");
-                    }else if(storenumcheck == 2){
-                        lodingclass.cancel();
-                        errorintent.putExtra("errormassage","해당 매의 메뉴는 이미 \"+alreadyregisteredid[0]+\"사용자가 제휴 신청을 한 메뉴 입니다. \n고객센터 : H.P : 010-6525-3883");
-                        startActivity(errorintent);
-                        Log.d(TAG,"imagelocation register error 이미 등록된 매장 매뉴");
-                    }else if(storenumcheck == 3){
-                        lodingclass.cancel();
-                        errorintent.putExtra("errormassage","등록되지 않은 아이디(사용자) 입니다. \n고객센터 : H.P : 010-6525-3883");
-                        startActivity(errorintent);
-                        Log.d(TAG,"imagelocation register error 등록되지 않은 아이디(사용자)");
-                    }else if(storenumcheck == 4){
-                        lodingclass.cancel();
-                        errorintent.putExtra("errormassage","500KB 이하의 이미지를 업로드 해주시길 바랍니다.");
-                        startActivity(errorintent);
-                        Log.d(TAG,"imagelocation register error 용량 500KB초과");
-                    }else if(storenumcheck == 0){
-
-                    }else{
-                        lodingclass.cancel();
-                        errorintent.putExtra("errormassage","시스템 오류 입니다.\n고객센터 : H.P : 010-6525-3883");
-                        startActivity(errorintent);
-                        Log.d(TAG,"imagelocation register error 알수없는 시스템 오류");
-                    }
-                    if(successcheck ==1){
-                        lodingclass.cancel();
-                        errorintent.putExtra("errormassage","알맞은 형식을 입력해 주시길 바랍니다. \n고객센터 : H.P : 010-6525-3883");
-                        startActivity(errorintent);
-                        Log.d(TAG,"imagelocation register error 형식 불일치");
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.d(TAG, "imagelocationregisterpartner:eroororo");
-                    intent1.putExtra("Fail", 2);
-                    startActivity(intent1);
-                }
-            }
-        };
-        //홍보 및 제휴 등록 스레드 ========================================================
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -421,7 +266,7 @@ public class Registerpartner extends Activity {
                             lodingclass.show();
                             lodingclass.setCanceledOnTouchOutside(false);
                             lodingclass.setCancelable(false);
-                            runnablthread.start();
+                            gothread();
 
 
                         }
@@ -434,6 +279,7 @@ public class Registerpartner extends Activity {
                         }
                     });
                     dlg.show();
+
 
                 }else{
                     Toast.makeText(getApplicationContext(),"인허가번호, 음식선택, 홍보이미지 등록을 해주시길 바랍니다.", Toast.LENGTH_LONG).show();
@@ -787,6 +633,176 @@ public class Registerpartner extends Activity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    void gothread(){
+
+        //홍보 및 제휴 등록 스레드 ========================================================
+        Thread runnablthread = new Thread(){
+            @Override
+            public void run() {
+                try {
+                    final String[] alreadyregisteredid = {""};
+                    String lineend = "\r\n";
+                    String twohyphens = "--";
+                    String boundary = "*****";
+                    int bytesRead, bytesAvailable, bufferSize;
+                    byte[] buffer;
+                    int maximagesize = 1 * 2048 * 1024;
+                    String postParameters = "purpose=registerpartner";
+                    URL url = new URL("https://uristory.com/whichfoodstorelist.php");
+                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                    httpURLConnection.setDoInput(true);
+                    httpURLConnection.setDoOutput(true);
+                    httpURLConnection.setUseCaches(false);
+                    httpURLConnection.setRequestMethod("POST");
+                    httpURLConnection.setRequestProperty("Connection", "Keep-Alive");
+                    httpURLConnection.setRequestProperty("ENCTYPE", "multipart/form-data");
+                    httpURLConnection.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+
+
+                    DataOutputStream outputStream = new DataOutputStream(httpURLConnection.getOutputStream());
+                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                    outputStream.writeBytes("Content-Disposition: form-data; name=\"purpose\"\r\n\r\nregisterpartner");
+                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                    outputStream.writeBytes("Content-Disposition: form-data; name=\"userid\"\r\n\r\n" + flagClass.getLoginid());
+                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                    outputStream.writeBytes("Content-Disposition: form-data; name=\"storenum\"\r\n\r\n" + storenum);
+                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                    outputStream.writeBytes("Content-Disposition: form-data; name=\"adimagecount\"\r\n\r\n" + imagepath.size());
+                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                    outputStream.writeBytes("Content-Disposition: form-data; name=\"foodnum\"\r\n\r\n" + pickfood + pickindex);
+                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                    Log.d(TAG, "imagelocation1111:" );
+
+                    if (imagepath.size() > 0) {
+                        for (int i = 0; i < imagepath.size(); i++) {
+                            if (imagepath.get(i).equals("tobig")) {
+                                outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                                outputStream.writeBytes("Content-Disposition: form-data; name=\"presentimagecheck" + i + "\"\r\n\r\n" + 2);
+                                outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                            } else {
+                                outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                                outputStream.writeBytes("Content-Disposition: form-data; name=\"presentimagecheck" + i + "\"\r\n\r\n" + 0);
+                                outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                                String index = "";
+                                File imagefile = new File(imagepath.get(i));
+                                FileInputStream fileInputStream = new FileInputStream(imagefile);
+                                DataOutputStream sendimage;
+                                Log.d(TAG, "imagelocationregisterpartner:" + imagepath.size());
+                                index = String.valueOf(i);
+                                sendimage = new DataOutputStream(httpURLConnection.getOutputStream());
+                                sendimage.writeBytes(twohyphens + boundary + lineend);
+                                sendimage.writeBytes("Content-Disposition: form-data; name=\"uploaded_file" + index + "\";filename=\"" + imagepath.get(i) + "\"" + lineend);
+                                sendimage.writeBytes(lineend);
+                                Log.d(TAG, "imagelocationregisterpartner:Content-Disposition: form-data; name=\"uploaded_file" + index + "\";filename=\"" + imagepath.get(i) + "\"" + lineend);
+                                bytesAvailable = fileInputStream.available();
+                                bufferSize = Math.min(bytesAvailable, maximagesize);
+                                buffer = new byte[bufferSize];
+                                bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+                                Log.d(TAG, "imagelocationgogo 1");
+                                while (bytesRead > 0) {
+                                    sendimage.write(buffer, 0, bufferSize);
+                                    bytesAvailable = fileInputStream.available();
+                                    bufferSize = Math.min(bytesAvailable, maximagesize);
+                                    bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+                                }
+                                sendimage.writeBytes(lineend);
+                                sendimage.writeBytes(twohyphens + boundary + twohyphens + lineend);
+                            }
+                        }
+                    }
+                    Log.d(TAG, "imagelocationgogo 2");
+                    int responseStatusCode = httpURLConnection.getResponseCode();
+                    Log.d(TAG, "imagelocationgogo POST response code1 - " + responseStatusCode);
+
+
+                    InputStreamReader inputStreamReader = new InputStreamReader(httpURLConnection.getInputStream(), "UTF-8");
+                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                    StringBuilder builder = new StringBuilder();
+                    String sb;
+
+                    while ((sb = bufferedReader.readLine()) != null) {
+                        builder.append(sb);
+                    }
+
+                    inputStreamReader.close();
+                    outputStream.close();
+
+                    String result = builder.toString();
+                    Log.d(TAG, "registerresult="+result);
+                    if(result.equals("nostorenum")){
+                        storenumcheck = 1;
+                        Log.d(TAG, "imagelocation1111:" + result);
+                    }else if(result.charAt(0)=='I'){
+                        alreadyregisteredid[0] = result;
+                        storenumcheck = 2;
+                        Log.d(TAG, "imagelocation1111:" + result);
+                    } else if (result.equals("nomember")) {
+                        storenumcheck = 3;
+                        Log.d(TAG, "imagelocation1111:" + result);
+                    } else if (result.charAt(result.length() - 1) == '7') {
+                        storenumcheck = 0;
+                        billingService.purchase(pickfood + pickindex, Registerpartner.this);
+                        Log.d(TAG, "imagelocation1111:" + result);
+                    } else if (result.charAt(result.length() -1) == '4') {
+                        storenumcheck = 4;
+                    } else {
+                        successcheck = 1;
+                    }
+
+                    lodingclass.setCancelable(true);
+
+                    if(storenumcheck == 1){
+                        lodingclass.cancel();
+                        errorintent.putExtra("errormassage","등록되지 않은 인허가번호 입니다. \n※사업자번호가 아닌 -인허가번호- 를 입력하셔야 합니다. \n 정확한 인허가번호 입력시에도 안될시, \n고객센터에 문의해주시길 바랍니다. \n고객센터 : H.P : 010-6525-3883");
+                        startActivity(errorintent);
+                        Log.d(TAG,"imagelocation register error 인허가 번호 없음");
+                    }else if(storenumcheck == 2){
+                        lodingclass.cancel();
+                        errorintent.putExtra("errormassage","해당 매의 메뉴는 이미\n"+alreadyregisteredid[0]+"사용자가\n 제휴 신청을 한 메뉴 입니다. \n고객센터 : H.P : 010-6525-3883");
+                        startActivity(errorintent);
+                        Log.d(TAG,"imagelocation register error 이미 등록된 매장 매뉴");
+                    }else if(storenumcheck == 3){
+                        lodingclass.cancel();
+                        errorintent.putExtra("errormassage","등록되지 않은 아이디(사용자) 입니다. \n고객센터 : H.P : 010-6525-3883");
+                        startActivity(errorintent);
+                        Log.d(TAG,"imagelocation register error 등록되지 않은 아이디(사용자)");
+                    }else if(storenumcheck == 4){
+                        lodingclass.cancel();
+                        errorintent.putExtra("errormassage","500KB 이하의 이미지를 \n업로드 해주시길 바랍니다.");
+                        startActivity(errorintent);
+                        Log.d(TAG,"imagelocation register error 용량 500KB초과");
+                    }else if(storenumcheck == 0){
+
+                    }else{
+                        lodingclass.cancel();
+                        errorintent.putExtra("errormassage","시스템 오류 입니다.\n고객센터 : H.P : 010-6525-3883");
+                        startActivity(errorintent);
+                        Log.d(TAG,"imagelocation register error 알수없는 시스템 오류");
+                    }
+                    if(successcheck ==1){
+                        lodingclass.cancel();
+                        errorintent.putExtra("errormassage","알맞은 형식을 입력해 주시길 바랍니다. \n고객센터 : H.P : 010-6525-3883");
+                        startActivity(errorintent);
+                        Log.d(TAG,"imagelocation register error 형식 불일치");
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.d(TAG, "imagelocationregisterpartner:eroororo");
+                    intent1.putExtra("Fail", 2);
+                    startActivity(intent1);
+                }
+            }
+        };
+
+        runnablthread.start();
+        //홍보 및 제휴 등록 스레드 ========================================================
     }
 
 }

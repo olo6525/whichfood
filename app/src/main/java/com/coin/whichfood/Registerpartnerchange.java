@@ -76,12 +76,22 @@ public class Registerpartnerchange extends Activity {
     private ExecutorService executorService = Executors.newFixedThreadPool(2);
     ArrayList<Bitmap> registeredimages = new ArrayList<>();
     private int gothread = 0;
+    Lodingclass lodingclass;
+    FlagClass flagClass;
+    Intent intent1;
+    Intent errorintent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registerpartnerchange);
-        final FlagClass flagClass = (FlagClass)getApplication();
+
+        //초기 이닛 ==============================================================
+        lodingclass = new Lodingclass(this);
+        lodingclass.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        flagClass = (FlagClass)getApplication();
+        intent1 = new Intent(Registerpartnerchange.this, Myinfo.class);
+        errorintent = new Intent(Registerpartnerchange.this,Errorpopup.class);
         //첫세팅 매장번호, 음식종류, 음식, 기존의 홍보 사진들=====================================================================================
         storenumedit = (EditText)findViewById(R.id.storenumchange);
         foodname = (TextView)findViewById(R.id.foodnamechange);
@@ -268,148 +278,8 @@ public class Registerpartnerchange extends Activity {
 
 //음식 등록 끝 =================================================================================================
 
-        Lodingclass lodingclass = new Lodingclass(this);
-        lodingclass.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        // 제휴 및 홀보이미지 저장 스레드 함수 ========================================================
-        Intent intent1 = new Intent(Registerpartnerchange.this, Myinfo.class);
-        Intent errorintent = new Intent(Registerpartnerchange.this,Errorpopup.class);
-        Thread runnablthread = new Thread(){
-            @Override
-            public void run() {
-                try {
-                    String lineend = "\r\n";
-                    String twohyphens = "--";
-                    String boundary = "*****";
-                    int bytesRead, bytesAvailable, bufferSize;
-                    byte[] buffer;
-                    int maximagesize = 1 * 512 * 1024;
-                    String postParameters = "purpose=registerpartnerchange";
-                    URL url = new URL("https://uristory.com/whichfoodstorelist.php");
-                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                    httpURLConnection.setDoInput(true);
-                    httpURLConnection.setDoOutput(true);
-                    httpURLConnection.setUseCaches(false);
-                    httpURLConnection.setRequestMethod("POST");
-                    httpURLConnection.setRequestProperty("Connection", "Keep-Alive");
-                    httpURLConnection.setRequestProperty("ENCTYPE", "multipart/form-data");
-                    httpURLConnection.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
 
 
-                    DataOutputStream outputStream = new DataOutputStream(httpURLConnection.getOutputStream());
-                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                    outputStream.writeBytes("Content-Disposition: form-data; name=\"purpose\"\r\n\r\nregisterpartnerchange");
-                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                    outputStream.writeBytes("Content-Disposition: form-data; name=\"userid\"\r\n\r\n" + flagClass.getLoginid());
-                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                    outputStream.writeBytes("Content-Disposition: form-data; name=\"storenum\"\r\n\r\n" + storenum);
-                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                    outputStream.writeBytes("Content-Disposition: form-data; name=\"adimagecount\"\r\n\r\n" + imagepath.size());
-                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                    outputStream.writeBytes("Content-Disposition: form-data; name=\"foodnum\"\r\n\r\n" + pickfood + pickindex);
-                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-
-
-                    if (imagepath.size()  > 0) {
-                        for (int i = 0; i < imagepath.size(); i++) {
-                            String index = "";
-                            if(imagepath.get(i).equals("presentimage")){
-                                outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                                outputStream.writeBytes("Content-Disposition: form-data; name=\"presentimagecheck"+i+"\"\r\n\r\n" + 1);
-                                outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                            }else if(imagepath.get(i).equals("tobig")){
-                                outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                                outputStream.writeBytes("Content-Disposition: form-data; name=\"presentimagecheck"+i+"\"\r\n\r\n" + 2);
-                                outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                            }
-                            else{
-                                //이미지 용량 축소 비트맵 to 임시파일--------------------------------------------------------
-                                //이미지 용량 축소 비트맵 to 임시파일 끝--------------------------------------------------------
-                                outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                                outputStream.writeBytes("Content-Disposition: form-data; name=\"presentimagecheck"+i+"\"\r\n\r\n" + 0);
-                                outputStream.writeBytes("\r\n--" + boundary + "\r\n");
-                                File imagefile = new File(imagepath.get(i));
-                                FileInputStream fileInputStream = new FileInputStream(imagefile);
-                                DataOutputStream sendimage;
-                                index = String.valueOf(i);
-                                sendimage = new DataOutputStream(httpURLConnection.getOutputStream());
-                                sendimage.writeBytes(twohyphens + boundary + lineend);
-                                sendimage.writeBytes("Content-Disposition: form-data; name=\"uploaded_file" + index + "\";filename=\"" + imagepath.get(i) + "\"" + lineend);
-                                sendimage.writeBytes(lineend);
-                                Log.d(TAG, "imagelocationregisterpartner:Content-Disposition: form-data; name=\"uploaded_file" + index );
-                                bytesAvailable = fileInputStream.available();
-                                bufferSize = Math.min(bytesAvailable, maximagesize);
-                                buffer = new byte[bufferSize];
-                                bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-
-                                while (bytesRead > 0) {
-                                    sendimage.write(buffer, 0, bufferSize);
-                                    bytesAvailable = fileInputStream.available();
-                                    bufferSize = Math.min(bytesAvailable, maximagesize);
-                                    bytesRead = fileInputStream.read(buffer, 0, bufferSize);
-                                }
-                                sendimage.writeBytes(lineend);
-                                sendimage.writeBytes(twohyphens + boundary + twohyphens + lineend);
-                            }
-
-                        }
-                    }
-
-                    int responseStatusCode = httpURLConnection.getResponseCode();
-                    Log.d(TAG, "imagelocationPOST response code - " + responseStatusCode);
-
-
-                    InputStreamReader inputStreamReader = new InputStreamReader(httpURLConnection.getInputStream(), "UTF-8");
-                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                    StringBuilder builder = new StringBuilder();
-                    String sb;
-
-                    while ((sb = bufferedReader.readLine()) != null) {
-                        builder.append(sb);
-                    }
-
-                    String result = builder.toString();
-                    Log.d(TAG, "imagelocationregisterresult="+result);
-
-                    if(result.charAt(result.length()-1)=='7'){
-                        storenumcheck = 1;
-
-                    }else if(result.charAt(result.length()-1)=='4'){
-                        storenumcheck = 2;
-                    }
-
-                    if(storenumcheck == 1){
-                        intent1.putExtra("Success", 1);
-                        startActivity(intent1);
-                        finish();
-                    }else if(storenumcheck == 2){
-                        lodingclass.cancel();
-                        errorintent.putExtra("errormassage","500KB 이하의 이미지 파일을 업로드 해주시길 바랍니다.");
-                        startActivity(errorintent);
-                        Log.d(TAG,"imagelocation 용량 500KB이상");
-
-                    }else{
-                        lodingclass.cancel();
-                        errorintent.putExtra("errormassage","시스템 에러 입니다. 고객센터에 문의바랍니다.\n고객센터 : H.P : 010-6525-3883");
-                        startActivity(errorintent);
-                        Log.d(TAG,"imagelocation thread storenumcheck late");
-
-                    }
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.d(TAG, "imagelocationregisterpartner:eroororo");
-                    intent1.putExtra("Fail", 1);
-                    startActivity(intent1);
-                    finish();
-                }
-            }
-        };
-        // 제휴 및 홀보이미지 저장 스레드 함수 끝========================================================
 
         register = (ImageButton)findViewById(R.id.registerchange);
         register.setOnClickListener(new View.OnClickListener() {
@@ -427,7 +297,7 @@ public class Registerpartnerchange extends Activity {
                             lodingclass.show();
                             lodingclass.setCanceledOnTouchOutside(false);
                             lodingclass.setCancelable(false);
-                            runnablthread.start();
+                            gothread();
 
                         }
 
@@ -800,6 +670,150 @@ public class Registerpartnerchange extends Activity {
 
         return tempFile.getAbsolutePath();   // 임시파일 저장경로를 리턴해주면 끝!
     }
+
+    // 제휴 및 홀보이미지 저장 스레드 함수 ========================================================
+    void gothread() {
+        Thread runnablthread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    String lineend = "\r\n";
+                    String twohyphens = "--";
+                    String boundary = "*****";
+                    int bytesRead, bytesAvailable, bufferSize;
+                    byte[] buffer;
+                    int maximagesize = 1 * 512 * 1024;
+                    String postParameters = "purpose=registerpartnerchange";
+                    URL url = new URL("https://uristory.com/whichfoodstorelist.php");
+                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                    httpURLConnection.setDoInput(true);
+                    httpURLConnection.setDoOutput(true);
+                    httpURLConnection.setUseCaches(false);
+                    httpURLConnection.setRequestMethod("POST");
+                    httpURLConnection.setRequestProperty("Connection", "Keep-Alive");
+                    httpURLConnection.setRequestProperty("ENCTYPE", "multipart/form-data");
+                    httpURLConnection.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+
+
+                    DataOutputStream outputStream = new DataOutputStream(httpURLConnection.getOutputStream());
+                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                    outputStream.writeBytes("Content-Disposition: form-data; name=\"purpose\"\r\n\r\nregisterpartnerchange");
+                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                    outputStream.writeBytes("Content-Disposition: form-data; name=\"userid\"\r\n\r\n" + flagClass.getLoginid());
+                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                    outputStream.writeBytes("Content-Disposition: form-data; name=\"storenum\"\r\n\r\n" + storenum);
+                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                    outputStream.writeBytes("Content-Disposition: form-data; name=\"adimagecount\"\r\n\r\n" + imagepath.size());
+                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                    outputStream.writeBytes("Content-Disposition: form-data; name=\"foodnum\"\r\n\r\n" + pickfood + pickindex);
+                    outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+
+
+                    if (imagepath.size() > 0) {
+                        for (int i = 0; i < imagepath.size(); i++) {
+                            String index = "";
+                            if (imagepath.get(i).equals("presentimage")) {
+                                outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                                outputStream.writeBytes("Content-Disposition: form-data; name=\"presentimagecheck" + i + "\"\r\n\r\n" + 1);
+                                outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                            } else if (imagepath.get(i).equals("tobig")) {
+                                outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                                outputStream.writeBytes("Content-Disposition: form-data; name=\"presentimagecheck" + i + "\"\r\n\r\n" + 2);
+                                outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                            } else {
+                                //이미지 용량 축소 비트맵 to 임시파일--------------------------------------------------------
+                                //이미지 용량 축소 비트맵 to 임시파일 끝--------------------------------------------------------
+                                outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                                outputStream.writeBytes("Content-Disposition: form-data; name=\"presentimagecheck" + i + "\"\r\n\r\n" + 0);
+                                outputStream.writeBytes("\r\n--" + boundary + "\r\n");
+                                File imagefile = new File(imagepath.get(i));
+                                FileInputStream fileInputStream = new FileInputStream(imagefile);
+                                DataOutputStream sendimage;
+                                index = String.valueOf(i);
+                                sendimage = new DataOutputStream(httpURLConnection.getOutputStream());
+                                sendimage.writeBytes(twohyphens + boundary + lineend);
+                                sendimage.writeBytes("Content-Disposition: form-data; name=\"uploaded_file" + index + "\";filename=\"" + imagepath.get(i) + "\"" + lineend);
+                                sendimage.writeBytes(lineend);
+                                Log.d(TAG, "imagelocationregisterpartner:Content-Disposition: form-data; name=\"uploaded_file" + index);
+                                bytesAvailable = fileInputStream.available();
+                                bufferSize = Math.min(bytesAvailable, maximagesize);
+                                buffer = new byte[bufferSize];
+                                bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+
+                                while (bytesRead > 0) {
+                                    sendimage.write(buffer, 0, bufferSize);
+                                    bytesAvailable = fileInputStream.available();
+                                    bufferSize = Math.min(bytesAvailable, maximagesize);
+                                    bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+                                }
+                                sendimage.writeBytes(lineend);
+                                sendimage.writeBytes(twohyphens + boundary + twohyphens + lineend);
+                            }
+
+                        }
+                    }
+
+                    int responseStatusCode = httpURLConnection.getResponseCode();
+                    Log.d(TAG, "imagelocationPOST response code - " + responseStatusCode);
+
+
+                    InputStreamReader inputStreamReader = new InputStreamReader(httpURLConnection.getInputStream(), "UTF-8");
+                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                    StringBuilder builder = new StringBuilder();
+                    String sb;
+
+                    while ((sb = bufferedReader.readLine()) != null) {
+                        builder.append(sb);
+                    }
+
+                    String result = builder.toString();
+                    Log.d(TAG, "imagelocationregisterresult=" + result);
+
+                    if (result.charAt(result.length() - 1) == '7') {
+                        storenumcheck = 1;
+
+                    } else if (result.charAt(result.length() - 1) == '4') {
+                        storenumcheck = 2;
+                    }
+
+                    lodingclass.setCancelable(true);
+
+                    if (storenumcheck == 1) {
+                        intent1.putExtra("Success", 1);
+                        startActivity(intent1);
+                        finish();
+                    } else if (storenumcheck == 2) {
+                        lodingclass.cancel();
+                        errorintent.putExtra("errormassage", "500KB 이하의 이미지 파일을 \n업로드 해주시길 바랍니다.");
+                        startActivity(errorintent);
+                        Log.d(TAG, "imagelocation 용량 500KB이상");
+
+                    } else {
+                        lodingclass.cancel();
+                        errorintent.putExtra("errormassage", "시스템 에러 입니다. 고객센터에 문의바랍니다.\n고객센터 : H.P : 010-6525-3883");
+                        startActivity(errorintent);
+                        Log.d(TAG, "imagelocation thread storenumcheck late");
+
+                    }
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.d(TAG, "imagelocationregisterpartner:eroororo");
+                    intent1.putExtra("Fail", 1);
+                    startActivity(intent1);
+                    finish();
+                }
+            }
+        };
+        runnablthread.start();
+
+    }
+    // 제휴 및 홀보이미지 저장 스레드 함수 끝========================================================
 
     @Override
     public void onBackPressed() {

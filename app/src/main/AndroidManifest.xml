@@ -60,7 +60,8 @@
         <activity android:name=".Myinfo"/>
         <activity android:name=".Contractstorelistpopup"/>
         <activity android:name=".Registerpartnerchange"/>
-        <activity android:name=".Errorpopup"/>
+        <activity android:name=".Errorpopup"
+            android:theme="@android:style/Theme.Dialog" />
 
 
 
