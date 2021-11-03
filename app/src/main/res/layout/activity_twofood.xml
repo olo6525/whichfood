@@ -58,6 +58,7 @@
                     android:layout_weight="1"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_circlegrape"
+                    android:visibility="gone"
                      />
 
                 <ImageButton
@@ -122,6 +123,7 @@
                     android:layout_weight="1"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_circlegrape"
+                    android:visibility="gone"
                      />
 
                 <ImageButton

@@ -1,120 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="0px"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:textColor="#000000"
-                android:gravity="center"
-                 />
-
-            <LinearLayout
-                android:layout_width="0px"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/registerchange"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="match_parent"
-                    android:layout_height="0px"
-                    android:layout_weight="3"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_registericon" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0px"
-                    android:layout_weight="1"
-                    android:textColor="#000000"
-                    android:gravity="center"
-                    android:text="@string/registerchange"
-                    />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <EditText
-            android:id="@+id/storenumchange"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minEms="3"
-            android:inputType="textPersonName"
-            android:hint="@string/storenum"
-            android:backgroundTint="#000000"
-            android:enabled="false"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="사업장에 판매되는 음식메뉴를 선택해 주세요. (중복선택 불가)" />
-
-            <RadioGroup
-                android:id="@+id/checkoutfoodchange"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <RadioButton
-                    android:id="@+id/pickmealchange"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/pickmeal"
-                    android:enabled="false"/>
-
-                <RadioButton
-                    android:id="@+id/pickdrinkchange"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/pickdrink"
-                    android:enabled="false"/>
-            </RadioGroup>
-
-
-
-            <TextView
-                android:id="@+id/foodnamechange"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="#000000"
-                android:textSize="20dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="6"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="가게 이미지 사진 1장, 가게 홍보 사진 5장 을 선택해주세요." />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -122,69 +20,13 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/textView6"
                     android:layout_width="0px"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView14"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.2"
-                        android:textColor="#000000"
-                        android:text="@string/mapimage" />
-
-                    <ImageView
-                        android:id="@+id/storeimagechange"
-                        android:layout_width="match_parent"
-                        android:layout_height="0px"
-                        android:layout_weight="1"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerCrop"
-                        android:padding="50dp"
-                        android:background="@drawable/roundborder"
-                        android:src="@drawable/ic_registerpartnermapicon" />
-
-
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.2"
-                        android:textColor="#000000"
-                        android:text="@string/adimage2" />
-                    <ImageView
-                        android:id="@+id/adpicure2change"
-                        android:layout_width="match_parent"
-                        android:layout_height="0px"
-                        android:layout_weight="1"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerCrop"
-                        android:padding="50dp"
-                        android:background="@drawable/roundborder"
-                        android:src="@drawable/ic_registerpartneradimage" />
-
-                    <TextView
-                        android:id="@+id/textView10"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.2"
-                        android:textColor="#000000"
-                        android:text="@string/adimage4" />
-
-                    <ImageView
-                        android:id="@+id/adpicure4change"
-                        android:layout_width="match_parent"
-                        android:layout_height="0px"
-                        android:layout_weight="1"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerCrop"
-                        android:padding="50dp"
-                        android:background="@drawable/roundborder"
-                        android:src="@drawable/ic_registerpartneradimage" />
-                </LinearLayout>
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:textColor="#000000" />
 
                 <LinearLayout
                     android:layout_width="0px"
@@ -192,69 +34,240 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/textView11"
+                    <ImageButton
+                        android:id="@+id/registerchange"
+                        style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.2"
-                        android:textColor="#000000"
-                        android:text="@string/adimage1"/>
+                        android:layout_height="0px"
+                        android:layout_weight="3"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_registericon" />
 
-                    <ImageView
-                        android:id="@+id/adpicure1change"
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="0px"
                         android:layout_weight="1"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerCrop"
-                        android:padding="50dp"
-                        android:background="@drawable/roundborder"
-                        android:src="@drawable/ic_registerpartneradimage" />
-
-                    <TextView
-                        android:id="@+id/textView12"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.2"
-                        android:textColor="#000000"
-                        android:text="@string/adimage3" />
-
-                    <ImageView
-                        android:id="@+id/adpicure3change"
-                        android:layout_width="match_parent"
-                        android:layout_height="0px"
-                        android:layout_weight="1"
-                        android:adjustViewBounds="true"
-                        android:background="@drawable/roundborder"
-                        android:scaleType="centerCrop"
-                        android:padding="50dp"
-                        android:src="@drawable/ic_registerpartneradimage" />
-
-
-                    <TextView
-                        android:id="@+id/textView13"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.2"
-                        android:textColor="#000000"
-                        android:text="@string/adimage5"/>
-
-                    <ImageView
-                        android:id="@+id/adpicure5change"
-                        android:layout_width="match_parent"
-                        android:layout_height="0px"
-                        android:layout_weight="1"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerCrop"
-                        android:padding="50dp"
-                        android:background="@drawable/roundborder"
-                        android:src="@drawable/ic_registerpartneradimage" />
-
-
+                        android:gravity="center"
+                        android:text="@string/registerchange"
+                        android:textColor="#000000" />
                 </LinearLayout>
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/storenumchange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#000000"
+                android:enabled="false"
+                android:hint="@string/storenum"
+                android:inputType="textPersonName"
+                android:minEms="3" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="사업장에 판매되는 음식메뉴를 선택해 주세요. (중복선택 불가)" />
+
+                <RadioGroup
+                    android:id="@+id/checkoutfoodchange"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RadioButton
+                        android:id="@+id/pickmealchange"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/pickmeal" />
+
+                    <RadioButton
+                        android:id="@+id/pickdrinkchange"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/pickdrink" />
+                </RadioGroup>
+
+
+                <TextView
+                    android:id="@+id/foodnamechange"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textColor="#000000"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="6"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="가게 이미지 사진 1장, 가게 홍보 사진 5장 을 선택해주세요." />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0px"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.2"
+                            android:text="@string/mapimage"
+                            android:textColor="#000000" />
+
+                        <ImageView
+                            android:id="@+id/storeimagechange"
+                            android:layout_width="match_parent"
+                            android:layout_height="0px"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/roundborder"
+                            android:padding="50dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_registerpartnermapicon" />
+
+
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.2"
+                            android:text="@string/adimage2"
+                            android:textColor="#000000" />
+
+                        <ImageView
+                            android:id="@+id/adpicure2change"
+                            android:layout_width="match_parent"
+                            android:layout_height="0px"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/roundborder"
+                            android:padding="50dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_registerpartneradimage" />
+
+                        <TextView
+                            android:id="@+id/textView10"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.2"
+                            android:text="@string/adimage4"
+                            android:textColor="#000000" />
+
+                        <ImageView
+                            android:id="@+id/adpicure4change"
+                            android:layout_width="match_parent"
+                            android:layout_height="0px"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/roundborder"
+                            android:padding="50dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_registerpartneradimage" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView11"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.2"
+                            android:text="@string/adimage1"
+                            android:textColor="#000000" />
+
+                        <ImageView
+                            android:id="@+id/adpicure1change"
+                            android:layout_width="match_parent"
+                            android:layout_height="0px"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/roundborder"
+                            android:padding="50dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_registerpartneradimage" />
+
+                        <TextView
+                            android:id="@+id/textView12"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.2"
+                            android:text="@string/adimage3"
+                            android:textColor="#000000" />
+
+                        <ImageView
+                            android:id="@+id/adpicure3change"
+                            android:layout_width="match_parent"
+                            android:layout_height="0px"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/roundborder"
+                            android:padding="50dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_registerpartneradimage" />
+
+
+                        <TextView
+                            android:id="@+id/textView13"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.2"
+                            android:text="@string/adimage5"
+                            android:textColor="#000000" />
+
+                        <ImageView
+                            android:id="@+id/adpicure5change"
+                            android:layout_width="match_parent"
+                            android:layout_height="0px"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/roundborder"
+                            android:padding="50dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_registerpartneradimage" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+        <ProgressBar
+            android:id="@+id/loding"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"/>
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
