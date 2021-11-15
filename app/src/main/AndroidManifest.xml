@@ -62,7 +62,9 @@
         <activity android:name=".Registerpartnerchange"/>
         <activity android:name=".Errorpopup"
             android:theme="@android:style/Theme.Dialog" />
-
+        <activity android:name=".Aikind"/>
+        <activity android:name=".Healthy_choice"/>
+        <activity android:name=".Weight_choice"/>
 
 
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">

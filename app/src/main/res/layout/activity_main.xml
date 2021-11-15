@@ -147,7 +147,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:scaleType="fitXY"
-                        android:src="@drawable/wherecook" />
+                        android:src="@drawable/ic_wherecook" />
 
                     <ImageButton
                         android:id="@+id/btnout"
@@ -156,7 +156,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:scaleType="fitXY"
-                        android:src="@drawable/whereout" />
+                        android:src="@drawable/ic_whereout" />
 
                     <ImageButton
                         android:id="@+id/btndeliver"
@@ -165,16 +165,16 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:scaleType="fitXY"
-                        android:src="@drawable/wheredeliver" />
+                        android:src="@drawable/ic_wheredeliver" />
 
                     <ImageButton
-                        android:id="@+id/imageButton4"
+                        android:id="@+id/btnairecommand"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:scaleType="fitXY"
-                        android:src="@drawable/ic_question" />
+                        android:src="@drawable/ic_airecommand" />
 
                 </LinearLayout>
 

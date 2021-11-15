@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 //        });
 //테스트 기능 버튼 =============================================================================================
 //버전체크=========================================================
-        if(!flag.getVersion().equals("15")){
+        if(!flag.getVersion().equals("16")){
             Intent popup = new Intent(this,PopUp.class);
             startActivity(popup);
         }
@@ -235,12 +236,14 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         final Intent intent_whatkindfood = new Intent(this, WhatKindFood.class);
+        final Intent intent_aikind = new Intent(this, Aikind.class);
 
 
 
         ImageButton btn_cook = (ImageButton)findViewById(R.id.btncook);
         ImageButton btn_out = (ImageButton)findViewById(R.id.btnout);
         ImageButton btn_deliver = (ImageButton)findViewById(R.id.btndeliver);
+        ImageButton btn_airecommand = (ImageButton)findViewById(R.id.btnairecommand);
 
         btn_cook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -261,6 +264,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 flag.setWhere(3);
                 startActivity(intent_whatkindfood);
+            }
+        });
+        btn_airecommand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent_aikind);
             }
         });
 

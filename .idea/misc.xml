@@ -6,12 +6,16 @@
         <entry key="../../../../layout/custom_preview.xml" value="0.13020833333333334" />
         <entry key="app/src/main/res/drawable/ic_close.xml" value="0.22407407407407406" />
         <entry key="app/src/main/res/drawable/singlegridviewcontract.xml" value="0.21510416666666668" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2859375" />
+        <entry key="app/src/main/res/layout/acticity_aikind.xml" value="0.21354166666666666" />
+        <entry key="app/src/main/res/layout/activity_healthy_choice.xml" value="0.21354166666666666" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2783171521035599" />
         <entry key="app/src/main/res/layout/activity_mapofstore.xml" value="0.2859375" />
         <entry key="app/src/main/res/layout/activity_myinfo.xml" value="0.10364583333333334" />
         <entry key="app/src/main/res/layout/activity_onefood.xml" value="0.10052083333333334" />
         <entry key="app/src/main/res/layout/activity_popup.xml" value="0.2859375" />
         <entry key="app/src/main/res/layout/activity_twofood.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_weight_choice.xml" value="0.21354166666666666" />
+        <entry key="app/src/main/res/layout/activity_whatkindfood.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/layout/contractstorefoodlist.xml" value="0.21479229989868287" />
         <entry key="app/src/main/res/layout/map.xml" value="0.2859375" />
         <entry key="app/src/main/res/layout/partnership_choice.xml" value="0.23125" />
