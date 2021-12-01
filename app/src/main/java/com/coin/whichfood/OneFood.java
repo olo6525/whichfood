@@ -526,7 +526,10 @@ public class OneFood extends Activity {
                 menu2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Intent choisedelivery = new Intent(OneFood.this,Choicedelivery.class);
+                        choisedelivery.putExtra("kind",kind);
+                        choisedelivery.putExtra("foodnum",onefood);
+                        startActivity(choisedelivery);
                     }
                 });
                 menu3.setOnClickListener(new View.OnClickListener() {
@@ -623,7 +626,10 @@ public class OneFood extends Activity {
                 menu2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Intent choisedelivery = new Intent(OneFood.this,Choicedelivery.class);
+                        choisedelivery.putExtra("kind",kind);
+                        choisedelivery.putExtra("foodnum",onefood);
+                        startActivity(choisedelivery);
                     }
                 });
                 menu3.setOnClickListener(new View.OnClickListener() {

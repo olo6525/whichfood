@@ -65,6 +65,9 @@
         <activity android:name=".Aikind"/>
         <activity android:name=".Healthy_choice"/>
         <activity android:name=".Weight_choice"/>
+        <activity android:name=".Choicedelivery"
+            android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name=".Selfdeliverylist"/>
 
 
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">

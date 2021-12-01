@@ -1079,9 +1079,11 @@ public class TwoFood extends Activity {
                 left_menu2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast toast = Toast.makeText(getApplicationContext(),"서비스 준비중입니다.",Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.CENTER|Gravity.CENTER,0,0);
-                        toast.show();
+                        Intent choisedelivery = new Intent(TwoFood.this,Choicedelivery.class);
+                        choisedelivery.putExtra("where",where);
+                        choisedelivery.putExtra("kind",kind);
+                        choisedelivery.putExtra("foodnum",finalI_rand1);
+                        startActivity(choisedelivery);
                     }
                 });
 
@@ -1180,9 +1182,11 @@ public class TwoFood extends Activity {
                 right_menu2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast toast = Toast.makeText(getApplicationContext(),"서비스 준비중입니다.",Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.CENTER|Gravity.CENTER,0,0);
-                        toast.show();
+                        Intent choisedelivery = new Intent(TwoFood.this,Choicedelivery.class);
+                        choisedelivery.putExtra("where",where);
+                        choisedelivery.putExtra("kind",kind);
+                        choisedelivery.putExtra("foodnum",finalI_rand2);
+                        startActivity(choisedelivery);
                     }
                 });
 
@@ -1290,9 +1294,11 @@ public class TwoFood extends Activity {
                 left_menu2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast toast = Toast.makeText(getApplicationContext(),"서비스 준비중입니다.",Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.CENTER|Gravity.CENTER,0,0);
-                        toast.show();
+                        Intent choisedelivery = new Intent(TwoFood.this,Choicedelivery.class);
+                        choisedelivery.putExtra("where",where);
+                        choisedelivery.putExtra("kind",kind);
+                        choisedelivery.putExtra("foodnum",finalI_rand1);
+                        startActivity(choisedelivery);
                     }
                 });
 
@@ -1374,9 +1380,11 @@ public class TwoFood extends Activity {
                 right_menu2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast toast = Toast.makeText(getApplicationContext(),"서비스 준비중입니다.",Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.CENTER|Gravity.CENTER,0,0);
-                        toast.show();
+                        Intent choisedelivery = new Intent(TwoFood.this,Choicedelivery.class);
+                        choisedelivery.putExtra("where",where);
+                        choisedelivery.putExtra("kind",kind);
+                        choisedelivery.putExtra("foodnum",finalI_rand2);
+                        startActivity(choisedelivery);
                     }
                 });
 

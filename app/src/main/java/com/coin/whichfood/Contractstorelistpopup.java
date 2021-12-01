@@ -207,5 +207,7 @@ public class Contractstorelistpopup extends Activity {
             Log.d(TAG,"seeviewgrid,"+position+"," + griditem.getWhere()+","+griditem.getKind()+","+griditem.getfoodName());
             return view;
         }
+
+
     }
 }
