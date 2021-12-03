@@ -70,6 +70,7 @@
         <activity android:name=".Selfdeliverylist"/>
 
 
+
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
