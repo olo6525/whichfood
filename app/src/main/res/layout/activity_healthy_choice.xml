@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:src="@drawable/splashlogo"
+            android:scaleType="fitXY"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/balancefood"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:scaleType="fitXY"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:src="@drawable/ic_balancefood" />
+
+            <ImageButton
+                android:id="@+id/skincarefood"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:scaleType="fitXY"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:src="@drawable/ic_skincarefood" />
+
+            <ImageButton
+                android:id="@+id/digestfood"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:scaleType="fitXY"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:src="@drawable/ic_digestfood" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/diabetesfood"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:scaleType="fitXY"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:src="@drawable/ic_diabetes" />
+
+            <ImageButton
+                android:id="@+id/notyet1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:scaleType="fitXY"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:visibility="invisible"
+                 />
+
+            <ImageButton
+                android:id="@+id/notyet2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:scaleType="fitXY"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:visibility="invisible"
+                 />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"></LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
