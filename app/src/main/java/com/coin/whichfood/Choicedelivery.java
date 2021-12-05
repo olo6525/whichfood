@@ -3,12 +3,14 @@ package com.coin.whichfood;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
@@ -47,45 +49,54 @@ public class Choicedelivery extends Activity {
             }
         });
         flatformdelivery.setOnClickListener(new View.OnClickListener() {
+            String packagename = "com.sampleapp";
             @Override
             public void onClick(View v) {
-                if(searchAppPackage(Choicedelivery.this,"com.sampleapp")==true){
-                    LaunchApp(Choicedelivery.this, "com.sampleapp");
-                }else{
-                    GotoInstall(Choicedelivery.this,"com.sampleapp");
-                }
+              try {
+                  LaunchApp(Choicedelivery.this, packagename);
+                  Log.d("TAG", "Choicedelivery App is on the phone");
+              }catch (Exception e) {
+                  GotoInstall(Choicedelivery.this, packagename);
+                  Log.d("TAG", "Choicedelivery App is not on the phone");
+              }
+
+                Log.d("TAG","Choicedelivery App "+searchAppPackage(Choicedelivery.this,packagename) );
             }
         });
 
     }
 
-    public static boolean searchAppPackage(Context context, String packagename){
-        boolean checkapp = false;
+    public static int searchAppPackage(Context context, String packagename){
+        int checkapp = 0;
 
         PackageManager PM = context.getPackageManager();
-        List<ResolveInfo> applist;
-        Intent intentgetapplist = new Intent(Intent.ACTION_MAIN, null);
+        List<PackageInfo> applist;
+        Intent intentgetapplist = new Intent(Intent.ACTION_MAIN);
         intentgetapplist.addCategory(Intent.CATEGORY_LAUNCHER);
-        applist = PM.queryIntentActivities(intentgetapplist, 0 );
+        applist = PM.getInstalledPackages(0);
 
         try{
             for(int i =0; i< applist.size(); i++){
-                if(applist.get(i).activityInfo.packageName.startsWith(packagename)){
-                    checkapp = true;
+                if(applist.get(i).packageName.startsWith(packagename)){
+                    checkapp = 1;
+                    Log.d("TAG","Choicedelivery Check for");
                     break;
+                }else{
+                    Log.d("TAG","Choicedelivery Check for: " + applist.get(i) + "numver: " + i);
                 }
             }
         }catch (Exception e){
-            checkapp = false;
+            checkapp = 2;
+            Log.d("TAG","Choicedelivery error");
             e.printStackTrace();
         }
 
-        return checkapp;
+        return 1;
     }
 
     public static void LaunchApp (Context context, String packagename){
         Intent launchapp = context.getPackageManager().getLaunchIntentForPackage(packagename);
-        launchapp.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        launchapp.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
         context.startActivity(launchapp);
     }
 
