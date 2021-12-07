@@ -11,15 +11,22 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -43,7 +50,6 @@ import java.util.ArrayList;
 
 public class Selfdeliverylist extends Activity {
 
-    ListView selfdeliverystore;
     private int where =0;
     private int kind = 0;
     private int foodnum = 0;
@@ -59,7 +65,9 @@ public class Selfdeliverylist extends Activity {
     private FlagClass flagClass;
     private JSONArray jsonArrayselfdeliveryinfo;
     public Griditemselfdelivery griditemselfdelivery;
-    private Listviewadapter listviewadapter = new Listviewadapter();
+
+    Lodingclass lodingclass;
+    Thread thread;
 
 
 
@@ -83,7 +91,10 @@ public class Selfdeliverylist extends Activity {
         kind = getfoodinfo.getIntExtra("kind",0);
         foodnum = getfoodinfo.getIntExtra("foodnum",0);
         flagClass = (FlagClass) getApplication();
-        selfdeliverystore = (ListView)findViewById(R.id.selfdeliverylist);
+        GridView selfdeliverystore = (GridView)findViewById(R.id.selfdeliverylist);
+        Listviewadapter listviewadapter = new Listviewadapter();
+        lodingclass = new Lodingclass(this);
+        lodingclass.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         //GPS위치정보 권한 =====================================================================
         if (ContextCompat.checkSelfPermission(
                 this, Manifest.permission.ACCESS_COARSE_LOCATION) ==
@@ -211,17 +222,28 @@ public class Selfdeliverylist extends Activity {
         }
 //GPS워치정보 권한 및 현재위치정보 갖고오기 끝===============================================================================
 
+        lodingclass.show();
+        lodingclass.setCanceledOnTouchOutside(false);
+        lodingclass.setCancelable(false);
         Getselfdeliverlist();
+        try {
+            thread.join();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        lodingclass.dismiss();
         try {
             for (int i = 0; i < jsonArrayselfdeliveryinfo.length(); i++) {
                 String storename = "";
+                String storeaddress = "";
                 String foodinfo = "";
                 String storenumber = "";
                 String storepage = "";
-
-
-                listviewadapter = new Listviewadapter();
+                String distance = "";
+                String introduce = "";
                 storename = jsonArrayselfdeliveryinfo.getJSONObject(0).getString("storename");
+                storeaddress = jsonArrayselfdeliveryinfo.getJSONObject(0).getString("storeaddress");
+                distance = jsonArrayselfdeliveryinfo.getJSONObject(0).getString("distance").substring(0,4);
                 if(kind == 1) {
                     foodinfo = jsonArrayselfdeliveryinfo.getJSONObject(0).getString("meal" + foodnum);
                 }else if(kind == 2){
@@ -231,13 +253,41 @@ public class Selfdeliverylist extends Activity {
                 }
                 storenumber = foodinfo.split(",")[0];
                 storepage = foodinfo.split(",")[1];
-                listviewadapter.addItem(new Griditemselfdelivery(storename, storenumber, storepage));
+                introduce = foodinfo.split(",")[2];
+                Log.d(TAG, "selfdeliverystoregrid : " + storename+storenumber+storepage);
+                listviewadapter.addItem(new Griditemselfdelivery(storename,storeaddress, storenumber, storepage,distance,introduce));
             }
         }catch (Exception e){
             e.printStackTrace();
+            Log.d(TAG, "selfdeliverystoregriderrrr : ");
         }
 
         selfdeliverystore.setAdapter(listviewadapter);
+
+        selfdeliverystore.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                  Griditemselfdelivery items = (Griditemselfdelivery)listviewadapter.getItem(position);
+
+                PopupMenu popupMenu = new PopupMenu(getApplicationContext(),view);
+                getMenuInflater().inflate(R.menu.delivery_info,popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()){
+                            case R.id.calltostore:
+                                startActivity(new Intent("android.intent.action.DIAL", Uri.parse("tel:"+items.getStorenumber())));
+                                break;
+                            case R.id.gotostorepage:
+                                startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse(items.getStorepage())));
+                                break;
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
 
     }
 
@@ -272,26 +322,27 @@ public class Selfdeliverylist extends Activity {
             }
             Griditemselfdelivery griditem = items.get(position);
             view.init(getApplicationContext());
-            view.setselfdeliveryitem(griditem.storename, griditem.storenumber, griditem.storepage);
-            return null;
+            view.setselfdeliveryitem(griditem.storename, griditem.storeaddress, griditem.storenumber, griditem.storepage, griditem.distance, griditem.introduce);
+            return view;
         }
     }
 
-    public void Getselfdeliverlist(){
-        Thread thread = new Thread(){
+    void Getselfdeliverlist(){
+        thread = new Thread(){
             @Override
             public void run(){
                 String parameterString = "";
                 if(kind == 1) {
                     String food = "meal"+foodnum;
-                    parameterString= "purpose=getselfdeliverylist&kind=" + kind + "&foodnum=" + food + "&latitude=" + latitude + "&longitude=" + longitude;
+                    parameterString= "purpose=getselfdeliverylist&where="+where+"&kind=" + kind + "&foodnum=" + food + "&latitude=" + latitude + "&longitude=" + longitude;
                 }else if(kind ==2){
                     String food = "drink"+foodnum;
-                    parameterString= "purpose=getselfdeliverylist&kind=" + kind + "&foodnum=" + food + "&latitude=" + latitude + "&longitude=" + longitude;
+                    parameterString= "purpose=getselfdeliverylist&where="+where+"&kind=" + kind + "&foodnum=" + food + "&latitude=" + latitude + "&longitude=" + longitude;
 
                 }else{
 
                 }
+                Log.d(TAG, "selfdeliverystorestring : " + parameterString);
                 try {
                     URL url = new URL(flagClass.getServers().get(0)+"whichfoodstorelist.php");
                     HttpURLConnection conn = (HttpURLConnection)url.openConnection();
@@ -326,20 +377,19 @@ public class Selfdeliverylist extends Activity {
                     bufferedReader.close();
                     Log.d("TAG","selfdeliverystoreinfojson : "+sb.toString());
                     JSONObject jsonObject = new JSONObject(sb.toString());
-                    jsonArrayselfdeliveryinfo = jsonObject.getJSONArray("selfdeliverylistinfo");
+
+                    jsonArrayselfdeliveryinfo = jsonObject.getJSONArray("getselfdeliverylistinfo");
 
 
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Log.d("TAG","selfdeliverystoreinfojson error : ");
                 }
             }
 
         };
-        try {
-            thread.join();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        thread.start();
+
     }
 
     @Override

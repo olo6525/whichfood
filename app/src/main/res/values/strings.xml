@@ -57,5 +57,7 @@
     <string name="adimage5">다섯번째 홍보사진 등록</string>
     <string name="loding">로딩중입니다..</string>
     <string name="check">확인</string>
+    <string name="call">전화 주문 문의</string>
+    <string name="hopage">매장 홈페이지 방문</string>
 
 </resources>
