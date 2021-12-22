@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
@@ -233,31 +234,39 @@ public class Selfdeliverylist extends Activity {
         }
         lodingclass.dismiss();
         try {
-            for (int i = 0; i < jsonArrayselfdeliveryinfo.length(); i++) {
-                String storename = "";
-                String storeaddress = "";
-                String foodinfo = "";
-                String storenumber = "";
-                String storepage = "";
-                String distance = "";
-                String introduce = "";
-                storename = jsonArrayselfdeliveryinfo.getJSONObject(0).getString("storename");
-                storeaddress = jsonArrayselfdeliveryinfo.getJSONObject(0).getString("storeaddress");
-                distance = jsonArrayselfdeliveryinfo.getJSONObject(0).getString("distance").substring(0,4);
-                if(kind == 1) {
-                    foodinfo = jsonArrayselfdeliveryinfo.getJSONObject(0).getString("meal" + foodnum);
-                }else if(kind == 2){
-                    foodinfo = jsonArrayselfdeliveryinfo.getJSONObject(0).getString("drink" + foodnum);
-                }else{
+            if(jsonArrayselfdeliveryinfo.length() > 0) {
+                ImageView nodeliverstore = (ImageView)findViewById(R.id.nodeliverystore);
+                nodeliverstore.setVisibility(View.GONE);
+                for (int i = 0; i < jsonArrayselfdeliveryinfo.length(); i++) {
+                    String storename = "";
+                    String storeaddress = "";
+                    String foodinfo = "";
+                    String storenumber = "";
+                    String storepage = "";
+                    String distance = "";
+                    String introduce = "";
+                    storename = jsonArrayselfdeliveryinfo.getJSONObject(0).getString("storename");
+                    storeaddress = jsonArrayselfdeliveryinfo.getJSONObject(0).getString("storeaddress");
+                    distance = jsonArrayselfdeliveryinfo.getJSONObject(0).getString("distance").substring(0, 4);
+                    if (kind == 1) {
+                        foodinfo = jsonArrayselfdeliveryinfo.getJSONObject(0).getString("meal" + foodnum);
+                    } else if (kind == 2) {
+                        foodinfo = jsonArrayselfdeliveryinfo.getJSONObject(0).getString("drink" + foodnum);
+                    } else {
 
+                    }
+                    storenumber = foodinfo.split(",")[0];
+                    storepage = foodinfo.split(",")[1];
+                    introduce = foodinfo.split(",")[2];
+                    Log.d(TAG, "selfdeliverystoregrid : " + storename + storenumber + storepage);
+                    listviewadapter.addItem(new Griditemselfdelivery(storename, storeaddress, storenumber, storepage, distance, introduce));
                 }
-                storenumber = foodinfo.split(",")[0];
-                storepage = foodinfo.split(",")[1];
-                introduce = foodinfo.split(",")[2];
-                Log.d(TAG, "selfdeliverystoregrid : " + storename+storenumber+storepage);
-                listviewadapter.addItem(new Griditemselfdelivery(storename,storeaddress, storenumber, storepage,distance,introduce));
+            }else{
+
             }
         }catch (Exception e){
+            ImageView nodeliverstore = (ImageView)findViewById(R.id.nodeliverystore);
+            nodeliverstore.setVisibility(View.VISIBLE);
             e.printStackTrace();
             Log.d(TAG, "selfdeliverystoregriderrrr : ");
         }

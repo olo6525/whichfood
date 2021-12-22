@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.HeterogeneousExpandableList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +26,13 @@ import com.android.billingclient.api.SkuDetailsResponseListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +45,8 @@ public class BillingService implements PurchasesUpdatedListener{
     private AcknowledgePurchaseResponseListener acknowledgePurchaseResponseListener;
     private Context context;
     private FlagClass flagClass;
+    private String foodnum;
+    private String storenum;
     public BillingService(Context context, int mealListSize, int drinkListsize) {
         this.context = context;
         billingClient = BillingClient.newBuilder(context)
@@ -95,9 +105,11 @@ public class BillingService implements PurchasesUpdatedListener{
                 }
             } else if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.USER_CANCELED) {
                 // Handle an error caused by a user cancelling the purchase flow.
+                deletepartnership();
                 Log.d(TAG, "bii결제에 취소하였음니다 !");
             } else {
                 // Handle any other error codes.
+                deletepartnership();
                 Log.d(TAG, "bii결제도중 예상치 못한 에러가 발생하였습니다 !");
             }
         }
@@ -163,7 +175,9 @@ public class BillingService implements PurchasesUpdatedListener{
 
 
 
-    public void purchase(String itemid, Activity activity) {
+    public void purchase(String itemid, String storenumber, Activity activity) {
+        foodnum = itemid;
+        storenum = storenumber;
         SkuDetails skuDetails = null;
         if(null != skuDetails_list){
             for(int i=0; i<skuDetails_list.size(); i++){
@@ -173,7 +187,7 @@ public class BillingService implements PurchasesUpdatedListener{
                     break;
                 }
             }
-            Log.d(TAG,"biilingcount4");
+            Log.d(TAG,"biilingcount4" + foodnum + storenum);
             // Retrieve a value for "skuDetails" by calling querySkuDetailsAsync().
             BillingFlowParams flowParams = BillingFlowParams.newBuilder()
                     .setSkuDetails(skuDetails)
@@ -240,6 +254,60 @@ public class BillingService implements PurchasesUpdatedListener{
         context.startActivity(intent);
     }
 
-    
+    public void deletepartnership(){
+        flagClass = (FlagClass)context.getApplicationContext();
+        Thread thread = new Thread(){
+            @Override
+            public void run(){
+                try {
+                    String parameter = new String();
+                    parameter = "purpose=removepartner&userid="+flagClass.getLoginid()+"&storenum="+storenum+"&foodnum="+foodnum;
+                    Log.d("TAG", "bii param:" + parameter);
+                    URL url = new URL(flagClass.getServers().get(0)+"whichfoodstorelist.php");
+                    HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                    conn.setDoOutput(true);
+                    conn.setDoOutput(true);
+                    conn.setRequestMethod("POST");
+                    conn.connect();
+
+                    OutputStream outputStream = conn.getOutputStream();
+                    outputStream.write(parameter.getBytes("UTF-8"));
+                    outputStream.flush();
+                    outputStream.close();
+
+                    InputStream inputStream;
+                    if(conn.getResponseCode() == conn.HTTP_OK){
+                        inputStream = conn.getInputStream();
+                    }else{
+                        inputStream = conn.getErrorStream();
+                    }
+
+                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+                    while((line = bufferedReader.readLine()) != null){
+                        sb.append(line);
+                    }
+
+                    bufferedReader.close();
+                    inputStreamReader.close();
+                    inputStream.close();
+
+                    Log.d(TAG,"bii 취소삭제 확인 : "+sb.toString());
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
     
 }

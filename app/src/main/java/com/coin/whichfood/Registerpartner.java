@@ -746,8 +746,9 @@ public class Registerpartner extends Activity {
                         storenumcheck = 3;
                         Log.d(TAG, "imagelocation1111:" + result);
                     } else if (result.charAt(result.length() - 1) == '7') {
+                        lodingclass.cancel();
                         storenumcheck = 0;
-                        billingService.purchase(pickfood + pickindex, Registerpartner.this);
+                        billingService.purchase(pickfood + pickindex, storenum,Registerpartner.this);
                         Log.d(TAG, "imagelocation1111:" + result);
                     } else if (result.charAt(result.length() -1) == '4') {
                         storenumcheck = 4;

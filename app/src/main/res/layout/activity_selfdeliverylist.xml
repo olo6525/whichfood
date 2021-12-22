@@ -11,10 +11,19 @@
         android:orientation="vertical">
 
 
+        <ImageView
+            android:id="@+id/nodeliverystore"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_nodeliverystore" />
+
         <GridView
             android:id="@+id/selfdeliverylist"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:scrollbars="horizontal"
+            />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

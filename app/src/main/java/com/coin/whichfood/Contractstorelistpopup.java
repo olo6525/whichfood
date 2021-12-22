@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
@@ -105,23 +106,31 @@ public class Contractstorelistpopup extends Activity {
         }
         try {
             Log.d(TAG,"제휴가게음식리스트 : "+jsoncontractstorefoodlist.getJSONArray("foodlist").length());
-            for (int i = 0; i < jsoncontractstorefoodlist.getJSONArray("foodlist").length(); i++) {
-                String kindfoodnumlist = jsoncontractstorefoodlist.getJSONArray("foodlist").getJSONObject(i).getString("foodnum");
-                String onlyfoodnum = kindfoodnumlist.replaceAll("[^0-9]","");
-                int foodnumlist = Integer.parseInt(onlyfoodnum);
-                String contractfoodname = new String();
-                if(kindfoodnumlist.charAt(0) == 'm'){
-                    contractfoodname = flagClass.getOutfoodmealindex().getJSONObject(0).getString(onlyfoodnum);
-                }else if(kindfoodnumlist.charAt(0) == 'd'){
-                    contractfoodname = flagClass.getOutfooddrinkindex().getJSONObject(0).getString(onlyfoodnum);
-                }else{
-                    contractfoodname = "";
+            if(jsoncontractstorefoodlist.length() > 0) {
+                ImageView nocontract = (ImageView)findViewById(R.id.nocontract);
+                nocontract.setVisibility(View.GONE);
+                for (int i = 0; i < jsoncontractstorefoodlist.getJSONArray("foodlist").length(); i++) {
+                    String kindfoodnumlist = jsoncontractstorefoodlist.getJSONArray("foodlist").getJSONObject(i).getString("foodnum");
+                    String onlyfoodnum = kindfoodnumlist.replaceAll("[^0-9]", "");
+                    int foodnumlist = Integer.parseInt(onlyfoodnum);
+                    String contractfoodname = new String();
+                    if (kindfoodnumlist.charAt(0) == 'm') {
+                        contractfoodname = flagClass.getOutfoodmealindex().getJSONObject(0).getString(onlyfoodnum);
+                    } else if (kindfoodnumlist.charAt(0) == 'd') {
+                        contractfoodname = flagClass.getOutfooddrinkindex().getJSONObject(0).getString(onlyfoodnum);
+                    } else {
+                        contractfoodname = "";
+                    }
+                    Log.d(TAG, "제휴가게데이타음식 인덱스 : " + contractfoodname);
+                    //인자설명 -> 위치, 종류, 음식인덱스, 종류임식인덱스, 음식이름
+                    gridviewadaptercontractfoodlist.addItem(new GriditemContractstorefood(2, 0, foodnumlist, kindfoodnumlist, contractfoodname, storenum));
                 }
-                Log.d(TAG,"제휴가게데이타음식 인덱스 : "+ contractfoodname);
-                //인자설명 -> 위치, 종류, 음식인덱스, 종류임식인덱스, 음식이름
-                gridviewadaptercontractfoodlist.addItem(new GriditemContractstorefood(2,0,foodnumlist,kindfoodnumlist,contractfoodname, storenum));
+            }else{
+
             }
         }catch (Exception e){
+            ImageView nocontract = (ImageView)findViewById(R.id.nocontract);
+            nocontract.setVisibility(View.VISIBLE);
             e.printStackTrace();
         }
         contractfoodlist.setAdapter(gridviewadaptercontractfoodlist);
