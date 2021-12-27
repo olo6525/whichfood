@@ -114,7 +114,7 @@ public class Contractstorelistpopup extends Activity {
         }
         try {
             Log.d(TAG,"제휴가게음식리스트 : "+jsoncontractstorefoodlist.getJSONArray("foodlist").length());
-            if(jsoncontractstorefoodlist.length() > 0) {
+            if(jsoncontractstorefoodlist.getJSONArray("foodlist").length() > 0) {
                 ImageView nocontract = (ImageView)findViewById(R.id.nocontract);
                 nocontract.setVisibility(View.GONE);
                 for (int i = 0; i < jsoncontractstorefoodlist.getJSONArray("foodlist").length(); i++) {

@@ -124,8 +124,24 @@
                             android:visibility="gone"/>
 
 
+                    </LinearLayout>
 
+                    <LinearLayout
+                        android:id="@+id/nocontractimagelayout"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:visibility="gone"
+                        >
 
+                        <ImageView
+                            android:id="@+id/nocontractimage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_nocontract"
+                            android:scaleType="fitXY"
+                            />
                     </LinearLayout>
 
                     <LinearLayout

@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -137,6 +139,7 @@ public class Myinfo extends Activity {
         cookfoodlist2= (GridView)findViewById(R.id.cookfoodlist2);
         outfoodlist2 = (GridView)findViewById(R.id.outfoodlist2);
         deliveryfoodlist2 = (GridView)findViewById(R.id.deliveryfoodlist2);
+        LinearLayout nocontractimagelayout = (LinearLayout) findViewById(R.id.nocontractimagelayout);
         myinfodata = new JSONObject();
         Gridviewadapter2 gridviewadaptercontractstore;
         Gridviewadapter gridviewadapterpartnermeal;
@@ -147,91 +150,8 @@ public class Myinfo extends Activity {
         Gridviewadapter gridviewadapteroutdrink;
         Gridviewadapter gridviewadapterdeliverymeal;
         Gridviewadapter gridviewadapterdeliverydrink;
-//관심음식 열고닫기=================================================================================
-        if(flagClass.getMyinforenew() == 1){
-            openpartnerinfo.setVisibility(View.GONE);
-            partnerlistlayout.setVisibility(View.VISIBLE);
-            closepartnerinfo.setVisibility(View.VISIBLE);
-        }else if(flagClass.getMyinforenew() ==2){
-            opencookinfo.setVisibility(View.GONE);
-            cookfoodlistlayout.setVisibility(View.VISIBLE);
-            closecookinfo.setVisibility(View.VISIBLE);
-        }else if(flagClass.getMyinforenew() ==3){
-            openoutinfo.setVisibility(View.GONE);
-            outfoodlistlayout.setVisibility(View.VISIBLE);
-            closeoutinfo.setVisibility(View.VISIBLE);
-        }else if(flagClass.getMyinforenew() ==4){
-            opendeliveryinfo.setVisibility(View.GONE);
-            deliveryfoodlistlayout.setVisibility(View.VISIBLE);
-            closedeliveryinfo.setVisibility(View.VISIBLE);
-        }
-        flagClass.setMyinforenew(0);
-        openpartnerinfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openpartnerinfo.setVisibility(View.GONE);
-                partnerlistlayout.setVisibility(View.VISIBLE);
-                closepartnerinfo.setVisibility(View.VISIBLE);
-            }
-        });
-        opencookinfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                opencookinfo.setVisibility(View.GONE);
-                cookfoodlistlayout.setVisibility(View.VISIBLE);
-                closecookinfo.setVisibility(View.VISIBLE);
-            }
-        });
-        openoutinfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openoutinfo.setVisibility(View.GONE);
-                outfoodlistlayout.setVisibility(View.VISIBLE);
-                closeoutinfo.setVisibility(View.VISIBLE);
-            }
-        });
-        opendeliveryinfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                opendeliveryinfo.setVisibility(View.GONE);
-                deliveryfoodlistlayout.setVisibility(View.VISIBLE);
-                closedeliveryinfo.setVisibility(View.VISIBLE);
-            }
-        });
 
-        closepartnerinfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                closepartnerinfo.setVisibility(View.GONE);
-                partnerlistlayout.setVisibility(View.GONE);
-                openpartnerinfo.setVisibility(View.VISIBLE);
-            }
-        });
-        closecookinfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                closecookinfo.setVisibility(View.GONE);
-                cookfoodlistlayout.setVisibility(View.GONE);
-                opencookinfo.setVisibility(View.VISIBLE);
-            }
-        });
-        closeoutinfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                closeoutinfo.setVisibility(View.GONE);
-                outfoodlistlayout.setVisibility(View.GONE);
-                openoutinfo.setVisibility(View.VISIBLE);
-            }
-        });
-        closedeliveryinfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                closedeliveryinfo.setVisibility(View.GONE);
-                deliveryfoodlistlayout.setVisibility(View.GONE);
-                opendeliveryinfo.setVisibility(View.VISIBLE);
-            }
-        });
-//관심음식 열고닫기 끝 ================================================================================
+        //서버데이터 가져오기=====================================================================
         Thread datathread = new Thread(){
             @Override
             public void run(){
@@ -300,6 +220,105 @@ public class Myinfo extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        //서버데이터가져오기 끝===================================================================================================================
+//관심음식 열고닫기=================================================================================
+        if(flagClass.getMyinforenew() == 1){
+            openpartnerinfo.setVisibility(View.GONE);
+            partnerlistlayout.setVisibility(View.VISIBLE);
+            closepartnerinfo.setVisibility(View.VISIBLE);
+        }else if(flagClass.getMyinforenew() ==2){
+            opencookinfo.setVisibility(View.GONE);
+            cookfoodlistlayout.setVisibility(View.VISIBLE);
+            closecookinfo.setVisibility(View.VISIBLE);
+        }else if(flagClass.getMyinforenew() ==3){
+            openoutinfo.setVisibility(View.GONE);
+            outfoodlistlayout.setVisibility(View.VISIBLE);
+            closeoutinfo.setVisibility(View.VISIBLE);
+        }else if(flagClass.getMyinforenew() ==4){
+            opendeliveryinfo.setVisibility(View.GONE);
+            deliveryfoodlistlayout.setVisibility(View.VISIBLE);
+            closedeliveryinfo.setVisibility(View.VISIBLE);
+        }
+        flagClass.setMyinforenew(0);
+        openpartnerinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    if(myinfodata.getJSONArray("mycontractinfo").length()>0){
+                        openpartnerinfo.setVisibility(View.GONE);
+                        partnerlistlayout.setVisibility(View.VISIBLE);
+                        closepartnerinfo.setVisibility(View.VISIBLE);
+                    }
+                    else{
+                        nocontractimagelayout.setVisibility(View.VISIBLE);
+                        openpartnerinfo.setVisibility(View.GONE);
+                        closepartnerinfo.setVisibility(View.VISIBLE);
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+        opencookinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                opencookinfo.setVisibility(View.GONE);
+                cookfoodlistlayout.setVisibility(View.VISIBLE);
+                closecookinfo.setVisibility(View.VISIBLE);
+            }
+        });
+        openoutinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openoutinfo.setVisibility(View.GONE);
+                outfoodlistlayout.setVisibility(View.VISIBLE);
+                closeoutinfo.setVisibility(View.VISIBLE);
+            }
+        });
+        opendeliveryinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                opendeliveryinfo.setVisibility(View.GONE);
+                deliveryfoodlistlayout.setVisibility(View.VISIBLE);
+                closedeliveryinfo.setVisibility(View.VISIBLE);
+            }
+        });
+
+        closepartnerinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nocontractimagelayout.setVisibility(View.GONE);
+                closepartnerinfo.setVisibility(View.GONE);
+                partnerlistlayout.setVisibility(View.GONE);
+                openpartnerinfo.setVisibility(View.VISIBLE);
+            }
+        });
+        closecookinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closecookinfo.setVisibility(View.GONE);
+                cookfoodlistlayout.setVisibility(View.GONE);
+                opencookinfo.setVisibility(View.VISIBLE);
+            }
+        });
+        closeoutinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeoutinfo.setVisibility(View.GONE);
+                outfoodlistlayout.setVisibility(View.GONE);
+                openoutinfo.setVisibility(View.VISIBLE);
+            }
+        });
+        closedeliveryinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closedeliveryinfo.setVisibility(View.GONE);
+                deliveryfoodlistlayout.setVisibility(View.GONE);
+                opendeliveryinfo.setVisibility(View.VISIBLE);
+            }
+        });
+//관심음식 열고닫기 끝 ================================================================================
+
 //파트너, 관심음식 그리드 표현 ========================================================================================================
         //그리드용 전역 변수 =======================================
         int count = 0;
@@ -309,9 +328,11 @@ public class Myinfo extends Activity {
         gridviewadaptercontractstore = new Gridviewadapter2();
 
         try {
-            for (int i = 0; i < myinfodata.getJSONArray("mycontractinfo").length(); i++) {
-                gridviewadaptercontractstore.addItem(new GriditemContract(myinfodata.getJSONArray("mycontractinfo").getJSONObject(i).getString("membersstorenum")
-                        ,myinfodata.getJSONArray("mycontractinfo").getJSONObject(i).getString("storename")));
+            if(myinfodata.getJSONArray("mycontractinfo").length()>0) {
+                for (int i = 0; i < myinfodata.getJSONArray("mycontractinfo").length(); i++) {
+                    gridviewadaptercontractstore.addItem(new GriditemContract(myinfodata.getJSONArray("mycontractinfo").getJSONObject(i).getString("membersstorenum")
+                            , myinfodata.getJSONArray("mycontractinfo").getJSONObject(i).getString("storename")));
+                }
             }
         }catch (Exception e){
             e.printStackTrace();
