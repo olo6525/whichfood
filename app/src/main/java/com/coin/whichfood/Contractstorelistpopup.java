@@ -3,7 +3,12 @@ package com.coin.whichfood;
 import static android.content.ContentValues.TAG;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -32,6 +37,8 @@ public class Contractstorelistpopup extends Activity {
 
     FlagClass flagClass;
     JSONObject jsoncontractstorefoodlist;
+    Lodingclass lodingclass;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -39,7 +46,8 @@ public class Contractstorelistpopup extends Activity {
 
         requestWindowFeature(getWindow().FEATURE_NO_TITLE);
         setContentView(R.layout.contractstorefoodlist);
-
+        lodingclass = new Lodingclass(this);
+        lodingclass.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         flagClass = (FlagClass)getApplication();
         jsoncontractstorefoodlist = new JSONObject();
         GridView contractfoodlist = (GridView)findViewById(R.id.contractfoodlist);
@@ -165,6 +173,31 @@ public class Contractstorelistpopup extends Activity {
                                 changeregister.putExtra("foodname", item.getfoodName());
                                 startActivity(changeregister);
                                 break;
+                            case R.id.delete:
+                                AlertDialog.Builder dlg = new AlertDialog.Builder(Contractstorelistpopup.this, android.R.style.Theme_DeviceDefault_Light_Dialog);
+                                dlg.setMessage("해달 음식에 대한 제휴 및 홍보를 해제 하시겠습니까?")
+                                        .setTitle("제휴 및 홍보 해제")
+                                        .setPositiveButton("해제", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                lodingclass.show();
+                                                lodingclass.setCanceledOnTouchOutside(false);
+                                                lodingclass.setCancelable(false);
+                                                deletepartnership(storenum, item.getKindfoodnum());
+                                                finish();//인텐트 종료
+                                                overridePendingTransition(0, 0);//인텐트 효과 없애기
+                                                Intent intent = getIntent(); //인텐트
+                                                startActivity(intent); //액티비티 열기
+                                                overridePendingTransition(0, 0);//인텐트 효과 없애기
+                                            }
+                                        })
+                                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+
+                                            }
+                                        })
+                                        .show();
 
                         }
                         return false;
@@ -217,6 +250,65 @@ public class Contractstorelistpopup extends Activity {
             return view;
         }
 
+
+    }
+
+
+
+    public void deletepartnership(String storenum, String foodnum){
+        Thread thread = new Thread(){
+            @Override
+            public void run(){
+                try {
+                    String parameter = new String();
+                    parameter = "purpose=removepartner&userid="+flagClass.getLoginid()+"&storenum="+storenum+"&foodnum="+foodnum;
+                    Log.d("TAG", "bii param:" + parameter);
+                    URL url = new URL(flagClass.getServers().get(0)+"whichfoodstorelist.php");
+                    HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                    conn.setDoOutput(true);
+                    conn.setDoOutput(true);
+                    conn.setRequestMethod("POST");
+                    conn.connect();
+
+                    OutputStream outputStream = conn.getOutputStream();
+                    outputStream.write(parameter.getBytes("UTF-8"));
+                    outputStream.flush();
+                    outputStream.close();
+
+                    InputStream inputStream;
+                    if(conn.getResponseCode() == conn.HTTP_OK){
+                        inputStream = conn.getInputStream();
+                    }else{
+                        inputStream = conn.getErrorStream();
+                    }
+
+                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+                    while((line = bufferedReader.readLine()) != null){
+                        sb.append(line);
+                    }
+
+                    bufferedReader.close();
+                    inputStreamReader.close();
+                    inputStream.close();
+
+                    Log.d(TAG,"bii 취소삭제 확인 : "+sb.toString());
+
+                    lodingclass.cancel();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 }

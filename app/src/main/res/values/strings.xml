@@ -60,5 +60,6 @@
     <string name="check">확인</string>
     <string name="call">전화 주문 문의</string>
     <string name="hopage">매장 홈페이지 방문</string>
+    <string name="menu_contract_delete">제휴 해제</string>
 
 </resources>
