@@ -652,7 +652,7 @@ public class Registerpartnerchange extends Activity {
                 bitmap.compress(Bitmap.CompressFormat.JPEG, quality, out);  // 넘거 받은 bitmap을 jpeg(손실압축)으로 저장해줌
                 realimagesize = (int)tempFile.length();
                 Log.d(TAG,"imagelocation resizefilesize after : " + realimagesize);
-                quality -= 20;
+                quality -= 19;
 
                 out.close(); // 마무리로 닫아줍니다.
 
