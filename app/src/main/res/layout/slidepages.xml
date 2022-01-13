@@ -14,26 +14,24 @@
         <TextView
             android:id="@+id/storename"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0px"
+            android:layout_weight="0.5"
             />
         <TextView
             android:id="@+id/storeaddress"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0px"
+            android:layout_weight="0.5"
             />
-
-
-        <ScrollView
-            android:id="@+id/content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/adimage"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/applelogo" />
-        </ScrollView>
+                android:layout_height="0px"
+                android:layout_weight="10"
+                android:src="@drawable/applelogo"
+                />
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

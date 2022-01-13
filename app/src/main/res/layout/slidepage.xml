@@ -10,10 +10,18 @@
         android:orientation="vertical">
 
 
+        <Button
+            android:id="@+id/exitad"
+            android:layout_width="70dp"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:text="x" />
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0px"
+            android:layout_weight="10">
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"

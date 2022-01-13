@@ -7,7 +7,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -44,12 +46,21 @@ public class ShowStoreAd extends FragmentActivity {
      */
     private PagerAdapter pagerAdapter;
 
+    Button exitad;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.slidepage);
 
+        exitad = (Button)findViewById(R.id.exitad);
+        exitad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
         // Instantiate a ViewPager and a PagerAdapter.

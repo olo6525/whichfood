@@ -1,12 +1,16 @@
 package com.coin.whichfood;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -62,6 +66,11 @@ public class SlideViewFlagment extends Fragment {
     private float oldDistance;  //터치 시 두손가락 사이의 거리
 
     private double oldDegree = 0; // 두손가락의 각도
+    int i = 0; // 두손가락 확대, 축소 플레그
+    int actionflag = 0; //이동, 확대, 축소 플래그
+    int touchflage =0 ;
+
+
 
     @Nullable
     @Override
@@ -70,31 +79,47 @@ public class SlideViewFlagment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         ViewGroup adview = (ViewGroup) inflater.inflate(R.layout.slidepages, container, false);
 //이미치 크기 확대 축소===============================================================
+
         matrix = new Matrix();
         savedMatrix = new Matrix();
         adimages = (ImageView)adview.findViewById(R.id.adimage);
-         adimages.setScaleType(ImageView.ScaleType.MATRIX);
+        adimages.setScaleType(ImageView.ScaleType.MATRIX);
         adimages.setOnTouchListener(new View.OnTouchListener (){
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+
+                Log.d("TAG","action :"+event.getAction());
                 if (v.equals(adimages)) {
                     int action = event.getAction();
                     switch (action & MotionEvent.ACTION_MASK) {
                         case MotionEvent.ACTION_DOWN:
-                            touchMode = TOUCH_MODE.SINGLE;
                             donwSingleEvent(event);
-                            Log.d("TAG","testangle");
+                            Log.d("TAG","touched : " + event.getPointerCount());
                             break;
                         case MotionEvent.ACTION_MOVE:
+
+                            v.getParent().requestDisallowInterceptTouchEvent(true);
+                            if(event.getPointerCount()==2){
+                                touchMode = TOUCH_MODE.MULTI;
+                            }else if(event.getPointerCount()==1) {
+                                touchMode = TOUCH_MODE.SINGLE;
+                            }
                             if (touchMode == TOUCH_MODE.SINGLE) {
                                 moveSingleEvent(event);
+                                Log.d("TAG","singlemove :"+ event.getPointerCount());
                             } else if (touchMode == TOUCH_MODE.MULTI) {
+
                                 moveMultiEvent(event);
+                                Log.d("TAG","multymove :"+ event.getPointerCount());
+                            }else{
+                                touchflage = 0;
                             }
-                            Log.d("TAG","testzoom");
+
                             break;
+
                         case MotionEvent.ACTION_UP:
                         case MotionEvent.ACTION_POINTER_UP:
+                            i = 0;
                             touchMode = TOUCH_MODE.NONE;
                             Log.d("TAG","testtouch");
                             break;
@@ -138,30 +163,87 @@ public class SlideViewFlagment extends Fragment {
             e.printStackTrace();
         }
 
+
+//비트멥 이지미 MATRIX로 하기 위해 화면 크기에 맞게 사이즈 조정 =================================
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        int height = size.y;
         if(args.getInt("page") == 0 && !bitmapArrayList.isEmpty()){
             storename.setText("매장이름 : "+args.getString("storename"));
             storeaddress.setText("매장주소 : "+args.getString("storeaddress"));
-            adimages.setImageBitmap(bitmapArrayList.get(0));
+
+            if(bitmapArrayList.get(0).getWidth() > width) {
+                float scale = (float)width / (float)bitmapArrayList.get(0).getWidth();
+                float fitwidth = (float) width;
+                float fitheight = (float)bitmapArrayList.get(0).getHeight()*scale;
+                Bitmap fitbitmap = Bitmap.createScaledBitmap(bitmapArrayList.get(0), (int)fitwidth, (int)fitheight, true);
+                adimages.setImageBitmap(fitbitmap);
+            }else{
+                adimages.setImageBitmap(bitmapArrayList.get(0));
+            }
+
             bitmapArrayList.clear();
         }else if (args.getInt("page") == 1 && !bitmapArrayList.isEmpty()){
             storename.setText("매장이름 : "+args.getString("storename"));
             storeaddress.setText("매장주소 : "+args.getString("storeaddress"));
-            adimages.setImageBitmap(bitmapArrayList.get(0));
+
+            if(bitmapArrayList.get(0).getWidth() > width) {
+                float scale = (float)width / (float)bitmapArrayList.get(0).getWidth();
+                float fitwidth = (float) width;
+                float fitheight = (float)bitmapArrayList.get(0).getHeight()*scale;
+                Bitmap fitbitmap = Bitmap.createScaledBitmap(bitmapArrayList.get(0), (int)fitwidth, (int)fitheight, true);
+                adimages.setImageBitmap(fitbitmap);
+            }else{
+                adimages.setImageBitmap(bitmapArrayList.get(0));
+            }
+
             bitmapArrayList.clear();
         }else if (args.getInt("page") == 2 && !bitmapArrayList.isEmpty()){
             storename.setText("매장이름 : "+args.getString("storename"));
             storeaddress.setText("매장주소 : "+args.getString("storeaddress"));
-            adimages.setImageBitmap(bitmapArrayList.get(0));
+
+            if(bitmapArrayList.get(0).getWidth() > width) {
+                float scale = (float)width / (float)bitmapArrayList.get(0).getWidth();
+                float fitwidth = (float) width;
+                float fitheight = (float)bitmapArrayList.get(0).getHeight()*scale;
+                Bitmap fitbitmap = Bitmap.createScaledBitmap(bitmapArrayList.get(0), (int)fitwidth, (int)fitheight, true);
+                adimages.setImageBitmap(fitbitmap);
+            }else{
+                adimages.setImageBitmap(bitmapArrayList.get(0));
+            }
+
             bitmapArrayList.clear();
         }else if (args.getInt("page") == 3 && !bitmapArrayList.isEmpty()){
             storename.setText("매장이름 : "+args.getString("storename"));
             storeaddress.setText("매장주소 : "+args.getString("storeaddress"));
-            adimages.setImageBitmap(bitmapArrayList.get(0));
+
+            if(bitmapArrayList.get(0).getWidth() > width) {
+                float scale = (float)width / (float)bitmapArrayList.get(0).getWidth();
+                float fitwidth = (float) width;
+                float fitheight = (float)bitmapArrayList.get(0).getHeight()*scale;
+                Bitmap fitbitmap = Bitmap.createScaledBitmap(bitmapArrayList.get(0), (int)fitwidth, (int)fitheight, true);
+                adimages.setImageBitmap(fitbitmap);
+            }else{
+                adimages.setImageBitmap(bitmapArrayList.get(0));
+            }
+
             bitmapArrayList.clear();
         }else if (args.getInt("page")== 4 && !bitmapArrayList.isEmpty()){
             storename.setText("매장이름 : "+args.getString("storename"));
             storeaddress.setText("매장주소 : "+args.getString("storeaddress"));
-            adimages.setImageBitmap(bitmapArrayList.get(0));
+
+            if(bitmapArrayList.get(0).getWidth() > width) {
+                float scale = (float)width / (float)bitmapArrayList.get(0).getWidth();
+                float fitwidth = (float) width;
+                float fitheight = (float)bitmapArrayList.get(0).getHeight()*scale;
+                Bitmap fitbitmap = Bitmap.createScaledBitmap(bitmapArrayList.get(0), (int)fitwidth, (int)fitheight, true);
+                adimages.setImageBitmap(fitbitmap);
+            }else{
+                adimages.setImageBitmap(bitmapArrayList.get(0));
+            }
+
             bitmapArrayList.clear();
         }
 
@@ -199,6 +281,7 @@ public class SlideViewFlagment extends Fragment {
         matrix.set(savedMatrix);
         matrix.postTranslate(event.getX() - startPoint.x, event.getY() - startPoint.y);
         adimages.setImageMatrix(matrix);
+        Log.d("TAG", "movemove : " +event.getX() +","+event.getY());
     }
 
     private void downMultiEvent(MotionEvent event) {
@@ -213,15 +296,24 @@ public class SlideViewFlagment extends Fragment {
 
     private void moveMultiEvent(MotionEvent event) {
         float newDistance = getDistance(event);
-        if (newDistance > 5f) {
+
+        if(i != 1){
+            oldDistance = newDistance;
+            i = 1;
+        }
+        if (newDistance > 10f) {
             matrix.set(savedMatrix);
+            midPoint = getMidPoint(event);
             float scale = newDistance / oldDistance;
             matrix.postScale(scale, scale, midPoint.x, midPoint.y);
 
-            double nowRadian = Math.atan2(event.getY() - midPoint.y, event.getX() - midPoint.x);
-            double nowDegress = (nowRadian * 180) / Math.PI;
-            float degree = (float) (nowDegress - oldDegree);
-            matrix.postRotate(degree, midPoint.x, midPoint.y);
+//            double nowRadian = Math.atan2(event.getY() - midPoint.y, event.getX() - midPoint.x);
+//            double nowDegress = (nowRadian * 180) / Math.PI;
+//            float degree = (float) (nowDegress - oldDegree);
+//            matrix.postRotate(degree, midPoint.x, midPoint.y);
+
+            Log.d("TAG", "distance : " + oldDistance +","+ newDistance);
+
 
 
             adimages.setImageMatrix(matrix);
