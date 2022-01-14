@@ -62,5 +62,6 @@
     <string name="hopage">매장 홈페이지 방문</string>
     <string name="menu_contract_delete">제휴 해제</string>
     <string name="gotomypage">마이페이지</string>
+    <string name="doubleclick">더블클릭을 하면 이미지 이동, 확대가 가능합니다.</string>
 
 </resources>

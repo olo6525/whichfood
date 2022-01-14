@@ -1,5 +1,8 @@
 package com.coin.whichfood;
 
+import android.app.Activity;
+import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,6 +10,7 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,9 +71,21 @@ public class SlideViewFlagment extends Fragment {
 
     private double oldDegree = 0; // 두손가락의 각도
     int i = 0; // 두손가락 확대, 축소 플레그
-    int actionflag = 0; //이동, 확대, 축소 플래그
+    int doubletabflag = 0; // 더블 텝 플래그
     int touchflage =0 ;
+    private Activity activity;
 
+    GestureDetector.OnDoubleTapListener doubleTapListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof Activity) {
+            activity = (Activity) context;
+        }
+
+    }
 
 
     @Nullable
@@ -78,51 +94,114 @@ public class SlideViewFlagment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         ViewGroup adview = (ViewGroup) inflater.inflate(R.layout.slidepages, container, false);
+
 //이미치 크기 확대 축소===============================================================
 
         matrix = new Matrix();
         savedMatrix = new Matrix();
         adimages = (ImageView)adview.findViewById(R.id.adimage);
         adimages.setScaleType(ImageView.ScaleType.MATRIX);
+        doubleTapListener = new GestureDetector.OnDoubleTapListener() {
+            @Override
+            public boolean onSingleTapConfirmed(MotionEvent e) {
+                return false;
+            }
+
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                if(doubletabflag == 0){
+                    doubletabflag =1;
+                    Log.d("TAG", "doubletouch 1");
+                }else{
+                    doubletabflag =0;
+                    Log.d("TAG", "doubletouch 0");
+                }
+
+                return true;
+            }
+
+            @Override
+            public boolean onDoubleTapEvent(MotionEvent e) {
+                return false;
+            }
+        };
+
+        final GestureDetector gesture = new GestureDetector(getActivity(), new GestureDetector.OnGestureListener() {
+            @Override
+            public boolean onDown(MotionEvent e) {
+                return false;
+            }
+
+            @Override
+            public void onShowPress(MotionEvent e) {
+
+            }
+
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                return false;
+            }
+
+            @Override
+            public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                return false;
+            }
+
+            @Override
+            public void onLongPress(MotionEvent e) {
+
+            }
+
+            @Override
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                return false;
+            }
+        });
+        gesture.setOnDoubleTapListener(doubleTapListener);
         adimages.setOnTouchListener(new View.OnTouchListener (){
+
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                if(gesture != null){
+                    gesture.onTouchEvent(event);
+                }
+                if(doubletabflag == 1) {
+                    Log.d("TAG", "action :" + event.getAction());
+                    if (v.equals(adimages)) {
+                        int action = event.getAction();
+                        switch (action & MotionEvent.ACTION_MASK) {
+                            case MotionEvent.ACTION_DOWN:
+                                donwSingleEvent(event);
+                                Log.d("TAG", "touched : " + event.getPointerCount());
+                                break;
+                            case MotionEvent.ACTION_MOVE:
 
-                Log.d("TAG","action :"+event.getAction());
-                if (v.equals(adimages)) {
-                    int action = event.getAction();
-                    switch (action & MotionEvent.ACTION_MASK) {
-                        case MotionEvent.ACTION_DOWN:
-                            donwSingleEvent(event);
-                            Log.d("TAG","touched : " + event.getPointerCount());
-                            break;
-                        case MotionEvent.ACTION_MOVE:
+                                v.getParent().requestDisallowInterceptTouchEvent(true);
+                                if (event.getPointerCount() == 2) {
+                                    touchMode = TOUCH_MODE.MULTI;
+                                } else if (event.getPointerCount() == 1) {
+                                    touchMode = TOUCH_MODE.SINGLE;
+                                }
+                                if (touchMode == TOUCH_MODE.SINGLE) {
+                                    moveSingleEvent(event);
+                                    Log.d("TAG", "singlemove :" + event.getPointerCount());
+                                } else if (touchMode == TOUCH_MODE.MULTI) {
 
-                            v.getParent().requestDisallowInterceptTouchEvent(true);
-                            if(event.getPointerCount()==2){
-                                touchMode = TOUCH_MODE.MULTI;
-                            }else if(event.getPointerCount()==1) {
-                                touchMode = TOUCH_MODE.SINGLE;
-                            }
-                            if (touchMode == TOUCH_MODE.SINGLE) {
-                                moveSingleEvent(event);
-                                Log.d("TAG","singlemove :"+ event.getPointerCount());
-                            } else if (touchMode == TOUCH_MODE.MULTI) {
+                                    moveMultiEvent(event);
+                                    Log.d("TAG", "multymove :" + event.getPointerCount());
+                                } else {
+                                    touchflage = 0;
+                                }
 
-                                moveMultiEvent(event);
-                                Log.d("TAG","multymove :"+ event.getPointerCount());
-                            }else{
-                                touchflage = 0;
-                            }
+                                break;
 
-                            break;
-
-                        case MotionEvent.ACTION_UP:
-                        case MotionEvent.ACTION_POINTER_UP:
-                            i = 0;
-                            touchMode = TOUCH_MODE.NONE;
-                            Log.d("TAG","testtouch");
-                            break;
+                            case MotionEvent.ACTION_UP:
+                            case MotionEvent.ACTION_POINTER_UP:
+                                i = 0;
+                                touchMode = TOUCH_MODE.NONE;
+                                Log.d("TAG", "testtouch");
+                                break;
+                        }
                     }
                 }
                 return true;
