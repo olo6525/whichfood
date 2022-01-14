@@ -102,14 +102,24 @@ public class BillingService implements PurchasesUpdatedListener{
                 for (Purchase purchase : purchases) {
                     Log.e(TAG, "bii결제 구매완료상품: " + purchases);
                     handlePurchase(purchase);
+
                 }
             } else if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.USER_CANCELED) {
                 // Handle an error caused by a user cancelling the purchase flow.
                 deletepartnership();
+                billingClient.endConnection();
+                Intent intent = new Intent(context,MainActivity.class);
+                intent.putExtra("Fail",1);
+                context.startActivity(intent);
                 Log.d(TAG, "bii결제에 취소하였음니다 !");
+
             } else {
                 // Handle any other error codes.
                 deletepartnership();
+                billingClient.endConnection();
+                Intent intent = new Intent(context,MainActivity.class);
+                intent.putExtra("Fail",1);
+                context.startActivity(intent);
                 Log.d(TAG, "bii결제도중 예상치 못한 에러가 발생하였습니다 !");
             }
         }
@@ -249,6 +259,7 @@ public class BillingService implements PurchasesUpdatedListener{
         }
         Log.d(TAG,"biil중복체크3");
         Log.d(TAG,"biipurchasegogo");
+        billingClient.endConnection();
         Intent intent = new Intent(context,MainActivity.class);
         intent.putExtra("Success",1);
         context.startActivity(intent);
